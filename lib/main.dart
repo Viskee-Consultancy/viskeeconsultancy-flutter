@@ -5,13 +5,21 @@
 import 'package:flutter/material.dart';
 import 'pages/MainPage.dart';
 import 'pages/SchoolLogoPage.dart';
+import 'pages/BrochureDownloadPage.dart';
+import 'pages/CourseDetailPage.dart';
+import 'pages/SchoolCoursesPage.dart';
+import 'pages/SearchResultPage.dart';
 
 void main() => runApp(
   MaterialApp(
     home: MainPage(),
     routes: <String, WidgetBuilder> {
+      '/brochure_download_page': (BuildContext context) => BrochureDownloadPage(),
+      '/course_detail_page': (BuildContext context) => CourseDetailPage(),
       '/main_page': (BuildContext context) => MainPage(),
-      '/school_page': (BuildContext context) => SchoolLogoPage()
+      '/school_courses_page': (BuildContext context) => SchoolCoursesPage(),
+      '/school_logo_page': (BuildContext context) => SchoolLogoPage(),
+      '/search_result_page': (BuildContext context) => SearchResultPage()
     }
   )
 );

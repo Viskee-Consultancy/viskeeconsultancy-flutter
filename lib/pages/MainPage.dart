@@ -58,7 +58,7 @@ class MainPage extends StatelessWidget {
                       child: ElevatedButton(
                         child: Image.asset("images/aibt_portrait.png"),
                         onPressed: () {
-                          Navigator.of(context).pushNamed("/school_page");
+                          Navigator.of(context).pushNamed("/school_logo_page");
                         }
                       )
                     )
@@ -70,12 +70,16 @@ class MainPage extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: const BorderRadius.all(const Radius.circular(8)),
                       ),
-                      child: Expanded(child: Image.asset("images/reach_portrait.png"))
+                      child: ElevatedButton(
+                        child: Image.asset("images/reach_portrait.png"),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/school_courses_page");
+                        }
+                      )
                     )
                   ),
                   Expanded(
