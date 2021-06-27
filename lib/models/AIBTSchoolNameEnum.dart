@@ -19,7 +19,7 @@ class AIBTSchoolNameEnumUtils {
       "REACH COMMUNITY COLLEGE":AIBTSchoolNameEnum.REACH
     };
 
-    AIBTSchoolNameEnum? fromValue(String value) {
+    static AIBTSchoolNameEnum? fromValue(String value) {
       return AIBT_SCHOOL_NAME_MAP[value];
     }
 }

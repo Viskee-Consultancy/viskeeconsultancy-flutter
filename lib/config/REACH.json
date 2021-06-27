@@ -1,0 +1,282 @@
+{
+  "name": "REACH",
+  "promotions": [
+    {
+    "name": "REACH Non Coe Promotions Brochure.pdf",
+    "link": "https://github.com/AibtGlobal/Viskee-Consultancy-Configuration/raw/master/promotion/REACH-Non-CoE_promotions_flyer_Vol_1.1.pdf"
+    },
+    {
+    "name": "REACH Onshore CoE Promotions.pdf",
+    "link": "https://github.com/AibtGlobal/Viskee-Consultancy-Configuration/raw/master/promotion/REACH-Onshore_CoE_Promotions.pdf"
+    }
+  ],
+  "schools":[
+    {
+      "name": "REACH COMMUNITY COLLEGE",
+      "courses": [
+        {
+          "vetCode": "AUR50116",
+          "cricosCode": "105384F",
+          "department": "Single Courses",
+          "name": "Diploma of Automotive Management",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 9000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT30816",
+          "cricosCode": "105395C",
+          "department": "Single Courses",
+          "name": "Certificate III in Commercial Cookery",
+          "duration": 52,
+          "durationDetail": "48 wks Tuition + 4 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 8500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT40516",
+          "cricosCode": "105422E",
+          "department": "Single Courses",
+          "name": "Certificate IV in Commercial Cookery",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 16000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT50416",
+          "cricosCode": "105423D",
+          "department": "Single Courses",
+          "name": "Diploma of Hospitality Management",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break(3 days p/week)",
+          "offshoreTuition": 0,
+          "onshoreTuition": 6500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "BSB50820",
+          "cricosCode": "105425B",
+          "department": "Single Courses",
+          "name": "Diploma of Project Management",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 6500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "BSB60420",
+          "cricosCode": "105426A",
+          "department": "Single Courses",
+          "name": "Advanced Diploma of Leadership and Management",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 6500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "ICT40120",
+          "cricosCode": "105387C",
+          "department": "Single Courses",
+          "name": "Certificate IV in Information Technology",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 7000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "ICT50220",
+          "cricosCode": "105388B",
+          "department": "Single Courses",
+          "name": "Diploma of Information Technology",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 8500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "BSB60120",
+          "cricosCode": "105391G",
+          "department": "Single Courses",
+          "name": "Advanced Diploma of Business",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 6500,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "BSB80120",
+          "cricosCode": "105392F",
+          "department": "Single Courses",
+          "name": "Graduate Diploma of Management (Learning)",
+          "duration": 52,
+          "durationDetail": "44 wks Tuition + 8 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 9000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "AUR30620/AUR40216/AUR50116",
+          "cricosCode": "105382H/105383G/105384F",
+          "department": "Packages",
+          "name": "Certificate III in Light Vehicle Mechanical Technology +\nCertificate IV in Automotive Mechanical Diagnosis + \nDiploma of Automotive Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 19000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "AUR30320/AUR40620/AUR50116",
+          "cricosCode": "105385E/105386D/105384F",
+          "department": "Packages",
+          "name": "Certificate III in Automotive Electrical Technology +\nCertificate IV in Automotive Electrical Technology +\nDiploma of Automotive Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 20000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT30816/SIT40516/SIT50416",
+          "cricosCode": "105395C/105422E/105423D",
+          "department": "Packages",
+          "name": "Certificate III in Commercial Cookery + Certificate IV in Commercial Cookery + Diploma of Hospitality Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 16000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT40516/SIT60316",
+          "cricosCode": "105422E/105424C",
+          "department": "Packages",
+          "name": "Certificate IV in Commercial Cookery + Advanced Diploma of Hospitality Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 16000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "SIT50416/SIT60316",
+          "cricosCode": "105423D/105424C",
+          "department": "Packages",
+          "name": "Diploma of Hospitality Management + Advanced Diploma of Hospitality Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 14000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "BSB50820/BSB60420",
+          "cricosCode": "105425B/105426A",
+          "department": "Packages",
+          "name": "Diploma of Project Management +\nAdvanced Diploma of Leadership and Management",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 13000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "ICT40120/ICT50220",
+          "cricosCode": "105387C/105388B",
+          "department": "Packages",
+          "name": "Certificate IV in Information Technology + Diploma of Information Technology",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 14000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "ICT50220/ICT60220",
+          "cricosCode": "105388B/105389A",
+          "department": "Packages",
+          "name": "Diploma of Information Technology +\nAdvanced Diploma of Information Technology",
+          "duration": 104,
+          "durationDetail": "88 wks Tuition + 16 wks Break",
+          "offshoreTuition": 0,
+          "onshoreTuition": 15000,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "",
+          "cricosCode": "",
+          "department": "English",
+          "name": "General English (Beginner to Upper Intermediate) - ELICOS only",
+          "duration": 0,
+          "durationDetail": "Per Week (Minimum of 10 Weeks)",
+          "offshoreTuition": 0,
+          "onshoreTuition": 185,
+          "location": [
+            "TAS"
+          ]
+        },
+        {
+          "vetCode": "",
+          "cricosCode": "",
+          "department": "English",
+          "name": "General English (Beginner to Upper Intermediate) - packaged with any other VET course",
+          "duration": 0,
+          "durationDetail": "Per Week (Minimum of 10 Weeks). Students will receive the\nfirst 10 weeks of ELICOS\nFREE. If the duration\nof ELICOS within the\npackage is greater than\n10 weeks, the remaining\nduration of ELICOS will be\n$185 per week",
+          "offshoreTuition": 0,
+          "onshoreTuition": 185,
+          "location": [
+            "NSW",
+            "QLD",
+            "TAS"
+          ]
+        }
+      ]
+    }
+  ]
+}
