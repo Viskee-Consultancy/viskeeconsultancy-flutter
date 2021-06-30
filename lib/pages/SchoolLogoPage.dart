@@ -3,81 +3,84 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:viskeeconsultancy/models/Group.dart';
+import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 void main() => runApp(SchoolLogoPage());
+Group? aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter layout demo',
-        home: Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.asset(
-                      "images/vc_logo_landscape.png",
-                      fit: BoxFit.contain,
-                      height: 40,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            body: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("images/background.jpg"),
-                      fit: BoxFit.cover)),
-              child: Column(
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: null,
-                      )),
-                  Expanded(
-                      flex: 1,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Image.asset("images/aibt_landscape.png"),
-                      )),
-                  Expanded(
-                      flex: 1,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  CustomColors.GOLD),
-                            ),
-                            child: Text("LATEST BROCHURES"),
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed("/brochure_download_page");
-                            }),
-                      )),
-                  Expanded(
-                      flex: 8,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: _buildGrid(),
-                      )),
-                ],
-              ),
-            )));
+    aibtGroup = ModalRoute.of(context)!.settings.arguments as Group;
+
+    return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  "images/vc_logo_landscape.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              )
+            ],
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("images/background.jpg"),
+                  fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: null,
+                  )),
+              Expanded(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Image.asset("images/aibt_landscape.png"),
+                  )),
+              Expanded(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              CustomColors.GOLD),
+                        ),
+                        child: Text("LATEST BROCHURES"),
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed("/brochure_download_page");
+                        }),
+                  )),
+              Expanded(
+                  flex: 8,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: _buildGrid(),
+                  )),
+            ],
+          ),
+        ));
   }
 
   // #docregion grid
@@ -86,7 +89,7 @@ class SchoolLogoPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       mainAxisSpacing: 0,
       crossAxisSpacing: 0,
-      children: _buildGridTileList(6));
+      children: _buildGridTileList(aibtGroup!.schools.length));
 
   // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
   // The List.generate() constructor allows an easy way to create
@@ -96,31 +99,28 @@ class SchoolLogoPage extends StatelessWidget {
 }
 
 class SchoolLogoGridView extends StatelessWidget {
-  static List<String> schoolNames = List.from([
-    "ACE AVIATION AEROSPACE ACADEMY",
-    "BESPOKE GRAMMAR SCHOOL OF ENGLISH",
-    "BRANSON SCHOOL OF BUSINESS AND TECHNOLOGY",
-    "DIANA SCHOOL OF COMMUNITY SERVICES",
-    "EDISON SCHOOL OF TECH SCIENCES",
-    "SHELDON SCHOOL OF HOSPITALITY"
-  ]);
-  // SchoolLogoGridView(List<String> schoolNames) {
-  //   this.schoolNames =schoolNames;
-  // }
-  String schoolName = "ACE AVIATION AEROSPACE ACADEMY";
+  School? school;
   SchoolLogoGridView(int position) {
-    this.schoolName = schoolNames[position];
+    this.school = aibtGroup!.schools[position];
+    // this.schoolName = schoolNames[position];
   }
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: const BorderRadius.all(const Radius.circular(8)),
+        padding: EdgeInsets.all(20),
+        child: GestureDetector(
+          onTap: () {
+            print("School Courses Page button click");
+            Navigator.of(context)
+                .pushNamed("/school_courses_page", arguments: school);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: const BorderRadius.all(const Radius.circular(8)),
+            ),
+            child: Utils.getSchoolLogo(school!.name),
           ),
-          child: Utils.getSchoolLogo(schoolName)),
-    );
+        ));
   }
 }

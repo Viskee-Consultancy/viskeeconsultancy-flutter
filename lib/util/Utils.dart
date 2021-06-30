@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/AIBTSchoolNameEnum.dart';
 
 class Utils {
-  static getSchoolLogo(String schoolName) {
-    var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName);
+  static getSchoolLogo(String? schoolName) {
+    var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName!);
     switch (aibtSchoolNameEnum) {
       case AIBTSchoolNameEnum.ACE:
         return Image.asset('images/ace_landscape.png');

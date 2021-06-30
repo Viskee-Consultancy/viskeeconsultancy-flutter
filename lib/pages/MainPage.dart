@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:viskeeconsultancy/models/Group.dart';
 
 // Copyright 2018 The Flutter team. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
@@ -7,6 +11,21 @@ import 'package:flutter/material.dart';
 import '../values/CustomColors.dart';
 
 class MainPage extends StatelessWidget {
+  Group? aibt;
+  Group? reach;
+  Future<void> readJson() async {
+    final String aibtJsonString =
+        await rootBundle.loadString('assets/AIBT.json');
+    final String reachJsonString =
+        await rootBundle.loadString('assets/REACH.json');
+    final aibtData = await json.decode(aibtJsonString);
+    final reachData = await json.decode(reachJsonString);
+    aibt = Group.fromJson(aibtData);
+    reach = Group.fromJson(reachData);
+    print(aibt);
+    print(reach);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -80,7 +99,7 @@ class MainPage extends StatelessWidget {
                                           "images/aibt_portrait.png"),
                                       onPressed: () {
                                         Navigator.of(context)
-                                            .pushNamed("/school_logo_page");
+                                            .pushNamed("/school_logo_page", arguments: aibt);
                                       }))),
                           Expanded(flex: 2, child: Container(child: null)),
                           Expanded(
@@ -100,8 +119,9 @@ class MainPage extends StatelessWidget {
                                       child: Image.asset(
                                           "images/reach_portrait.png"),
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .pushNamed("/school_courses_page");
+                                        readJson();
+                                        // Navigator.of(context)
+                                        //     .pushNamed("/school_courses_page");
                                       }))),
                           Expanded(flex: 2, child: Container(child: null))
                         ]))
