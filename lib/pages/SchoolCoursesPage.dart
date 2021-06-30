@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(SchoolCoursesPage());
 
-
 class SchoolCoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

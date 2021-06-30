@@ -14,7 +14,7 @@ class SchoolLogoPage extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter layout demo',
         home: Scaffold(
-          extendBodyBehindAppBar: true,
+            extendBodyBehindAppBar: true,
             appBar: AppBar(
               leading: IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -45,8 +45,9 @@ class SchoolLogoPage extends StatelessWidget {
                 children: [
                   Expanded(
                       flex: 1,
-                      child: Container(child: null,)
-                      ),
+                      child: Container(
+                        child: null,
+                      )),
                   Expanded(
                       flex: 1,
                       child: Align(
@@ -113,6 +114,13 @@ class SchoolLogoGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(20), child: Utils.getSchoolLogo(schoolName));
+      padding: EdgeInsets.all(20),
+      child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: const BorderRadius.all(const Radius.circular(8)),
+          ),
+          child: Utils.getSchoolLogo(schoolName)),
+    );
   }
 }

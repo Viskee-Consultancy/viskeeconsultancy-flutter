@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(SearchResultPage());
 
-
 class SearchResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

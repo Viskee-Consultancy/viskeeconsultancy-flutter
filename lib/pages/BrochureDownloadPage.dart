@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(BrochureDownloadPage());
 
-
 class BrochureDownloadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
