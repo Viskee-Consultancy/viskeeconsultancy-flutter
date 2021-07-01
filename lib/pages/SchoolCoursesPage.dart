@@ -7,18 +7,19 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
-import "package:collection/collection.dart";
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 void main() => runApp(SchoolCoursesPage());
 
 School? school;
-List<Department> departments = new List.empty();
+List<Department> departments = [];
+
 class SchoolCoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     school = ModalRoute.of(context)!.settings.arguments as School;
     buildDepartmentList(school!);
-    
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -62,57 +63,95 @@ class SchoolCoursesPage extends StatelessWidget {
             Expanded(
                 flex: 8,
                 child: Align(
-                  alignment: Alignment.center,
-                  child: null,
+                  alignment: Alignment.topCenter,
+                  child: _buildGrid(),
                 )),
           ]),
         ));
   }
 
-    // #docregion grid
-  Widget _buildGrid() => GridView.extent(
-      maxCrossAxisExtent: 240,
-      padding: const EdgeInsets.all(20),
-      mainAxisSpacing: 0,
-      crossAxisSpacing: 0,
-      children: _buildGridTileList(school!.courses.length));
+  // #docregion grid
+  Widget _buildGrid() => new StaggeredGridView.countBuilder(
+        crossAxisCount: departments.length,
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20),
+        mainAxisSpacing: 0,
+        crossAxisSpacing: 0,
 
-  // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
-  // The List.generate() constructor allows an easy way to create
-  // a list when objects have a predictable naming pattern.
-  List<Container> _buildGridTileList(int count) =>
-      List.generate(count, (i) => Container(child: SchoolCourseGridView(i)));
-      
+        itemCount: departments.length,
+        staggeredTileBuilder: (int index) =>
+            new StaggeredTile.fit(departments.length),
+        itemBuilder: (BuildContext context, int index) {
+
+          return new DepartmentCourseGridView(index);
+        },
+      );
 }
+
+//     children: _buildGridTileList(departments.length));
+
+// // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
+// // The List.generate() constructor allows an easy way to create
+// // a list when objects have a predictable naming pattern.
+// List<Container> _buildGridTileList(int count) =>
+//     List.generate(count, (i) => Container(child: DepartmentCourseGridView(i)));
 
 void buildDepartmentList(School school) {
-  var map = groupBy(school.courses, (course) => { course as Course, course.department});
-  print(map);
+  departments.clear();
+  Map<String, List<Course>> m = new Map();
+  for (var i = 0; i < school.courses.length; i++) {
+    var course = school.courses[i];
+    if (m[course.department] == null) {
+      List<Course> courses = [course];
+      m[course.department!] = courses;
+    } else {
+      m[course.department!]!.add(course);
+    }
+  }
+  m.entries.forEach((entry) => {
+        print(entry.key),
+        print(entry.value),
+        departments.add(new Department(entry.key, entry.value))
+      });
 }
 
-class SchoolCourseGridView extends StatelessWidget {
-  List<Course> courses = new List.empty();
-  SchoolCourseGridView(int position) {
-    this.courses =school!.courses;
-    // this.schoolName = schoolNames[position];
+class DepartmentCourseGridView extends StatelessWidget {
+  late Department department;
+  DepartmentCourseGridView(int position) {
+    this.department = departments[position];
   }
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(20),
-        child: GestureDetector(
-          onTap: () {
-            print("School Courses Page button click");
-            Navigator.of(context)
-                .pushNamed("/school_courses_page", arguments: school);
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: const BorderRadius.all(const Radius.circular(8)),
-            ),
-            child: Utils.getSchoolLogo(school!.name),
-          ),
-        ));
+      padding: EdgeInsets.all(20),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: const BorderRadius.all(const Radius.circular(8)),
+        ),
+        child: Column(
+          children: [
+            Text(department.name!),
+            ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                children: _getListData()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _getListData() {
+    List<Widget> widgets = [];
+    for (int i = 0; i < department.courses.length; i++) {
+      print(department.courses[i].name);
+
+      widgets.add(Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Text(department.courses[i].name!),
+      ));
+    }
+    return widgets;
   }
 }
