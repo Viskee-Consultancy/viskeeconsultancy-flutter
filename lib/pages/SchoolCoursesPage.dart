@@ -8,6 +8,7 @@ import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 void main() => runApp(SchoolCoursesPage());
 
@@ -118,24 +119,24 @@ class DepartmentCourseGridView extends StatelessWidget {
   DepartmentCourseGridView(int position) {
     this.department = departments[position];
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: const BorderRadius.all(const Radius.circular(8)),
-        ),
-        child: Column(
-          children: [
-            Text(department.name!),
-            ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                children: _getListData()),
-          ],
-        ),
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(department.name!,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                  color: CustomColors.GOLD)),
+          ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children: _getListData()),
+        ],
       ),
     );
   }
@@ -156,7 +157,6 @@ class CourseItemView extends StatelessWidget {
   CourseItemView(Course course) {
     this.course = course;
   }
-
   @override
   Widget build(BuildContext context) {
     return new GestureDetector(
@@ -166,9 +166,19 @@ class CourseItemView extends StatelessWidget {
             .pushNamed("/course_detail_page", arguments: course);
       },
       child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Text(course.name!),
-      ),
+          padding: EdgeInsets.all(3.0),
+          child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: const BorderRadius.all(const Radius.circular(3)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: Text(
+                  course.name!,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ))),
     );
   }
 }
