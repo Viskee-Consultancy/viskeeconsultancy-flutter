@@ -121,7 +121,7 @@ class SchoolLogoGridView extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.all(10.0),
-              child: Utils.getSchoolLogo(school!.name),
+              child: Utils.getSchoolLogoPortrait(school!.name),
             )
           ),
         ));

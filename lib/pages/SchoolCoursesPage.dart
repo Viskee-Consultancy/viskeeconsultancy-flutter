@@ -59,7 +59,7 @@ class SchoolCoursesPage extends StatelessWidget {
                 flex: 1,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Utils.getSchoolLogo(school!.name),
+                  child: Utils.getSchoolLogoLandscape(school!.name),
                 )),
             Expanded(
                 flex: 8,
