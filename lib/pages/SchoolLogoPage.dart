@@ -69,7 +69,7 @@ class SchoolLogoPage extends StatelessWidget {
                         child: Text("LATEST BROCHURES"),
                         onPressed: () {
                           Navigator.of(context)
-                              .pushNamed("/brochure_download_page");
+                              .pushNamed("/brochure_download_page", arguments: aibtGroup);
                         }),
                   )),
               Expanded(
