@@ -119,7 +119,10 @@ class SchoolLogoGridView extends StatelessWidget {
               color: Colors.grey,
               borderRadius: const BorderRadius.all(const Radius.circular(8)),
             ),
-            child: Utils.getSchoolLogo(school!.name),
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Utils.getSchoolLogo(school!.name),
+            )
           ),
         ));
   }

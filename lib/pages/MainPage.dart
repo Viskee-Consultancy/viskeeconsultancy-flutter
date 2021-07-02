@@ -57,8 +57,10 @@ class MainPage extends StatelessWidget {
                   flex: 6,
                   child: Text("Explore Over 90+ Courses and Promotions",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 40.0, color: CustomColors.GOLD)),
+                      style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                          color: CustomColors.GOLD)),
                 ),
                 Expanded(
                     flex: 2,
@@ -98,8 +100,9 @@ class MainPage extends StatelessWidget {
                                       child: Image.asset(
                                           "images/aibt_portrait.png"),
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .pushNamed("/school_logo_page", arguments: aibt);
+                                        Navigator.of(context).pushNamed(
+                                            "/school_logo_page",
+                                            arguments: aibt);
                                       }))),
                           Expanded(flex: 2, child: Container(child: null)),
                           Expanded(
