@@ -77,12 +77,10 @@ class SchoolCoursesPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-
         itemCount: departments.length,
         staggeredTileBuilder: (int index) =>
             new StaggeredTile.fit(departments.length),
         itemBuilder: (BuildContext context, int index) {
-
           return new DepartmentCourseGridView(index);
         },
       );
@@ -147,11 +145,30 @@ class DepartmentCourseGridView extends StatelessWidget {
     for (int i = 0; i < department.courses.length; i++) {
       print(department.courses[i].name);
 
-      widgets.add(Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Text(department.courses[i].name!),
-      ));
+      widgets.add(new CourseItemView(department.courses[i]));
     }
     return widgets;
+  }
+}
+
+class CourseItemView extends StatelessWidget {
+  late Course course;
+  CourseItemView(Course course) {
+    this.course = course;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new GestureDetector(
+      onTap: () {
+        print("School Courses Page button click");
+        Navigator.of(context)
+            .pushNamed("/course_detail_page", arguments: course);
+      },
+      child: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Text(course.name!),
+      ),
+    );
   }
 }

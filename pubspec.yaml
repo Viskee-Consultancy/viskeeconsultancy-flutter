@@ -63,6 +63,8 @@ flutter:
     - images/diana_portrait.png
     - images/edison_landscape.png
     - images/edison_portrait.png
+    - images/location.png
+    - images/pdf.png
     - images/pricing.png
     - images/reach_landscape.png
     - images/reach_portrait.png
