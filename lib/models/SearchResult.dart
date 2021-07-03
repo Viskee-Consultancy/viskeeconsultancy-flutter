@@ -3,5 +3,5 @@ import 'GroupEnum.dart';
 
 class SearchResult {
   String? searchText;
-  Map<GroupEnum, List<Course>>? searchResults = new Map();
+  Map<GroupEnum, List<Course>> searchResults = new Map();
 }

@@ -8,7 +8,7 @@ import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
-void main() => runApp(SchoolLogoPage());
+// void main() => runApp(SchoolLogoPage());
 Group? aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {

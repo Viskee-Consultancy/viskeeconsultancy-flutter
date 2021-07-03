@@ -18,8 +18,8 @@ void main() => runApp(
       '/course_detail_page': (BuildContext context) => CourseDetailPage(),
       '/main_page': (BuildContext context) => MainPage(),
       '/school_courses_page': (BuildContext context) => SchoolCoursesPage(),
+      '/search_result_page': (BuildContext context) => SearchResultPage(),
       '/school_logo_page': (BuildContext context) => SchoolLogoPage(),
-      '/search_result_page': (BuildContext context) => SearchResultPage()
     }
   )
 );

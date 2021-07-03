@@ -28,4 +28,19 @@ class Course {
     unpaidPlacement = json["unpaidPlacement"];
     completeServicePeriods = json["completeServicePeriods"];
   }
+
+  @override
+  String toString() {
+        return "Course{" +
+                "vetCode='" + vetCode! + '\'' +
+                "cricosCode='" + cricosCode! + '\'' +
+                ", department='" + department! + '\'' +
+                ", name='" + name! + '\'' +
+                ", duration=" + duration!.toString() +
+                ", durationDetail='" + durationDetail! + '\'' +
+                ", offshoreTuition=" + offshoreTuition.toString() +
+                ", onshoreTuition=" + onshoreTuition.toString() +
+                ", location=" + location.toString() +
+                '}';
+  }
 }
