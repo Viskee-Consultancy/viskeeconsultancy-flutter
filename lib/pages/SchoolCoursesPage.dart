@@ -1,28 +1,27 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
+import 'package:viskeeconsultancy/models/Promotion.dart';
 import 'package:viskeeconsultancy/models/School.dart';
+import 'package:viskeeconsultancy/pages/BrochureDownloadPage.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CourseDetailPage.dart';
 
-void main() => runApp(SchoolCoursesPage());
-
 School? school;
+List<Promotion>? promotions;
 List<Department> departments = [];
 
 class SchoolCoursesPage extends StatelessWidget {
+  SchoolCoursesPage(School schoolInput, List<Promotion> promotionsInput) {
+    school = schoolInput;
+    promotions = promotionsInput;
+  }
   @override
   Widget build(BuildContext context) {
-    school = ModalRoute.of(context)!.settings.arguments as School;
     buildDepartmentList(school!);
-
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -51,29 +50,73 @@ class SchoolCoursesPage extends StatelessWidget {
               image: DecorationImage(
                   image: AssetImage("images/background.jpg"),
                   fit: BoxFit.cover)),
-          child: Column(children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  child: null,
-                )),
-            Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Utils.getSchoolLogoLandscape(school!.name),
-                )),
-            Expanded(
-                flex: 8,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: _buildGrid(),
-                )),
-          ]),
+          child: new SchoolCoursesPageView(),
         ));
   }
+}
 
-  // #docregion grid
+class SchoolCoursesPageView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (promotions == null) {
+      return Column(children: [
+        Expanded(
+            flex: 1,
+            child: Container(
+              child: null,
+            )),
+        Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.center,
+              child: Utils.getSchoolLogoLandscape(school!.name),
+            )),
+        Expanded(
+            flex: 8,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: _buildGrid(),
+            )),
+      ]);
+    } else {
+      return Column(children: [
+        Expanded(
+            flex: 1,
+            child: Container(
+              child: null,
+            )),
+        Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.center,
+              child: Utils.getSchoolLogoLandscape(school!.name),
+            )),
+        Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                  ),
+                  child: Text("LATEST BROCHURES"),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            BrochureDownloadPage(school!.name!, promotions!)));
+                  }),
+            )),
+        Expanded(
+            flex: 7,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: _buildGrid(),
+            )),
+      ]);
+    }
+  }
+
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
         crossAxisCount: departments.length,
         shrinkWrap: true,
@@ -88,14 +131,6 @@ class SchoolCoursesPage extends StatelessWidget {
         },
       );
 }
-
-//     children: _buildGridTileList(departments.length));
-
-// // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
-// // The List.generate() constructor allows an easy way to create
-// // a list when objects have a predictable naming pattern.
-// List<Container> _buildGridTileList(int count) =>
-//     List.generate(count, (i) => Container(child: DepartmentCourseGridView(i)));
 
 void buildDepartmentList(School school) {
   departments.clear();
@@ -164,9 +199,6 @@ class CourseItemView extends StatelessWidget {
     return new GestureDetector(
       onTap: () {
         print("School Courses Page button click");
-        // Navigator.of(context)
-        //     .pushNamed("/course_detail_page", arguments: course);
-
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
       },

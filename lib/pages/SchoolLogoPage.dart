@@ -1,14 +1,12 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
-// void main() => runApp(SchoolLogoPage());
+import 'BrochureDownloadPage.dart';
+import 'SchoolCoursesPage.dart';
+
 Group? aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {
@@ -68,8 +66,9 @@ class SchoolLogoPage extends StatelessWidget {
                         ),
                         child: Text("LATEST BROCHURES"),
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed("/brochure_download_page", arguments: aibtGroup);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => BrochureDownloadPage(
+                                  aibtGroup!.name!, aibtGroup!.promotions)));
                         }),
                   )),
               Expanded(
@@ -83,7 +82,6 @@ class SchoolLogoPage extends StatelessWidget {
         ));
   }
 
-  // #docregion grid
   Widget _buildGrid() => GridView.extent(
       maxCrossAxisExtent: 240,
       padding: const EdgeInsets.all(20),
@@ -91,9 +89,6 @@ class SchoolLogoPage extends StatelessWidget {
       crossAxisSpacing: 0,
       children: _buildGridTileList(aibtGroup!.schools.length));
 
-  // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
-  // The List.generate() constructor allows an easy way to create
-  // a list when objects have a predictable naming pattern.
   List<Container> _buildGridTileList(int count) =>
       List.generate(count, (i) => Container(child: SchoolLogoGridView(i)));
 }
@@ -102,7 +97,6 @@ class SchoolLogoGridView extends StatelessWidget {
   School? school;
   SchoolLogoGridView(int position) {
     this.school = aibtGroup!.schools[position];
-    // this.schoolName = schoolNames[position];
   }
   @override
   Widget build(BuildContext context) {
@@ -110,20 +104,19 @@ class SchoolLogoGridView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            // print("School Courses Page button click");
-            Navigator.of(context)
-                .pushNamed("/school_courses_page", arguments: school);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    SchoolCoursesPage(school!, aibtGroup!.promotions)));
           },
           child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: const BorderRadius.all(const Radius.circular(8)),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Utils.getSchoolLogoPortrait(school!.name),
-            )
-          ),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: const BorderRadius.all(const Radius.circular(8)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Utils.getSchoolLogoPortrait(school!.name),
+              )),
         ));
   }
 }

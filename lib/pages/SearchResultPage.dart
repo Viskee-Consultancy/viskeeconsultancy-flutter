@@ -1,7 +1,3 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -10,8 +6,6 @@ import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CourseDetailPage.dart';
-
-// void main() => runApp(SearchResultPage());
 
 SearchResult? result;
 List<Course>? coursesToDisplay = [];
@@ -22,9 +16,7 @@ class SearchResultPage extends StatefulWidget {
   SearchResultPage(SearchResult searchResult) {
     result = searchResult;
     coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
-    // print("Courses AIBT: " + coursesAIBT.toString());
     coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    // print("Courses REACH: " + coursesREACH.toString());
     if (coursesAIBT != null) {
       coursesToDisplay = coursesAIBT;
     } else if (coursesREACH != null) {
@@ -33,7 +25,6 @@ class SearchResultPage extends StatefulWidget {
     if (coursesToDisplay == null) {
       coursesToDisplay = [];
     }
-    // print("Course to Display: " + coursesToDisplay.toString());
   }
   SearchResultView createState() => new SearchResultView();
 }
@@ -115,7 +106,7 @@ class SearchResultView extends State<SearchResultPage> {
               Expanded(
                   flex: 8,
                   child: Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment.topCenter,
                     child: _buildGrid(),
                   ))
             ])));
@@ -123,7 +114,6 @@ class SearchResultView extends State<SearchResultPage> {
 
   List<bool> _selections = [true, false];
 
-  // #docregion grid
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
         crossAxisCount: coursesToDisplay!.length,
         shrinkWrap: true,
@@ -143,7 +133,6 @@ class SearchResultGridView extends StatelessWidget {
   Course? course;
   SearchResultGridView(int position) {
     this.course = coursesToDisplay![position];
-    // this.schoolName = schoolNames[position];
   }
   @override
   Widget build(BuildContext context) {
@@ -151,15 +140,8 @@ class SearchResultGridView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            // print("Go to course detail page");
-
-    Navigator.of(context).push(MaterialPageRoute(
-
-      builder: (context) => CourseDetailPage(course!)
-    ));
-
-            // Navigator.of(context)
-            //     .pushNamed("/course_detail_page", arguments: course);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CourseDetailPage(course!)));
           },
           child: Container(
               decoration: BoxDecoration(
@@ -168,15 +150,18 @@ class SearchResultGridView extends StatelessWidget {
                 borderRadius: const BorderRadius.all(const Radius.circular(8)),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
+                padding:
+                    EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
                 child: Column(
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         course!.name!,
-                        style:
-                            TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: CustomColors.GOLD),
                       ),
                     ),
                     Align(

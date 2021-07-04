@@ -10,11 +10,9 @@ import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
 
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
 import '../values/CustomColors.dart';
+import 'SchoolCoursesPage.dart';
 import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
@@ -58,12 +56,10 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    readJson();
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Flutter layout demo'),
-        // ),
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -152,7 +148,14 @@ class MainPage extends StatelessWidget {
                                       child: Image.asset(
                                           "images/reach_portrait.png"),
                                       onPressed: () {
-                                        readJson();
+                                        // readJson();
+
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SchoolCoursesPage(
+                                                        reach!.schools[0],
+                                                        reach!.promotions)));
                                       }))),
                           Expanded(flex: 2, child: Container(child: null))
                         ]))
@@ -179,25 +182,20 @@ class AutocompleteBasicExample extends StatelessWidget {
     suggestions.clear();
     String searchText = query.toLowerCase();
     searchText.replaceAll("\\+", "");
-    // print("courses size:" + courses.length.toString());
     for (var course in courses) {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);
       num? week = SearchUtils.extractWeek(splitList);
       bool isDurationMatch =
           SearchUtils.isDurationMatch(course.duration!, year, week);
-      // print("isDuration" + isDurationMatch.toString());
       bool isLocationMatch =
           SearchUtils.isLocationMatch(course.location, splitList);
-      // print("isLocation" + isLocationMatch.toString());
       bool isTextMatch =
           SearchUtils.isTextMatch(course.toString().toLowerCase(), splitList);
-      // print("isTextMatch" + isTextMatch.toString());
       if (isDurationMatch && isLocationMatch && isTextMatch) {
         suggestions.add(course);
       }
     }
-    // print("Suggestions: " + suggestions.toString());
     return suggestions;
   }
 
@@ -236,17 +234,9 @@ class AutocompleteBasicExample extends StatelessWidget {
             fillColor: CustomColors.GOLD),
         controller: this._typeAheadController,
         onSubmitted: (query) {
-                                        // Navigator.of(context).pushNamed(
-                                        //     "/school_logo_page",
-                                        //     arguments: new Group());
-
-    Navigator.of(context).push(MaterialPageRoute(
-
-      builder: (context) => SearchResultPage(_buildSearchResult(query, suggestions))
-    ));
-          // Navigator.of(context).pushNamed("/search_result_page",
-          //     arguments: _buildSearchResult(query, suggestions));
-
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  SearchResultPage(_buildSearchResult(query, suggestions))));
         },
       ),
       itemBuilder: (context, suggestion) => Padding(

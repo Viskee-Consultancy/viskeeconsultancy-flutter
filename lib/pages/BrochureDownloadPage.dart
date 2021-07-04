@@ -1,23 +1,20 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/Promotion.dart';
 import 'dart:html' as html;
 
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
-void main() => runApp(BrochureDownloadPage());
-
-Group? group;
-
+String? groupName;
+List<Promotion>? promotions;
 class BrochureDownloadPage extends StatelessWidget {
+
+  BrochureDownloadPage(String groupNameInput, List<Promotion> promotionsInput) {
+    groupName =groupNameInput;
+    promotions =promotionsInput;
+  } 
   @override
   Widget build(BuildContext context) {
-    group = ModalRoute.of(context)!.settings.arguments as Group;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -56,7 +53,7 @@ class BrochureDownloadPage extends StatelessWidget {
                 flex: 1,
                 child: Align(
                     alignment: Alignment.center,
-                    child: Text("Latest Brochures For " + group!.name!,
+                    child: Text("Latest Brochures For " + groupName!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -73,14 +70,14 @@ class BrochureDownloadPage extends StatelessWidget {
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
-        crossAxisCount: group!.promotions.length,
+        crossAxisCount: promotions!.length,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 30,
         crossAxisSpacing: 0,
-        itemCount: group!.promotions.length,
+        itemCount: promotions!.length,
         staggeredTileBuilder: (int index) =>
-            new StaggeredTile.fit(group!.promotions.length),
+            new StaggeredTile.fit(promotions!.length),
         itemBuilder: (BuildContext context, int index) {
           return new PromotionGridView(index);
         },
@@ -90,7 +87,7 @@ class BrochureDownloadPage extends StatelessWidget {
 class PromotionGridView extends StatelessWidget {
   late Promotion promotion;
   PromotionGridView(int position) {
-    this.promotion = group!.promotions[position];
+    this.promotion = promotions![position];
   }
   @override
   Widget build(BuildContext context) {
