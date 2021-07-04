@@ -88,7 +88,16 @@ class SearchResultView extends State<SearchResultPage> {
                       selectedColor: Colors.white,
                       disabledColor: Colors.black,
                       fillColor: CustomColors.GOLD,
-                      children: [Text("AIBT"), Text("REACH")],
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text("AIBT"),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text("REACH"),
+                        )
+                      ],
                       onPressed: (int index) {
                         setState(() {
                           if (index == 0) {

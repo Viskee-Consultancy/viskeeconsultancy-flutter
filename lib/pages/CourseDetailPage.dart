@@ -3,7 +3,6 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'dart:html' as html;
 
-
 Course? course;
 
 class CourseDetailPage extends StatelessWidget {
@@ -113,19 +112,24 @@ class CourseDetailPage extends StatelessWidget {
                                   ),
                                 ),
                                 Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    course!.duration!.toString() + "Weeks",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 5),
+                                      child: Text(
+                                        course!.duration!.toString() + "Weeks",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )),
                                 Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    course!.durationDetail!,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )
+                                    flex: 2,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 5),
+                                      child: Text(
+                                        course!.durationDetail!,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ))
                               ],
                             )),
                         Expanded(
@@ -152,12 +156,14 @@ class CourseDetailPage extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
-                                child: Text(
-                                  course!.location.toString(),
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      course!.location.toString(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
                               Expanded(
                                 flex: 1,
                                 child: Container(),
@@ -189,21 +195,25 @@ class CourseDetailPage extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
-                                child: Text(
-                                  "Tuition Fee - OnShore Student Visa Holder: \$" +
-                                      course!.onshoreTuition!.toString(),
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      "Tuition Fee - OnShore Student Visa Holder: \$" +
+                                          course!.onshoreTuition!.toString(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
                               Expanded(
-                                flex: 1,
-                                child: Text(
-                                  "Tuition Fee - OffShore Int Student: \$" +
-                                      course!.offshoreTuition!.toString(),
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              )
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      "Tuition Fee - OffShore Int Student: \$" +
+                                          course!.offshoreTuition!.toString(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ))
                             ],
                           ),
                         ),

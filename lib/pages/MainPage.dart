@@ -10,7 +10,6 @@ import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
 
-
 import '../values/CustomColors.dart';
 import 'SchoolCoursesPage.dart';
 import 'SearchResultPage.dart';
@@ -58,7 +57,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     readJson();
     return MaterialApp(
-      title: 'Flutter layout demo',
+      title: 'Viskee Consultancy',
       home: Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -95,6 +94,7 @@ class MainPage extends StatelessWidget {
                         child: Container(
                             decoration: BoxDecoration(
                               color: Colors.grey,
+                              border: Border.all(color: CustomColors.GOLD),
                               borderRadius: const BorderRadius.all(
                                   const Radius.circular(8)),
                             ),
@@ -108,11 +108,13 @@ class MainPage extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Expanded(flex: 2, child: Container(child: null)),
+                          Expanded(flex: 1, child: Container(child: null)),
                           Expanded(
                               flex: 1,
                               child: Container(
                                   decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: CustomColors.GOLD),
                                     color: Colors.grey,
                                     borderRadius: const BorderRadius.all(
                                         const Radius.circular(8)),
@@ -135,6 +137,8 @@ class MainPage extends StatelessWidget {
                               flex: 1,
                               child: Container(
                                   decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: CustomColors.GOLD),
                                     color: Colors.grey,
                                     borderRadius: const BorderRadius.all(
                                         const Radius.circular(8)),
@@ -145,11 +149,12 @@ class MainPage extends StatelessWidget {
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey),
                                       ),
-                                      child: Image.asset(
-                                          "images/reach_portrait.png"),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Image.asset(
+                                            "images/reach_portrait.png"),
+                                      ),
                                       onPressed: () {
-                                        // readJson();
-
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
@@ -157,7 +162,7 @@ class MainPage extends StatelessWidget {
                                                         reach!.schools[0],
                                                         reach!.promotions)));
                                       }))),
-                          Expanded(flex: 2, child: Container(child: null))
+                          Expanded(flex: 1, child: Container(child: null))
                         ]))
               ],
             )),
