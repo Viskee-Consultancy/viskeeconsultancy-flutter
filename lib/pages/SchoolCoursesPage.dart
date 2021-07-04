@@ -145,8 +145,6 @@ void buildDepartmentList(School school) {
     }
   }
   m.entries.forEach((entry) => {
-        print(entry.key),
-        print(entry.value),
         departments.add(new Department(entry.key, entry.value))
       });
 }
@@ -170,6 +168,7 @@ class DepartmentCourseGridView extends StatelessWidget {
                   fontSize: 24.0,
                   color: CustomColors.GOLD)),
           ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: _getListData()),
@@ -181,8 +180,6 @@ class DepartmentCourseGridView extends StatelessWidget {
   List<Widget> _getListData() {
     List<Widget> widgets = [];
     for (int i = 0; i < department.courses.length; i++) {
-      print(department.courses[i].name);
-
       widgets.add(new CourseItemView(department.courses[i]));
     }
     return widgets;
@@ -198,7 +195,6 @@ class CourseItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return new GestureDetector(
       onTap: () {
-        print("School Courses Page button click");
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
       },

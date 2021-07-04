@@ -114,7 +114,7 @@ class CourseDetailPage extends StatelessWidget {
                                 Expanded(
                                     flex: 1,
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: 5),
+                                      padding: EdgeInsets.only(top: 2),
                                       child: Text(
                                         course!.duration!.toString() + "Weeks",
                                         style: TextStyle(color: Colors.white),
@@ -123,7 +123,7 @@ class CourseDetailPage extends StatelessWidget {
                                 Expanded(
                                     flex: 2,
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: 5),
+                                      padding: EdgeInsets.only(top: 2),
                                       child: Text(
                                         course!.durationDetail!,
                                         textAlign: TextAlign.center,
@@ -197,7 +197,7 @@ class CourseDetailPage extends StatelessWidget {
                               Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsets.only(top: 2),
                                     child: Text(
                                       "Tuition Fee - OnShore Student Visa Holder: \$" +
                                           course!.onshoreTuition!.toString(),
@@ -207,7 +207,7 @@ class CourseDetailPage extends StatelessWidget {
                               Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsets.only(top: 2),
                                     child: Text(
                                       "Tuition Fee - OffShore Int Student: \$" +
                                           course!.offshoreTuition!.toString(),

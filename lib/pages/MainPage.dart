@@ -13,6 +13,7 @@ import 'package:viskeeconsultancy/util/SearchUtils.dart';
 
 import '../values/CustomColors.dart';
 import 'SchoolCoursesPage.dart';
+import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
@@ -88,8 +89,8 @@ class MainPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: CustomColors.GOLD)),
                 ),
-                Expanded(
-                    flex: 2,
+                ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
                     child: Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Container(
@@ -112,57 +113,52 @@ class MainPage extends StatelessWidget {
                           Expanded(flex: 1, child: Container(child: null)),
                           Expanded(
                               flex: 1,
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: CustomColors.GOLD),
-                                    color: Colors.grey,
-                                    borderRadius: const BorderRadius.all(
-                                        const Radius.circular(8)),
-                                  ),
-                                  child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.grey),
-                                      ),
-                                      child: Image.asset(
-                                          "images/aibt_portrait.png"),
-                                      onPressed: () {
-                                        Navigator.of(context).pushNamed(
-                                            "/school_logo_page",
-                                            arguments: aibt);
-                                      }))),
+                              child: InkWell(
+                                  child: Ink(
+                                      child: Container(
+                                    decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: CustomColors.GOLD),
+                                      color: Colors.grey,
+                                      borderRadius: const BorderRadius.all(
+                                          const Radius.circular(8)),
+                                    ),
+                                    child:
+                                        Image.asset("images/aibt_portrait.png"),
+                                  )),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SchoolLogoPage(aibt!)));
+                                  })),
                           Expanded(flex: 2, child: Container(child: null)),
                           Expanded(
                               flex: 1,
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: CustomColors.GOLD),
-                                    color: Colors.grey,
-                                    borderRadius: const BorderRadius.all(
-                                        const Radius.circular(8)),
-                                  ),
-                                  child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.grey),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(5),
-                                        child: Image.asset(
-                                            "images/reach_portrait.png"),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SchoolCoursesPage(
-                                                        reach!.schools[0],
-                                                        reach!.promotions)));
-                                      }))),
+                              child: InkWell(
+                                  child: Ink(
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: CustomColors.GOLD),
+                                            color: Colors.grey,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    const Radius.circular(8)),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5),
+                                            child: Image.asset(
+                                                "images/reach_portrait.png"),
+                                          ))),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SchoolCoursesPage(
+                                                    reach!.schools[0],
+                                                    reach!.promotions)));
+                                  })),
                           Expanded(flex: 1, child: Container(child: null))
                         ]))
               ],
@@ -187,7 +183,9 @@ class AutocompleteBasicExample extends StatelessWidget {
     }
     suggestions.clear();
     String searchText = query.toLowerCase();
-    searchText.replaceAll("\\+", "");
+    searchText = searchText.replaceAll("+", "");
+    searchText = searchText.replaceAll("(", "");
+    searchText = searchText.replaceAll(")", "");
     for (var course in courses) {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);

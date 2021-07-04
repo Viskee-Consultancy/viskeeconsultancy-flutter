@@ -10,10 +10,12 @@ import 'SchoolCoursesPage.dart';
 Group? aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {
+
+  SchoolLogoPage(Group group) {
+    aibtGroup =group;
+  }
   @override
   Widget build(BuildContext context) {
-    aibtGroup = ModalRoute.of(context)!.settings.arguments as Group;
-
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
