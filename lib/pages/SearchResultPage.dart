@@ -17,14 +17,21 @@ class SearchResultPage extends StatefulWidget {
     result = searchResult;
     coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
     coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    if (coursesAIBT != null) {
+    if (coursesAIBT == null) {
+      coursesAIBT = [];
+    }
+    if (coursesREACH == null) {
+      coursesREACH = [];
+    }
+    if (coursesAIBT!.isNotEmpty) {
       coursesToDisplay = coursesAIBT;
-    } else if (coursesREACH != null) {
+    } else if (coursesREACH!.isNotEmpty) {
       coursesToDisplay = coursesREACH;
     }
     if (coursesToDisplay == null) {
       coursesToDisplay = [];
     }
+    
   }
   SearchResultView createState() => new SearchResultView();
 }
@@ -116,14 +123,20 @@ class SearchResultView extends State<SearchResultPage> {
                   flex: 8,
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: _buildGrid(),
+                    child: new SearchResultGridView(),
                   ))
             ])));
   }
 
   List<bool> _selections = [true, false];
 
-  Widget _buildGrid() => new StaggeredGridView.countBuilder(
+}
+
+class SearchResultGridView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (coursesToDisplay!.isNotEmpty) {
+      return new StaggeredGridView.countBuilder(
         crossAxisCount: coursesToDisplay!.length,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
@@ -133,14 +146,18 @@ class SearchResultView extends State<SearchResultPage> {
         staggeredTileBuilder: (int index) =>
             new StaggeredTile.fit(coursesToDisplay!.length),
         itemBuilder: (BuildContext context, int index) {
-          return new SearchResultGridView(index);
+          return new SearchResultGridItem(index);
         },
       );
+    } else {
+      return new Container(child: null,);
+    }
+  }
 }
 
-class SearchResultGridView extends StatelessWidget {
+class SearchResultGridItem extends StatelessWidget {
   Course? course;
-  SearchResultGridView(int position) {
+  SearchResultGridItem(int position) {
     this.course = coursesToDisplay![position];
   }
   @override

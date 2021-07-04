@@ -111,6 +111,7 @@ class SchoolLogoGridView extends StatelessWidget {
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey,
+                border: Border.all(color: CustomColors.GOLD),
                 borderRadius: const BorderRadius.all(const Radius.circular(8)),
               ),
               child: Padding(

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
@@ -239,9 +240,23 @@ class AutocompleteBasicExample extends StatelessWidget {
             fillColor: CustomColors.GOLD),
         controller: this._typeAheadController,
         onSubmitted: (query) {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  SearchResultPage(_buildSearchResult(query, suggestions))));
+          if (query.isEmpty) {
+            suggestions.clear();
+          }
+          if (suggestions.isEmpty) {
+            Fluttertoast.showToast(
+                msg: 'Please enter the search text',
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                webPosition: "center",
+                webBgColor: "#D4AF37",
+                backgroundColor: Colors.grey,
+                textColor: Colors.white);
+          } else {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    SearchResultPage(_buildSearchResult(query, suggestions))));
+          }
         },
       ),
       itemBuilder: (context, suggestion) => Padding(
