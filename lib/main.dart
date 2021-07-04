@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'models/SearchResult.dart';
 import 'pages/MainPage.dart';
 import 'pages/SchoolLogoPage.dart';
 import 'pages/BrochureDownloadPage.dart';
@@ -18,7 +19,7 @@ void main() => runApp(
       '/course_detail_page': (BuildContext context) => CourseDetailPage(),
       '/main_page': (BuildContext context) => MainPage(),
       '/school_courses_page': (BuildContext context) => SchoolCoursesPage(),
-      '/search_result_page': (BuildContext context) => SearchResultPage(),
+      // '/search_result_page': (BuildContext context) => SearchResultPage(SearchResult searchResult),
       '/school_logo_page': (BuildContext context) => SchoolLogoPage(),
     }
   )

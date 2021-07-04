@@ -15,6 +15,7 @@ import 'package:viskeeconsultancy/util/SearchUtils.dart';
 // found in the LICENSE file.
 
 import '../values/CustomColors.dart';
+import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
   Group? aibt;
@@ -178,7 +179,7 @@ class AutocompleteBasicExample extends StatelessWidget {
     suggestions.clear();
     String searchText = query.toLowerCase();
     searchText.replaceAll("\\+", "");
-    print("courses size:" + courses.length.toString());
+    // print("courses size:" + courses.length.toString());
     for (var course in courses) {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);
@@ -191,12 +192,12 @@ class AutocompleteBasicExample extends StatelessWidget {
       // print("isLocation" + isLocationMatch.toString());
       bool isTextMatch =
           SearchUtils.isTextMatch(course.toString().toLowerCase(), splitList);
-      print("isTextMatch" + isTextMatch.toString());
+      // print("isTextMatch" + isTextMatch.toString());
       if (isDurationMatch && isLocationMatch && isTextMatch) {
         suggestions.add(course);
       }
     }
-    print("Suggestions: " + suggestions.toString());
+    // print("Suggestions: " + suggestions.toString());
     return suggestions;
   }
 
@@ -212,7 +213,7 @@ class AutocompleteBasicExample extends StatelessWidget {
     }
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtCourses;
-    searchResult.searchResults[GroupEnum.AIBT] = aibtCourses;
+    searchResult.searchResults[GroupEnum.REACH] = reachCourses;
     searchResult.searchText = query;
     return searchResult;
   }
@@ -239,8 +240,12 @@ class AutocompleteBasicExample extends StatelessWidget {
                                         //     "/school_logo_page",
                                         //     arguments: new Group());
 
-          Navigator.of(context).pushNamed("/search_result_page",
-              arguments: _buildSearchResult(query, suggestions));
+    Navigator.of(context).push(MaterialPageRoute(
+
+      builder: (context) => SearchResultPage(_buildSearchResult(query, suggestions))
+    ));
+          // Navigator.of(context).pushNamed("/search_result_page",
+          //     arguments: _buildSearchResult(query, suggestions));
 
         },
       ),

@@ -110,7 +110,7 @@ class SchoolLogoGridView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            print("School Courses Page button click");
+            // print("School Courses Page button click");
             Navigator.of(context)
                 .pushNamed("/school_courses_page", arguments: school);
           },

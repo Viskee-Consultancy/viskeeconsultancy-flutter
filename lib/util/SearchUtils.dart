@@ -36,7 +36,7 @@ class SearchUtils {
       yearTextIndex = splitList.indexOf(YEARS);
     }
     if (yearTextIndex >= 1) {
-      print("Year Text Index:" + yearTextIndex.toString());
+      // print("Year Text Index:" + yearTextIndex.toString());
       yearNumberIndex = yearTextIndex - 1;
       String year = splitList[yearNumberIndex];
       if (num.tryParse(year) != null) {
@@ -45,10 +45,10 @@ class SearchUtils {
         return num.tryParse(year);
       }
     } else {
-      print("Year Text Index:" + yearTextIndex.toString());
+      // print("Year Text Index:" + yearTextIndex.toString());
       String? splitToRemove;
       num? year;
-      print("Split List " + splitList.toString());
+      // print("Split List " + splitList.toString());
       for (var split in splitList) {
         if (split.contains(YEAR)) {
           List<String> strings = split.split(YEAR);
@@ -68,10 +68,10 @@ class SearchUtils {
         }
       }
       if (splitToRemove != null) {
-        print("Split to Remove " + splitToRemove);
-        print("Split List before Remove " + splitList.toString());
+        // print("Split to Remove " + splitToRemove);
+        // print("Split List before Remove " + splitList.toString());
         splitList.remove(splitToRemove);
-        print("Split List after Remove " + splitList.toString());
+        // print("Split List after Remove " + splitList.toString());
       }
 
       return year;
@@ -180,10 +180,10 @@ class SearchUtils {
   }
 
   static bool isTextMatch(String courseString, List<String> splitList) {
-    print("Split List" + splitList.toString());
+    // print("Split List" + splitList.toString());
     if (splitList.isEmpty) return true;
     String searchText = "(.*?)" + splitList.join("(.*?)") + "(.*?)";
-    print("Search Text:" + courseString);
+    // print("Search Text:" + courseString);
     RegExp regExp =
         new RegExp(searchText, caseSensitive: false, multiLine: false);
     return regExp.hasMatch(courseString);
