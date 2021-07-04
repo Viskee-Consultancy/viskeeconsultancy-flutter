@@ -168,7 +168,7 @@ class DepartmentCourseGridView extends StatelessWidget {
                   fontSize: 24.0,
                   color: CustomColors.GOLD)),
           ListView(
-            physics: const AlwaysScrollableScrollPhysics(),
+            physics: const ScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: _getListData()),

@@ -242,14 +242,11 @@ class AutocompleteBasicExample extends StatelessWidget {
             suggestions.clear();
           }
           if (suggestions.isEmpty) {
-            Fluttertoast.showToast(
-                msg: 'Please enter the search text',
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.CENTER,
-                webPosition: "center",
-                webBgColor: "#D4AF37",
-                backgroundColor: Colors.grey,
-                textColor: Colors.white);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: CustomColors.GOLD,
+              duration: Duration(milliseconds: 2000),
+              content: Text('Please enter the search text'),
+            ));
           } else {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
