@@ -7,14 +7,19 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'dart:html' as html;
 
-void main() => runApp(CourseDetailPage());
 
 Course? course;
 
 class CourseDetailPage extends StatelessWidget {
+  CourseDetailPage(Course input) {
+    course = input;
+  }
+
   @override
   Widget build(BuildContext context) {
-    course = ModalRoute.of(context)!.settings.arguments as Course;
+    if (course == null) {
+      course = ModalRoute.of(context)!.settings.arguments as Course;
+    }
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -168,7 +173,6 @@ class CourseDetailPage extends StatelessWidget {
                           flex: 1,
                           child: Column(
                             children: [
-                              
                               Expanded(
                                   flex: 4,
                                   child: Padding(

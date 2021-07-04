@@ -9,6 +9,8 @@ import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
+import 'CourseDetailPage.dart';
+
 // void main() => runApp(SearchResultPage());
 
 SearchResult? result;
@@ -22,7 +24,7 @@ class SearchResultPage extends StatefulWidget {
     coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
     // print("Courses AIBT: " + coursesAIBT.toString());
     coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    print("Courses REACH: " + coursesREACH.toString());
+    // print("Courses REACH: " + coursesREACH.toString());
     if (coursesAIBT != null) {
       coursesToDisplay = coursesAIBT;
     } else if (coursesREACH != null) {
@@ -89,6 +91,12 @@ class SearchResultView extends State<SearchResultPage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: ToggleButtons(
+                      borderColor: CustomColors.GOLD,
+                      borderRadius:
+                          const BorderRadius.all(const Radius.circular(8)),
+                      selectedColor: Colors.white,
+                      disabledColor: Colors.black,
+                      fillColor: CustomColors.GOLD,
                       children: [Text("AIBT"), Text("REACH")],
                       onPressed: (int index) {
                         setState(() {
@@ -143,21 +151,47 @@ class SearchResultGridView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .pushNamed("/course_detail_page", arguments: course);
+            // print("Go to course detail page");
+
+    Navigator.of(context).push(MaterialPageRoute(
+
+      builder: (context) => CourseDetailPage(course!)
+    ));
+
+            // Navigator.of(context)
+            //     .pushNamed("/course_detail_page", arguments: course);
           },
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey,
+                border: Border.all(color: CustomColors.GOLD),
                 borderRadius: const BorderRadius.all(const Radius.circular(8)),
               ),
               child: Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
                 child: Column(
                   children: [
-                    Text(course!.name!),
-                    Text("VET National Code: " + course!.vetCode!),
-                    Text("CRICOS Course Code: " + course!.cricosCode!),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        course!.name!,
+                        style:
+                            TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+                      ),
+                    ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text("VET National Code: " + course!.vetCode!),
+                        )),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                              "CRICOS Course Code: " + course!.cricosCode!),
+                        ))
                   ],
                 ),
               )),

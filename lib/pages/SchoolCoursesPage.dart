@@ -10,6 +10,8 @@ import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
+import 'CourseDetailPage.dart';
+
 void main() => runApp(SchoolCoursesPage());
 
 School? school;
@@ -162,8 +164,11 @@ class CourseItemView extends StatelessWidget {
     return new GestureDetector(
       onTap: () {
         print("School Courses Page button click");
-        Navigator.of(context)
-            .pushNamed("/course_detail_page", arguments: course);
+        // Navigator.of(context)
+        //     .pushNamed("/course_detail_page", arguments: course);
+
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
       },
       child: Padding(
           padding: EdgeInsets.all(3.0),
