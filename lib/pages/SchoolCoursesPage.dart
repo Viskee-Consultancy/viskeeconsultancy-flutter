@@ -118,7 +118,7 @@ class SchoolCoursesPageView extends StatelessWidget {
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
-        crossAxisCount: departments.length,
+        crossAxisCount: 1,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,

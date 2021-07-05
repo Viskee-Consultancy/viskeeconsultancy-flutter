@@ -66,12 +66,14 @@ class ColumnItem extends StatelessWidget {
     if (index == 0) {
       return Align(
           alignment: Alignment.center,
-          child: Text(course!.name!,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                  color: CustomColors.GOLD)));
+          child: Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Text(course!.name!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                      color: CustomColors.GOLD))));
     } else if (index == 1) {
       return Align(
           alignment: Alignment.topCenter,
@@ -113,14 +115,14 @@ class ColumnItem extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2),
+                  padding: EdgeInsets.only(top: 5),
                   child: Text(
                     course!.duration!.toString() + "Weeks",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2),
+                  padding: EdgeInsets.only(top: 5, left: 10, right: 10),
                   child: Text(
                     course!.durationDetail!,
                     textAlign: TextAlign.center,
@@ -173,7 +175,7 @@ class ColumnItem extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2),
+                  padding: EdgeInsets.only(top: 5),
                   child: Text(
                     "Tuition Fee - OnShore Student Visa Holder: \$" +
                         course!.onshoreTuition!.toString(),
@@ -181,7 +183,7 @@ class ColumnItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2),
+                  padding: EdgeInsets.only(top: 5),
                   child: Text(
                     "Tuition Fee - OffShore Int Student: \$" +
                         course!.offshoreTuition!.toString(),

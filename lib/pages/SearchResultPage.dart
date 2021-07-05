@@ -17,6 +17,7 @@ class SearchResultPage extends StatefulWidget {
     result = searchResult;
     coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
     coursesREACH = searchResult.searchResults[GroupEnum.REACH];
+    print(coursesREACH);
     if (coursesAIBT == null) {
       coursesAIBT = [];
     }
@@ -137,7 +138,7 @@ class SearchResultGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (coursesToDisplay!.isNotEmpty) {
       return new StaggeredGridView.countBuilder(
-        crossAxisCount: coursesToDisplay!.length,
+        crossAxisCount: 1,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,

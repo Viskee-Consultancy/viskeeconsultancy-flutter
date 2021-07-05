@@ -70,7 +70,7 @@ class BrochureDownloadPage extends StatelessWidget {
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
-        crossAxisCount: promotions!.length,
+        crossAxisCount: 1,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 30,
