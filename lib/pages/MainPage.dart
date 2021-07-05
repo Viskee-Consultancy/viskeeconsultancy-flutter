@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
@@ -15,21 +14,33 @@ import '../values/CustomColors.dart';
 import 'SchoolCoursesPage.dart';
 import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
+import 'package:http/http.dart' as http;
 
 class MainPage extends StatelessWidget {
   Group? aibt;
   Group? reach;
   List<Course> courses = [];
 
-  Future<void> readJson() async {
-    final String aibtJsonString =
-        await rootBundle.loadString('assets/AIBT.json');
-    final String reachJsonString =
-        await rootBundle.loadString('assets/REACH.json');
-    final aibtData = await json.decode(aibtJsonString);
-    final reachData = await json.decode(reachJsonString);
-    aibt = Group.fromJson(aibtData);
-    reach = Group.fromJson(reachData);
+  Future<void> readJson(var context) async {
+           
+    final responseAIBT = await http.get(Uri.parse(
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/configuration/AIBT.json"));
+
+    final responseREACH = await http.get(Uri.parse(
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/configuration/REACH.json"));
+    if (responseAIBT.statusCode == 200 && responseREACH.statusCode == 200) {
+      final aibtData = await json.decode(responseAIBT.body);
+      aibt = Group.fromJson(aibtData);
+      final reachData = await json.decode(responseREACH.body);
+
+      reach = Group.fromJson(reachData);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: CustomColors.GOLD,
+        duration: Duration(milliseconds: 2000),
+        content: Text('Cannot load configuration file successfully, please try later.'),
+      ));
+    }
 
     prepareCourses();
   }
@@ -57,7 +68,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    readJson();
+    readJson(context);
     return MaterialApp(
       title: 'Viskee Consultancy',
       home: Scaffold(

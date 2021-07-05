@@ -43,7 +43,7 @@ class CourseDetailPage extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage("images/background.jpg"),
                     fit: BoxFit.cover)),
-            child: ListView(shrinkWrap: true, children: _getListData())));
+            child: ListView(shrinkWrap: false, children: _getListData())));
   }
 
   List<Widget> _getListData() {
