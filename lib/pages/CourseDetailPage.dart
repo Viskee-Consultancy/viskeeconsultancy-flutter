@@ -67,7 +67,7 @@ class ColumnItem extends StatelessWidget {
       return Align(
           alignment: Alignment.center,
           child: Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 5, right: 5),
               child: Text(course!.name!,
                   textAlign: TextAlign.center,
                   style: TextStyle(

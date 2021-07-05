@@ -235,6 +235,24 @@ class AutocompleteBasicExample extends StatelessWidget {
     return searchResult;
   }
 
+  void _itemSelected(
+      Course? suggestion, List<Course> suggestions, BuildContext context) {
+    String query = suggestion!.name!;
+    this._typeAheadController.text = query;
+    suggestions = _getCourseSuggestions(query, courses, suggestions);
+    if (suggestions.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: CustomColors.GOLD,
+        duration: Duration(milliseconds: 2000),
+        content: Text('Please enter the search text'),
+      ));
+    } else {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SearchResultPage(
+              _buildSearchResult(query, suggestions))));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Course> suggestions = [];
@@ -276,7 +294,7 @@ class AutocompleteBasicExample extends StatelessWidget {
       suggestionsCallback: (query) =>
           _getCourseSuggestions(query, courses, suggestions),
       onSuggestionSelected: (suggestion) =>
-          {this._typeAheadController.text = suggestion!.name!},
+          {_itemSelected(suggestion, suggestions, context)},
     );
   }
 }

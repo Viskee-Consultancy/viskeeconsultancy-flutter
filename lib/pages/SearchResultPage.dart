@@ -32,7 +32,6 @@ class SearchResultPage extends StatefulWidget {
     if (coursesToDisplay == null) {
       coursesToDisplay = [];
     }
-    
   }
   SearchResultView createState() => new SearchResultView();
 }
@@ -68,14 +67,14 @@ class SearchResultView extends State<SearchResultPage> {
                 image: DecorationImage(
                     image: AssetImage("images/background.jpg"),
                     fit: BoxFit.cover)),
-            child: Column(children: [
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
               Expanded(
                   flex: 1,
                   child: Container(
                     child: null,
                   )),
-              Expanded(
-                flex: 1,
+              Padding(
+                padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
                 child: Align(
                     alignment: Alignment.center,
                     child: Text("Search Results For " + result!.searchText!,
@@ -98,11 +97,11 @@ class SearchResultView extends State<SearchResultPage> {
                       fillColor: CustomColors.GOLD,
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
                           child: Text("AIBT"),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
                           child: Text("REACH"),
                         )
                       ],
@@ -130,7 +129,6 @@ class SearchResultView extends State<SearchResultPage> {
   }
 
   List<bool> _selections = [true, false];
-
 }
 
 class SearchResultGridView extends StatelessWidget {
@@ -151,7 +149,9 @@ class SearchResultGridView extends StatelessWidget {
         },
       );
     } else {
-      return new Container(child: null,);
+      return new Container(
+        child: null,
+      );
     }
   }
 }
