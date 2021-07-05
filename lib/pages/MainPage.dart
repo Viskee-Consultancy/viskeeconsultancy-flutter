@@ -22,7 +22,6 @@ class MainPage extends StatelessWidget {
   List<Course> courses = [];
 
   Future<void> readJson(var context) async {
-           
     final responseAIBT = await http.get(Uri.parse(
         "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/configuration/AIBT.json"));
 
@@ -38,7 +37,8 @@ class MainPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
         duration: Duration(milliseconds: 2000),
-        content: Text('Cannot load configuration file successfully, please try later.'),
+        content: Text(
+            'Cannot load configuration file successfully, please try later.'),
       ));
     }
 
@@ -123,53 +123,57 @@ class MainPage extends StatelessWidget {
                         children: [
                           Expanded(flex: 1, child: Container(child: null)),
                           Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                  child: Ink(
-                                      child: Container(
-                                    decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: CustomColors.GOLD),
-                                      color: Colors.grey,
-                                      borderRadius: const BorderRadius.all(
-                                          const Radius.circular(8)),
-                                    ),
-                                    child:
-                                        Image.asset("images/aibt_portrait.png"),
+                            flex: 1,
+                            child: new Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: CustomColors.GOLD),
+                                  color: Colors.grey,
+                                  borderRadius: const BorderRadius.all(
+                                    const Radius.circular(8),
                                   )),
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SchoolLogoPage(aibt!)));
-                                  })),
+                              child: new Material(
+                                child: new InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SchoolLogoPage(aibt!)));
+                                    },
+                                    child: Image.asset(
+                                        "images/aibt_portrait.png")),
+                                color: Colors.transparent,
+                              ),
+                            ),
+                          ),
                           Expanded(flex: 2, child: Container(child: null)),
                           Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                  child: Ink(
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: CustomColors.GOLD),
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    const Radius.circular(8)),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(5),
-                                            child: Image.asset(
-                                                "images/reach_portrait.png"),
-                                          ))),
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SchoolCoursesPage(
-                                                    reach!.schools[0],
-                                                    reach!.promotions)));
-                                  })),
+                            flex: 1,
+                            child: new Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: CustomColors.GOLD),
+                                  color: Colors.grey,
+                                  borderRadius: const BorderRadius.all(
+                                    const Radius.circular(8),
+                                  )),
+                              child: new Material(
+                                child: new InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SchoolCoursesPage(
+                                                      reach!.schools[0],
+                                                      reach!.promotions)));
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Image.asset(
+                                          "images/reach_portrait.png"),
+                                    )),
+                                color: Colors.transparent,
+                              ),
+                            ),
+                          ),
                           Expanded(flex: 1, child: Container(child: null))
                         ]))
               ],

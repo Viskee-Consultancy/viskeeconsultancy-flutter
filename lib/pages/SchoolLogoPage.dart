@@ -10,9 +10,8 @@ import 'SchoolCoursesPage.dart';
 Group? aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {
-
   SchoolLogoPage(Group group) {
-    aibtGroup =group;
+    aibtGroup = group;
   }
   @override
   Widget build(BuildContext context) {
@@ -102,24 +101,28 @@ class SchoolLogoGridView extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(20),
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    SchoolCoursesPage(school!, [])));
-          },
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                border: Border.all(color: CustomColors.GOLD),
-                borderRadius: const BorderRadius.all(const Radius.circular(8)),
-              ),
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: CustomColors.GOLD),
+            color: Colors.grey,
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(8),
+            )),
+        child: new Material(
+          child: new InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SchoolCoursesPage(school!, [])));
+              },
               child: Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5),
                 child: Utils.getSchoolLogoPortrait(school!.name),
               )),
-        ));
+          color: Colors.transparent,
+        ),
+      ),
+    );
   }
 }

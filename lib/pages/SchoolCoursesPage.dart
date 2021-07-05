@@ -144,9 +144,8 @@ void buildDepartmentList(School school) {
       m[course.department!]!.add(course);
     }
   }
-  m.entries.forEach((entry) => {
-        departments.add(new Department(entry.key, entry.value))
-      });
+  m.entries.forEach(
+      (entry) => {departments.add(new Department(entry.key, entry.value))});
 }
 
 class DepartmentCourseGridView extends StatelessWidget {
@@ -168,7 +167,7 @@ class DepartmentCourseGridView extends StatelessWidget {
                   fontSize: 24.0,
                   color: CustomColors.GOLD)),
           ListView(
-            physics: const ScrollPhysics(),
+              physics: const ScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: _getListData()),
@@ -193,25 +192,30 @@ class CourseItemView extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
-      },
-      child: Padding(
-          padding: EdgeInsets.all(3.0),
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: const BorderRadius.all(const Radius.circular(3)),
-              ),
+    return Padding(
+      padding: EdgeInsets.all(3),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(3),
+            )),
+        child: new Material(
+          child: new InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CourseDetailPage(course)));
+              },
               child: Padding(
                 padding: EdgeInsets.all(5),
                 child: Text(
                   course.name!,
                   style: TextStyle(color: Colors.white),
                 ),
-              ))),
+              )),
+          color: Colors.transparent,
+        ),
+      ),
     );
   }
 }
