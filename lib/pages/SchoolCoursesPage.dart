@@ -58,7 +58,7 @@ class SchoolCoursesPage extends StatelessWidget {
 class SchoolCoursesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (promotions == null) {
+    if (promotions == null || promotions!.isEmpty) {
       return Column(children: [
         Expanded(
             flex: 1,

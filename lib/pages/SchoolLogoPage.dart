@@ -108,7 +108,7 @@ class SchoolLogoGridView extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    SchoolCoursesPage(school!, aibtGroup!.promotions)));
+                    SchoolCoursesPage(school!, [])));
           },
           child: Container(
               decoration: BoxDecoration(
