@@ -1,3 +1,5 @@
+import 'package:viskeeconsultancy/models/Course.dart';
+
 class SearchUtils {
   static const String YEAR = "year";
   static const String YEARS = "years";
@@ -82,12 +84,15 @@ class SearchUtils {
     if (weekTextIndex < 1) {
       weekTextIndex = splitList.indexOf(WKS);
     }
-    if (weekTextIndex > 1) {
+    print("week text index: " + weekTextIndex.toString());
+    if (weekTextIndex >= 1) {
       weekNumberIndex = weekTextIndex - 1;
       String week = splitList[weekNumberIndex];
+      print("week: " + week);
       if (num.tryParse(week) != null) {
-        splitList.remove(weekTextIndex);
-        splitList.remove(weekNumberIndex);
+        splitList.removeAt(weekTextIndex);
+        splitList.removeAt(weekNumberIndex);
+        print("split list: " + splitList.toString());
         return num.tryParse(week);
       }
     } else {
@@ -122,22 +127,45 @@ class SearchUtils {
     return null;
   }
 
-  static isDurationMatch(num duration, num? year, num? week) {
+  static isDurationMatch(Course course, num? year, num? week) {
     if (year == null && week == null) {
       return true;
     }
-    if (week != null) {
-      return duration <= week;
-    }
-    if (year != null) {
-      if (year == 1 && duration <= 52) {
-        return true;
+    num duration = course.duration!;
+    if (duration != 0) {
+      if (week != null) {
+        return duration <= week;
       }
-      if (year == 2 && duration > 52 && duration <= 104) {
-        return true;
+      if (year != null) {
+        if (year == 1 && duration <= 52) {
+          return true;
+        }
+        if (year == 2 && duration > 52 && duration <= 104) {
+          return true;
+        }
+        if (year > 2 && duration > 104) {
+          return true;
+        }
       }
-      if (year > 2 && duration > 104) {
-        return true;
+    } else {
+      num? durationMin = course.durationMin;
+      num? durationMax = course.durationMax;
+      if (durationMin == null || durationMax == null) {
+        return false;
+      }
+      if (week != null) {
+        return durationMin <= week && durationMax >=week ;
+      }
+      if (year != null) {
+        if (year == 1 && (durationMin <= 52 && durationMax >=52)) {
+          return true;
+        }
+        if (year == 2 && (durationMax > 52 && durationMax <= 104)) {
+          return true;
+        }
+        if (year > 2 && durationMax > 104) {
+          return true;
+        }
       }
     }
     return false;

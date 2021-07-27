@@ -7,6 +7,8 @@ class Course {
   String? department;
   String? name;
   int? duration;
+  int? durationMin;
+  int? durationMax;
   String? durationDetail;
   int? offshoreTuition;
   int? onshoreTuition;
@@ -14,12 +16,14 @@ class Course {
   int? unpaidPlacement;
   String? completeServicePeriods;
 
-    Course.fromJson(Map<String, dynamic> json) {
+  Course.fromJson(Map<String, dynamic> json) {
     vetCode = json["vetCode"];
     cricosCode = json["cricosCode"];
     department = json["department"];
     name = json["name"];
     duration = json["duration"];
+    durationMin = json["durationMin"];
+    durationMax = json["durationMax"];
     durationDetail = json["durationDetail"];
     offshoreTuition = json["offshoreTuition"];
     onshoreTuition = json["onshoreTuition"];
@@ -27,6 +31,14 @@ class Course {
     location = new List<String>.from(locationList);
     unpaidPlacement = json["unpaidPlacement"];
     completeServicePeriods = json["completeServicePeriods"];
+  }
+
+  String getDurationString() {
+    if (duration!=0) {
+      return duration.toString();
+    } else {
+      return durationMin.toString()+ " - " + durationMax.toString();
+    }
   }
 
   @override

@@ -206,7 +206,7 @@ class AutocompleteBasicExample extends StatelessWidget {
       num? year = SearchUtils.extractYear(splitList);
       num? week = SearchUtils.extractWeek(splitList);
       bool isDurationMatch =
-          SearchUtils.isDurationMatch(course.duration!, year, week);
+          SearchUtils.isDurationMatch(course, year, week);
       bool isLocationMatch =
           SearchUtils.isLocationMatch(course.location, splitList);
       bool isTextMatch =

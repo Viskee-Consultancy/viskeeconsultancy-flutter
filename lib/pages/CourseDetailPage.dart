@@ -117,7 +117,7 @@ class ColumnItem extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
-                    course!.duration!.toString() + "Weeks",
+                    course!.getDurationString() + " Weeks",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
