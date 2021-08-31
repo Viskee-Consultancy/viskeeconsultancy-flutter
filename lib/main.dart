@@ -5,11 +5,9 @@
 import 'package:flutter/material.dart';
 import 'pages/MainPage.dart';
 
-void main() => runApp(
-  MaterialApp(
-    home: MainPage(),
-    routes: <String, WidgetBuilder> {
-      '/main_page': (BuildContext context) => MainPage(),
-    }
-  )
-);
+void main() => runApp(MaterialApp(
+        theme: ThemeData(fontFamily: 'DM'),
+        home: MainPage(),
+        routes: <String, WidgetBuilder>{
+          '/main_page': (BuildContext context) => MainPage(),
+        }));
