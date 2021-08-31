@@ -41,7 +41,6 @@ class MainPage extends StatelessWidget {
         "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/SHELDON_SCHOOL_OF_HOSPITALITY.json"));
 
     final responseREACH = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/REACH/REACH_COMMUNITY_COLLEGE.json"));
         "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/REACH/REACH_COMMUNITY_COLLEGE.json"));
 
     final aibtPromotionResponse = await http.get(Uri.parse(
