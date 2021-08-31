@@ -65,7 +65,10 @@ class SchoolLogoPage extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               CustomColors.GOLD),
                         ),
-                        child: Text("LATEST BROCHURES"),
+                        child: Padding(
+                            padding: EdgeInsets.all(15),
+                            child: Text("LATEST BROCHURES",
+                                style: TextStyle(color: Colors.black))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => BrochureDownloadPage(

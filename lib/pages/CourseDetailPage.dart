@@ -83,11 +83,11 @@ class ColumnItem extends StatelessWidget {
               children: [
                 Text(
                   "VET National Code:" + course!.vetCode!,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
                 Text(
                   "CRICOS Course Code:" + course!.cricosCode!,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
@@ -112,13 +112,13 @@ class ColumnItem extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
-                      color: Colors.white),
+                      color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
                     course!.getDurationString() + " Weeks",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
                 Padding(
@@ -126,7 +126,7 @@ class ColumnItem extends StatelessWidget {
                   child: Text(
                     course!.durationDetail!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                 )
               ],
@@ -146,13 +146,13 @@ class ColumnItem extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
-                      color: Colors.white),
+                      color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
                     course!.location.toString(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -172,14 +172,14 @@ class ColumnItem extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
-                      color: Colors.white),
+                      color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
                     "Tuition Fee - OnShore Student Visa Holder: \$" +
                         course!.onshoreTuition!.toString(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
                 Padding(
@@ -187,7 +187,7 @@ class ColumnItem extends StatelessWidget {
                   child: Text(
                     "Tuition Fee - OffShore Int Student: \$" +
                         course!.offshoreTuition!.toString(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                 )
               ],

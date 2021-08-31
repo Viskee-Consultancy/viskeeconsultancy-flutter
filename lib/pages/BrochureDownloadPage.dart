@@ -7,12 +7,12 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 String? groupName;
 List<Promotion>? promotions;
-class BrochureDownloadPage extends StatelessWidget {
 
+class BrochureDownloadPage extends StatelessWidget {
   BrochureDownloadPage(String groupNameInput, List<Promotion> promotionsInput) {
-    groupName =groupNameInput;
-    promotions =promotionsInput;
-  } 
+    groupName = groupNameInput;
+    promotions = promotionsInput;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,14 +106,15 @@ class PromotionGridView extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   child: Image.asset(
                     "images/pdf.png",
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 )),
             Expanded(
                 flex: 8,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(promotion.name!),
+                  child: Text(promotion.name!,
+                      style: TextStyle(color: Colors.black)),
                 )),
           ],
         ),

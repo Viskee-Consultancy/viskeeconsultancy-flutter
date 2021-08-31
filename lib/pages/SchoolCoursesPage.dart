@@ -100,7 +100,10 @@ class SchoolCoursesPageView extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(CustomColors.GOLD),
                   ),
-                  child: Text("LATEST BROCHURES"),
+                  child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text("LATEST BROCHURES",
+                          style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
@@ -210,7 +213,7 @@ class CourseItemView extends StatelessWidget {
                 padding: EdgeInsets.all(5),
                 child: Text(
                   course.name!,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               )),
           color: Colors.transparent,
