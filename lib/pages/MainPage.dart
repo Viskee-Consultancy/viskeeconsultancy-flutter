@@ -163,7 +163,7 @@ class MainPage extends StatelessWidget {
                     flex: 1,
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Image.asset("images/vc_logo_landscape.png"),
+                      child: Image.asset("images/vc_logo_landscape_white.png"),
                     )),
                 Expanded(
                   flex: 2,
@@ -176,7 +176,7 @@ class MainPage extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
-                          color: CustomColors.GOLD)),
+                          color: Colors.white)),
                 ),
                 ConstrainedBox(
                     constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
