@@ -84,15 +84,12 @@ class SearchUtils {
     if (weekTextIndex < 1) {
       weekTextIndex = splitList.indexOf(WKS);
     }
-    print("week text index: " + weekTextIndex.toString());
     if (weekTextIndex >= 1) {
       weekNumberIndex = weekTextIndex - 1;
       String week = splitList[weekNumberIndex];
-      print("week: " + week);
       if (num.tryParse(week) != null) {
         splitList.removeAt(weekTextIndex);
         splitList.removeAt(weekNumberIndex);
-        print("split list: " + splitList.toString());
         return num.tryParse(week);
       }
     } else {

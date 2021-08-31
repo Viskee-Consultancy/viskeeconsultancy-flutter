@@ -6,6 +6,7 @@ class Group {
   List<Promotion> promotions = List.empty();
   List<School> schools = List.empty();
 
+  Group();
   Group.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     var promotionJsonList = json['promotions'] as List;

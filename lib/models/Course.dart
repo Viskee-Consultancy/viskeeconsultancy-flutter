@@ -10,9 +10,10 @@ class Course {
   int? durationMin;
   int? durationMax;
   String? durationDetail;
-  int? offshoreTuition;
-  int? onshoreTuition;
-  List<String> location = List.empty();
+  String? offshoreTuition;
+  String? onshoreTuition;
+  String? location;
+  List<String> locationList = List.empty();
   int? unpaidPlacement;
   String? completeServicePeriods;
 
@@ -21,14 +22,20 @@ class Course {
     cricosCode = json["cricosCode"];
     department = json["department"];
     name = json["name"];
-    duration = json["duration"];
-    durationMin = json["durationMin"];
-    durationMax = json["durationMax"];
+    if (json["duration"] != null && num.tryParse(json["duration"]) != null) {
+      duration = int.tryParse(json["duration"]);
+    }
+    if (json["durationMin"] != null && num.tryParse(json["durationMin"]) != null) {
+      durationMin = int.tryParse(json["durationMin"]);
+    }
+    if (json["durationMax"] != null && num.tryParse(json["durationMax"]) != null) {
+      durationMax = int.tryParse(json["durationMax"]);
+    }
     durationDetail = json["durationDetail"];
     offshoreTuition = json["offshoreTuition"];
     onshoreTuition = json["onshoreTuition"];
-    var locationList = json["location"] as List;
-    location = new List<String>.from(locationList);
+    location = json["location"];
+    locationList = location!.split("/");
     unpaidPlacement = json["unpaidPlacement"];
     completeServicePeriods = json["completeServicePeriods"];
   }
@@ -43,16 +50,19 @@ class Course {
 
   @override
   String toString() {
-        return "Course{" +
-                "vetCode='" + vetCode! + '\'' +
-                "cricosCode='" + cricosCode! + '\'' +
-                ", department='" + department! + '\'' +
-                ", name='" + name! + '\'' +
-                ", duration=" + duration!.toString() +
-                ", durationDetail='" + durationDetail! + '\'' +
-                ", offshoreTuition=" + offshoreTuition.toString() +
-                ", onshoreTuition=" + onshoreTuition.toString() +
-                ", location=" + location.toString() +
-                '}';
+    String result = "";
+    if (vetCode != null) {
+      result =result+"vetCode='" + vetCode! + "'\'";
+    }
+    if (cricosCode != null) {
+      result =result+"cricosCode='" + cricosCode! + "'\'";
+    }
+    if (department != null) {
+      result =result+"department='" + department! + "'\'";
+    }
+    if (name != null) {
+      result =result+"name='" + name! + "'\'";
+    }
+    return result;
   }
 }

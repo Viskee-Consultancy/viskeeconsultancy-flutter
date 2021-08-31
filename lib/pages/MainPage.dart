@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
+import 'package:viskeeconsultancy/models/Promotions.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
@@ -22,17 +22,90 @@ class MainPage extends StatelessWidget {
   List<Course> courses = [];
 
   Future<void> readJson(var context) async {
-    final responseAIBT = await http.get(Uri.parse(
-        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/configuration/AIBT.json"));
+    final responseACE = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/ACE_AVIATION_AEROSPACE_ACADEMY.json"));
+
+    final responseBESPOKE = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BESPOKE_GRAMMAR_SCHOOL_OF_ENGLISH.json"));
+
+    final responseBRANSON = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BRANSON_SCHOOL_OF_BUSINESS_AND_TECHNOLOGY.json"));
+
+    final responseDIANA = await http.get(Uri.parse(
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/DIANA_SCHOOL_OF_COMMUNITY_SERVICES.json"));
+
+    final responseEDISON = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/EDISON_SCHOOL_OF_TECH_SCIENCES.json"));
+
+    final responseSHELDON = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/SHELDON_SCHOOL_OF_HOSPITALITY.json"));
 
     final responseREACH = await http.get(Uri.parse(
-        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/configuration/REACH.json"));
-    if (responseAIBT.statusCode == 200 && responseREACH.statusCode == 200) {
-      final aibtData = await json.decode(responseAIBT.body);
-      aibt = Group.fromJson(aibtData);
-      final reachData = await json.decode(responseREACH.body);
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/REACH/REACH_COMMUNITY_COLLEGE.json"));
 
-      reach = Group.fromJson(reachData);
+    final aibtPromotionResponse = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/aibt-promotions.json"));
+
+    final reachPromotionResponse = await http.get(Uri.parse(
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/reach-promotions.json"));
+
+    if (responseACE.statusCode == 200 && responseBESPOKE.statusCode == 200 && responseBRANSON.statusCode == 200 
+    && responseDIANA.statusCode == 200 && responseEDISON.statusCode == 200 && responseSHELDON.statusCode == 200 
+    && responseREACH.statusCode == 200) {
+      final aceData = await json.decode(responseACE.body);
+      School ace = School.fromJson(aceData);
+      ace.name = "ACE AVIATION AEROSPACE ACADEMY";
+
+      final bespokeData = await json.decode(responseBESPOKE.body);
+      School bespoke = School.fromJson(bespokeData);
+      bespoke.name = "BESPOKE GRAMMAR SCHOOL OF ENGLISH";
+
+      final bransonData = await json.decode(responseBRANSON.body);
+      School branson = School.fromJson(bransonData);
+      branson.name = "BRANSON SCHOOL OF BUSINESS AND TECHNOLOGY";
+
+      final dianaData = await json.decode(responseDIANA.body);
+      School diana = School.fromJson(dianaData);
+      diana.name = "DIANA SCHOOL OF COMMUNITY SERVICES";
+
+      final edisonData = await json.decode(responseEDISON.body);
+      School edison = School.fromJson(edisonData);
+      edison.name = "EDISON SCHOOL OF TECH SCIENCES";
+
+      final sheldonData = await json.decode(responseSHELDON.body);
+      School sheldon = School.fromJson(sheldonData);
+      sheldon.name = "SHELDON SCHOOL OF HOSPITALITY";
+
+      final reachData = await json.decode(responseREACH.body);
+      School reachSchool = School.fromJson(reachData);
+      reachSchool.name = "REACH COMMUNITY COLLEGE";
+      
+      aibt = new Group();
+      List<School> aibtSchools = <School>[];
+      aibtSchools.add(ace);
+      aibtSchools.add(bespoke);
+      aibtSchools.add(branson);
+      aibtSchools.add(diana);
+      aibtSchools.add(edison);
+      aibtSchools.add(sheldon);
+      aibt!.schools = aibtSchools;
+      aibt!.name = "AIBT";
+      if (aibtPromotionResponse.statusCode == 200) {
+        final aibtPromotionData = await json.decode(aibtPromotionResponse.body);
+        Promotions aibtPromotion = Promotions.fromJson(aibtPromotionData);
+        aibt!.promotions = aibtPromotion.promotions;
+      }
+
+      reach = new Group();
+      List<School> reachSchools = <School>[];
+      reachSchools.add(reachSchool);
+      reach!.schools = reachSchools;
+      reach!.name = "REACH";
+      if (reachPromotionResponse.statusCode == 200) {
+        final reachPromotionData = await json.decode(reachPromotionResponse.body);
+        Promotions reachPromotion = Promotions.fromJson(reachPromotionData);
+        reach!.promotions = reachPromotion.promotions;
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
@@ -208,7 +281,7 @@ class AutocompleteBasicExample extends StatelessWidget {
       bool isDurationMatch =
           SearchUtils.isDurationMatch(course, year, week);
       bool isLocationMatch =
-          SearchUtils.isLocationMatch(course.location, splitList);
+          SearchUtils.isLocationMatch(course.locationList, splitList);
       bool isTextMatch =
           SearchUtils.isTextMatch(course.toString().toLowerCase(), splitList);
       if (isDurationMatch && isLocationMatch && isTextMatch) {

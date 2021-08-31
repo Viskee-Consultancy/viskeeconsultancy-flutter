@@ -17,7 +17,6 @@ class SearchResultPage extends StatefulWidget {
     result = searchResult;
     coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
     coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    print(coursesREACH);
     if (coursesAIBT == null) {
       coursesAIBT = [];
     }
