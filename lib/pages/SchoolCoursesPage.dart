@@ -199,7 +199,7 @@ class CourseItemView extends StatelessWidget {
       padding: EdgeInsets.all(3),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.white,
             borderRadius: const BorderRadius.all(
               const Radius.circular(3),
             )),

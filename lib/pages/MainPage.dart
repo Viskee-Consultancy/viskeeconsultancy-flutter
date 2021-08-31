@@ -23,35 +23,40 @@ class MainPage extends StatelessWidget {
 
   Future<void> readJson(var context) async {
     final responseACE = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/ACE_AVIATION_AEROSPACE_ACADEMY.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/ACE_AVIATION_AEROSPACE_ACADEMY.json"));
 
     final responseBESPOKE = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BESPOKE_GRAMMAR_SCHOOL_OF_ENGLISH.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BESPOKE_GRAMMAR_SCHOOL_OF_ENGLISH.json"));
 
     final responseBRANSON = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BRANSON_SCHOOL_OF_BUSINESS_AND_TECHNOLOGY.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/BRANSON_SCHOOL_OF_BUSINESS_AND_TECHNOLOGY.json"));
 
     final responseDIANA = await http.get(Uri.parse(
         "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/DIANA_SCHOOL_OF_COMMUNITY_SERVICES.json"));
 
     final responseEDISON = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/EDISON_SCHOOL_OF_TECH_SCIENCES.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/EDISON_SCHOOL_OF_TECH_SCIENCES.json"));
 
     final responseSHELDON = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/SHELDON_SCHOOL_OF_HOSPITALITY.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/AIBT/SHELDON_SCHOOL_OF_HOSPITALITY.json"));
 
     final responseREACH = await http.get(Uri.parse(
       "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/REACH/REACH_COMMUNITY_COLLEGE.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Course/JSON/REACH/REACH_COMMUNITY_COLLEGE.json"));
 
     final aibtPromotionResponse = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/aibt-promotions.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/aibt-promotions.json"));
 
     final reachPromotionResponse = await http.get(Uri.parse(
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/reach-promotions.json"));
+        "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/Promotion/JSON/reach-promotions.json"));
 
-    if (responseACE.statusCode == 200 && responseBESPOKE.statusCode == 200 && responseBRANSON.statusCode == 200 
-    && responseDIANA.statusCode == 200 && responseEDISON.statusCode == 200 && responseSHELDON.statusCode == 200 
-    && responseREACH.statusCode == 200) {
+    if (responseACE.statusCode == 200 &&
+        responseBESPOKE.statusCode == 200 &&
+        responseBRANSON.statusCode == 200 &&
+        responseDIANA.statusCode == 200 &&
+        responseEDISON.statusCode == 200 &&
+        responseSHELDON.statusCode == 200 &&
+        responseREACH.statusCode == 200) {
       final aceData = await json.decode(responseACE.body);
       School ace = School.fromJson(aceData);
       ace.name = "ACE AVIATION AEROSPACE ACADEMY";
@@ -79,7 +84,7 @@ class MainPage extends StatelessWidget {
       final reachData = await json.decode(responseREACH.body);
       School reachSchool = School.fromJson(reachData);
       reachSchool.name = "REACH COMMUNITY COLLEGE";
-      
+
       aibt = new Group();
       List<School> aibtSchools = <School>[];
       aibtSchools.add(ace);
@@ -102,7 +107,8 @@ class MainPage extends StatelessWidget {
       reach!.schools = reachSchools;
       reach!.name = "REACH";
       if (reachPromotionResponse.statusCode == 200) {
-        final reachPromotionData = await json.decode(reachPromotionResponse.body);
+        final reachPromotionData =
+            await json.decode(reachPromotionResponse.body);
         Promotions reachPromotion = Promotions.fromJson(reachPromotionData);
         reach!.promotions = reachPromotion.promotions;
       }
@@ -179,7 +185,7 @@ class MainPage extends StatelessWidget {
                         padding: EdgeInsets.all(20.0),
                         child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               border: Border.all(color: CustomColors.GOLD),
                               borderRadius: const BorderRadius.all(
                                   const Radius.circular(8)),
@@ -200,7 +206,7 @@ class MainPage extends StatelessWidget {
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),
-                                  color: Colors.grey,
+                                  color: Colors.white,
                                   borderRadius: const BorderRadius.all(
                                     const Radius.circular(8),
                                   )),
@@ -224,7 +230,7 @@ class MainPage extends StatelessWidget {
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),
-                                  color: Colors.grey,
+                                  color: Colors.white,
                                   borderRadius: const BorderRadius.all(
                                     const Radius.circular(8),
                                   )),
@@ -278,8 +284,7 @@ class AutocompleteBasicExample extends StatelessWidget {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);
       num? week = SearchUtils.extractWeek(splitList);
-      bool isDurationMatch =
-          SearchUtils.isDurationMatch(course, year, week);
+      bool isDurationMatch = SearchUtils.isDurationMatch(course, year, week);
       bool isLocationMatch =
           SearchUtils.isLocationMatch(course.locationList, splitList);
       bool isTextMatch =

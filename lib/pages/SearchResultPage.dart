@@ -171,7 +171,7 @@ class SearchResultGridItem extends StatelessWidget {
           },
           child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.white,
                 border: Border.all(color: CustomColors.GOLD),
                 borderRadius: const BorderRadius.all(const Radius.circular(8)),
               ),
