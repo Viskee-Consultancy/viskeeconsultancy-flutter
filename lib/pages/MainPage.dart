@@ -288,7 +288,11 @@ class AutocompleteBasicExample extends StatelessWidget {
         suggestions.add(course);
       }
     }
-    return suggestions;
+    suggestions.sort((o1, o2) => o1.name!.compareTo(o2.name!));
+    List<Course> suggestionsWithoutDuplicate = List.from(suggestions);
+    Set<String> duplicates = new Set();
+    suggestionsWithoutDuplicate.removeWhere((e) => !duplicates.add(e.name!));
+    return suggestionsWithoutDuplicate;
   }
 
   SearchResult _buildSearchResult(String query, List<Course> suggestions) {
@@ -320,9 +324,10 @@ class AutocompleteBasicExample extends StatelessWidget {
         content: Text('Please enter the search text'),
       ));
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SearchResultPage(
-              _buildSearchResult(query, suggestions))));
+      _getCourseSuggestions(query, courses, suggestions);
+      // Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => SearchResultPage(
+      //         _buildSearchResult(query, suggestions))));
     }
   }
 
