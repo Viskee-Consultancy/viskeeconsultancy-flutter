@@ -39,10 +39,6 @@ class SchoolLogoPage extends StatelessWidget {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("images/background.jpg"),
-                  fit: BoxFit.cover)),
           child: Column(
             children: [
               Expanded(
@@ -51,10 +47,10 @@ class SchoolLogoPage extends StatelessWidget {
                     child: null,
                   )),
               Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Image.asset("images/aibt_landscape.png"),
+                    child: Image.asset("images/aibt.png"),
                   )),
               Expanded(
                   flex: 1,

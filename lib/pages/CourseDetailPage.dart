@@ -39,10 +39,6 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/background.jpg"),
-                    fit: BoxFit.cover)),
             child: ListView(shrinkWrap: false, children: _getListData())));
   }
 

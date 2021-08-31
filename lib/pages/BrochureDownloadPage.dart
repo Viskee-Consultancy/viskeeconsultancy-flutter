@@ -39,34 +39,30 @@ class BrochureDownloadPage extends StatelessWidget {
           ),
         ),
         body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/background.jpg"),
-                    fit: BoxFit.cover)),
             child: Column(children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: null,
-                  )),
-              Expanded(
-                flex: 1,
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Text("Latest Brochures For " + groupName!,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.0,
-                            color: CustomColors.GOLD))),
-              ),
-              Expanded(
-                  flex: 8,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: _buildGrid(),
-                  ))
-            ])));
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: null,
+              )),
+          Expanded(
+            flex: 1,
+            child: Align(
+                alignment: Alignment.center,
+                child: Text("Latest Brochures For " + groupName!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30.0,
+                        color: CustomColors.GOLD))),
+          ),
+          Expanded(
+              flex: 8,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: _buildGrid(),
+              ))
+        ])));
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(

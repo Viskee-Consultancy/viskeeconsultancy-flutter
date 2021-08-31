@@ -8,38 +8,38 @@ class Utils {
       case AIBTSchoolNameEnum.ACE:
         return Image.asset('images/ace_landscape.png');
       case AIBTSchoolNameEnum.BESPOKE:
-        return Image.asset('images/bespoke_portrait.png');
+        return Image.asset('images/bespoke.png');
       case AIBTSchoolNameEnum.BRANSON:
-        return Image.asset('images/branson_portrait.png');
+        return Image.asset('images/branson.png');
       case AIBTSchoolNameEnum.DIANA:
-        return Image.asset('images/diana_portrait.png');
+        return Image.asset('images/diana.png');
       case AIBTSchoolNameEnum.EDISON:
-        return Image.asset('images/edison_portrait.png');
+        return Image.asset('images/edison.png');
       case AIBTSchoolNameEnum.SHELDON:
-        return Image.asset('images/sheldon_portrait.png');
+        return Image.asset('images/sheldon.png');
       case AIBTSchoolNameEnum.REACH:
-        return Image.asset('images/reach_portrait.png');
+        return Image.asset('images/reach.png');
       default:
     }
   }
 
-    static getSchoolLogoLandscape(String? schoolName) {
+  static getSchoolLogoLandscape(String? schoolName) {
     var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName!);
     switch (aibtSchoolNameEnum) {
       case AIBTSchoolNameEnum.ACE:
         return Image.asset('images/ace_landscape.png');
       case AIBTSchoolNameEnum.BESPOKE:
-        return Image.asset('images/bespoke_landscape.png');
+        return Image.asset('images/bespoke.png');
       case AIBTSchoolNameEnum.BRANSON:
-        return Image.asset('images/branson_landscape.png');
+        return Image.asset('images/branson.png');
       case AIBTSchoolNameEnum.DIANA:
-        return Image.asset('images/diana_landscape.png');
+        return Image.asset('images/diana.png');
       case AIBTSchoolNameEnum.EDISON:
-        return Image.asset('images/edison_landscape.png');
+        return Image.asset('images/edison.png');
       case AIBTSchoolNameEnum.SHELDON:
-        return Image.asset('images/sheldon_landscape.png');
+        return Image.asset('images/sheldon.png');
       case AIBTSchoolNameEnum.REACH:
-        return Image.asset('images/reach_landscape.png');
+        return Image.asset('images/reach.png');
       default:
     }
   }

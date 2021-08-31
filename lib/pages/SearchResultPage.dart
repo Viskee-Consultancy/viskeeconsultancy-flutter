@@ -62,69 +62,65 @@ class SearchResultView extends State<SearchResultPage> {
           ),
         ),
         body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/background.jpg"),
-                    fit: BoxFit.cover)),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: null,
-                  )),
-              Padding(
-                padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Text("Search Results For " + result!.searchText!,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.0,
-                            color: CustomColors.GOLD))),
-              ),
-              Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: ToggleButtons(
-                      borderColor: CustomColors.GOLD,
-                      borderRadius:
-                          const BorderRadius.all(const Radius.circular(8)),
-                      selectedColor: Colors.white,
-                      disabledColor: Colors.black,
-                      fillColor: CustomColors.GOLD,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: Text("AIBT"),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: Text("REACH"),
-                        )
-                      ],
-                      onPressed: (int index) {
-                        setState(() {
-                          if (index == 0) {
-                            _selections = [true, false];
-                            coursesToDisplay = coursesAIBT;
-                          } else if (index == 1) {
-                            _selections = [false, true];
-                            coursesToDisplay = coursesREACH;
-                          }
-                        });
-                      },
-                      isSelected: _selections,
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: null,
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
+            child: Align(
+                alignment: Alignment.center,
+                child: Text("Search Results For " + result!.searchText!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30.0,
+                        color: CustomColors.GOLD))),
+          ),
+          Expanded(
+              flex: 1,
+              child: Align(
+                alignment: Alignment.center,
+                child: ToggleButtons(
+                  borderColor: CustomColors.GOLD,
+                  borderRadius:
+                      const BorderRadius.all(const Radius.circular(8)),
+                  selectedColor: Colors.white,
+                  disabledColor: Colors.black,
+                  fillColor: CustomColors.GOLD,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: Text("AIBT"),
                     ),
-                  )),
-              Expanded(
-                  flex: 8,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: new SearchResultGridView(),
-                  ))
-            ])));
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: Text("REACH"),
+                    )
+                  ],
+                  onPressed: (int index) {
+                    setState(() {
+                      if (index == 0) {
+                        _selections = [true, false];
+                        coursesToDisplay = coursesAIBT;
+                      } else if (index == 1) {
+                        _selections = [false, true];
+                        coursesToDisplay = coursesREACH;
+                      }
+                    });
+                  },
+                  isSelected: _selections,
+                ),
+              )),
+          Expanded(
+              flex: 8,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: new SearchResultGridView(),
+              ))
+        ])));
   }
 
   List<bool> _selections = [true, false];

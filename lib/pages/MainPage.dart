@@ -153,7 +153,7 @@ class MainPage extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("images/background_portrait.jpg"),
+                image: AssetImage("images/background.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -217,8 +217,7 @@ class MainPage extends StatelessWidget {
                                               builder: (context) =>
                                                   SchoolLogoPage(aibt!)));
                                     },
-                                    child: Image.asset(
-                                        "images/aibt_portrait.png")),
+                                    child: Image.asset("images/aibt.png")),
                                 color: Colors.transparent,
                               ),
                             ),
@@ -245,8 +244,7 @@ class MainPage extends StatelessWidget {
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.all(5),
-                                      child: Image.asset(
-                                          "images/reach_portrait.png"),
+                                      child: Image.asset("images/reach.png"),
                                     )),
                                 color: Colors.transparent,
                               ),

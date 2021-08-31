@@ -46,10 +46,6 @@ class SchoolCoursesPage extends StatelessWidget {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("images/background.jpg"),
-                  fit: BoxFit.cover)),
           child: new SchoolCoursesPageView(),
         ));
   }
@@ -86,7 +82,7 @@ class SchoolCoursesPageView extends StatelessWidget {
               child: null,
             )),
         Expanded(
-            flex: 1,
+            flex: 3,
             child: Align(
               alignment: Alignment.center,
               child: Utils.getSchoolLogoLandscape(school!.name),
@@ -111,7 +107,7 @@ class SchoolCoursesPageView extends StatelessWidget {
                   }),
             )),
         Expanded(
-            flex: 7,
+            flex: 8,
             child: Align(
               alignment: Alignment.topCenter,
               child: _buildGrid(),
@@ -199,10 +195,9 @@ class CourseItemView extends StatelessWidget {
       padding: EdgeInsets.all(3),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(
-              const Radius.circular(3),
-            )),
+          color: Colors.transparent,
+          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.7)),
+        ),
         child: new Material(
           child: new InkWell(
               onTap: () {
