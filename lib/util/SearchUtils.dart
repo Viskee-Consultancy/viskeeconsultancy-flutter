@@ -128,7 +128,10 @@ class SearchUtils {
     if (year == null && week == null) {
       return true;
     }
-    num duration = course.duration!;
+    num? duration = course.duration;
+    if (duration == null) {
+      return true;
+    }
     if (duration != 0) {
       if (week != null) {
         return duration <= week;
@@ -151,10 +154,10 @@ class SearchUtils {
         return false;
       }
       if (week != null) {
-        return durationMin <= week && durationMax >=week ;
+        return durationMin <= week && durationMax >= week;
       }
       if (year != null) {
-        if (year == 1 && (durationMin <= 52 && durationMax >=52)) {
+        if (year == 1 && (durationMin <= 52 && durationMax >= 52)) {
           return true;
         }
         if (year == 2 && (durationMax > 52 && durationMax <= 104)) {

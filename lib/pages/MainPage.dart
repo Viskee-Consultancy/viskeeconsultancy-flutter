@@ -322,18 +322,6 @@ class AutocompleteBasicExample extends StatelessWidget {
     String query = suggestion!.name!;
     this._typeAheadController.text = query;
     suggestions = _getCourseSuggestions(query, courses, suggestions);
-    if (suggestions.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: CustomColors.GOLD,
-        duration: Duration(milliseconds: 2000),
-        content: Text('Please enter the search text'),
-      ));
-    } else {
-      _getCourseSuggestions(query, courses, suggestions);
-      // Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => SearchResultPage(
-      //         _buildSearchResult(query, suggestions))));
-    }
   }
 
   @override
