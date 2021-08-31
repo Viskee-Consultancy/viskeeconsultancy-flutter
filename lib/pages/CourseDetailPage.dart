@@ -76,16 +76,7 @@ class ColumnItem extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
-              children: [
-                Text(
-                  "VET National Code:" + course!.vetCode!,
-                  style: TextStyle(color: Colors.black),
-                ),
-                Text(
-                  "CRICOS Course Code:" + course!.cricosCode!,
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
+              children: [getVetCodeText(course), getCricosCodeText(course)],
             ),
           ));
     } else if (index == 2) {
@@ -112,18 +103,11 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Text(
-                    course!.getDurationString() + " Weeks",
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: getTotalDurationText(course),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5, left: 10, right: 10),
-                  child: Text(
-                    course!.durationDetail!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: getDurationDetailText(course),
                 )
               ],
             ),
@@ -146,10 +130,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Text(
-                    course!.location.toString(),
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: getLocationText(course),
                 ),
               ],
             ),
@@ -172,19 +153,11 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Text(
-                    "Tuition Fee - OnShore Student Visa Holder: \$" +
-                        course!.onshoreTuition!.toString(),
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: getOnshoreTuitionText(course),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Text(
-                    "Tuition Fee - OffShore Int Student: \$" +
-                        course!.offshoreTuition!.toString(),
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: getOffshoreTuitionText(course),
                 )
               ],
             ),
@@ -209,6 +182,86 @@ class ColumnItem extends StatelessWidget {
       return new Container(
         child: null,
       );
+    }
+  }
+
+  Text getVetCodeText(Course? course) {
+    if (course != null && course.vetCode != null) {
+      return Text(
+        "VET National Code:" + course.vetCode!,
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getCricosCodeText(Course? course) {
+    if (course != null && course.cricosCode != null) {
+      return Text(
+        "CRICOS Course Code:" + course.cricosCode!,
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getTotalDurationText(Course? course) {
+    if (course != null && course.cricosCode != null) {
+      return Text(
+        course.getDurationString() + " Weeks",
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getDurationDetailText(Course? course) {
+    if (course != null && course.durationDetail != null) {
+      return Text(
+        course.durationDetail!,
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getLocationText(Course? course) {
+    if (course != null && course.onshoreTuition != null) {
+      return Text(
+        course.location.toString(),
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getOnshoreTuitionText(Course? course) {
+    if (course != null && course.onshoreTuition != null) {
+      return Text(
+        "Tuition Fee - OnShore Student Visa Holder: \$" +
+            course.onshoreTuition!.toString(),
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Text getOffshoreTuitionText(Course? course) {
+    if (course != null && course.offshoreTuition != null) {
+      return Text(
+        "Tuition Fee - OffShore Int Student: \$" +
+            course.offshoreTuition!.toString(),
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
     }
   }
 }

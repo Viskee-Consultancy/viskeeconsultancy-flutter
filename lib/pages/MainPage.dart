@@ -152,8 +152,11 @@ class MainPage extends StatelessWidget {
       home: Scaffold(
         body: Container(
             decoration: BoxDecoration(
+              color: Colors.black,
               image: DecorationImage(
                 image: AssetImage("images/background.jpg"),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.7), BlendMode.dstATop),
                 fit: BoxFit.cover,
               ),
             ),
