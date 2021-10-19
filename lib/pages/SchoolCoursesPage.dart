@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
-import 'package:viskeeconsultancy/models/Promotion.dart';
+import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/pages/BrochureDownloadPage.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
@@ -11,11 +11,11 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'CourseDetailPage.dart';
 
 School? school;
-List<Promotion>? promotions;
+List<Brochure>? promotions;
 List<Department> departments = [];
 
 class SchoolCoursesPage extends StatelessWidget {
-  SchoolCoursesPage(School schoolInput, List<Promotion> promotionsInput) {
+  SchoolCoursesPage(School schoolInput, List<Brochure> promotionsInput) {
     school = schoolInput;
     promotions = promotionsInput;
   }

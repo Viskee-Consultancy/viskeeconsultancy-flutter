@@ -3,11 +3,11 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'pages/MainPage.dart';
+import 'package:viskeeconsultancy/pages/OnshoreOffshorePage.dart';
 
 void main() => runApp(MaterialApp(
         theme: ThemeData(fontFamily: 'DM'),
-        home: MainPage(),
+        home: OnshoreOffshorePage(),
         routes: <String, WidgetBuilder>{
-          '/main_page': (BuildContext context) => MainPage(),
+          '/main_page': (BuildContext context) => OnshoreOffshorePage(),
         }));

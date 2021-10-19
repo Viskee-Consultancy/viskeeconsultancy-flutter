@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
-import 'package:viskeeconsultancy/models/Promotions.dart';
+import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
@@ -14,7 +15,6 @@ import '../values/CustomColors.dart';
 import 'SchoolCoursesPage.dart';
 import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
-import 'package:http/http.dart' as http;
 
 class MainPage extends StatelessWidget {
   Group? aibt;
@@ -150,6 +150,28 @@ class MainPage extends StatelessWidget {
     return MaterialApp(
       title: 'Viskee Consultancy',
       home: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  "images/vc_logo_landscape_white.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              )
+            ],
+          ),
+        ),
         body: Container(
             decoration: BoxDecoration(
               color: Colors.black,
@@ -164,9 +186,8 @@ class MainPage extends StatelessWidget {
               children: [
                 Expanded(
                     flex: 1,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Image.asset("images/vc_logo_landscape_white.png"),
+                    child: Container(
+                      child: null,
                     )),
                 Expanded(
                   flex: 2,

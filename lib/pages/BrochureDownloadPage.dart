@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:viskeeconsultancy/models/Promotion.dart';
+import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'dart:html' as html;
 
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 String? groupName;
-List<Promotion>? promotions;
+List<Brochure>? promotions;
 
 class BrochureDownloadPage extends StatelessWidget {
-  BrochureDownloadPage(String groupNameInput, List<Promotion> promotionsInput) {
+  BrochureDownloadPage(String groupNameInput, List<Brochure> promotionsInput) {
     groupName = groupNameInput;
     promotions = promotionsInput;
   }
@@ -51,10 +51,7 @@ class BrochureDownloadPage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text("Latest Brochures For " + groupName!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
-                        color: CustomColors.GOLD))),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
           ),
           Expanded(
               flex: 8,
@@ -72,17 +69,16 @@ class BrochureDownloadPage extends StatelessWidget {
         mainAxisSpacing: 30,
         crossAxisSpacing: 0,
         itemCount: promotions!.length,
-        staggeredTileBuilder: (int index) =>
-            new StaggeredTile.fit(promotions!.length),
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(promotions!.length),
         itemBuilder: (BuildContext context, int index) {
-          return new PromotionGridView(index);
+          return new BrochureGridView(index);
         },
       );
 }
 
-class PromotionGridView extends StatelessWidget {
-  late Promotion promotion;
-  PromotionGridView(int position) {
+class BrochureGridView extends StatelessWidget {
+  late Brochure promotion;
+  BrochureGridView(int position) {
     this.promotion = promotions![position];
   }
   @override
@@ -109,8 +105,7 @@ class PromotionGridView extends StatelessWidget {
                 flex: 8,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(promotion.name!,
-                      style: TextStyle(color: Colors.black)),
+                  child: Text(promotion.name!, style: TextStyle(color: Colors.black)),
                 )),
           ],
         ),

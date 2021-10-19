@@ -16,6 +16,11 @@ class Course {
   List<String> locationList = List.empty();
   int? unpaidPlacement;
   String? completeServicePeriods;
+  bool? isOnPromotion;
+  int? promotionDuration;
+  String? promotionDurationDetail;
+  String? promotionLocation;
+  String? promotionTuition;
 
   Course.fromJson(Map<String, dynamic> json) {
     vetCode = json["vetCode"];
@@ -41,10 +46,10 @@ class Course {
   }
 
   String getDurationString() {
-    if (duration!=0) {
+    if (duration != 0) {
       return duration.toString();
     } else {
-      return durationMin.toString()+ " - " + durationMax.toString();
+      return durationMin.toString() + " - " + durationMax.toString();
     }
   }
 
@@ -52,16 +57,16 @@ class Course {
   String toString() {
     String result = "";
     if (vetCode != null) {
-      result =result+"vetCode='" + vetCode! + "'\'";
+      result = result + "vetCode='" + vetCode! + "'\'";
     }
     if (cricosCode != null) {
-      result =result+"cricosCode='" + cricosCode! + "'\'";
+      result = result + "cricosCode='" + cricosCode! + "'\'";
     }
     if (department != null) {
-      result =result+"department='" + department! + "'\'";
+      result = result + "department='" + department! + "'\'";
     }
     if (name != null) {
-      result =result+"name='" + name! + "'\'";
+      result = result + "name='" + name! + "'\'";
     }
     return result;
   }
