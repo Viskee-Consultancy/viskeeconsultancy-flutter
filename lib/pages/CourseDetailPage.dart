@@ -19,7 +19,7 @@ class CourseDetailPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: Icon(Icons.arrow_back, color: Colors.black, size: 30,),
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Colors.transparent,
@@ -88,10 +88,10 @@ class ColumnItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    "images/clock.png",
-                    height: 60,
+                  child: Icon(
+                    Icons.schedule_outlined,
                     color: CustomColors.GOLD,
+                    size: 64,
                   ),
                 ),
                 Text(
@@ -115,10 +115,10 @@ class ColumnItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    "images/location.png",
-                    height: 60,
+                  child: Icon(
+                    Icons.location_on_outlined,
                     color: CustomColors.GOLD,
+                    size: 64,
                   ),
                 ),
                 Text(
@@ -138,10 +138,10 @@ class ColumnItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    "images/pricing.png",
-                    height: 60,
+                  child: Icon(
+                    Icons.attach_money_outlined,
                     color: CustomColors.GOLD,
+                    size: 64,
                   ),
                 ),
                 Text(
@@ -203,47 +203,118 @@ class ColumnItem extends StatelessWidget {
     }
   }
 
-  Text getTotalDurationText(Course? course) {
+  Widget getTotalDurationText(Course? course) {
     if (course != null && course.cricosCode != null) {
-      return Text(
-        course.getDurationString() + " Weeks",
-        style: TextStyle(color: Colors.black),
-      );
+      if (course.isOnPromotion && course.promotionDuration != null) {
+        return Column(
+          children: [
+            Text(
+              course.getDurationString() + " Weeks",
+              style: TextStyle(
+                  color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionDuration.toString() + " Weeks",
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getDurationString() + " Weeks",
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }
   }
 
-  Text getDurationDetailText(Course? course) {
+  Widget getDurationDetailText(Course? course) {
     if (course != null && course.durationDetail != null) {
-      return Text(
-        course.durationDetail!,
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.black),
-      );
+      if (course.isOnPromotion && course.promotionDurationDetail != null) {
+        return Column(
+          children: [
+            Text(
+              course.durationDetail!,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionDurationDetail!,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.durationDetail!,
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }
   }
 
-  Text getLocationText(Course? course) {
+  Widget getLocationText(Course? course) {
     if (course != null && course.location != null) {
-      return Text(
-        course.location.toString(),
-        style: TextStyle(color: Colors.black),
-      );
+      if (course.isOnPromotion && course.promotionLocation != null) {
+        return Column(
+          children: [
+            Text(
+              course.location!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionLocation!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.location!.toString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }
   }
 
-  Text getTuitionText(Course? course) {
+  Widget getTuitionText(Course? course) {
     if (course != null && course.tuition != null) {
-      return Text(
-        "Tuition Fee - \$" +
-            course.tuition!.toString(),
-        style: TextStyle(color: Colors.black),
-      );
+      if (course.isOnPromotion && course.promotionTuition != null) {
+        return Column(
+          children: [
+            Text(
+              course.tuition!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionTuition!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.tuition!.toString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }
