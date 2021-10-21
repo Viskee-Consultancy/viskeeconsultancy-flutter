@@ -68,7 +68,7 @@ class CoeSelectionPage extends StatelessWidget {
                               style: TextStyle(color: Colors.black))),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MyAppOne(SubFolderEnum.COE)));
+                            builder: (context) => ConfigurationDownloadPage(SubFolderEnum.COE)));
                       }),
                 ))),
         Expanded(
@@ -88,7 +88,7 @@ class CoeSelectionPage extends StatelessWidget {
                               style: TextStyle(color: Colors.black))),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MyAppOne(SubFolderEnum.NON_COE)));
+                            builder: (context) => ConfigurationDownloadPage(SubFolderEnum.NON_COE)));
                       }),
                 ))),
         Expanded(

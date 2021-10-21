@@ -66,7 +66,7 @@ class RegionSelectionPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MyAppOne(SubFolderEnum.SISMIC)));
+                        MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.SISMIC)));
                   }),
             )),
         Expanded(
@@ -84,7 +84,7 @@ class RegionSelectionPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MyAppOne(SubFolderEnum.SEAPAE)));
+                        MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.SEAPAE)));
                   }),
             )),
         Expanded(

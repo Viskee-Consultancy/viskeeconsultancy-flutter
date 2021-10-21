@@ -11,19 +11,7 @@ import 'package:viskeeconsultancy/pages/MainPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 
-class MyAppOne extends StatefulWidget {
-  late SubFolderEnum subfolder;
-
-  MyAppOne(SubFolderEnum subFolderEnum) {
-    this.subfolder = subFolderEnum;
-  }
-
-  @override
-  ConfigurationDownloadPage createState() =>
-      ConfigurationDownloadPage(subfolder);
-}
-
-class ConfigurationDownloadPage extends State<MyAppOne> {
+class ConfigurationDownloadPage extends StatefulWidget {
   late SubFolderEnum subfolder;
 
   ConfigurationDownloadPage(SubFolderEnum subFolderEnum) {
@@ -31,13 +19,31 @@ class ConfigurationDownloadPage extends State<MyAppOne> {
   }
 
   @override
+  ConfigurationDownloadAsync createState() =>
+      ConfigurationDownloadAsync(subfolder);
+}
+
+class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
+  late SubFolderEnum subfolder;
+
+  ConfigurationDownloadAsync(SubFolderEnum subFolderEnum) {
+    this.subfolder = subFolderEnum;
+  }
+
+  Group aibtGroup = new Group();
+  Group aibtPromotionGroup = new Group();
+  Group reachGroup = new Group();
+  Group reachPromotionGroup = new Group();
+  List<Course> courses = [];
+  
+  @override
   void initState() {
     super.initState();
     init();
   }
 
   void init() async {
-    downloadConfigurations(context).then((value) => Navigator.of(context).push(
+    downloadConfigurations(context).then((value) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
             builder: (context) => MainPage(aibtGroup, reachGroup))));
   }
@@ -78,12 +84,6 @@ class ConfigurationDownloadPage extends State<MyAppOne> {
       ])),
     );
   }
-
-  Group aibtGroup = new Group();
-  Group aibtPromotionGroup = new Group();
-  Group reachGroup = new Group();
-  Group reachPromotionGroup = new Group();
-  List<Course> courses = [];
 
   String buildSubUrl(SubFolderEnum subFolderEnum) {
     switch (subFolderEnum) {
@@ -263,6 +263,7 @@ class ConfigurationDownloadPage extends State<MyAppOne> {
     String subUrl = buildSubUrl(subfolder);
     await downloadBasicConfigurationFiles(context, subUrl);
     await downloadBrochureConfigurationFiles(subUrl);
+    await Future.delayed(Duration(seconds: 1));
   }
 
   Future<School?> mergePromotionToBasic(
