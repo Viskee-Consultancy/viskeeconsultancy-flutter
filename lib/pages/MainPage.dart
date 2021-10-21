@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
-import 'package:viskeeconsultancy/models/Brochures.dart';
-import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
 
