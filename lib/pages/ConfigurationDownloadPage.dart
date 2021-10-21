@@ -43,8 +43,11 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   }
 
   void init() async {
-    downloadConfigurations(context).then((value) => Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => MainPage(aibtGroup, reachGroup, courses))));
+    downloadConfigurations(context).then((value) => {
+          courses = prepareCourses(aibtGroup, reachGroup),
+          Navigator.of(context)
+              .pushReplacement(MaterialPageRoute(builder: (context) => MainPage(aibtGroup, reachGroup, courses)))
+        });
   }
 
   @override
@@ -98,7 +101,6 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   }
 
   Future<Group> downloadAibtBasicConfigurationFiles(var context, String subUrl) async {
-    Group aibtGroupTemp = new Group();
     String aibtSubUrl = subUrl + StringConstants.AIBT_URL;
     // AIBT School Configurations
     final aceResponse =
@@ -174,14 +176,13 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       if (sheldon != null) {
         aibtSchools.add(sheldon);
       }
-      aibtGroupTemp.schools = aibtSchools;
-      aibtGroupTemp.name = "AIBT";
+      aibtGroup.schools = aibtSchools;
+      aibtGroup.name = "AIBT";
     }
-    return aibtGroupTemp;
+    return aibtGroup;
   }
 
   Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
-    Group reachGroupTemp = new Group();
     // REACH School Configurations
     String reachSubUrl = subUrl + StringConstants.REACH_URL;
     final reachResponse =
@@ -207,10 +208,10 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         reachSchools.add(reach);
       }
 
-      reachGroupTemp.schools = reachSchools;
-      reachGroupTemp.name = "REACH";
+      reachGroup.schools = reachSchools;
+      reachGroup.name = "REACH";
     }
-    return reachGroupTemp;
+    return reachGroup;
   }
 
   Future<void> downloadBrochureConfigurationFiles(String subUrl) async {
@@ -237,9 +238,8 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   Future<void> downloadConfigurations(var context) async {
     String subUrl = buildSubUrl(subfolder);
-    aibtGroup = await downloadAibtBasicConfigurationFiles(context, subUrl);
-    reachGroup = await downloadReachBasicConfigurationFiles(context, subUrl);
-    courses = prepareCourses(aibtGroup, reachGroup);
+    await downloadAibtBasicConfigurationFiles(context, subUrl);
+    await downloadReachBasicConfigurationFiles(context, subUrl);
     await downloadBrochureConfigurationFiles(subUrl);
     await Future.delayed(Duration(seconds: 1));
   }
