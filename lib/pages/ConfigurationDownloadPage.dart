@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
+import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/MainPage.dart';
@@ -19,8 +20,7 @@ class ConfigurationDownloadPage extends StatefulWidget {
   }
 
   @override
-  ConfigurationDownloadAsync createState() =>
-      ConfigurationDownloadAsync(subfolder);
+  ConfigurationDownloadAsync createState() => ConfigurationDownloadAsync(subfolder);
 }
 
 class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
@@ -35,7 +35,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   Group reachGroup = new Group();
   Group reachPromotionGroup = new Group();
   List<Course> courses = [];
-  
+
   @override
   void initState() {
     super.initState();
@@ -43,9 +43,8 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   }
 
   void init() async {
-    downloadConfigurations(context).then((value) => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-            builder: (context) => MainPage(aibtGroup, reachGroup))));
+    downloadConfigurations(context).then((value) => Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => MainPage(aibtGroup, reachGroup, courses))));
   }
 
   @override
@@ -60,9 +59,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
             )),
         Expanded(
           flex: 1,
-          child: Align(
-              alignment: Alignment.center,
-              child: Image.asset("images/vc_logo_landscape.png")),
+          child: Align(alignment: Alignment.center, child: Image.asset("images/vc_logo_landscape.png")),
         ),
         Expanded(
             flex: 1,
@@ -100,109 +97,64 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     }
   }
 
-  Future<void> downloadBasicConfigurationFiles(
-      var context, String subUrl) async {
+  Future<Group> downloadAibtBasicConfigurationFiles(var context, String subUrl) async {
+    Group aibtGroupTemp = new Group();
     String aibtSubUrl = subUrl + StringConstants.AIBT_URL;
     // AIBT School Configurations
-    final aceResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.ACE_FILE_NAME));
-    final bespokeResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.BESPOKE_FILE_NAME));
-    final bransonResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.BRANSON_FILE_NAME));
-    final dianaResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.DIANA_FILE_NAME));
-    final edisonResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.EDISON_FILE_NAME));
-    final sheldonResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtSubUrl +
-            StringConstants.SHELDON_FILE_NAME));
-    // REACH School Configurations
-    String reachSubUrl = subUrl + StringConstants.REACH_URL;
-    final reachResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            reachSubUrl +
-            StringConstants.REACH_FILE_NAME));
+    final aceResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.ACE_FILE_NAME));
+    final bespokeResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.BESPOKE_FILE_NAME));
+    final bransonResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.BRANSON_FILE_NAME));
+    final dianaResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.DIANA_FILE_NAME));
+    final edisonResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.EDISON_FILE_NAME));
+    final sheldonResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.SHELDON_FILE_NAME));
 
-    String aibtPromotionSubUrl =
-        subUrl + StringConstants.AIBT_URL + StringConstants.PROMOTIONS_URL;
+    String aibtPromotionSubUrl = subUrl + StringConstants.AIBT_URL + StringConstants.PROMOTIONS_URL;
     // AIBT School Promotion Configurations
-    final acePromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.ACE_FILE_NAME));
-    final bespokePromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.BESPOKE_FILE_NAME));
-    final bransonPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.BRANSON_FILE_NAME));
-    final dianaPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.DIANA_FILE_NAME));
-    final edisonPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.EDISON_FILE_NAME));
-    final sheldonPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            aibtPromotionSubUrl +
-            StringConstants.SHELDON_FILE_NAME));
-    // REACH School Promotion Configurations
-    String reachPromotionSubUrl =
-        subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
-    final reachPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL +
-            reachPromotionSubUrl +
-            StringConstants.REACH_FILE_NAME));
+    final acePromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.ACE_FILE_NAME));
+    final bespokePromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.BESPOKE_FILE_NAME));
+    final bransonPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.BRANSON_FILE_NAME));
+    final dianaPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.DIANA_FILE_NAME));
+    final edisonPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.EDISON_FILE_NAME));
+    final sheldonPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.SHELDON_FILE_NAME));
 
     if (aceResponse.statusCode != 200 &&
         bespokeResponse.statusCode != 200 &&
         bransonResponse.statusCode != 200 &&
         dianaResponse.statusCode != 200 &&
         edisonResponse.statusCode != 200 &&
-        sheldonResponse.statusCode != 200 &&
-        reachResponse.statusCode != 200) {
+        sheldonResponse.statusCode != 200) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
         duration: Duration(milliseconds: 2000),
-        content: Text(
-            'Cannot load configuration file successfully, please try later.'),
+        content: Text('Cannot load configuration file successfully, please try later.'),
       ));
+      Navigator.of(context).pop();
     } else {
       List<School> aibtSchools = <School>[];
-      List<School> reachSchools = <School>[];
 
-      School? ace = await mergePromotionToBasic(
-          aceResponse, acePromotionResponse, "ACE AVIATION AEROSPACE ACADEMY");
-      School? bespoke = await mergePromotionToBasic(bespokeResponse,
-          bespokePromotionResponse, "BESPOKE GRAMMAR SCHOOL OF ENGLISH");
+      School? ace = await mergePromotionToBasic(aceResponse, acePromotionResponse, "ACE AVIATION AEROSPACE ACADEMY");
+      School? bespoke =
+          await mergePromotionToBasic(bespokeResponse, bespokePromotionResponse, "BESPOKE GRAMMAR SCHOOL OF ENGLISH");
       School? branson = await mergePromotionToBasic(
-          bransonResponse,
-          bransonPromotionResponse,
-          "BRANSON SCHOOL OF BUSINESS AND TECHNOLOGY");
-      School? diana = await mergePromotionToBasic(dianaResponse,
-          dianaPromotionResponse, "DIANA SCHOOL OF COMMUNITY SERVICES");
-      School? edison = await mergePromotionToBasic(edisonResponse,
-          edisonPromotionResponse, "EDISON SCHOOL OF TECH SCIENCES");
-      School? sheldon = await mergePromotionToBasic(sheldonResponse,
-          sheldonPromotionResponse, "SHELDON SCHOOL OF HOSPITALITY");
-      School? reach = await mergePromotionToBasic(
-          reachResponse, reachPromotionResponse, "REACH COMMUNITY COLLEGE");
+          bransonResponse, bransonPromotionResponse, "BRANSON SCHOOL OF BUSINESS AND TECHNOLOGY");
+      School? diana =
+          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, "DIANA SCHOOL OF COMMUNITY SERVICES");
+      School? edison =
+          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, "EDISON SCHOOL OF TECH SCIENCES");
+      School? sheldon =
+          await mergePromotionToBasic(sheldonResponse, sheldonPromotionResponse, "SHELDON SCHOOL OF HOSPITALITY");
 
       if (ace != null) {
         aibtSchools.add(ace);
@@ -222,29 +174,53 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       if (sheldon != null) {
         aibtSchools.add(sheldon);
       }
+      aibtGroupTemp.schools = aibtSchools;
+      aibtGroupTemp.name = "AIBT";
+    }
+    return aibtGroupTemp;
+  }
+
+  Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
+    Group reachGroupTemp = new Group();
+    // REACH School Configurations
+    String reachSubUrl = subUrl + StringConstants.REACH_URL;
+    final reachResponse =
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_FILE_NAME));
+
+    // REACH School Promotion Configurations
+    String reachPromotionSubUrl = subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
+    final reachPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_FILE_NAME));
+
+    if (reachResponse.statusCode != 200) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: CustomColors.GOLD,
+        duration: Duration(milliseconds: 2000),
+        content: Text('Cannot load configuration file successfully, please try later.'),
+      ));
+      Navigator.of(context).pop();
+    } else {
+      List<School> reachSchools = <School>[];
+      School? reach = await mergePromotionToBasic(reachResponse, reachPromotionResponse, "REACH COMMUNITY COLLEGE");
+
       if (reach != null) {
         reachSchools.add(reach);
       }
-      aibtGroup.schools = aibtSchools;
-      aibtGroup.name = "AIBT";
 
-      reachGroup.schools = reachSchools;
-      reachGroup.name = "REACH";
+      reachGroupTemp.schools = reachSchools;
+      reachGroupTemp.name = "REACH";
     }
+    return reachGroupTemp;
   }
 
   Future<void> downloadBrochureConfigurationFiles(String subUrl) async {
     // AIBT Brochure Configuration
-    final aibtBrochureResponse = await http.get(Uri.parse(
-        StringConstants.BROCHURE_BASE_URL +
-            subUrl +
-            StringConstants.AIBT_BROCHURE_FILE_NAME));
+    final aibtBrochureResponse =
+        await http.get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.AIBT_BROCHURE_FILE_NAME));
 
     // REACH Brochure Configuration
-    final reachBrochureResponse = await http.get(Uri.parse(
-        StringConstants.BROCHURE_BASE_URL +
-            subUrl +
-            StringConstants.REACH_BROCHURE_FILE_NAME));
+    final reachBrochureResponse = await http
+        .get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.REACH_BROCHURE_FILE_NAME));
 
     if (aibtBrochureResponse.statusCode == 200) {
       final aibtBrochureData = await json.decode(aibtBrochureResponse.body);
@@ -261,13 +237,14 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   Future<void> downloadConfigurations(var context) async {
     String subUrl = buildSubUrl(subfolder);
-    await downloadBasicConfigurationFiles(context, subUrl);
+    aibtGroup = await downloadAibtBasicConfigurationFiles(context, subUrl);
+    reachGroup = await downloadReachBasicConfigurationFiles(context, subUrl);
+    courses = prepareCourses(aibtGroup, reachGroup);
     await downloadBrochureConfigurationFiles(subUrl);
     await Future.delayed(Duration(seconds: 1));
   }
 
-  Future<School?> mergePromotionToBasic(
-      var basicResponse, var promotionResponse, String schoolName) async {
+  Future<School?> mergePromotionToBasic(var basicResponse, var promotionResponse, String schoolName) async {
     School? basicSchool;
     if (basicResponse.statusCode == 200) {
       final basicData = await json.decode(basicResponse.body);
@@ -315,5 +292,28 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       key += "_" + course.name!.trim().toLowerCase();
     }
     return key;
+  }
+
+  List<Course> prepareCourses(Group aibtGroup, Group reachGroup) {
+    List<School> aibtSchools = aibtGroup.schools;
+    List<School> reachSchools = reachGroup.schools;
+
+    List<Course> totalCourses = [];
+    List<Course> aibtCourses = [];
+    for (var school in aibtSchools) {
+      aibtCourses.addAll(school.courses);
+    }
+
+    aibtCourses.forEach((course) => course.group = GroupEnum.AIBT);
+
+    List<Course> reachCourses = [];
+    for (var school in reachSchools) {
+      reachCourses.addAll(school.courses);
+    }
+    reachCourses.forEach((course) => course.group = GroupEnum.REACH);
+
+    totalCourses.addAll(aibtCourses);
+    totalCourses.addAll(reachCourses);
+    return totalCourses;
   }
 }

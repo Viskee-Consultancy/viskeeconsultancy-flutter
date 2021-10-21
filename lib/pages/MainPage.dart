@@ -21,34 +21,11 @@ class MainPage extends StatelessWidget {
   Group? reach;
   List<Course> courses = [];
 
-  MainPage(Group aibtGroup, Group reachGroup) {
+  MainPage(Group aibtGroup, Group reachGroup, List<Course> totalCourses) {
     this.aibt = aibtGroup;
     this.reach = reachGroup;
-    prepareCourses();
+    this.courses =totalCourses;
   }
-
-  void prepareCourses() {
-    List<School> aibtSchools = aibt!.schools;
-    List<School> reachSchools = reach!.schools;
-
-    List<Course> aibtCourses = [];
-    for (var school in aibtSchools) {
-      aibtCourses.addAll(school.courses);
-    }
-
-    aibtCourses.forEach((course) => course.group = GroupEnum.AIBT);
-
-    List<Course> reachCourses = [];
-    for (var school in reachSchools) {
-      reachCourses.addAll(school.courses);
-    }
-    reachCourses.forEach((course) => course.group = GroupEnum.REACH);
-
-    courses.addAll(aibtCourses);
-    courses.addAll(reachCourses);
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
