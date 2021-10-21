@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CoeSelectionPage.dart';
@@ -11,6 +12,7 @@ class OnshoreOffshorePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black),
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,

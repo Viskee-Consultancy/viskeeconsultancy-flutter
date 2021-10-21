@@ -19,7 +19,11 @@ class CourseDetailPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black, size: 30,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 30,
+            ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Colors.transparent,
@@ -53,6 +57,7 @@ class CourseDetailPage extends StatelessWidget {
 
 class ColumnItem extends StatelessWidget {
   late int index;
+
   ColumnItem(int index) {
     this.index = index;
   }
@@ -157,6 +162,7 @@ class ColumnItem extends StatelessWidget {
                 )
               ],
             ),
+            getPlacementWidget(course),
             Padding(
               padding: EdgeInsets.all(20.0),
               child: ElevatedButton(
@@ -203,7 +209,7 @@ class ColumnItem extends StatelessWidget {
   }
 
   Widget getTotalDurationText(Course? course) {
-    if (course != null && course.cricosCode != null) {
+    if (course != null) {
       if (course.isOnPromotion && course.promotionDuration != null) {
         return Column(
           children: [
@@ -295,7 +301,7 @@ class ColumnItem extends StatelessWidget {
         return Column(
           children: [
             Text(
-              course.tuition!.toString(),
+              course.tuition!.toString() + "\$",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black, decoration: TextDecoration.lineThrough),
@@ -309,11 +315,69 @@ class ColumnItem extends StatelessWidget {
         );
       } else {
         return Text(
-          course.tuition!.toString(),
+          course.tuition!.toString() + "\$",
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black),
         );
       }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget getPlacementWidget(Course? course) {
+    if (course != null && course.placementFee != null) {
+      return Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.work_outline_outlined,
+              color: CustomColors.GOLD,
+              size: 64,
+            ),
+          ),
+          Text(
+            "Placement",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+                color: Colors.black),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: getPlacementFeeText(course),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5, left: 10, right: 10),
+            child: getPlacementDurationText(course),
+          )
+        ],
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  Widget getPlacementFeeText(Course? course) {
+    if (course != null && course.placementFee != null) {
+      return Text(
+        "Placement Fee: " + course.placementFee!.toString() + " \$",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black),
+      );
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget getPlacementDurationText(Course? course) {
+    if (course != null && course.placementDuration != null) {
+      return Text(
+        "Placement Duration: " + course.placementDuration!.toString() + " hours",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black),
+      );
     } else {
       return Text("");
     }

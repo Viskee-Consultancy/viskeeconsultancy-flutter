@@ -13,7 +13,8 @@ class Course {
   String? tuition;
   String? location;
   List<String> locationList = List.empty();
-  int? unpaidPlacement;
+  String? placementFee;
+  String? placementDuration;
   String? completeServicePeriods;
   bool isOnPromotion =false;
   int? promotionDuration;
@@ -39,12 +40,13 @@ class Course {
     tuition = json["tuition"];
     location = json["location"];
     locationList = location!.split("/");
-    unpaidPlacement = json["unpaidPlacement"];
+    placementFee = json["placementFee"];
+    placementDuration = json["placementDuration"];
     completeServicePeriods = json["completeServicePeriods"];
   }
 
   String getDurationString() {
-    if (duration != 0) {
+    if (duration != null && duration != 0) {
       return duration.toString();
     } else {
       return durationMin.toString() + " - " + durationMax.toString();
