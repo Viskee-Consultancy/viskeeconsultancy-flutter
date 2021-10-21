@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
+import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/pages/MainPage.dart';
 import 'dart:html' as html;
 
@@ -64,7 +66,7 @@ class RegionSelectionPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MainPage()));
+                        MaterialPageRoute(builder: (context) => MyAppOne(SubFolderEnum.SISMIC)));
                   }),
             )),
         Expanded(
@@ -82,7 +84,7 @@ class RegionSelectionPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MainPage()));
+                        MaterialPageRoute(builder: (context) => MyAppOne(SubFolderEnum.SEAPAE)));
                   }),
             )),
         Expanded(

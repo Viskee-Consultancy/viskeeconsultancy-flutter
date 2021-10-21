@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
+import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/pages/MainPage.dart';
 import 'dart:html' as html;
 
@@ -66,7 +68,7 @@ class CoeSelectionPage extends StatelessWidget {
                               style: TextStyle(color: Colors.black))),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MainPage()));
+                            builder: (context) => MyAppOne(SubFolderEnum.COE)));
                       }),
                 ))),
         Expanded(
@@ -86,7 +88,7 @@ class CoeSelectionPage extends StatelessWidget {
                               style: TextStyle(color: Colors.black))),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MainPage()));
+                            builder: (context) => MyAppOne(SubFolderEnum.NON_COE)));
                       }),
                 ))),
         Expanded(

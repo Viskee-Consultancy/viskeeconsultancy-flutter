@@ -178,7 +178,12 @@ class DepartmentCourseGridView extends StatelessWidget {
   List<Widget> _getListData() {
     List<Widget> widgets = [];
     for (int i = 0; i < department.courses.length; i++) {
-      widgets.add(new CourseItemView(department.courses[i]));
+      Course course = department.courses[i];
+      if (course.isOnPromotion) {
+        widgets.add(new PromotionCourseItemView(department.courses[i]));
+      } else {
+        widgets.add(new CourseItemView(department.courses[i]));
+      }
     }
     return widgets;
   }
@@ -205,12 +210,60 @@ class CourseItemView extends StatelessWidget {
                     builder: (context) => CourseDetailPage(course)));
               },
               child: Padding(
-                padding: EdgeInsets.all(5),
-                child: Text(
-                  course.name!,
-                  style: TextStyle(color: Colors.black),
-                ),
-              )),
+                  padding: EdgeInsets.all(5),
+                  child: Flexible(
+                    child: Text(
+                      course.name!,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ))),
+          color: Colors.transparent,
+        ),
+      ),
+    );
+  }
+}
+
+class PromotionCourseItemView extends StatelessWidget {
+  late Course course;
+  PromotionCourseItemView(Course course) {
+    this.course = course;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(3),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.7)),
+        ),
+        child: new Material(
+          child: new InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CourseDetailPage(course)));
+              },
+              child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.sell_outlined,
+                        color: CustomColors.GOLD,
+                      ),
+                      Flexible(
+                        child: Text(
+                          course.name!,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      )
+                    ],
+                  ))),
           color: Colors.transparent,
         ),
       ),

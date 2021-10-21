@@ -10,13 +10,12 @@ class Course {
   int? durationMin;
   int? durationMax;
   String? durationDetail;
-  String? offshoreTuition;
-  String? onshoreTuition;
+  String? tuition;
   String? location;
   List<String> locationList = List.empty();
   int? unpaidPlacement;
   String? completeServicePeriods;
-  bool? isOnPromotion;
+  bool isOnPromotion =false;
   int? promotionDuration;
   String? promotionDurationDetail;
   String? promotionLocation;
@@ -37,8 +36,7 @@ class Course {
       durationMax = int.tryParse(json["durationMax"]);
     }
     durationDetail = json["durationDetail"];
-    offshoreTuition = json["offshoreTuition"];
-    onshoreTuition = json["onshoreTuition"];
+    tuition = json["tuition"];
     location = json["location"];
     locationList = location!.split("/");
     unpaidPlacement = json["unpaidPlacement"];

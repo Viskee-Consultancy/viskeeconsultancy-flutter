@@ -68,7 +68,7 @@ class SchoolLogoPage extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => BrochureDownloadPage(
-                                  aibtGroup!.name!, aibtGroup!.promotions)));
+                                  aibtGroup!.name!, aibtGroup!.brochures)));
                         }),
                   )),
               Expanded(

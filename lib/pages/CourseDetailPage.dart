@@ -153,11 +153,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: getOnshoreTuitionText(course),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: getOffshoreTuitionText(course),
+                  child: getTuitionText(course),
                 )
               ],
             ),
@@ -231,7 +227,7 @@ class ColumnItem extends StatelessWidget {
   }
 
   Text getLocationText(Course? course) {
-    if (course != null && course.onshoreTuition != null) {
+    if (course != null && course.location != null) {
       return Text(
         course.location.toString(),
         style: TextStyle(color: Colors.black),
@@ -241,23 +237,11 @@ class ColumnItem extends StatelessWidget {
     }
   }
 
-  Text getOnshoreTuitionText(Course? course) {
-    if (course != null && course.onshoreTuition != null) {
+  Text getTuitionText(Course? course) {
+    if (course != null && course.tuition != null) {
       return Text(
-        "Tuition Fee - OnShore Student Visa Holder: \$" +
-            course.onshoreTuition!.toString(),
-        style: TextStyle(color: Colors.black),
-      );
-    } else {
-      return Text("");
-    }
-  }
-
-  Text getOffshoreTuitionText(Course? course) {
-    if (course != null && course.offshoreTuition != null) {
-      return Text(
-        "Tuition Fee - OffShore Int Student: \$" +
-            course.offshoreTuition!.toString(),
+        "Tuition Fee - \$" +
+            course.tuition!.toString(),
         style: TextStyle(color: Colors.black),
       );
     } else {
