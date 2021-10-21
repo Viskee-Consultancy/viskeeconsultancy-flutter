@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Brochure.dart';
-import 'dart:html' as html;
-
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String? groupName;
 List<Brochure>? promotions;
@@ -87,7 +87,7 @@ class BrochureGridView extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
       ),
-      onPressed: () => html.window.open(promotion.link!, "Brochure"),
+      onPressed: () => launchURL(promotion.link!),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
@@ -111,5 +111,13 @@ class BrochureGridView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: false);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 Course? course;
 
@@ -166,9 +166,8 @@ class ColumnItem extends StatelessWidget {
                   ),
                   child: Text("Terms and Conditions"),
                   onPressed: () {
-                    html.window.open(
-                        "https://aibtglobal.edu.au/courses/terms-for-courses/",
-                        "Terms and Conditions");
+                    launchURL(
+                        "https://aibtglobal.edu.au/courses/terms-for-courses/");
                   }),
             )
           ],
@@ -317,6 +316,14 @@ class ColumnItem extends StatelessWidget {
       }
     } else {
       return Text("");
+    }
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 }

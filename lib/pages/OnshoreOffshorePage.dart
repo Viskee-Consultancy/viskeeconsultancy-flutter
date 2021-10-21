@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
+import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CoeSelectionPage.dart';
 import 'RegionSelectionPage.dart';
-import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class OnshoreOffshorePage extends StatelessWidget {
   @override

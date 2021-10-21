@@ -3,8 +3,6 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
-import 'dart:html' as html;
-
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class RegionSelectionPage extends StatelessWidget {

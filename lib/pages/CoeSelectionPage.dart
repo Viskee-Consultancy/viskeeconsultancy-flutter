@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
-import 'package:viskeeconsultancy/pages/MainPage.dart';
-import 'dart:html' as html;
-
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class CoeSelectionPage extends StatelessWidget {
