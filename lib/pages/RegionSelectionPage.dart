@@ -8,6 +8,7 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class RegionSelectionPage extends StatelessWidget {
   RegionSelectionPage() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,10 @@ class RegionSelectionPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+              child: SvgPicture.asset(
+                "images/vc_logo_landscape.svg",
+                height: 40,
+              ),
             )
           ],
         ),
@@ -40,7 +44,7 @@ class RegionSelectionPage extends StatelessWidget {
           flex: 1,
           child: Align(
               alignment: Alignment.center,
-              child: Text("Do you have confirmation of enrollment ?",
+              child: Text("Please choose your country",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
         ),
@@ -56,7 +60,7 @@ class RegionSelectionPage extends StatelessWidget {
                     ),
                     child: new AutocompleteBasicExample()))),
         Expanded(
-            flex: 1,
+            flex: 3,
             child: Container(
               child: null,
             )),
@@ -67,10 +71,12 @@ class RegionSelectionPage extends StatelessWidget {
 
 class AutocompleteBasicExample extends StatelessWidget {
   List<String> countries = [];
+
   AutocompleteBasicExample() {
     countries.addAll(Region.SEAPAE);
     countries.addAll(Region.SISMIC);
   }
+
   final TextEditingController _typeAheadController = TextEditingController();
 
   List<String> _getCountrySuggestions(String query, List<String> countries, List<String> suggestions) {

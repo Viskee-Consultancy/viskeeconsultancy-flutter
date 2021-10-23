@@ -6,6 +6,7 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class CoeSelectionPage extends StatelessWidget {
   CoeSelectionPage() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,10 @@ class CoeSelectionPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+              child: SvgPicture.asset(
+                "images/vc_logo_landscape.svg",
+                height: 40,
+              ),
             )
           ],
         ),
@@ -35,16 +39,13 @@ class CoeSelectionPage extends StatelessWidget {
               child: null,
             )),
         Expanded(
-          flex: 1,
-          child: Align(
-              alignment: Alignment.center,
-              child: Text("Do you have confirmation of enrollment ?",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                      color: CustomColors.GOLD))),
-        ),
+            flex: 1,
+            child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text("Do you have Confirmation of Enrollment ?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+            ),
         Expanded(
             flex: 1,
             child: Align(
@@ -53,16 +54,13 @@ class CoeSelectionPage extends StatelessWidget {
                   width: 200,
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                        backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Text("COE",
-                              style: TextStyle(color: Colors.black))),
+                          padding: EdgeInsets.all(15), child: Text("COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ConfigurationDownloadPage(SubFolderEnum.COE)));
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.COE)));
                       }),
                 ))),
         Expanded(
@@ -73,16 +71,13 @@ class CoeSelectionPage extends StatelessWidget {
                   width: 200,
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                        backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Text("NON-COE",
-                              style: TextStyle(color: Colors.black))),
+                          padding: EdgeInsets.all(15), child: Text("NON-COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ConfigurationDownloadPage(SubFolderEnum.NON_COE)));
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.NON_COE)));
                       }),
                 ))),
         Expanded(

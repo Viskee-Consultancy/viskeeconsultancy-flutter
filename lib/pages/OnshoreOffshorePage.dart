@@ -36,7 +36,7 @@ class OnshoreOffshorePage extends StatelessWidget {
           flex: 1,
           child: Align(
               alignment: Alignment.center,
-              child: Text("Are you onshore or offshore ?",
+              child: Text("Are you ONSHORE or OFFSHORE ?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
