@@ -102,8 +102,8 @@ class MainPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(flex: 1, child: Container(child: null)),
-                          Expanded(
-                            flex: 1,
+                          ConstrainedBox(
+                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120),
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),
@@ -125,8 +125,8 @@ class MainPage extends StatelessWidget {
                             ),
                           ),
                           Expanded(flex: 2, child: Container(child: null)),
-                          Expanded(
-                            flex: 1,
+                          ConstrainedBox(
+                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120),
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),

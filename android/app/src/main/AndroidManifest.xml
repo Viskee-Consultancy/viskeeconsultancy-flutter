@@ -40,6 +40,8 @@
 
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <queries>
         <!-- If your app opens https URLs -->
         <intent>
