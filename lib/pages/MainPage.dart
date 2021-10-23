@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -21,7 +20,7 @@ class MainPage extends StatelessWidget {
   MainPage(Group aibtGroup, Group reachGroup, List<Course> totalCourses) {
     this.aibt = aibtGroup;
     this.reach = reachGroup;
-    this.courses =totalCourses;
+    this.courses = totalCourses;
   }
 
   @override
@@ -42,7 +41,10 @@ class MainPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("images/vc_logo_landscape_white.svg", height: 40,),
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape_white.svg",
+                  height: 40,
+                ),
               )
             ],
           ),
@@ -52,8 +54,7 @@ class MainPage extends StatelessWidget {
               color: Colors.black,
               image: DecorationImage(
                 image: AssetImage("images/background.png"),
-                colorFilter: new ColorFilter.mode(
-                    Colors.black.withOpacity(0.7), BlendMode.dstATop),
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
                 fit: BoxFit.cover,
               ),
             ),
@@ -72,10 +73,7 @@ class MainPage extends StatelessWidget {
                   flex: 6,
                   child: Text("Explore Over 90+ Courses and Promotions",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white)),
+                      style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
                 ),
                 ConstrainedBox(
                     constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
@@ -85,8 +83,7 @@ class MainPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(color: CustomColors.GOLD),
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(8)),
+                              borderRadius: const BorderRadius.all(const Radius.circular(8)),
                             ),
                             child: new AutocompleteBasicExample(courses)))),
                 Expanded(
@@ -95,63 +92,60 @@ class MainPage extends StatelessWidget {
                 ),
                 Expanded(
                     flex: 4,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(flex: 1, child: Container(child: null)),
-                          Container(
-                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                            child: new Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: CustomColors.GOLD),
-                                  color: Colors.white,
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8),
-                                  )),
-                              child: new Material(
-                                child: new InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SchoolLogoPage(aibt!)));
-                                    },
-                                    child: SvgPicture.asset("images/aibt.svg")),
-                                color: Colors.transparent,
-                              ),
-                            ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                      Expanded(flex: 1, child: Container(child: null)),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
+                        child: new Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: CustomColors.GOLD),
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(8),
+                              )),
+                          child: new Material(
+                            child: new InkWell(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(aibt!)));
+                                },
+                                child: SvgPicture.asset("images/aibt.svg")),
+                            color: Colors.transparent,
                           ),
-                          Expanded(flex: 2, child: Container(child: null)),
-                          Container(
-                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                            child: new Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: CustomColors.GOLD),
-                                  color: Colors.white,
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8),
-                                  )),
-                              child: new Material(
-                                child: new InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SchoolCoursesPage(
-                                                      reach!.schools[0],
-                                                      reach!.brochures)));
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.all(5),
-                                      child: SvgPicture.asset("images/reach.svg"),
-                                    )),
-                                color: Colors.transparent,
-                              ),
-                            ),
+                        ),
+                      ),
+                      Expanded(flex: 2, child: Container(child: null)),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
+                        child: new Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: CustomColors.GOLD),
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(8),
+                              )),
+                          child: new Material(
+                            child: new InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SchoolCoursesPage(reach!.schools[0], reach!.brochures)));
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: SvgPicture.asset("images/reach.svg"),
+                                )),
+                            color: Colors.transparent,
                           ),
-                          Expanded(flex: 1, child: Container(child: null))
-                        ])),
-                Expanded(flex: 2, child: Container(child: null,),)
+                        ),
+                      ),
+                      Expanded(flex: 1, child: Container(child: null))
+                    ])),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    child: null,
+                  ),
+                )
               ],
             )),
       ),
@@ -161,14 +155,14 @@ class MainPage extends StatelessWidget {
 
 class AutocompleteBasicExample extends StatelessWidget {
   List<Course> courses = [];
+
   AutocompleteBasicExample(List<Course> courses) {
     this.courses = courses;
   }
 
   final TextEditingController _typeAheadController = TextEditingController();
 
-  List<Course> _getCourseSuggestions(
-      String query, List<Course> courses, List<Course> suggestions) {
+  List<Course> _getCourseSuggestions(String query, List<Course> courses, List<Course> suggestions) {
     if (query == '') {
       return List.empty();
     }
@@ -182,10 +176,8 @@ class AutocompleteBasicExample extends StatelessWidget {
       num? year = SearchUtils.extractYear(splitList);
       num? week = SearchUtils.extractWeek(splitList);
       bool isDurationMatch = SearchUtils.isDurationMatch(course, year, week);
-      bool isLocationMatch =
-          SearchUtils.isLocationMatch(course.locationList, splitList);
-      bool isTextMatch =
-          SearchUtils.isTextMatch(course.toString().toLowerCase(), splitList);
+      bool isLocationMatch = SearchUtils.isLocationMatch(course.locationList, splitList);
+      bool isTextMatch = SearchUtils.isTextMatch(course.toString().toLowerCase(), splitList);
       if (isDurationMatch && isLocationMatch && isTextMatch) {
         suggestions.add(course);
       }
@@ -214,8 +206,7 @@ class AutocompleteBasicExample extends StatelessWidget {
     return searchResult;
   }
 
-  void _itemSelected(
-      Course? suggestion, List<Course> suggestions, BuildContext context) {
+  void _itemSelected(Course? suggestion, List<Course> suggestions, BuildContext context) {
     String query = suggestion!.name!;
     this._typeAheadController.text = query;
     suggestions = _getCourseSuggestions(query, courses, suggestions);
@@ -233,8 +224,7 @@ class AutocompleteBasicExample extends StatelessWidget {
             enabledBorder: InputBorder.none,
             errorBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
-            contentPadding:
-                EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+            contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
             hintText: "Search for a course",
             fillColor: CustomColors.GOLD),
         controller: this._typeAheadController,
@@ -249,9 +239,8 @@ class AutocompleteBasicExample extends StatelessWidget {
               content: Text('Please enter the search text'),
             ));
           } else {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    SearchResultPage(_buildSearchResult(query, suggestions))));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => SearchResultPage(_buildSearchResult(query, suggestions))));
           }
         },
       ),
@@ -259,10 +248,8 @@ class AutocompleteBasicExample extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(suggestion!.name!),
       ),
-      suggestionsCallback: (query) =>
-          _getCourseSuggestions(query, courses, suggestions),
-      onSuggestionSelected: (suggestion) =>
-          {_itemSelected(suggestion, suggestions, context)},
+      suggestionsCallback: (query) => _getCourseSuggestions(query, courses, suggestions),
+      onSuggestionSelected: (suggestion) => {_itemSelected(suggestion, suggestions, context)},
     );
   }
 }

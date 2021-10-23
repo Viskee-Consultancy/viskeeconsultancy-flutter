@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 Course? course;
 
@@ -34,13 +34,15 @@ class CourseDetailPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape.svg",
+                  height: 40,
+                ),
               )
             ],
           ),
         ),
-        body: Container(
-            child: ListView(shrinkWrap: false, children: _getListData())));
+        body: Container(child: ListView(shrinkWrap: false, children: _getListData())));
   }
 
   List<Widget> _getListData() {
@@ -68,10 +70,7 @@ class ColumnItem extends StatelessWidget {
               padding: EdgeInsets.only(left: 5, right: 5),
               child: Text(course!.name!,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                      color: CustomColors.GOLD))));
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))));
     } else if (index == 1) {
       return Align(
           alignment: Alignment.topCenter,
@@ -98,10 +97,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Text(
                   "Total Duration",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.black),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
@@ -125,10 +121,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Text(
                   "Location",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.black),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
@@ -148,10 +141,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Text(
                   "Pricing",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.black),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
@@ -164,13 +154,11 @@ class ColumnItem extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                    backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                   ),
                   child: Text("Terms and Conditions"),
                   onPressed: () {
-                    launchURL(
-                        "https://aibtglobal.edu.au/courses/terms-for-courses/");
+                    launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
                   }),
             )
           ],
@@ -212,8 +200,7 @@ class ColumnItem extends StatelessWidget {
           children: [
             Text(
               course.getDurationString() + " Weeks",
-              style: TextStyle(
-                  color: Colors.black, decoration: TextDecoration.lineThrough),
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
               course.promotionDuration.toString() + " Weeks",
@@ -240,8 +227,7 @@ class ColumnItem extends StatelessWidget {
             Text(
               course.durationDetail!,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black, decoration: TextDecoration.lineThrough),
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
               course.promotionDurationDetail!,
@@ -270,8 +256,7 @@ class ColumnItem extends StatelessWidget {
             Text(
               course.location!.toString(),
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black, decoration: TextDecoration.lineThrough),
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
               course.promotionLocation!.toString(),
@@ -300,8 +285,7 @@ class ColumnItem extends StatelessWidget {
             Text(
               course.tuition!.toString() + "\$",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black, decoration: TextDecoration.lineThrough),
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
               course.promotionTuition!.toString(),
@@ -336,10 +320,7 @@ class ColumnItem extends StatelessWidget {
           ),
           Text(
             "Placement",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
-                color: Colors.black),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
           ),
           Padding(
             padding: EdgeInsets.only(top: 5),

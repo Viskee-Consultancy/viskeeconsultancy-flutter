@@ -147,17 +147,17 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     } else {
       List<School> aibtSchools = <School>[];
 
-      School? ace = await mergePromotionToBasic(aceResponse, acePromotionResponse, "ACE AVIATION AEROSPACE ACADEMY");
+      School? ace = await mergePromotionToBasic(aceResponse, acePromotionResponse, StringConstants.ACE_SCHOOL_NAME);
       School? bespoke =
-          await mergePromotionToBasic(bespokeResponse, bespokePromotionResponse, "BESPOKE GRAMMAR SCHOOL OF ENGLISH");
-      School? branson = await mergePromotionToBasic(
-          bransonResponse, bransonPromotionResponse, "BRANSON SCHOOL OF BUSINESS AND TECHNOLOGY");
+          await mergePromotionToBasic(bespokeResponse, bespokePromotionResponse, StringConstants.BESPOKE_SCHOOL_NAME);
+      School? branson =
+          await mergePromotionToBasic(bransonResponse, bransonPromotionResponse, StringConstants.BRANSON_SCHOOL_NAME);
       School? diana =
-          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, "DIANA SCHOOL OF COMMUNITY SERVICES");
+          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, StringConstants.DIANA_SCHOOL_NAME);
       School? edison =
-          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, "EDISON SCHOOL OF TECH SCIENCES");
+          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, StringConstants.EDISON_SCHOOL_NAME);
       School? sheldon =
-          await mergePromotionToBasic(sheldonResponse, sheldonPromotionResponse, "SHELDON SCHOOL OF HOSPITALITY");
+          await mergePromotionToBasic(sheldonResponse, sheldonPromotionResponse, StringConstants.SHELDON_SCHOOL_NAME);
 
       if (ace != null) {
         aibtSchools.add(ace);
@@ -178,7 +178,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         aibtSchools.add(sheldon);
       }
       aibtGroup.schools = aibtSchools;
-      aibtGroup.name = "AIBT";
+      aibtGroup.name = StringConstants.AIBT_GROUP_NAME;
     }
     return aibtGroup;
   }
@@ -203,14 +203,15 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       Navigator.of(context).pop();
     } else {
       List<School> reachSchools = <School>[];
-      School? reach = await mergePromotionToBasic(reachResponse, reachPromotionResponse, "REACH COMMUNITY COLLEGE");
+      School? reach =
+          await mergePromotionToBasic(reachResponse, reachPromotionResponse, StringConstants.REACH_SCHOOL_NAME);
 
       if (reach != null) {
         reachSchools.add(reach);
       }
 
       reachGroup.schools = reachSchools;
-      reachGroup.name = "REACH";
+      reachGroup.name = StringConstants.REACH_GROUP_NAME;
     }
     return reachGroup;
   }

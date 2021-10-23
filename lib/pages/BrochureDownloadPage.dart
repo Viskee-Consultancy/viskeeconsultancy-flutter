@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 String? groupName;
 List<Brochure>? promotions;

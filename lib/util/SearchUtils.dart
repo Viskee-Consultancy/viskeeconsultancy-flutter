@@ -176,15 +176,13 @@ class SearchUtils {
     bool isLocationSearchMatch = false;
 
     String searchText = splitList.join(" ");
-    List<String> locationsLowerCase =
-        locations.map((location) => location.toLowerCase()).toList();
+    List<String> locationsLowerCase = locations.map((location) => location.toLowerCase()).toList();
     for (var locationName in LOCATION_NAME_LIST) {
       if (searchText.contains(locationName)) {
         isLocationSearchTextProvided = true;
         searchText = searchText.replaceFirst(locationName, "");
         List<String>? locationNameList = LOCATION_MAP[locationName];
-        if (locationNameList != null &&
-            locationNameList.any((item) => locationsLowerCase.contains(item))) {
+        if (locationNameList != null && locationNameList.any((item) => locationsLowerCase.contains(item))) {
           isLocationSearchMatch = true;
         }
       }
@@ -204,8 +202,7 @@ class SearchUtils {
   static bool isTextMatch(String courseString, List<String> splitList) {
     if (splitList.isEmpty) return true;
     String searchText = "(.*?)" + splitList.join("(.*?)") + "(.*?)";
-    RegExp regExp =
-        new RegExp(searchText, caseSensitive: false, multiLine: false);
+    RegExp regExp = new RegExp(searchText, caseSensitive: false, multiLine: false);
     return regExp.hasMatch(courseString);
   }
 }

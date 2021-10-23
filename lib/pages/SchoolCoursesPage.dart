@@ -20,6 +20,7 @@ class SchoolCoursesPage extends StatelessWidget {
     school = schoolInput;
     promotions = promotionsInput;
   }
+
   @override
   Widget build(BuildContext context) {
     buildDepartmentList(school!);
@@ -37,7 +38,10 @@ class SchoolCoursesPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape.svg",
+                  height: 40,
+                ),
               )
             ],
           ),
@@ -90,17 +94,14 @@ class SchoolCoursesPageView extends StatelessWidget {
               alignment: Alignment.center,
               child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                    backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                   ),
                   child: Padding(
                       padding: EdgeInsets.all(15),
-                      child: Text("LATEST BROCHURES",
-                          style: TextStyle(color: Colors.black))),
+                      child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            BrochureDownloadPage(school!.name!, promotions!)));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => BrochureDownloadPage(school!.name!, promotions!)));
                   }),
             )),
         Expanded(
@@ -120,8 +121,7 @@ class SchoolCoursesPageView extends StatelessWidget {
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
         itemCount: departments.length,
-        staggeredTileBuilder: (int index) =>
-            new StaggeredTile.fit(departments.length),
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(departments.length),
         itemBuilder: (BuildContext context, int index) {
           return new DepartmentCourseGridView(index);
         },
@@ -140,12 +140,12 @@ void buildDepartmentList(School school) {
       m[course.department!]!.add(course);
     }
   }
-  m.entries.forEach(
-      (entry) => {departments.add(new Department(entry.key, entry.value))});
+  m.entries.forEach((entry) => {departments.add(new Department(entry.key, entry.value))});
 }
 
 class DepartmentCourseGridView extends StatelessWidget {
   late Department department;
+
   DepartmentCourseGridView(int position) {
     this.department = departments[position];
   }
@@ -158,10 +158,7 @@ class DepartmentCourseGridView extends StatelessWidget {
         children: [
           Text(department.name!,
               textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0,
-                  color: CustomColors.GOLD)),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
           ListView(
               physics: const ScrollPhysics(),
               scrollDirection: Axis.vertical,
@@ -188,9 +185,11 @@ class DepartmentCourseGridView extends StatelessWidget {
 
 class CourseItemView extends StatelessWidget {
   late Course course;
+
   CourseItemView(Course course) {
     this.course = course;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -203,19 +202,17 @@ class CourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(course)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
               },
               child: Padding(
-                  padding: EdgeInsets.all(5),
-
-                    child: Text(
-                      course.name!,
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )),
+                padding: EdgeInsets.all(5),
+                child: Text(
+                  course.name!,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: Colors.black),
+                ),
+              )),
           color: Colors.transparent,
         ),
       ),
@@ -225,9 +222,11 @@ class CourseItemView extends StatelessWidget {
 
 class PromotionCourseItemView extends StatelessWidget {
   late Course course;
+
   PromotionCourseItemView(Course course) {
     this.course = course;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -240,8 +239,7 @@ class PromotionCourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CourseDetailPage(course)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
               },
               child: Padding(
                   padding: EdgeInsets.all(5),

@@ -5,6 +5,7 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 import 'CourseDetailPage.dart';
 
@@ -33,6 +34,7 @@ class SearchResultPage extends StatefulWidget {
       coursesToDisplay = [];
     }
   }
+
   SearchResultView createState() => new SearchResultView();
 }
 
@@ -53,7 +55,10 @@ class SearchResultView extends State<SearchResultPage> {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape.svg",
+                  height: 40,
+                ),
               )
             ],
           ),
@@ -71,10 +76,7 @@ class SearchResultView extends State<SearchResultPage> {
                 alignment: Alignment.center,
                 child: Text("Search Results For " + result!.searchText!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
-                        color: CustomColors.GOLD))),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
           ),
           Expanded(
               flex: 1,
@@ -82,19 +84,18 @@ class SearchResultView extends State<SearchResultPage> {
                 alignment: Alignment.center,
                 child: ToggleButtons(
                   borderColor: CustomColors.GOLD,
-                  borderRadius:
-                      const BorderRadius.all(const Radius.circular(8)),
+                  borderRadius: const BorderRadius.all(const Radius.circular(8)),
                   selectedColor: Colors.white,
                   disabledColor: Colors.black,
                   fillColor: CustomColors.GOLD,
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text("AIBT"),
+                      child: Text(StringConstants.AIBT_GROUP_NAME),
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text("REACH"),
+                      child: Text(StringConstants.REACH_GROUP_NAME),
                     )
                   ],
                   onPressed: (int index) {
@@ -121,7 +122,6 @@ class SearchResultView extends State<SearchResultPage> {
   }
 
   List<bool> _selections = buildSelections();
-
 }
 
 List<bool> buildSelections() {
@@ -147,8 +147,7 @@ class SearchResultGridView extends StatelessWidget {
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
         itemCount: coursesToDisplay!.length,
-        staggeredTileBuilder: (int index) =>
-            new StaggeredTile.fit(coursesToDisplay!.length),
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(coursesToDisplay!.length),
         itemBuilder: (BuildContext context, int index) {
           return new SearchResultGridItem(index);
         },
@@ -163,17 +162,18 @@ class SearchResultGridView extends StatelessWidget {
 
 class SearchResultGridItem extends StatelessWidget {
   Course? course;
+
   SearchResultGridItem(int position) {
     this.course = coursesToDisplay![position];
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CourseDetailPage(course!)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course!)));
           },
           child: Container(
               decoration: BoxDecoration(
@@ -182,18 +182,14 @@ class SearchResultGridItem extends StatelessWidget {
                 borderRadius: const BorderRadius.all(const Radius.circular(8)),
               ),
               child: Padding(
-                padding:
-                    EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
+                padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
                 child: Column(
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         course!.name!,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: CustomColors.GOLD),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
                       ),
                     ),
                     Align(
@@ -206,8 +202,7 @@ class SearchResultGridItem extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                              "CRICOS Course Code: " + course!.cricosCode!),
+                          child: Text("CRICOS Course Code: " + course!.cricosCode!),
                         ))
                   ],
                 ),

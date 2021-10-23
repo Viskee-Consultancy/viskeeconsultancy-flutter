@@ -14,6 +14,7 @@ class SchoolLogoPage extends StatelessWidget {
   SchoolLogoPage(Group group) {
     aibtGroup = group;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,10 @@ class SchoolLogoPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape.svg",
+                  height: 40,
+                ),
               )
             ],
           ),
@@ -55,17 +59,14 @@ class SchoolLogoPage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              CustomColors.GOLD),
+                          backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                         ),
                         child: Padding(
                             padding: EdgeInsets.all(15),
-                            child: Text("LATEST BROCHURES",
-                                style: TextStyle(color: Colors.black))),
+                            child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => BrochureDownloadPage(
-                                  aibtGroup!.name!, aibtGroup!.brochures)));
+                              builder: (context) => BrochureDownloadPage(aibtGroup!.name!, aibtGroup!.brochures)));
                         }),
                   )),
               Expanded(
@@ -86,15 +87,16 @@ class SchoolLogoPage extends StatelessWidget {
       crossAxisSpacing: 0,
       children: _buildGridTileList(aibtGroup!.schools.length));
 
-  List<Container> _buildGridTileList(int count) =>
-      List.generate(count, (i) => Container(child: SchoolLogoGridView(i)));
+  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(i)));
 }
 
 class SchoolLogoGridView extends StatelessWidget {
   School? school;
+
   SchoolLogoGridView(int position) {
     this.school = aibtGroup!.schools[position];
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -109,8 +111,7 @@ class SchoolLogoGridView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SchoolCoursesPage(school!, [])));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SchoolCoursesPage(school!, [])));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
