@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
@@ -29,11 +30,7 @@ class SchoolLogoPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape.png",
-                  fit: BoxFit.contain,
-                  height: 40,
-                ),
+                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
               )
             ],
           ),
@@ -50,7 +47,7 @@ class SchoolLogoPage extends StatelessWidget {
                   flex: 3,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Image.asset("images/aibt.png"),
+                    child: SvgPicture.asset("images/aibt.svg"),
                   )),
               Expanded(
                   flex: 1,
@@ -117,7 +114,7 @@ class SchoolLogoGridView extends StatelessWidget {
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
-                child: Utils.getSchoolLogoPortrait(school!.name),
+                child: Utils.getSchoolLogo(school!.name),
               )),
           color: Colors.transparent,
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
@@ -52,11 +53,7 @@ class SearchResultView extends State<SearchResultPage> {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape.png",
-                  fit: BoxFit.contain,
-                  height: 40,
-                ),
+                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
               )
             ],
           ),

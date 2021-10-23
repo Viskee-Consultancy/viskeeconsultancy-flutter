@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
@@ -36,11 +37,7 @@ class SchoolCoursesPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape.png",
-                  fit: BoxFit.contain,
-                  height: 40,
-                ),
+                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
               )
             ],
           ),
@@ -65,7 +62,7 @@ class SchoolCoursesPageView extends StatelessWidget {
             flex: 2,
             child: Align(
               alignment: Alignment.center,
-              child: Utils.getSchoolLogoLandscape(school!.name),
+              child: Utils.getSchoolLogo(school!.name),
             )),
         Expanded(
             flex: 8,
@@ -85,7 +82,7 @@ class SchoolCoursesPageView extends StatelessWidget {
             flex: 3,
             child: Align(
               alignment: Alignment.center,
-              child: Utils.getSchoolLogoLandscape(school!.name),
+              child: Utils.getSchoolLogo(school!.name),
             )),
         Expanded(
             flex: 1,

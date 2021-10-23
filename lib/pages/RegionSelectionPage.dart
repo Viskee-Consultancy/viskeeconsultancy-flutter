@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
@@ -23,11 +24,7 @@ class RegionSelectionPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: Image.asset(
-                "images/vc_logo_landscape.png",
-                fit: BoxFit.contain,
-                height: 40,
-              ),
+              child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
             )
           ],
         ),

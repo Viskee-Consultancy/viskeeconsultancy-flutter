@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -41,11 +42,7 @@ class MainPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape_white.png",
-                  fit: BoxFit.contain,
-                  height: 40,
-                ),
+                child: SvgPicture.asset("images/vc_logo_landscape_white.svg", height: 40,),
               )
             ],
           ),
@@ -54,7 +51,7 @@ class MainPage extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.black,
               image: DecorationImage(
-                image: AssetImage("images/background.jpg"),
+                image: AssetImage("images/background.png"),
                 colorFilter: new ColorFilter.mode(
                     Colors.black.withOpacity(0.7), BlendMode.dstATop),
                 fit: BoxFit.cover,
@@ -102,8 +99,8 @@ class MainPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(flex: 1, child: Container(child: null)),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120),
+                          Container(
+                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),
@@ -119,14 +116,14 @@ class MainPage extends StatelessWidget {
                                               builder: (context) =>
                                                   SchoolLogoPage(aibt!)));
                                     },
-                                    child: Image.asset("images/aibt.png")),
+                                    child: SvgPicture.asset("images/aibt.svg")),
                                 color: Colors.transparent,
                               ),
                             ),
                           ),
                           Expanded(flex: 2, child: Container(child: null)),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120),
+                          Container(
+                            constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
                             child: new Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: CustomColors.GOLD),
@@ -146,14 +143,15 @@ class MainPage extends StatelessWidget {
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.all(5),
-                                      child: Image.asset("images/reach.png"),
+                                      child: SvgPicture.asset("images/reach.svg"),
                                     )),
                                 color: Colors.transparent,
                               ),
                             ),
                           ),
                           Expanded(flex: 1, child: Container(child: null))
-                        ]))
+                        ])),
+                Expanded(flex: 2, child: Container(child: null,),)
               ],
             )),
       ),

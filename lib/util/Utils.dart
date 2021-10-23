@@ -1,45 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/AIBTSchoolNameEnum.dart';
 
 class Utils {
-  static getSchoolLogoPortrait(String? schoolName) {
+  static getSchoolLogo(String? schoolName) {
     var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName!);
     switch (aibtSchoolNameEnum) {
       case AIBTSchoolNameEnum.ACE:
         return Image.asset('images/ace_landscape.png');
       case AIBTSchoolNameEnum.BESPOKE:
-        return Image.asset('images/bespoke.png');
+        return SvgPicture.asset('images/bespoke.svg');
       case AIBTSchoolNameEnum.BRANSON:
-        return Image.asset('images/branson.png');
+        return SvgPicture.asset('images/branson.svg');
       case AIBTSchoolNameEnum.DIANA:
-        return Image.asset('images/diana.png');
+        return SvgPicture.asset('images/diana.svg');
       case AIBTSchoolNameEnum.EDISON:
-        return Image.asset('images/edison.png');
+        return SvgPicture.asset('images/edison.svg');
       case AIBTSchoolNameEnum.SHELDON:
-        return Image.asset('images/sheldon.png');
+        return SvgPicture.asset('images/sheldon.svg');
       case AIBTSchoolNameEnum.REACH:
-        return Image.asset('images/reach.png');
-      default:
-    }
-  }
-
-  static getSchoolLogoLandscape(String? schoolName) {
-    var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName!);
-    switch (aibtSchoolNameEnum) {
-      case AIBTSchoolNameEnum.ACE:
-        return Image.asset('images/ace_landscape.png');
-      case AIBTSchoolNameEnum.BESPOKE:
-        return Image.asset('images/bespoke.png');
-      case AIBTSchoolNameEnum.BRANSON:
-        return Image.asset('images/branson.png');
-      case AIBTSchoolNameEnum.DIANA:
-        return Image.asset('images/diana.png');
-      case AIBTSchoolNameEnum.EDISON:
-        return Image.asset('images/edison.png');
-      case AIBTSchoolNameEnum.SHELDON:
-        return Image.asset('images/sheldon.png');
-      case AIBTSchoolNameEnum.REACH:
-        return Image.asset('images/reach.png');
+        return SvgPicture.asset('images/reach.svg');
       default:
     }
   }

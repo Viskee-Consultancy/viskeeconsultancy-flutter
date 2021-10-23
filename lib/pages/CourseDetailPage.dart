@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -33,11 +34,7 @@ class CourseDetailPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape.png",
-                  fit: BoxFit.contain,
-                  height: 40,
-                ),
+                child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
               )
             ],
           ),

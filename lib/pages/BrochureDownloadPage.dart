@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
@@ -13,6 +14,7 @@ class BrochureDownloadPage extends StatelessWidget {
     groupName = groupNameInput;
     promotions = promotionsInput;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +31,8 @@ class BrochureDownloadPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  "images/vc_logo_landscape.png",
-                  fit: BoxFit.contain,
+                child: SvgPicture.asset(
+                  "images/vc_logo_landscape.svg",
                   height: 40,
                 ),
               )
@@ -78,9 +79,11 @@ class BrochureDownloadPage extends StatelessWidget {
 
 class BrochureGridView extends StatelessWidget {
   late Brochure promotion;
+
   BrochureGridView(int position) {
     this.promotion = promotions![position];
   }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -96,8 +99,8 @@ class BrochureGridView extends StatelessWidget {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.all(5),
-                  child: Image.asset(
-                    "images/pdf.png",
+                  child: Icon(
+                    Icons.description_outlined,
                     color: Colors.black,
                   ),
                 )),

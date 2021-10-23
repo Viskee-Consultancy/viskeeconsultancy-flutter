@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'CoeSelectionPage.dart';
 import 'RegionSelectionPage.dart';
@@ -19,11 +20,7 @@ class OnshoreOffshorePage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: Image.asset(
-                "images/vc_logo_landscape.png",
-                fit: BoxFit.contain,
-                height: 40,
-              ),
+              child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,)
             )
           ],
         ),

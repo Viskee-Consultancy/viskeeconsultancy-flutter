@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
@@ -21,11 +22,7 @@ class CoeSelectionPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: Image.asset(
-                "images/vc_logo_landscape.png",
-                fit: BoxFit.contain,
-                height: 40,
-              ),
+              child: SvgPicture.asset("images/vc_logo_landscape.svg", height: 40,),
             )
           ],
         ),

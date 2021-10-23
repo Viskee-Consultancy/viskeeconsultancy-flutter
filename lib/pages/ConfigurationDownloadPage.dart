@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -62,7 +63,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
             )),
         Expanded(
           flex: 1,
-          child: Align(alignment: Alignment.center, child: Image.asset("images/vc_logo_landscape.png")),
+          child: Align(alignment: Alignment.center, child: SvgPicture.asset("images/vc_logo_landscape.svg")),
         ),
         Expanded(
             flex: 1,
