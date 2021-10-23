@@ -25,20 +25,20 @@ class StringConstants {
 
   // Course Configuration BASE URL
   static final String COURSE_BASE_URL =
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/new-configuration/Json/";
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/courses/json/";
   static final String ONSHORE_URL = "onshore/";
   static final String OFFSHORE_URL = "offshore/";
   static final String COE_URL = "coe/";
   static final String NON_COE_URL = "non-coe/";
-  static final String SEAPAE_URL = "SEAPAE/";
-  static final String SISMIC_URL = "SISMIC/";
+  static final String SEAPAE_URL = "seapae/";
+  static final String SISMIC_URL = "sismic/";
   static final String AIBT_URL = "aibt/";
   static final String REACH_URL = "reach/";
   static final String PROMOTIONS_URL = "promotions/";
 
   // Brochure Configuration BASE URL
   static final String BROCHURE_BASE_URL =
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/new-brochure/Json/";
+      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/brochures/json/";
   static final String AIBT_BROCHURE_FILE_NAME = "aibt-brochures.json";
   static final String REACH_BROCHURE_FILE_NAME = "reach-brochures.json";
 }
