@@ -120,7 +120,20 @@ class SearchResultView extends State<SearchResultPage> {
         ])));
   }
 
-  List<bool> _selections = [true, false];
+  List<bool> _selections = buildSelections();
+
+}
+
+List<bool> buildSelections() {
+  List<bool> _selections;
+  if (!coursesAIBT!.isEmpty) {
+    _selections = [true, false];
+  } else if (coursesAIBT!.isEmpty && !coursesREACH!.isEmpty) {
+    _selections = [false, true];
+  } else {
+    _selections = [true, false];
+  }
+  return _selections;
 }
 
 class SearchResultGridView extends StatelessWidget {
