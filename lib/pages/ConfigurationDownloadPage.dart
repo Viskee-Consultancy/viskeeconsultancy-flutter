@@ -74,7 +74,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
           height: 5,
           child: new LinearProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(CustomColors.GOLD),
-            backgroundColor: Colors.white,
+            backgroundColor: CustomColors.GOLD_HINT,
           ),
         ),
         Expanded(
