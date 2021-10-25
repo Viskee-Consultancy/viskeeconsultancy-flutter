@@ -11,19 +11,19 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CourseDetailPage.dart';
 
-School? school;
-List<Brochure>? promotions;
-List<Department> departments = [];
+School? _school;
+List<Brochure>? _promotions;
+List<Department> _departments = [];
 
 class SchoolCoursesPage extends StatelessWidget {
   SchoolCoursesPage(School schoolInput, List<Brochure> promotionsInput) {
-    school = schoolInput;
-    promotions = promotionsInput;
+    _school = schoolInput;
+    _promotions = promotionsInput;
   }
 
   @override
   Widget build(BuildContext context) {
-    buildDepartmentList(school!);
+    buildDepartmentList(_school!);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CommonWidgets.getAppBar(context),
@@ -31,12 +31,27 @@ class SchoolCoursesPage extends StatelessWidget {
           child: new SchoolCoursesPageView(),
         ));
   }
+
+  void buildDepartmentList(School school) {
+    _departments.clear();
+    Map<String, List<Course>> m = new Map();
+    for (var i = 0; i < school.courses.length; i++) {
+      var course = school.courses[i];
+      if (m[course.department] == null) {
+        List<Course> courses = [course];
+        m[course.department!] = courses;
+      } else {
+        m[course.department!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {_departments.add(new Department(entry.key, entry.value))});
+  }
 }
 
 class SchoolCoursesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (promotions == null || promotions!.isEmpty) {
+    if (_promotions == null || _promotions!.isEmpty) {
       return Column(children: [
         Expanded(
             flex: 1,
@@ -47,7 +62,7 @@ class SchoolCoursesPageView extends StatelessWidget {
             flex: 2,
             child: Align(
               alignment: Alignment.center,
-              child: Utils.getSchoolLogo(school!.name),
+              child: Utils.getSchoolLogo(_school!.name),
             )),
         Expanded(
             flex: 8,
@@ -67,7 +82,7 @@ class SchoolCoursesPageView extends StatelessWidget {
             flex: 3,
             child: Align(
               alignment: Alignment.center,
-              child: Utils.getSchoolLogo(school!.name),
+              child: Utils.getSchoolLogo(_school!.name),
             )),
         Expanded(
             flex: 1,
@@ -82,7 +97,7 @@ class SchoolCoursesPageView extends StatelessWidget {
                       child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                   onPressed: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => BrochureDownloadPage(school!.name!, promotions!)));
+                        MaterialPageRoute(builder: (context) => BrochureDownloadPage(_school!.name!, _promotions!)));
                   }),
             )),
         Expanded(
@@ -101,34 +116,19 @@ class SchoolCoursesPageView extends StatelessWidget {
         // padding: const EdgeInsets.all(1),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-        itemCount: departments.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(departments.length),
+        itemCount: _departments.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_departments.length),
         itemBuilder: (BuildContext context, int index) {
           return new DepartmentCourseGridView(index);
         },
       );
 }
 
-void buildDepartmentList(School school) {
-  departments.clear();
-  Map<String, List<Course>> m = new Map();
-  for (var i = 0; i < school.courses.length; i++) {
-    var course = school.courses[i];
-    if (m[course.department] == null) {
-      List<Course> courses = [course];
-      m[course.department!] = courses;
-    } else {
-      m[course.department!]!.add(course);
-    }
-  }
-  m.entries.forEach((entry) => {departments.add(new Department(entry.key, entry.value))});
-}
-
 class DepartmentCourseGridView extends StatelessWidget {
-  late Department department;
+  late Department _department;
 
   DepartmentCourseGridView(int position) {
-    this.department = departments[position];
+    this._department = _departments[position];
   }
 
   @override
@@ -137,7 +137,7 @@ class DepartmentCourseGridView extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Column(
         children: [
-          Text(department.name!,
+          Text(_department.name!,
               textAlign: TextAlign.left,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
           ListView(
@@ -152,12 +152,12 @@ class DepartmentCourseGridView extends StatelessWidget {
 
   List<Widget> _getListData() {
     List<Widget> widgets = [];
-    for (int i = 0; i < department.courses.length; i++) {
-      Course course = department.courses[i];
+    for (int i = 0; i < _department.courses.length; i++) {
+      Course course = _department.courses[i];
       if (course.isOnPromotion) {
-        widgets.add(new PromotionCourseItemView(department.courses[i]));
+        widgets.add(new PromotionCourseItemView(_department.courses[i]));
       } else {
-        widgets.add(new CourseItemView(department.courses[i]));
+        widgets.add(new CourseItemView(_department.courses[i]));
       }
     }
     return widgets;
@@ -165,10 +165,10 @@ class DepartmentCourseGridView extends StatelessWidget {
 }
 
 class CourseItemView extends StatelessWidget {
-  late Course course;
+  late Course _course;
 
   CourseItemView(Course course) {
-    this.course = course;
+    this._course = course;
   }
 
   @override
@@ -183,12 +183,12 @@ class CourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(_course)));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
                 child: Text(
-                  course.name!,
+                  _course.name!,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(color: Colors.black),
@@ -202,10 +202,10 @@ class CourseItemView extends StatelessWidget {
 }
 
 class PromotionCourseItemView extends StatelessWidget {
-  late Course course;
+  late Course _course;
 
   PromotionCourseItemView(Course course) {
-    this.course = course;
+    this._course = course;
   }
 
   @override
@@ -220,7 +220,7 @@ class PromotionCourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(_course)));
               },
               child: Padding(
                   padding: EdgeInsets.all(5),
@@ -232,7 +232,7 @@ class PromotionCourseItemView extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          course.name!,
+                          _course.name!,
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(color: Colors.black),

@@ -9,11 +9,11 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'BrochureDownloadPage.dart';
 import 'SchoolCoursesPage.dart';
 
-Group? aibtGroup;
+Group? _aibtGroup;
 
 class SchoolLogoPage extends StatelessWidget {
   SchoolLogoPage(Group group) {
-    aibtGroup = group;
+    _aibtGroup = group;
   }
 
   @override
@@ -48,7 +48,7 @@ class SchoolLogoPage extends StatelessWidget {
                             child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => BrochureDownloadPage(aibtGroup!.name!, aibtGroup!.brochures)));
+                              builder: (context) => BrochureDownloadPage(_aibtGroup!.name!, _aibtGroup!.brochures)));
                         }),
                   )),
               Expanded(
@@ -67,7 +67,7 @@ class SchoolLogoPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       mainAxisSpacing: 0,
       crossAxisSpacing: 0,
-      children: _buildGridTileList(aibtGroup!.schools.length));
+      children: _buildGridTileList(_aibtGroup!.schools.length));
 
   List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(i)));
 }
@@ -76,7 +76,7 @@ class SchoolLogoGridView extends StatelessWidget {
   School? school;
 
   SchoolLogoGridView(int position) {
-    this.school = aibtGroup!.schools[position];
+    this.school = _aibtGroup!.schools[position];
   }
 
   @override

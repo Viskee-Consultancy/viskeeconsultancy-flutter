@@ -5,13 +5,13 @@ import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
-String? groupName;
-List<Brochure>? promotions;
-
 class BrochureDownloadPage extends StatelessWidget {
-  BrochureDownloadPage(String groupNameInput, List<Brochure> promotionsInput) {
-    groupName = groupNameInput;
-    promotions = promotionsInput;
+  String? _groupName;
+  List<Brochure>? _brochures;
+
+  BrochureDownloadPage(String groupNameInput, List<Brochure> brochuresInput) {
+    _groupName = groupNameInput;
+    _brochures = brochuresInput;
   }
 
   @override
@@ -30,7 +30,7 @@ class BrochureDownloadPage extends StatelessWidget {
             flex: 1,
             child: Align(
                 alignment: Alignment.center,
-                child: Text("Latest Brochures For " + groupName!,
+                child: Text("Latest Brochures For " + _groupName!,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
           ),
@@ -49,19 +49,19 @@ class BrochureDownloadPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 30,
         crossAxisSpacing: 0,
-        itemCount: promotions!.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(promotions!.length),
+        itemCount: _brochures!.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_brochures!.length),
         itemBuilder: (BuildContext context, int index) {
-          return new BrochureGridView(index);
+          return new BrochureGridView(_brochures![index]);
         },
       );
 }
 
 class BrochureGridView extends StatelessWidget {
-  late Brochure promotion;
+  late Brochure _brochure;
 
-  BrochureGridView(int position) {
-    this.promotion = promotions![position];
+  BrochureGridView(Brochure brochure) {
+    this._brochure = brochure;
   }
 
   @override
@@ -70,7 +70,7 @@ class BrochureGridView extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
       ),
-      onPressed: () => launchURL(promotion.link!),
+      onPressed: () => launchURL(_brochure.link!),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
@@ -88,7 +88,7 @@ class BrochureGridView extends StatelessWidget {
                 flex: 8,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(promotion.name!, style: TextStyle(color: Colors.black)),
+                  child: Text(_brochure.name!, style: TextStyle(color: Colors.black)),
                 )),
           ],
         ),

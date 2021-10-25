@@ -7,7 +7,6 @@ import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class RegionSelectionPage extends StatelessWidget {
-  RegionSelectionPage() {}
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +50,11 @@ class RegionSelectionPage extends StatelessWidget {
 }
 
 class CountrySelectionAutocomplete extends StatelessWidget {
-  List<String> countries = [];
+  List<String> _countries = [];
 
   CountrySelectionAutocomplete() {
-    countries.addAll(Region.SEAPAE);
-    countries.addAll(Region.SISMIC);
+    _countries.addAll(Region.SEAPAE);
+    _countries.addAll(Region.SISMIC);
   }
 
   final TextEditingController _typeAheadController = TextEditingController();
@@ -115,7 +114,7 @@ class CountrySelectionAutocomplete extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(suggestion!),
       ),
-      suggestionsCallback: (query) => _getCountrySuggestions(query, countries, suggestions),
+      suggestionsCallback: (query) => _getCountrySuggestions(query, _countries, suggestions),
       onSuggestionSelected: (suggestion) => {_itemSelected(suggestion, context)},
     );
   }

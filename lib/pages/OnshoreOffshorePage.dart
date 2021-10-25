@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
@@ -12,7 +13,22 @@ class OnshoreOffshorePage extends StatelessWidget {
         title: 'Viskee Consultancy',
         home: Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: CommonWidgets.getAppBar(context),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(
+                    "images/vc_logo_landscape.svg",
+                    height: 40,
+                  ),
+                )
+              ],
+            ),
+          ),
           body: Container(
               child: Column(children: [
             Expanded(

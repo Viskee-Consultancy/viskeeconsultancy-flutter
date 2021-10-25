@@ -4,17 +4,17 @@ import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
-Course? course;
+Course? _course;
 
 class CourseDetailPage extends StatelessWidget {
   CourseDetailPage(Course input) {
-    course = input;
+    _course = input;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (course == null) {
-      course = ModalRoute.of(context)!.settings.arguments as Course;
+    if (_course == null) {
+      _course = ModalRoute.of(context)!.settings.arguments as Course;
     }
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -32,32 +32,32 @@ class CourseDetailPage extends StatelessWidget {
 }
 
 class ColumnItem extends StatelessWidget {
-  late int index;
+  late int _index;
 
   ColumnItem(int index) {
-    this.index = index;
+    this._index = index;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (index == 0) {
+    if (_index == 0) {
       return Align(
           alignment: Alignment.center,
           child: Padding(
               padding: EdgeInsets.only(left: 5, right: 5),
-              child: Text(course!.name!,
+              child: Text(_course!.name!,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))));
-    } else if (index == 1) {
+    } else if (_index == 1) {
       return Align(
           alignment: Alignment.topCenter,
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
-              children: [getVetCodeText(course), getCricosCodeText(course)],
+              children: [getVetCodeText(_course), getCricosCodeText(_course)],
             ),
           ));
-    } else if (index == 2) {
+    } else if (_index == 2) {
       return Align(
         alignment: Alignment.topCenter,
         child: Column(
@@ -78,11 +78,11 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: getTotalDurationText(course),
+                  child: getTotalDurationText(_course),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5, left: 10, right: 10),
-                  child: getDurationDetailText(course),
+                  child: getDurationDetailText(_course),
                 )
               ],
             ),
@@ -102,7 +102,7 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: getLocationText(course),
+                  child: getLocationText(_course),
                 ),
               ],
             ),
@@ -122,11 +122,11 @@ class ColumnItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: getTuitionText(course),
+                  child: getTuitionText(_course),
                 )
               ],
             ),
-            getPlacementWidget(course),
+            getPlacementWidget(_course),
             Padding(
               padding: EdgeInsets.all(20.0),
               child: ElevatedButton(

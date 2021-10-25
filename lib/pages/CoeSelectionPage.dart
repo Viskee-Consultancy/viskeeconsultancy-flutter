@@ -5,7 +5,6 @@ import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class CoeSelectionPage extends StatelessWidget {
-  CoeSelectionPage() {}
 
   @override
   Widget build(BuildContext context) {

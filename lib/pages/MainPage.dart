@@ -14,14 +14,14 @@ import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
-  Group? aibt;
-  Group? reach;
-  List<Course> courses = [];
+  Group? _aibt;
+  Group? _reach;
+  List<Course> _courses = [];
 
   MainPage(Group aibtGroup, Group reachGroup, List<Course> totalCourses) {
-    this.aibt = aibtGroup;
-    this.reach = reachGroup;
-    this.courses = totalCourses;
+    this._aibt = aibtGroup;
+    this._reach = reachGroup;
+    this._courses = totalCourses;
   }
 
   @override
@@ -65,7 +65,7 @@ class MainPage extends StatelessWidget {
                             border: Border.all(color: CustomColors.GOLD),
                             borderRadius: const BorderRadius.all(const Radius.circular(8)),
                           ),
-                          child: new AutocompleteBasicExample(courses)))),
+                          child: new CourseSearchAutocomplete(_courses)))),
               Expanded(
                 flex: 2,
                 child: Container(child: null),
@@ -87,7 +87,7 @@ class MainPage extends StatelessWidget {
                           child: new InkWell(
                               onTap: () {
                                 Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(aibt!)));
+                                    .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(_aibt!)));
                               },
                               child: SvgPicture.asset("images/aibt.svg")),
                           color: Colors.transparent,
@@ -108,7 +108,7 @@ class MainPage extends StatelessWidget {
                           child: new InkWell(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SchoolCoursesPage(reach!.schools[0], reach!.brochures)));
+                                    builder: (context) => SchoolCoursesPage(_reach!.schools[0], _reach!.brochures)));
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(5),
@@ -132,11 +132,11 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class AutocompleteBasicExample extends StatelessWidget {
-  List<Course> courses = [];
+class CourseSearchAutocomplete extends StatelessWidget {
+  List<Course> _courses = [];
 
-  AutocompleteBasicExample(List<Course> courses) {
-    this.courses = courses;
+  CourseSearchAutocomplete(List<Course> courses) {
+    this._courses = courses;
   }
 
   final TextEditingController _typeAheadController = TextEditingController();
@@ -188,7 +188,7 @@ class AutocompleteBasicExample extends StatelessWidget {
   void _itemSelected(Course? suggestion, List<Course> suggestions, BuildContext context) {
     String query = suggestion!.name!;
     this._typeAheadController.text = query;
-    suggestions = _getCourseSuggestions(query, courses, suggestions);
+    suggestions = _getCourseSuggestions(query, _courses, suggestions);
   }
 
   @override
@@ -227,7 +227,7 @@ class AutocompleteBasicExample extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(suggestion!.name!),
       ),
-      suggestionsCallback: (query) => _getCourseSuggestions(query, courses, suggestions),
+      suggestionsCallback: (query) => _getCourseSuggestions(query, _courses, suggestions),
       onSuggestionSelected: (suggestion) => {_itemSelected(suggestion, suggestions, context)},
     );
   }

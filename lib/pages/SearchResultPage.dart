@@ -9,29 +9,29 @@ import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 import 'CourseDetailPage.dart';
 
-SearchResult? result;
-List<Course>? coursesToDisplay = [];
-List<Course>? coursesAIBT = [];
-List<Course>? coursesREACH = [];
+SearchResult? _result;
+List<Course>? _coursesToDisplay = [];
+List<Course>? _coursesAIBT = [];
+List<Course>? _coursesREACH = [];
 
 class SearchResultPage extends StatefulWidget {
   SearchResultPage(SearchResult searchResult) {
-    result = searchResult;
-    coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
-    coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    if (coursesAIBT == null) {
-      coursesAIBT = [];
+    _result = searchResult;
+    _coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
+    _coursesREACH = searchResult.searchResults[GroupEnum.REACH];
+    if (_coursesAIBT == null) {
+      _coursesAIBT = [];
     }
-    if (coursesREACH == null) {
-      coursesREACH = [];
+    if (_coursesREACH == null) {
+      _coursesREACH = [];
     }
-    if (coursesAIBT!.isNotEmpty) {
-      coursesToDisplay = coursesAIBT;
-    } else if (coursesREACH!.isNotEmpty) {
-      coursesToDisplay = coursesREACH;
+    if (_coursesAIBT!.isNotEmpty) {
+      _coursesToDisplay = _coursesAIBT;
+    } else if (_coursesREACH!.isNotEmpty) {
+      _coursesToDisplay = _coursesREACH;
     }
-    if (coursesToDisplay == null) {
-      coursesToDisplay = [];
+    if (_coursesToDisplay == null) {
+      _coursesToDisplay = [];
     }
   }
 
@@ -55,7 +55,7 @@ class SearchResultView extends State<SearchResultPage> {
             padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
             child: Align(
                 alignment: Alignment.center,
-                child: Text("Search Results For " + result!.searchText!,
+                child: Text("Search Results For " + _result!.searchText!,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
           ),
@@ -83,10 +83,10 @@ class SearchResultView extends State<SearchResultPage> {
                     setState(() {
                       if (index == 0) {
                         _selections = [true, false];
-                        coursesToDisplay = coursesAIBT;
+                        _coursesToDisplay = _coursesAIBT;
                       } else if (index == 1) {
                         _selections = [false, true];
-                        coursesToDisplay = coursesREACH;
+                        _coursesToDisplay = _coursesREACH;
                       }
                     });
                   },
@@ -107,9 +107,9 @@ class SearchResultView extends State<SearchResultPage> {
 
 List<bool> buildSelections() {
   List<bool> _selections;
-  if (!coursesAIBT!.isEmpty) {
+  if (!_coursesAIBT!.isEmpty) {
     _selections = [true, false];
-  } else if (coursesAIBT!.isEmpty && !coursesREACH!.isEmpty) {
+  } else if (_coursesAIBT!.isEmpty && !_coursesREACH!.isEmpty) {
     _selections = [false, true];
   } else {
     _selections = [true, false];
@@ -120,15 +120,15 @@ List<bool> buildSelections() {
 class SearchResultGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (coursesToDisplay!.isNotEmpty) {
+    if (_coursesToDisplay!.isNotEmpty) {
       return new StaggeredGridView.countBuilder(
         crossAxisCount: 1,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-        itemCount: coursesToDisplay!.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(coursesToDisplay!.length),
+        itemCount: _coursesToDisplay!.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_coursesToDisplay!.length),
         itemBuilder: (BuildContext context, int index) {
           return new SearchResultGridItem(index);
         },
@@ -145,7 +145,7 @@ class SearchResultGridItem extends StatelessWidget {
   Course? course;
 
   SearchResultGridItem(int position) {
-    this.course = coursesToDisplay![position];
+    this.course = _coursesToDisplay![position];
   }
 
   @override
