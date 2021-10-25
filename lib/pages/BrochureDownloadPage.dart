@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
@@ -18,26 +18,7 @@ class BrochureDownloadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  "images/vc_logo_landscape.svg",
-                  height: 40,
-                ),
-              )
-            ],
-          ),
-        ),
+        appBar: CommonWidgets.getAppBar(context),
         body: Container(
             child: Column(children: [
           Expanded(

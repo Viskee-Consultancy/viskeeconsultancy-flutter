@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
@@ -13,26 +13,7 @@ class RegionSelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: SvgPicture.asset(
-                "images/vc_logo_landscape.svg",
-                height: 40,
-              ),
-            )
-          ],
-        ),
-      ),
+      appBar: CommonWidgets.getAppBar(context),
       body: Container(
           child: Column(children: [
         Expanded(
@@ -58,7 +39,7 @@ class RegionSelectionPage extends StatelessWidget {
                       border: Border.all(color: CustomColors.GOLD),
                       borderRadius: const BorderRadius.all(const Radius.circular(8)),
                     ),
-                    child: new AutocompleteBasicExample()))),
+                    child: new CountrySelectionAutocomplete()))),
         Expanded(
             flex: 3,
             child: Container(
@@ -69,10 +50,10 @@ class RegionSelectionPage extends StatelessWidget {
   }
 }
 
-class AutocompleteBasicExample extends StatelessWidget {
+class CountrySelectionAutocomplete extends StatelessWidget {
   List<String> countries = [];
 
-  AutocompleteBasicExample() {
+  CountrySelectionAutocomplete() {
     countries.addAll(Region.SEAPAE);
     countries.addAll(Region.SISMIC);
   }

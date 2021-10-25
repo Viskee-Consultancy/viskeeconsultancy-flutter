@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
@@ -25,130 +26,108 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Viskee Consultancy',
-      home: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
-            onPressed: () => Navigator.of(context).pop(),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CommonWidgets.getAppBarWhite(context),
+      body: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            image: DecorationImage(
+              image: AssetImage("images/background.png"),
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
+              fit: BoxFit.cover,
+            ),
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          child: Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: SvgPicture.asset(
-                  "images/vc_logo_landscape_white.svg",
-                  height: 40,
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: null,
+                  )),
+              Expanded(
+                flex: 2,
+                child: Container(child: null),
+              ),
+              Expanded(
+                flex: 6,
+                child: Text("Explore Over 90+ Courses and Promotions",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
+              ),
+              ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
+                  child: Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: CustomColors.GOLD),
+                            borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                          ),
+                          child: new AutocompleteBasicExample(courses)))),
+              Expanded(
+                flex: 2,
+                child: Container(child: null),
+              ),
+              Expanded(
+                  flex: 4,
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                    Expanded(flex: 1, child: Container(child: null)),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
+                      child: new Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: CustomColors.GOLD),
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8),
+                            )),
+                        child: new Material(
+                          child: new InkWell(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(aibt!)));
+                              },
+                              child: SvgPicture.asset("images/aibt.svg")),
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    Expanded(flex: 2, child: Container(child: null)),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
+                      child: new Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: CustomColors.GOLD),
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8),
+                            )),
+                        child: new Material(
+                          child: new InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SchoolCoursesPage(reach!.schools[0], reach!.brochures)));
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: SvgPicture.asset("images/reach.svg"),
+                              )),
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    Expanded(flex: 1, child: Container(child: null))
+                  ])),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  child: null,
                 ),
               )
             ],
-          ),
-        ),
-        body: Container(
-            decoration: BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                image: AssetImage("images/background.png"),
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: null,
-                    )),
-                Expanded(
-                  flex: 2,
-                  child: Container(child: null),
-                ),
-                Expanded(
-                  flex: 6,
-                  child: Text("Explore Over 90+ Courses and Promotions",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
-                ),
-                ConstrainedBox(
-                    constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
-                    child: Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: CustomColors.GOLD),
-                              borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                            ),
-                            child: new AutocompleteBasicExample(courses)))),
-                Expanded(
-                  flex: 2,
-                  child: Container(child: null),
-                ),
-                Expanded(
-                    flex: 4,
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                      Expanded(flex: 1, child: Container(child: null)),
-                      Container(
-                        constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                        child: new Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: CustomColors.GOLD),
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.all(
-                                const Radius.circular(8),
-                              )),
-                          child: new Material(
-                            child: new InkWell(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(aibt!)));
-                                },
-                                child: SvgPicture.asset("images/aibt.svg")),
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ),
-                      Expanded(flex: 2, child: Container(child: null)),
-                      Container(
-                        constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                        child: new Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: CustomColors.GOLD),
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.all(
-                                const Radius.circular(8),
-                              )),
-                          child: new Material(
-                            child: new InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => SchoolCoursesPage(reach!.schools[0], reach!.brochures)));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.all(5),
-                                  child: SvgPicture.asset("images/reach.svg"),
-                                )),
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ),
-                      Expanded(flex: 1, child: Container(child: null))
-                    ])),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    child: null,
-                  ),
-                )
-              ],
-            )),
-      ),
+          )),
     );
   }
 }
