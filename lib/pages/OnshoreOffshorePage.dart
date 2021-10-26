@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 import 'CoeSelectionPage.dart';
 import 'RegionSelectionPage.dart';
@@ -11,7 +11,7 @@ class OnshoreOffshorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Viskee Consultancy',
+        title: StringConstants.APP_NAME,
         home: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(

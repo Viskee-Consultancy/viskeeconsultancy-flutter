@@ -6,8 +6,8 @@ import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class BrochureDownloadPage extends StatelessWidget {
-  String? _groupName;
-  List<Brochure>? _brochures;
+  late String _groupName;
+  late List<Brochure> _brochures;
 
   BrochureDownloadPage(String groupNameInput, List<Brochure> brochuresInput) {
     _groupName = groupNameInput;
@@ -30,7 +30,7 @@ class BrochureDownloadPage extends StatelessWidget {
             flex: 1,
             child: Align(
                 alignment: Alignment.center,
-                child: Text("Latest Brochures For " + _groupName!,
+                child: Text("Latest Brochures For " + _groupName,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
           ),
@@ -49,10 +49,10 @@ class BrochureDownloadPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 30,
         crossAxisSpacing: 0,
-        itemCount: _brochures!.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_brochures!.length),
+        itemCount: _brochures.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_brochures.length),
         itemBuilder: (BuildContext context, int index) {
-          return new BrochureGridView(_brochures![index]);
+          return new BrochureGridView(_brochures[index]);
         },
       );
 }

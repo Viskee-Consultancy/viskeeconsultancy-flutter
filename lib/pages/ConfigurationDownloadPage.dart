@@ -15,28 +15,26 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 class ConfigurationDownloadPage extends StatefulWidget {
-  late SubFolderEnum subfolder;
+  late SubFolderEnum _subfolder;
 
   ConfigurationDownloadPage(SubFolderEnum subFolderEnum) {
-    this.subfolder = subFolderEnum;
+    this._subfolder = subFolderEnum;
   }
 
   @override
-  ConfigurationDownloadAsync createState() => ConfigurationDownloadAsync(subfolder);
+  ConfigurationDownloadAsync createState() => ConfigurationDownloadAsync(_subfolder);
 }
 
 class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
-  late SubFolderEnum subfolder;
+  late SubFolderEnum _subfolder;
 
   ConfigurationDownloadAsync(SubFolderEnum subFolderEnum) {
-    this.subfolder = subFolderEnum;
+    this._subfolder = subFolderEnum;
   }
 
-  Group aibtGroup = new Group();
-  Group aibtPromotionGroup = new Group();
-  Group reachGroup = new Group();
-  Group reachPromotionGroup = new Group();
-  List<Course> courses = [];
+  Group _aibtGroup = new Group();
+  Group _reachGroup = new Group();
+  List<Course> _courses = [];
 
   @override
   void initState() {
@@ -46,9 +44,9 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   void init() async {
     downloadConfigurations(context).then((value) => {
-          courses = prepareCourses(aibtGroup, reachGroup),
+          _courses = prepareCourses(_aibtGroup, _reachGroup),
           Navigator.pushReplacement(context,
-              PageTransition(child: MainPage(aibtGroup, reachGroup, courses), type: PageTransitionType.topToBottom))
+              PageTransition(child: MainPage(_aibtGroup, _reachGroup, _courses), type: PageTransitionType.topToBottom))
         });
   }
 
@@ -178,10 +176,10 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       if (sheldon != null) {
         aibtSchools.add(sheldon);
       }
-      aibtGroup.schools = aibtSchools;
-      aibtGroup.name = StringConstants.AIBT_GROUP_NAME;
+      _aibtGroup.schools = aibtSchools;
+      _aibtGroup.name = StringConstants.AIBT_GROUP_NAME;
     }
-    return aibtGroup;
+    return _aibtGroup;
   }
 
   Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
@@ -211,10 +209,10 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         reachSchools.add(reach);
       }
 
-      reachGroup.schools = reachSchools;
-      reachGroup.name = StringConstants.REACH_GROUP_NAME;
+      _reachGroup.schools = reachSchools;
+      _reachGroup.name = StringConstants.REACH_GROUP_NAME;
     }
-    return reachGroup;
+    return _reachGroup;
   }
 
   Future<void> downloadBrochureConfigurationFiles(String subUrl) async {
@@ -229,18 +227,18 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     if (aibtBrochureResponse.statusCode == 200) {
       final aibtBrochureData = await json.decode(aibtBrochureResponse.body);
       Brochures aibtBrochures = Brochures.fromJson(aibtBrochureData);
-      aibtGroup.brochures = aibtBrochures.brochures;
+      _aibtGroup.brochures = aibtBrochures.brochures;
     }
 
     if (reachBrochureResponse.statusCode == 200) {
       final reachBrochureData = await json.decode(reachBrochureResponse.body);
       Brochures reachBrochures = Brochures.fromJson(reachBrochureData);
-      reachGroup.brochures = reachBrochures.brochures;
+      _reachGroup.brochures = reachBrochures.brochures;
     }
   }
 
   Future<void> downloadConfigurations(var context) async {
-    String subUrl = buildSubUrl(subfolder);
+    String subUrl = buildSubUrl(_subfolder);
     await downloadAibtBasicConfigurationFiles(context, subUrl);
     await downloadReachBasicConfigurationFiles(context, subUrl);
     await downloadBrochureConfigurationFiles(subUrl);

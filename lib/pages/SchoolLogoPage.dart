@@ -77,10 +77,10 @@ class SchoolLogoPage extends StatelessWidget {
 }
 
 class SchoolLogoGridView extends StatelessWidget {
-  School? school;
+  late School _school;
 
   SchoolLogoGridView(int position) {
-    this.school = _aibtGroup!.schools[position];
+    this._school = _aibtGroup!.schools[position];
   }
 
   @override
@@ -98,11 +98,11 @@ class SchoolLogoGridView extends StatelessWidget {
           child: new InkWell(
               onTap: () {
                 Navigator.push(context,
-                    PageTransition(child: SchoolCoursesPage(school!, []), type: PageTransitionType.topToBottom));
+                    PageTransition(child: SchoolCoursesPage(_school, []), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
-                child: Utils.getSchoolLogo(school!.name),
+                child: Utils.getSchoolLogo(_school.name),
               )),
           color: Colors.transparent,
         ),
