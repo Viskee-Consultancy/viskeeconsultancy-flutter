@@ -10,9 +10,9 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'BrochureDownloadPage.dart';
 import 'SchoolCoursesPage.dart';
 
-Group? _aibtGroup;
-
 class SchoolLogoPage extends StatelessWidget {
+  late Group _aibtGroup;
+
   SchoolLogoPage(Group group) {
     _aibtGroup = group;
   }
@@ -51,7 +51,7 @@ class SchoolLogoPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: BrochureDownloadPage(_aibtGroup!.name!, _aibtGroup!.brochures),
+                                  child: BrochureDownloadPage(_aibtGroup.name!, _aibtGroup.brochures),
                                   type: PageTransitionType.topToBottom));
                         }),
                   )),
@@ -71,16 +71,16 @@ class SchoolLogoPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       mainAxisSpacing: 0,
       crossAxisSpacing: 0,
-      children: _buildGridTileList(_aibtGroup!.schools.length));
+      children: _buildGridTileList(_aibtGroup.schools.length));
 
-  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(i)));
+  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(_aibtGroup.schools[i])));
 }
 
 class SchoolLogoGridView extends StatelessWidget {
   late School _school;
 
-  SchoolLogoGridView(int position) {
-    this._school = _aibtGroup!.schools[position];
+  SchoolLogoGridView(School school) {
+    this._school = school;
   }
 
   @override
