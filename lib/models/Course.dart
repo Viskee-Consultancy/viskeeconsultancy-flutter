@@ -68,6 +68,8 @@ class Course {
     if (name != null) {
       result = result + "name='" + name! + "'\'";
     }
+    result = result.replaceAll("\r", "");
+    result = result.replaceAll("\n", "");
     return result;
   }
 }

@@ -156,6 +156,8 @@ class CourseSearchAutocomplete extends StatelessWidget {
     searchText = searchText.replaceAll("+", "");
     searchText = searchText.replaceAll("(", "");
     searchText = searchText.replaceAll(")", "");
+    searchText = searchText.replaceAll("\r", "");
+    searchText = searchText.replaceAll("\n", "");
     for (var course in courses) {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);
@@ -193,6 +195,8 @@ class CourseSearchAutocomplete extends StatelessWidget {
 
   void _itemSelected(Course? suggestion, List<Course> suggestions, BuildContext context) {
     String query = suggestion!.name!;
+    query = query.replaceAll("\r", "");
+    query = query.replaceAll("\n", "");
     this._typeAheadController.text = query;
     suggestions = _getCourseSuggestions(query, _courses, suggestions);
   }
