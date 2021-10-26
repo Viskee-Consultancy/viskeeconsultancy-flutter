@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class RegionSelectionPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,11 +84,15 @@ class CountrySelectionAutocomplete extends StatelessWidget {
       ));
     } else {
       if (Region.SEAPAE.any((country) => country.toLowerCase() == selected)) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.SEAPAE)));
+        Navigator.push(
+            context,
+            PageTransition(
+                child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.topToBottom));
       } else {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.SISMIC)));
+        Navigator.push(
+            context,
+            PageTransition(
+                child: ConfigurationDownloadPage(SubFolderEnum.SISMIC), type: PageTransitionType.topToBottom));
       }
     }
   }

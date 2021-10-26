@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 import 'CoeSelectionPage.dart';
@@ -58,7 +59,8 @@ class OnshoreOffshorePage extends StatelessWidget {
                               padding: EdgeInsets.all(15),
                               child: Text("ONSHORE", style: TextStyle(color: Colors.black))),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => CoeSelectionPage()));
+                            Navigator.push(context,
+                                PageTransition(child: CoeSelectionPage(), type: PageTransitionType.topToBottom));
                           }),
                     ))),
             Expanded(
@@ -75,7 +77,8 @@ class OnshoreOffshorePage extends StatelessWidget {
                               padding: EdgeInsets.all(15),
                               child: Text("OFFSHORE", style: TextStyle(color: Colors.black))),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegionSelectionPage()));
+                            Navigator.push(context,
+                                PageTransition(child: RegionSelectionPage(), type: PageTransitionType.topToBottom));
                           }),
                     ))),
             Expanded(

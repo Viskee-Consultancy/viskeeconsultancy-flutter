@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
@@ -86,8 +87,10 @@ class MainPage extends StatelessWidget {
                         child: new Material(
                           child: new InkWell(
                               onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) => SchoolLogoPage(_aibt!)));
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
                               },
                               child: SvgPicture.asset("images/aibt.svg")),
                           color: Colors.transparent,
@@ -107,8 +110,11 @@ class MainPage extends StatelessWidget {
                         child: new Material(
                           child: new InkWell(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SchoolCoursesPage(_reach!.schools[0], _reach!.brochures)));
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        child: SchoolCoursesPage(_reach!.schools[0], _reach!.brochures),
+                                        type: PageTransitionType.topToBottom));
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(5),
@@ -218,8 +224,11 @@ class CourseSearchAutocomplete extends StatelessWidget {
               content: Text('Please enter the search text'),
             ));
           } else {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SearchResultPage(_buildSearchResult(query, suggestions))));
+            Navigator.push(
+                context,
+                PageTransition(
+                    child: SearchResultPage(_buildSearchResult(query, suggestions)),
+                    type: PageTransitionType.topToBottom));
           }
         },
       ),

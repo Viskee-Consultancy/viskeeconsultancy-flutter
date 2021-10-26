@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 
 class CoeSelectionPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +39,11 @@ class CoeSelectionPage extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.all(15), child: Text("COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.COE)));
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: ConfigurationDownloadPage(SubFolderEnum.COE),
+                                type: PageTransitionType.topToBottom));
                       }),
                 ))),
         Expanded(
@@ -56,8 +59,11 @@ class CoeSelectionPage extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.all(15), child: Text("NON-COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => ConfigurationDownloadPage(SubFolderEnum.NON_COE)));
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: ConfigurationDownloadPage(SubFolderEnum.NON_COE),
+                                type: PageTransitionType.topToBottom));
                       }),
                 ))),
         Expanded(

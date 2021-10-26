@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
@@ -47,8 +48,11 @@ class SchoolLogoPage extends StatelessWidget {
                             padding: EdgeInsets.all(15),
                             child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => BrochureDownloadPage(_aibtGroup!.name!, _aibtGroup!.brochures)));
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: BrochureDownloadPage(_aibtGroup!.name!, _aibtGroup!.brochures),
+                                  type: PageTransitionType.topToBottom));
                         }),
                   )),
               Expanded(
@@ -93,7 +97,8 @@ class SchoolLogoGridView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SchoolCoursesPage(school!, [])));
+                Navigator.push(context,
+                    PageTransition(child: SchoolCoursesPage(school!, []), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),

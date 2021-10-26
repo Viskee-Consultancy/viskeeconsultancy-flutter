@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 

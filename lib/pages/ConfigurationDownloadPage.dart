@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -46,8 +47,8 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   void init() async {
     downloadConfigurations(context).then((value) => {
           courses = prepareCourses(aibtGroup, reachGroup),
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (context) => MainPage(aibtGroup, reachGroup, courses)))
+          Navigator.pushReplacement(context,
+              PageTransition(child: MainPage(aibtGroup, reachGroup, courses), type: PageTransitionType.topToBottom))
         });
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
@@ -154,7 +155,8 @@ class SearchResultGridItem extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(course!)));
+            Navigator.push(
+                context, PageTransition(child: CourseDetailPage(course!), type: PageTransitionType.topToBottom));
           },
           child: Container(
               decoration: BoxDecoration(

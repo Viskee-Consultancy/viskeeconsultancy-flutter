@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:viskeeconsultancy/Widgets/CommonWidgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
@@ -96,8 +97,11 @@ class SchoolCoursesPageView extends StatelessWidget {
                       padding: EdgeInsets.all(15),
                       child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => BrochureDownloadPage(_school!.name!, _promotions!)));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: BrochureDownloadPage(_school!.name!, _promotions!),
+                            type: PageTransitionType.topToBottom));
                   }),
             )),
         Expanded(
@@ -183,7 +187,8 @@ class CourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(_course)));
+                Navigator.push(
+                    context, PageTransition(child: CourseDetailPage(_course), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
@@ -220,7 +225,8 @@ class PromotionCourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetailPage(_course)));
+                Navigator.push(
+                    context, PageTransition(child: CourseDetailPage(_course), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                   padding: EdgeInsets.all(5),
