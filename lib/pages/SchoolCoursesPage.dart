@@ -13,13 +13,11 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'CourseDetailPage.dart';
 
 School? _school;
-List<Brochure>? _promotions;
 List<Department> _departments = [];
 
 class SchoolCoursesPage extends StatelessWidget {
-  SchoolCoursesPage(School schoolInput, List<Brochure> promotionsInput) {
+  SchoolCoursesPage(School schoolInput) {
     _school = schoolInput;
-    _promotions = promotionsInput;
   }
 
   @override
@@ -52,66 +50,25 @@ class SchoolCoursesPage extends StatelessWidget {
 class SchoolCoursesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (_promotions == null || _promotions!.isEmpty) {
-      return Column(children: [
-        Expanded(
-            flex: 1,
-            child: Container(
-              child: null,
-            )),
-        Expanded(
-            flex: 2,
-            child: Align(
-              alignment: Alignment.center,
-              child: Utils.getSchoolLogo(_school!.name),
-            )),
-        Expanded(
-            flex: 8,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: _buildGrid(),
-            )),
-      ]);
-    } else {
-      return Column(children: [
-        Expanded(
-            flex: 1,
-            child: Container(
-              child: null,
-            )),
-        Expanded(
-            flex: 3,
-            child: Align(
-              alignment: Alignment.center,
-              child: Utils.getSchoolLogo(_school!.name),
-            )),
-        Expanded(
-            flex: 1,
-            child: Align(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
-                  ),
-                  child: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            child: BrochureDownloadPage(_school!.name!, _promotions!),
-                            type: PageTransitionType.topToBottom));
-                  }),
-            )),
-        Expanded(
-            flex: 8,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: _buildGrid(),
-            )),
-      ]);
-    }
+    return Column(children: [
+      Expanded(
+          flex: 1,
+          child: Container(
+            child: null,
+          )),
+      Expanded(
+          flex: 2,
+          child: Align(
+            alignment: Alignment.center,
+            child: Utils.getSchoolLogo(_school!.name),
+          )),
+      Expanded(
+          flex: 8,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: _buildGrid(),
+          )),
+    ]);
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(

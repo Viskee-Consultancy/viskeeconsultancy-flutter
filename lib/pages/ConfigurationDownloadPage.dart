@@ -183,17 +183,37 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   }
 
   Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
-    // REACH School Configurations
     String reachSubUrl = subUrl + StringConstants.REACH_URL;
-    final reachResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_FILE_NAME));
+    // REACH School Configurations
+    final businessTechnologyResponse =
+    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodResponse =
+    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.EARLY_CHILDHOOD_FILE_NAME));
+    final englishResponse =
+    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.ENGLISH_FILE_NAME));
+    final hospitalityResponse =
+    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.HOSPITALITY_FILE_NAME));
+    final techScienceResponse =
+    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.TECH_SCIENCES_FILE_NAME));
 
-    // REACH School Promotion Configurations
     String reachPromotionSubUrl = subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
-    final reachPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_FILE_NAME));
+    // AIBT School Promotion Configurations
+    final businessTechnologyPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.EARLY_CHILDHOOD_FILE_NAME));
+    final englishPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.ENGLISH_FILE_NAME));
+    final hospitalityPromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.HOSPITALITY_FILE_NAME));
+    final techSciencePromotionResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.TECH_SCIENCES_FILE_NAME));
 
-    if (reachResponse.statusCode != 200) {
+    if (businessTechnologyResponse.statusCode != 200 &&
+        earlyChildhoodResponse.statusCode != 200 &&
+        englishResponse.statusCode != 200 &&
+        hospitalityResponse.statusCode != 200 &&
+        techScienceResponse.statusCode != 200) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
         duration: Duration(milliseconds: 2000),
@@ -202,11 +222,31 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       Navigator.of(context).pop();
     } else {
       List<School> reachSchools = <School>[];
-      School? reach =
-          await mergePromotionToBasic(reachResponse, reachPromotionResponse, StringConstants.REACH_SCHOOL_NAME);
 
-      if (reach != null) {
-        reachSchools.add(reach);
+      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse, businessTechnologyPromotionResponse, StringConstants.BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
+      School? earlyChildhoodFaculty =
+      await mergePromotionToBasic(earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.EARLY_CHILDHOOD_SCHOOL_NAME);
+      School? englishFaculty =
+      await mergePromotionToBasic(englishResponse, englishPromotionResponse, StringConstants.ENGLISH_SCHOOL_NAME);
+      School? hospitalityFaculty =
+      await mergePromotionToBasic(hospitalityResponse, hospitalityPromotionResponse, StringConstants.HOSPITALITY_SCHOOL_NAME);
+      School? techScienceFaculty =
+      await mergePromotionToBasic(techScienceResponse, techSciencePromotionResponse, StringConstants.TECH_SCIENCES_SCHOOL_NAME);
+
+      if (businessTechnologyFaculty != null) {
+        reachSchools.add(businessTechnologyFaculty);
+      }
+      if (earlyChildhoodFaculty != null) {
+        reachSchools.add(earlyChildhoodFaculty);
+      }
+      if (englishFaculty != null) {
+        reachSchools.add(englishFaculty);
+      }
+      if (hospitalityFaculty != null) {
+        reachSchools.add(hospitalityFaculty);
+      }
+      if (techScienceFaculty != null) {
+        reachSchools.add(techScienceFaculty);
       }
 
       _reachGroup.schools = reachSchools;
@@ -269,10 +309,14 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         String courseKey = buildCourseKey(course);
         Course? promotionCourse = map[courseKey];
         if (promotionCourse != null) {
-          course.isOnPromotion = true;
-          course.promotionDuration = promotionCourse.duration;
-          course.promotionDurationDetail = promotionCourse.durationDetail;
-          course.promotionTuition = promotionCourse.tuition;
+          map.remove(courseKey);
+          updateCourseWithPromotionInfo(course, promotionCourse);
+        }
+      }
+      if (map.isNotEmpty) {
+        for (Course course in map.values) {
+          updateCourseWithPromotionInfo(course, course);
+          basicSchool.courses.add(course);
         }
       }
     } else {
@@ -284,15 +328,36 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   String buildCourseKey(Course course) {
     String key = "";
     if (course.vetCode != null) {
-      key += "_" + course.vetCode!;
+      key += "_" + course.vetCode!.trim().toLowerCase();
     }
     if (course.cricosCode != null) {
-      key += "_" + course.cricosCode!;
+      key += "_" + course.cricosCode!.trim().toLowerCase();
     }
     if (course.name != null) {
       key += "_" + course.name!.trim().toLowerCase();
     }
     return key;
+  }
+
+  void updateCourseWithPromotionInfo(Course course, Course promotionCourse) {
+    course.isOnPromotion = true;
+    // Duration section
+    course.promotionDuration = promotionCourse.duration;
+    course.promotionMinDuration = promotionCourse.promotionMinDuration;
+    course.promotionMaxDuration = promotionCourse.promotionMaxDuration;
+    course.promotionDurationDetail = promotionCourse.durationDetail;
+    // Tuition section
+    course.promotionTuition = promotionCourse.tuition;
+    course.promotionTuitionDetail = promotionCourse.tuitionDetail;
+    course.promotionTuitionHalf = promotionCourse.tuitionHalf;
+    course.promotionTuitionHalfDetail = promotionCourse.tuitionHalfDetail;
+    // Location section
+    course.promotionLocation = promotionCourse.location;
+    course.promotionLocationDetail = promotionCourse.locationDetail;
+    // Placement section
+    course.promotionPlacementFee = promotionCourse.placementFee;
+    course.promotionPlacementDuration = promotionCourse.placementDuration;
+    course.promotionPlacementDetail = promotionCourse.placementDetail;
   }
 
   List<Course> prepareCourses(Group aibtGroup, Group reachGroup) {

@@ -113,7 +113,7 @@ class MainPage extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     PageTransition(
-                                        child: SchoolCoursesPage(_reach!.schools[0], _reach!.brochures),
+                                        child: SchoolLogoPage(_reach!),
                                         type: PageTransitionType.topToBottom));
                               },
                               child: Padding(

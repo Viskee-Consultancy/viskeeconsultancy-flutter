@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
@@ -11,10 +12,10 @@ import 'BrochureDownloadPage.dart';
 import 'SchoolCoursesPage.dart';
 
 class SchoolLogoPage extends StatelessWidget {
-  late Group _aibtGroup;
+  late Group _group;
 
   SchoolLogoPage(Group group) {
-    _aibtGroup = group;
+    _group = group;
   }
 
   @override
@@ -34,7 +35,7 @@ class SchoolLogoPage extends StatelessWidget {
                   flex: 3,
                   child: Align(
                     alignment: Alignment.center,
-                    child: SvgPicture.asset("images/aibt.svg"),
+                    child: _buildTitleLogo(),
                   )),
               Expanded(
                   flex: 1,
@@ -51,7 +52,7 @@ class SchoolLogoPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: BrochureDownloadPage(_aibtGroup.name!, _aibtGroup.brochures),
+                                  child: BrochureDownloadPage(_group.name!, _group.brochures),
                                   type: PageTransitionType.topToBottom));
                         }),
                   )),
@@ -66,14 +67,22 @@ class SchoolLogoPage extends StatelessWidget {
         ));
   }
 
+  Widget _buildTitleLogo() {
+    if (_group.name == StringConstants.AIBT_GROUP_NAME) {
+      return SvgPicture.asset("images/aibt.svg");
+    } else {
+      return SvgPicture.asset("images/reach.svg");
+    }
+  }
+
   Widget _buildGrid() => GridView.extent(
       maxCrossAxisExtent: 240,
       padding: const EdgeInsets.all(20),
       mainAxisSpacing: 0,
       crossAxisSpacing: 0,
-      children: _buildGridTileList(_aibtGroup.schools.length));
+      children: _buildGridTileList(_group.schools.length));
 
-  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(_aibtGroup.schools[i])));
+  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(_group.schools[i])));
 }
 
 class SchoolLogoGridView extends StatelessWidget {
@@ -98,7 +107,7 @@ class SchoolLogoGridView extends StatelessWidget {
           child: new InkWell(
               onTap: () {
                 Navigator.push(context,
-                    PageTransition(child: SchoolCoursesPage(_school, []), type: PageTransitionType.topToBottom));
+                    PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),

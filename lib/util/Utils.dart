@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:viskeeconsultancy/models/AIBTSchoolNameEnum.dart';
+import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 
 class Utils {
   static getSchoolLogo(String? schoolName) {
-    var aibtSchoolNameEnum = AIBTSchoolNameEnumUtils.fromValue(schoolName!);
-    switch (aibtSchoolNameEnum) {
-      case AIBTSchoolNameEnum.ACE:
+    var schoolNameEnum = SchoolNameEnumUtils.fromValue(schoolName!);
+    switch (schoolNameEnum) {
+      case SchoolNameEnum.ACE:
         return Image.asset('images/ace_landscape.png');
-      case AIBTSchoolNameEnum.BESPOKE:
+      case SchoolNameEnum.BESPOKE:
         return SvgPicture.asset('images/bespoke.svg');
-      case AIBTSchoolNameEnum.BRANSON:
+      case SchoolNameEnum.BRANSON:
         return SvgPicture.asset('images/branson.svg');
-      case AIBTSchoolNameEnum.DIANA:
+      case SchoolNameEnum.DIANA:
         return SvgPicture.asset('images/diana.svg');
-      case AIBTSchoolNameEnum.EDISON:
+      case SchoolNameEnum.EDISON:
         return SvgPicture.asset('images/edison.svg');
-      case AIBTSchoolNameEnum.SHELDON:
+      case SchoolNameEnum.SHELDON:
         return SvgPicture.asset('images/sheldon.svg');
-      case AIBTSchoolNameEnum.REACH:
-        return SvgPicture.asset('images/reach.svg');
+      case SchoolNameEnum.BUSINESS_AND_TECHNOLOGY_FACULTY:
+        return Image.asset('images/business_technology.png');
+      case SchoolNameEnum.EARLY_CHILDHOOD_FACULTY:
+        return Image.asset('images/early_childhood.png');
+      case SchoolNameEnum.ENGLISH_FACULTY:
+        return Image.asset('images/english.png');
+      case SchoolNameEnum.HOSPITALITY_FACULTY:
+        return Image.asset('images/hospitality.png');
+      case SchoolNameEnum.TECH_SCIENCES_FACULTY:
+        return Image.asset('images/tech_sciences.png');
       default:
     }
   }

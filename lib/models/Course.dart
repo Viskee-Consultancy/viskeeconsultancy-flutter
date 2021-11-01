@@ -1,26 +1,56 @@
 import 'GroupEnum.dart';
 
 class Course {
+  /**
+   * Basic attributes
+   */
   GroupEnum? group;
   String? vetCode;
   String? cricosCode;
   String? department;
   String? name;
+  // Duration section
   int? duration;
   int? durationMin;
   int? durationMax;
   String? durationDetail;
+  // Tuition section
   String? tuition;
+  String? tuitionDetail;
+  String? tuitionHalf;
+  String? tuitionHalfDetail;
+  // Location section
   String? location;
+  String? locationDetail;
   List<String> locationList = List.empty();
+  // Placement section
   String? placementFee;
   String? placementDuration;
-  String? completeServicePeriods;
+  String? placementDetail;
+  String? note;
+
+  /**
+   * Promotion attributes
+   */
   bool isOnPromotion =false;
+  String? promotionValidity;
+  // Duration section
   int? promotionDuration;
+  int? promotionMinDuration;
+  int? promotionMaxDuration;
   String? promotionDurationDetail;
-  String? promotionLocation;
+  // Tuition section
   String? promotionTuition;
+  String? promotionTuitionDetail;
+  String? promotionTuitionHalf;
+  String? promotionTuitionHalfDetail;
+  // Location section
+  String? promotionLocation;
+  String? promotionLocationDetail;
+  // Placement section
+  String? promotionPlacementFee;
+  String? promotionPlacementDuration;
+  String? promotionPlacementDetail;
 
   Course.fromJson(Map<String, dynamic> json) {
     vetCode = json["vetCode"];
@@ -38,11 +68,20 @@ class Course {
     }
     durationDetail = json["durationDetail"];
     tuition = json["tuition"];
+    tuitionDetail = json["tuitionDetail"];
+    tuitionHalf = json["tuitionHalf"];
+    tuitionHalfDetail = json["tuitionHalfDetail"];
     location = json["location"];
+    locationDetail = json["locationDetail"];
+    if (location == null) {
+      location = "";
+    }
     locationList = location!.split("/");
     placementFee = json["placementFee"];
     placementDuration = json["placementDuration"];
-    completeServicePeriods = json["completeServicePeriods"];
+    placementDetail = json["placementDetail"];
+    note = json["note"];
+    promotionValidity = json["promotionValidity"];
   }
 
   String getDurationString() {
@@ -50,6 +89,14 @@ class Course {
       return duration.toString();
     } else {
       return durationMin.toString() + " - " + durationMax.toString();
+    }
+  }
+
+  String getPromotionDurationString() {
+    if (promotionDuration != null && promotionDuration != 0) {
+      return promotionDuration.toString();
+    } else {
+      return promotionMinDuration.toString() + " - " + promotionMaxDuration.toString();
     }
   }
 

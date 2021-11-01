@@ -112,6 +112,10 @@ class CourseDetailPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 5),
           child: _getLocationText(_course),
         ),
+        Padding(
+          padding: EdgeInsets.only(top: 5, left: 10, right: 10),
+          child: _getLocationDetailText(_course),
+        )
       ],
     );
   }
@@ -134,6 +138,18 @@ class CourseDetailPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 5),
           child: _getTuitionText(_course),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5),
+          child: _getTuitionDetailText(_course),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5),
+          child: _getTuitionHalfText(_course),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5),
+          child: _getTuitionHalfDetailText(_course),
         )
       ],
     );
@@ -208,7 +224,7 @@ class CourseDetailPage extends StatelessWidget {
 
   Widget _getTotalDurationText(Course? course) {
     if (course != null) {
-      if (course.isOnPromotion && course.promotionDuration != null) {
+      if (course.isOnPromotion && (course.promotionDuration != null || course.promotionMinDuration != null || course.promotionMaxDuration != null)) {
         return Column(
           children: [
             Text(
@@ -216,7 +232,7 @@ class CourseDetailPage extends StatelessWidget {
               style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
-              course.promotionDuration.toString() + " Weeks",
+              course.getPromotionDurationString() + " Weeks",
               style: TextStyle(color: Colors.black, fontSize: 16),
             )
           ],
@@ -290,6 +306,35 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
+  Widget _getLocationDetailText(Course? course) {
+    if (course != null && course.locationDetail != null) {
+      if (course.isOnPromotion && course.promotionLocationDetail != null) {
+        return Column(
+          children: [
+            Text(
+              course.locationDetail!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionLocationDetail!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.locationDetail!.toString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
   Widget _getTuitionText(Course? course) {
     if (course != null && course.tuition != null) {
       if (course.isOnPromotion && course.promotionTuition != null) {
@@ -310,6 +355,93 @@ class CourseDetailPage extends StatelessWidget {
       } else {
         return Text(
           course.tuition!.toString() + "\$",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getTuitionHalfText(Course? course) {
+    if (course != null && course.tuitionHalf != null) {
+      if (course.isOnPromotion && course.promotionTuitionHalf != null) {
+        return Column(
+          children: [
+            Text(
+              "Tuition Half Payment: " + course.tuitionHalf!.toString() + "\$",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionTuitionHalf!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.tuitionHalf!.toString() + "\$",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getTuitionHalfDetailText(Course? course) {
+    if (course != null && course.tuitionHalfDetail != null) {
+      if (course.isOnPromotion && course.promotionTuitionHalfDetail != null) {
+        return Column(
+          children: [
+            Text(
+              course.tuitionHalfDetail!.toString() + " \$",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionTuitionHalfDetail!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.tuitionHalfDetail!.toString() + " \$",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getTuitionDetailText(Course? course) {
+    if (course != null && course.tuitionDetail != null) {
+      if (course.isOnPromotion && course.promotionTuitionDetail != null) {
+        return Column(
+          children: [
+            Text(
+              course.tuitionDetail!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.promotionTuitionDetail!.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.tuitionDetail!.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black),
         );
