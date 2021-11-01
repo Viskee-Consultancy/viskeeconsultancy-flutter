@@ -300,25 +300,27 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       promotionSchool = School.fromJson(promotionData);
 
       List<Course> promotionCourses = promotionSchool.courses;
-      Map<String, Course> map = new Map();
-      for (Course promotionCourse in promotionCourses) {
-        String key = buildCourseKey(promotionCourse);
-        map[key] = promotionCourse;
-      }
-      for (Course course in basicSchool.courses) {
-        String courseKey = buildCourseKey(course);
-        Course? promotionCourse = map[courseKey];
-        if (promotionCourse != null) {
-          map.remove(courseKey);
-          updateCourseWithPromotionInfo(course, promotionCourse);
-        }
-      }
-      if (map.isNotEmpty) {
-        for (Course course in map.values) {
-          updateCourseWithPromotionInfo(course, course);
-          basicSchool.courses.add(course);
-        }
-      }
+      promotionCourses.forEach((element) {element.isOnPromotion = true;});
+      basicSchool.courses.addAll(promotionCourses);
+      // Map<String, Course> map = new Map();
+      // for (Course promotionCourse in promotionCourses) {
+      //   String key = buildCourseKey(promotionCourse);
+      //   map[key] = promotionCourse;
+      // }
+      // for (Course course in basicSchool.courses) {
+      //   String courseKey = buildCourseKey(course);
+      //   Course? promotionCourse = map[courseKey];
+      //   if (promotionCourse != null) {
+      //     map.remove(courseKey);
+      //     updateCourseWithPromotionInfo(course, promotionCourse);
+      //   }
+      // }
+      // if (map.isNotEmpty) {
+      //   for (Course course in map.values) {
+      //     updateCourseWithPromotionInfo(course, course);
+      //     basicSchool.courses.add(course);
+      //   }
+      // }
     } else {
       return basicSchool;
     }
@@ -333,9 +335,9 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     if (course.cricosCode != null) {
       key += "_" + course.cricosCode!.trim().toLowerCase();
     }
-    if (course.name != null) {
-      key += "_" + course.name!.trim().toLowerCase();
-    }
+    // if (course.name != null) {
+    //   key += "_" + course.name!.trim().toLowerCase();
+    // }
     return key;
   }
 

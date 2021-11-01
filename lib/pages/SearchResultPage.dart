@@ -153,43 +153,82 @@ class SearchResultGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(20),
-        child: GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context, PageTransition(child: CourseDetailPage(course!), type: PageTransitionType.topToBottom));
-          },
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: CustomColors.GOLD),
-                borderRadius: const BorderRadius.all(const Radius.circular(8)),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        course!.name!,
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
-                      ),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: CustomColors.GOLD),
+              borderRadius: const BorderRadius.all(const Radius.circular(8)),
+            ),
+            child: new Material(
+              child: new InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        PageTransition(child: CourseDetailPage(course!), type: PageTransitionType.topToBottom));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: _getCourseNameText(),
+                        ),
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: _getVetCodeText(),
+                            )),
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: _getCricosCodeText(),
+                            ))
+                      ],
                     ),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text("VET National Code: " + course!.vetCode!),
-                        )),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text("CRICOS Course Code: " + course!.cricosCode!),
-                        ))
-                  ],
-                ),
-              )),
-        ));
+                  )),
+              color: Colors.transparent,
+            )));
+  }
+
+  Widget _getCourseNameText() {
+    if (course!.isOnPromotion) {
+      return Row(children: [
+        Icon(
+          Icons.sell_outlined,
+          color: CustomColors.GOLD,
+        ),
+        Flexible(
+          child: Text(
+            course!.name!,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+          ),
+        )
+      ]);
+    } else {
+      return Text(
+        course!.name!,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+      );
+    }
+  }
+
+  Widget _getVetCodeText() {
+    if (course != null && course!.vetCode != null && course!.vetCode!.trim().isNotEmpty) {
+      return Text("VET National Code: " + course!.vetCode!, style: TextStyle(color: Colors.black));
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getCricosCodeText() {
+    if (course != null && course!.cricosCode != null && course!.cricosCode!.trim().isNotEmpty) {
+      return Text("CRICOS Course Code: " + course!.cricosCode!, style: TextStyle(color: Colors.black));
+    } else {
+      return Text("");
+    }
   }
 }

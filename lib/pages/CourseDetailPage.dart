@@ -56,14 +56,48 @@ class CourseDetailPage extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Column(
         children: [
+          _buildPromotionValiditySection(),
           _buildDurationSection(),
           _buildLocationSection(),
           _buildTuitionSection(),
           _buildPlacementSection(),
+          _buildNoteSection(),
           _buildTermsConditionSection()
         ],
       ),
     );
+  }
+
+  Widget _buildPromotionValiditySection() {
+    if (_course.isOnPromotion && _course.promotionValidity != null && _course.promotionValidity!.isNotEmpty) {
+      return Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.sell_outlined,
+              color: CustomColors.GOLD,
+              size: 64,
+            ),
+          ),
+          Text(
+            "Promotion Validity",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: Text(
+              _course.promotionValidity!,
+              style: TextStyle(color: Colors.black),
+            ),
+          )
+        ],
+      );
+    } else {
+      return Container(
+        child: null,
+      );
+    }
   }
 
   Widget _buildDurationSection() {
@@ -178,11 +212,44 @@ class CourseDetailPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 5, left: 10, right: 10),
             child: _getPlacementDurationText(_course),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5, left: 10, right: 10),
+            child: _getPlacementDetailText(_course),
           )
         ],
       );
     } else {
       return Container();
+    }
+  }
+
+  Widget _buildNoteSection() {
+    if (_course.note != null && _course.note!.isNotEmpty) {
+      return Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.description_outlined,
+              color: CustomColors.GOLD,
+              size: 64,
+            ),
+          ),
+          Text(
+            "Note",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: Text(_course.note!, textAlign: TextAlign.center, style: TextStyle(color: Colors.black)),
+          )
+        ],
+      );
+    } else {
+      return Container(
+        child: null,
+      );
     }
   }
 
@@ -223,23 +290,23 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getTotalDurationText(Course? course) {
-    if (course != null) {
-      if (course.isOnPromotion && (course.promotionDuration != null || course.promotionMinDuration != null || course.promotionMaxDuration != null)) {
+    if (course != null && course.duration != null) {
+      if (course.isPromotionDurationChange()) {
         return Column(
           children: [
             Text(
-              course.getDurationString() + " Weeks",
+              course.getDurationString(),
               style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
-              course.getPromotionDurationString() + " Weeks",
+              course.getPromotionDurationString(),
               style: TextStyle(color: Colors.black, fontSize: 16),
             )
           ],
         );
       } else {
         return Text(
-          course.getDurationString() + " Weeks",
+          course.getDurationString(),
           style: TextStyle(color: Colors.black),
         );
       }
@@ -249,8 +316,8 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getDurationDetailText(Course? course) {
-    if (course != null && course.durationDetail != null) {
-      if (course.isOnPromotion && course.promotionDurationDetail != null) {
+    if (course != null && course.durationDetail != null && course.durationDetail!.trim().isNotEmpty) {
+      if (course.isPromotionDurationDetailChange()) {
         return Column(
           children: [
             Text(
@@ -278,8 +345,8 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getLocationText(Course? course) {
-    if (course != null && course.location != null) {
-      if (course.isOnPromotion && course.promotionLocation != null) {
+    if (course != null && course.location != null && course.location!.trim().isNotEmpty) {
+      if (course.isPromotionDurationChange()) {
         return Column(
           children: [
             Text(
@@ -307,8 +374,8 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getLocationDetailText(Course? course) {
-    if (course != null && course.locationDetail != null) {
-      if (course.isOnPromotion && course.promotionLocationDetail != null) {
+    if (course != null && course.locationDetail != null && course.locationDetail!.trim().isNotEmpty) {
+      if (course.isPromotionLocationDetailChange()) {
         return Column(
           children: [
             Text(
@@ -336,17 +403,17 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getTuitionText(Course? course) {
-    if (course != null && course.tuition != null) {
-      if (course.isOnPromotion && course.promotionTuition != null) {
+    if (course != null && course.tuition != null && course.tuition!.trim().isNotEmpty) {
+      if (course.isPromotionTuitionChange()) {
         return Column(
           children: [
             Text(
-              course.tuition!.toString() + "\$",
+              course.getTuitionString(),
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
             ),
             Text(
-              course.promotionTuition!.toString(),
+              course.getPromotionTuitionString(),
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black, fontSize: 16),
             )
@@ -354,65 +421,7 @@ class CourseDetailPage extends StatelessWidget {
         );
       } else {
         return Text(
-          course.tuition!.toString() + "\$",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black),
-        );
-      }
-    } else {
-      return Text("");
-    }
-  }
-
-  Widget _getTuitionHalfText(Course? course) {
-    if (course != null && course.tuitionHalf != null) {
-      if (course.isOnPromotion && course.promotionTuitionHalf != null) {
-        return Column(
-          children: [
-            Text(
-              "Tuition Half Payment: " + course.tuitionHalf!.toString() + "\$",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
-            ),
-            Text(
-              course.promotionTuitionHalf!.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, fontSize: 16),
-            )
-          ],
-        );
-      } else {
-        return Text(
-          course.tuitionHalf!.toString() + "\$",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black),
-        );
-      }
-    } else {
-      return Text("");
-    }
-  }
-
-  Widget _getTuitionHalfDetailText(Course? course) {
-    if (course != null && course.tuitionHalfDetail != null) {
-      if (course.isOnPromotion && course.promotionTuitionHalfDetail != null) {
-        return Column(
-          children: [
-            Text(
-              course.tuitionHalfDetail!.toString() + " \$",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
-            ),
-            Text(
-              course.promotionTuitionHalfDetail!.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, fontSize: 16),
-            )
-          ],
-        );
-      } else {
-        return Text(
-          course.tuitionHalfDetail!.toString() + " \$",
+          course.getTuitionString(),
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black),
         );
@@ -423,8 +432,8 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _getTuitionDetailText(Course? course) {
-    if (course != null && course.tuitionDetail != null) {
-      if (course.isOnPromotion && course.promotionTuitionDetail != null) {
+    if (course != null && course.tuitionDetail != null && course.tuitionDetail!.trim().isNotEmpty) {
+      if (course.isPromotionTuitionDetailChange()) {
         return Column(
           children: [
             Text(
@@ -451,25 +460,146 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
+  Widget _getTuitionHalfText(Course? course) {
+    if (course != null && course.tuitionHalf != null && course.tuitionHalf!.trim().isNotEmpty) {
+      if (course.isPromotionTuitionHalfChange()) {
+        return Column(
+          children: [
+            Text(
+              course.getTuitionHalfString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.getPromotionTuitionHalfString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getTuitionHalfString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getTuitionHalfDetailText(Course? course) {
+    if (course != null && course.tuitionHalfDetail != null && course.tuitionHalfDetail!.trim().isNotEmpty) {
+      if (course.isPromotionTuitionHalfDetailChange()) {
+        return Column(
+          children: [
+            Text(
+              course.getTuitionHalfDetailString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.getPromotionTuitionHalfDetailString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getTuitionHalfDetailString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
   Widget _getPlacementFeeText(Course? course) {
-    if (course != null && course.placementFee != null) {
-      return Text(
-        "Placement Fee: " + course.placementFee!.toString() + " \$",
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.black),
-      );
+    if (course != null && course.placementFee != null && course.placementFee!.trim().isNotEmpty) {
+      if (course.isPromotionPlacementFeeChange()) {
+        return Column(
+          children: [
+            Text(
+              course.getPlacementFeeString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.getPromotionPlacementFeeString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getPlacementFeeString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }
   }
 
   Widget _getPlacementDurationText(Course? course) {
-    if (course != null && course.placementDuration != null) {
-      return Text(
-        "Placement Duration: " + course.placementDuration!.toString() + " hours",
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.black),
-      );
+    if (course != null && course.placementDuration != null && course.placementDuration!.trim().isNotEmpty) {
+      if (course.isPromotionPlacementDurationChange()) {
+        return Column(
+          children: [
+            Text(
+              course.getPlacementDurationString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.getPromotionPlacementDurationString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getPlacementDurationString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } else {
+      return Text("");
+    }
+  }
+
+  Widget _getPlacementDetailText(Course? course) {
+    if (course != null && course.placementDetail != null && course.placementDetail!.trim().isNotEmpty) {
+      if (course.isPromotionPlacementDurationChange()) {
+        return Column(
+          children: [
+            Text(
+              course.getPlacementDetailString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, decoration: TextDecoration.lineThrough),
+            ),
+            Text(
+              course.getPromotionPlacementDetailString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            )
+          ],
+        );
+      } else {
+        return Text(
+          course.getPlacementDetailString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black),
+        );
+      }
     } else {
       return Text("");
     }

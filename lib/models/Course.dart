@@ -86,18 +86,209 @@ class Course {
 
   String getDurationString() {
     if (duration != null && duration != 0) {
-      return duration.toString();
-    } else {
-      return durationMin.toString() + " - " + durationMax.toString();
+      return duration.toString() + " Weeks";
     }
+    if (durationMin != null && durationMax != null) {
+      return durationMin.toString() + " - " + durationMax.toString() + " Weeks";
+    }
+    return "";
   }
 
   String getPromotionDurationString() {
     if (promotionDuration != null && promotionDuration != 0) {
-      return promotionDuration.toString();
+      return promotionDuration.toString() + " Weeks";
     } else {
-      return promotionMinDuration.toString() + " - " + promotionMaxDuration.toString();
+      return promotionMinDuration.toString() + " - " + promotionMaxDuration.toString() + " Weeks";
     }
+  }
+
+  String getTuitionString() {
+    if (tuition != null && tuition!.isNotEmpty) {
+      return tuition.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getPromotionTuitionString() {
+    if (promotionTuition != null && promotionTuition!.isNotEmpty) {
+      return promotionTuition.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getTuitionHalfString() {
+    if (tuitionHalf != null && tuitionHalf!.isNotEmpty) {
+      return "Tuition Half Payment: " + tuitionHalf.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getPromotionTuitionHalfString() {
+    if (promotionTuitionHalf != null && promotionTuitionHalf!.isNotEmpty) {
+      return "Tuition Half Payment: " + promotionTuitionHalf.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getTuitionHalfDetailString() {
+    if (tuitionHalfDetail != null) {
+      return tuitionHalfDetail.toString();
+    }
+    return "";
+  }
+
+  String getPromotionTuitionHalfDetailString() {
+    if (promotionTuitionHalfDetail != null) {
+      return promotionTuitionHalfDetail.toString();
+    }
+    return "";
+  }
+
+  String getPlacementFeeString() {
+    if (placementFee != null && placementFee!.isNotEmpty) {
+      return "Placement Fee: " + placementFee.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getPromotionPlacementFeeString() {
+    if (promotionPlacementFee != null && promotionPlacementFee!.isNotEmpty) {
+      return "Placement Fee: " + promotionPlacementFee.toString() + " \$";
+    }
+    return "";
+  }
+
+  String getPlacementDurationString() {
+    if (placementDuration != null && placementDuration!.isNotEmpty) {
+      return "Placement Duration: " + placementDuration.toString() + " hours";
+    }
+    return "";
+  }
+
+  String getPromotionPlacementDurationString() {
+    if (promotionPlacementDuration != null && promotionPlacementDuration!.isNotEmpty) {
+      return "Placement Duration: " + promotionPlacementDuration.toString() + " hours";
+    }
+    return "";
+  }
+
+  String getPlacementDetailString() {
+    if (placementDuration != null) {
+      return placementDetail.toString();
+    }
+    return "";
+  }
+
+  String getPromotionPlacementDetailString() {
+    if (promotionPlacementDetail != null) {
+      return promotionPlacementDetail.toString();
+    }
+    return "";
+  }
+
+  bool isPromotionDurationChange() {
+    if (isOnPromotion) {
+      if (promotionDuration != null) {
+        return duration != promotionDuration;
+      }
+      if (promotionMinDuration != null) {
+        return durationMin != promotionMinDuration;
+      }
+      if (promotionMaxDuration != null) {
+        return durationMax != promotionMaxDuration;
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionDurationDetailChange() {
+    if (isOnPromotion) {
+      if (promotionDurationDetail != null) {
+        return promotionDurationDetail!.trim().toLowerCase() != durationDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionLocationChange() {
+    if (isOnPromotion) {
+      if (promotionLocation != null) {
+        return promotionLocation!.trim().toLowerCase() != location!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionLocationDetailChange() {
+    if (isOnPromotion) {
+      if (promotionLocationDetail != null) {
+        return promotionLocationDetail!.trim().toLowerCase() != locationDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionTuitionChange() {
+    if (isOnPromotion) {
+      if (promotionTuition != null) {
+        return promotionTuition!.trim().toLowerCase() != tuition!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionTuitionDetailChange() {
+    if (isOnPromotion) {
+      if (promotionTuitionDetail != null) {
+        return promotionTuitionDetail!.trim().toLowerCase() != tuitionDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionTuitionHalfChange() {
+    if (isOnPromotion) {
+      if (promotionTuitionHalf != null) {
+        return promotionTuitionHalfDetail!.trim().toLowerCase() != tuitionHalfDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionTuitionHalfDetailChange() {
+    if (isOnPromotion) {
+      if (promotionTuitionHalfDetail != null) {
+        return promotionTuitionHalfDetail!.trim().toLowerCase() != tuitionHalfDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionPlacementDurationChange() {
+    if (isOnPromotion) {
+      if (promotionPlacementDuration != null) {
+        return promotionPlacementDuration!.trim().toLowerCase() != placementDuration!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionPlacementFeeChange() {
+    if (isOnPromotion) {
+      if (promotionPlacementFee != null) {
+        return promotionPlacementFee!.trim().toLowerCase() != placementFee!.trim().toLowerCase();
+      }
+    }
+    return false;
+  }
+
+  bool isPromotionPlacementDetailChange() {
+    if (isOnPromotion) {
+      if (promotionPlacementDetail != null) {
+        return promotionPlacementDetail!.trim().toLowerCase() != placementDetail!.trim().toLowerCase();
+      }
+    }
+    return false;
   }
 
   @override
