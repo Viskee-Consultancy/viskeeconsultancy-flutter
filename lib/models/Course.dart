@@ -104,28 +104,28 @@ class Course {
 
   String getTuitionString() {
     if (tuition != null && tuition!.isNotEmpty) {
-      return tuition.toString() + " \$";
+      return "\$ " + tuition.toString();
     }
     return "";
   }
 
   String getPromotionTuitionString() {
     if (promotionTuition != null && promotionTuition!.isNotEmpty) {
-      return promotionTuition.toString() + " \$";
+      return "\$ " + promotionTuition.toString();
     }
     return "";
   }
 
   String getTuitionHalfString() {
     if (tuitionHalf != null && tuitionHalf!.isNotEmpty) {
-      return "Tuition Half Payment: " + tuitionHalf.toString() + " \$";
+      return "Tuition Half Payment: \$ " + tuitionHalf.toString();
     }
     return "";
   }
 
   String getPromotionTuitionHalfString() {
     if (promotionTuitionHalf != null && promotionTuitionHalf!.isNotEmpty) {
-      return "Tuition Half Payment: " + promotionTuitionHalf.toString() + " \$";
+      return "Tuition Half Payment: \$ " + promotionTuitionHalf.toString();
     }
     return "";
   }
@@ -146,21 +146,21 @@ class Course {
 
   String getPlacementFeeString() {
     if (placementFee != null && placementFee!.isNotEmpty) {
-      return "Placement Fee: " + placementFee.toString() + " \$";
+      return "Placement Fee: \$ " + placementFee.toString();
     }
     return "";
   }
 
   String getPromotionPlacementFeeString() {
     if (promotionPlacementFee != null && promotionPlacementFee!.isNotEmpty) {
-      return "Placement Fee: " + promotionPlacementFee.toString() + " \$";
+      return "Placement Fee: \$ " + promotionPlacementFee.toString();
     }
     return "";
   }
 
   String getPlacementDurationString() {
     if (placementDuration != null && placementDuration!.isNotEmpty) {
-      return "Placement Duration: " + placementDuration.toString() + " hours";
+      return "Placement Duration: \$ " + placementDuration.toString();
     }
     return "";
   }
