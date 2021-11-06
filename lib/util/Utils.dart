@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
+import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 class Utils {
   static getSchoolLogo(String? schoolName) {
@@ -30,5 +32,25 @@ class Utils {
         return Image.asset('images/tech_sciences.png');
       default:
     }
+  }
+
+  static getGroupPrimaryColor(String? groupName) {
+      if (groupName == StringConstants.AIBT_GROUP_NAME) {
+        return CustomColors.AIBT_PRIMARY_COLOR;
+      }
+      if (groupName == StringConstants.REACH_GROUP_NAME) {
+        return CustomColors.REACH_PRIMARY_COLOR;
+      }
+      return CustomColors.GOLD;
+  }
+
+  static getGroupSecondaryColor(String? groupName) {
+    if (groupName == StringConstants.AIBT_GROUP_NAME) {
+      return CustomColors.AIBT_SECONDARY_COLOR;
+    }
+    if (groupName == StringConstants.REACH_GROUP_NAME) {
+      return CustomColors.REACH_SECONDARY_COLOR;
+    }
+    return CustomColors.GOLD_HINT;
   }
 }

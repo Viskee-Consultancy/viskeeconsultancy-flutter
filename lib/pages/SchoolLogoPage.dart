@@ -43,11 +43,11 @@ class SchoolLogoPage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                          backgroundColor: MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
                         ),
                         child: Padding(
                             padding: EdgeInsets.all(15),
-                            child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.black))),
+                            child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20))),
                         onPressed: () {
                           Navigator.push(
                               context,

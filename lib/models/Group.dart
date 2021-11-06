@@ -8,7 +8,7 @@ class Group {
 
   Group();
   Group.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
+    // name = json['name'];
     var brochureJsonList = json['brochures'] as List;
     brochures = brochureJsonList.map((i) => Brochure.fromJson(i)).toList();
     var schoolJsonList = json['schools'];
