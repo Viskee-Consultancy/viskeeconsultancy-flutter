@@ -40,100 +40,90 @@ class MainPage extends StatelessWidget {
             ),
           ),
           child: Column(
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: null,
-                  )),
-              Expanded(
-                flex: 2,
-                child: Container(child: null),
-              ),
-              Expanded(
-                flex: 6,
-                child: Text("Explore Over 90+ Courses and Promotions",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
-              ),
-              ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
-                  child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: CustomColors.GOLD),
-                            borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                          ),
-                          child: new CourseSearchAutocomplete(_courses)))),
-              Expanded(
-                flex: 2,
-                child: Container(child: null),
-              ),
-              Expanded(
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: null,
+                    )),
+                Expanded(
+                  flex: 2,
+                  child: Container(child: null),
+                ),
+                Expanded(
+                  flex: 6,
+                  child: Text("Explore Over 90+ Courses and Promotions",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
+                ),
+                ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
+                    child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: CustomColors.GOLD),
+                              borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                            ),
+                            child: new CourseSearchAutocomplete(_courses)))),
+                Expanded(
+                  flex: 2,
+                  child: Container(child: null),
+                ),
+                Expanded(
                   flex: 4,
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                    Expanded(flex: 1, child: Container(child: null)),
-                    Container(
-                      constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                      child: new Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: CustomColors.GOLD),
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              const Radius.circular(8),
-                            )),
-                        child: new Material(
-                          child: new InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
-                              },
-                              child: SvgPicture.asset("images/aibt.svg")),
-                          color: Colors.transparent,
-                        ),
+                      Expanded(flex: 1, child: Container(child: null)),
+                  Container(
+                    constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                    child: new OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
+                      },
+                      child: SvgPicture.asset("images/aibt.svg"),
+                      style: OutlinedButton.styleFrom(
+                        primary: Colors.grey,
+                        backgroundColor: Colors.white,
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(15),
+                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                       ),
                     ),
-                    Expanded(flex: 2, child: Container(child: null)),
-                    Container(
-                      constraints: BoxConstraints(minHeight: 40, maxHeight: 120, minWidth: 40, maxWidth: 120),
-                      child: new Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: CustomColors.GOLD),
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              const Radius.circular(8),
-                            )),
-                        child: new Material(
-                          child: new InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        child: SchoolLogoPage(_reach!),
-                                        type: PageTransitionType.topToBottom));
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.all(5),
-                                child: SvgPicture.asset("images/reach.svg"),
-                              )),
-                          color: Colors.transparent,
-                        ),
-                      ),
+                  ),
+                Expanded(flex: 2, child: Container(child: null)),
+                Container(
+                  constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                  child: new OutlinedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
+                    },
+                    child: SvgPicture.asset("images/reach.svg"),
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.grey,
+                      backgroundColor: Colors.white,
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(15),
+                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                     ),
-                    Expanded(flex: 1, child: Container(child: null))
-                  ])),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: null,
+                  ),
                 ),
-              )
-            ],
-          )),
+                Expanded(flex: 1, child: Container(child: null))
+              ])),
+      Expanded(
+        flex: 2,
+        child: Container(
+          child: null,
+        ),
+      )
+      ],
+    )),
     );
   }
 }
@@ -241,10 +231,11 @@ class CourseSearchAutocomplete extends StatelessWidget {
           }
         },
       ),
-      itemBuilder: (context, suggestion) => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(suggestion!.name!),
-      ),
+      itemBuilder: (context, suggestion) =>
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(suggestion!.name!),
+          ),
       suggestionsCallback: (query) => _getCourseSuggestions(query, _courses, suggestions),
       onSuggestionSelected: (suggestion) => {_itemSelected(suggestion, suggestions, context)},
     );
