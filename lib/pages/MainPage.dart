@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -84,7 +85,7 @@ class MainPage extends StatelessWidget {
                             PageTransition(
                                 child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
                       },
-                      child: SvgPicture.asset("images/aibt.svg"),
+                      child: Utils.isRunningOnMobileBrowser() ? Padding(padding: EdgeInsets.all(10),child: Image.asset("images/aibt.png")) : SvgPicture.asset("images/aibt.svg"),
                       style: OutlinedButton.styleFrom(
                         primary: Colors.grey,
                         backgroundColor: Colors.white,
@@ -104,7 +105,7 @@ class MainPage extends StatelessWidget {
                           PageTransition(
                               child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
                     },
-                    child: SvgPicture.asset("images/reach.svg"),
+                    child: Utils.isRunningOnMobileBrowser() ? Padding(padding: EdgeInsets.all(10),child: Image.asset("images/reach.png"))  : SvgPicture.asset("images/reach.svg"),
                     style: OutlinedButton.styleFrom(
                       primary: Colors.grey,
                       backgroundColor: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
@@ -52,5 +53,18 @@ class Utils {
       return CustomColors.REACH_SECONDARY_COLOR;
     }
     return CustomColors.GOLD_HINT;
+  }
+
+  static isRunningOnMobileBrowser() {
+    final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
+    // smartphone
+    if( userAgent.contains("iphone"))  return true;
+    if( userAgent.contains("android"))  return true;
+
+    // tablet
+    if( userAgent.contains("ipad")) return true;
+    if( html.window.navigator.platform!.toLowerCase().contains("macintel") && html.window.navigator.maxTouchPoints! > 0 ) return true;
+
+    return false;
   }
 }
