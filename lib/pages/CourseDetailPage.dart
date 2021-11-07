@@ -112,7 +112,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          "Total Duration",
+          _course.isOnPromotion ? "Promotion Duration" : "Total Duration",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
         ),
         Padding(
@@ -139,7 +139,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          "Location",
+          _course.isOnPromotion ? "Promotion Location" : "Location",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
         ),
         Padding(
@@ -166,7 +166,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          "Tuition",
+          _course.isOnPromotion ? "Promotion Tuition" : "Tuition",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
         ),
         Padding(
@@ -202,7 +202,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            "Placement",
+            _course.isOnPromotion ? "Promotion Placement" : "Placement",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
           ),
           Padding(
@@ -237,7 +237,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            "Note",
+            _course.isOnPromotion ? "Promotion Note" : "Note",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.black),
           ),
           Padding(
