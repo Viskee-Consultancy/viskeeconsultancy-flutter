@@ -84,14 +84,13 @@ class CountrySelectionAutocomplete extends StatelessWidget {
         content: Text('Please enter the search text'),
       ));
     } else {
+      NavigationPath.PATH.add(selected);
       if (Region.SEAPAE.any((country) => country.toLowerCase() == selected)) {
-        NavigationPath.PATH.add("SEAPAE");
         Navigator.push(
             context,
             PageTransition(
                 child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.topToBottom));
       } else {
-        NavigationPath.PATH.add("SISMIC");
         Navigator.push(
             context,
             PageTransition(
