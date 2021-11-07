@@ -6,7 +6,7 @@ class CommonWidgets {
   static AppBar getAppBar(BuildContext context, bool isRemovePath) {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
+        icon: Icon(Icons.arrow_back, color: Colors.black, size: 40),
         onPressed: () => {
           if (isRemovePath) {NavigationPath.PATH.removeLast()},
           Navigator.of(context).pop()
@@ -29,7 +29,7 @@ class CommonWidgets {
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
               "images/vc_logo_landscape.svg",
-              height: 40,
+              height: 50,
             ),
           )
         ],
@@ -40,7 +40,7 @@ class CommonWidgets {
   static AppBar getAppBarWhite(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+        icon: Icon(Icons.arrow_back, color: Colors.white, size: 40),
         onPressed: () => {NavigationPath.PATH.removeLast(), Navigator.of(context).pop()},
       ),
       backgroundColor: Colors.transparent,
@@ -60,7 +60,7 @@ class CommonWidgets {
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
               "images/vc_logo_landscape_white.svg",
-              height: 40,
+              height: 50,
             ),
           )
         ],
