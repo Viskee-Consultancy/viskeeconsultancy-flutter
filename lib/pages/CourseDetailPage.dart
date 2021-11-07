@@ -19,12 +19,23 @@ class CourseDetailPage extends StatelessWidget {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CommonWidgets.getAppBar(context, false),
-        body: Container(child: ListView(shrinkWrap: false, children: _getListData())));
+        body: Column(
+          children: [
+            Expanded(
+                flex: 1,
+                child: Container(
+                  child: null,
+                )),
+            Expanded(flex: 1, child: _buildCourseName()),
+            // Expanded(flex: 1, child: _buildVetCode()),
+            Expanded(flex: 10, child: ListView(shrinkWrap: false, children: _getListData()))
+          ],
+        ));
   }
 
   List<Widget> _getListData() {
     List<Widget> widgets = [];
-    widgets.add(_buildCourseName());
+    // widgets.add(_buildCourseName());
     widgets.add(_buildVetCode());
     widgets.add(_buildCourseDetail());
     return widgets;
@@ -44,7 +55,7 @@ class CourseDetailPage extends StatelessWidget {
     return Align(
         alignment: Alignment.topCenter,
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(5.0),
           child: Column(
             children: [_getVetCodeText(_course), _getCricosCodeText(_course)],
           ),
@@ -308,10 +319,10 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getDurationString(),
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getDurationString(),
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -336,11 +347,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.durationDetail!,
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.durationDetail!,
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -365,11 +376,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.location!.toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.location!.toString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -394,11 +405,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.locationDetail!.toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.locationDetail!.toString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -423,11 +434,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getTuitionString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getTuitionString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -452,11 +463,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.tuitionDetail!.toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.tuitionDetail!.toString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -481,11 +492,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getTuitionHalfString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getTuitionHalfString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -510,11 +521,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getTuitionHalfDetailString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getTuitionHalfDetailString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -539,11 +550,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getPlacementFeeString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getPlacementFeeString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -568,11 +579,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getPlacementDurationString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getPlacementDurationString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");
@@ -597,11 +608,11 @@ class CourseDetailPage extends StatelessWidget {
       //     ],
       //   );
       // } else {
-        return Text(
-          course.getPlacementDetailString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        );
+      return Text(
+        course.getPlacementDetailString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+      );
       // }
     } else {
       return Text("");

@@ -19,7 +19,6 @@ class SchoolCoursesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // buildDepartmentList(_school!);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CommonWidgets.getAppBar(context, true),
@@ -39,7 +38,7 @@ class SchoolCoursesPageView extends StatelessWidget {
             child: null,
           )),
       Expanded(
-        flex: 2,
+        flex: 1,
         child: Align(
             alignment: Alignment.center,
             child: Text(Utils.getSchoolTitle(_school!.name!),
@@ -47,7 +46,7 @@ class SchoolCoursesPageView extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
       ),
       Expanded(
-          flex: 8,
+          flex: 10,
           child: Align(
             alignment: Alignment.topCenter,
             child: _buildGrid(),
