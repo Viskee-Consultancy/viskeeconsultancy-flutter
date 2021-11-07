@@ -21,14 +21,9 @@ class CourseDetailPage extends StatelessWidget {
         appBar: CommonWidgets.getAppBar(context, false),
         body: Column(
           children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  child: null,
-                )),
-            Expanded(flex: 1, child: _buildCourseName()),
+            Padding(padding: EdgeInsets.only(top: 80), child: _buildCourseName(),),
             // Expanded(flex: 1, child: _buildVetCode()),
-            Expanded(flex: 10, child: ListView(shrinkWrap: false, children: _getListData()))
+            Expanded(child: ListView(shrinkWrap: false, children: _getListData()))
           ],
         ));
   }
@@ -285,6 +280,7 @@ class CourseDetailPage extends StatelessWidget {
     if (course != null && course.vetCode != null) {
       return Text(
         "VET National Code:" + course.vetCode!,
+        textAlign: TextAlign.center,
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
       );
     } else {
@@ -296,6 +292,7 @@ class CourseDetailPage extends StatelessWidget {
     if (course != null && course.cricosCode != null) {
       return Text(
         "CRICOS Course Code:" + course.cricosCode!,
+        textAlign: TextAlign.center,
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
       );
     } else {

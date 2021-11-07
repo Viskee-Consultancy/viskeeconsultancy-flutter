@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
 
@@ -47,13 +47,8 @@ class SearchResultView extends State<SearchResultPage> {
         appBar: CommonWidgets.getAppBar(context, false),
         body: Container(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Expanded(
-              flex: 1,
-              child: Container(
-                child: null,
-              )),
           Padding(
-            padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
+            padding: EdgeInsets.only(left: 5, right: 5, top: 80, bottom: 10),
             child: Align(
                 alignment: Alignment.center,
                 child: Text("Search Results For " + _result!.searchText!,
@@ -73,11 +68,13 @@ class SearchResultView extends State<SearchResultPage> {
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text(StringConstants.AIBT_GROUP_NAME),
+                      child: Text(StringConstants.AIBT_GROUP_NAME,
+                          style: TextStyle(fontWeight: _selections[0] ? FontWeight.bold : FontWeight.normal)),
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text(StringConstants.REACH_GROUP_NAME),
+                      child: Text(StringConstants.REACH_GROUP_NAME,
+                          style: TextStyle(fontWeight: _selections[1] ? FontWeight.bold : FontWeight.normal)),
                     )
                   ],
                   onPressed: (int index) {

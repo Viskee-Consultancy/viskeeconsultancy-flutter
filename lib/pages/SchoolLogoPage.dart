@@ -41,7 +41,7 @@ class SchoolLogoPage extends StatelessWidget {
                     child: _buildTitleLogo(),
                   )),
               Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Align(
                     alignment: Alignment.center,
                     child: ElevatedButton(
