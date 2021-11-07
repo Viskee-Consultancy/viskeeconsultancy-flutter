@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:viskeeconsultancy/util/Utils.dart';
-import 'package:viskeeconsultancy/values/NavigationPath.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import '../values/CustomColors.dart';
-import 'SchoolCoursesPage.dart';
 import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
 
@@ -56,7 +55,7 @@ class MainPage extends StatelessWidget {
                 flex: 6,
                 child: Text("Explore Over 90+ Courses and Promotions",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
+                    style: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Colors.white)),
               ),
               ConstrainedBox(
                   constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
@@ -212,7 +211,14 @@ class CourseSearchAutocomplete extends StatelessWidget {
             errorBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
             contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+            prefixIcon: Theme(
+              data: Theme.of(context).copyWith(primaryColor: CustomColors.GREY),
+              child: Icon(
+                Icons.search_outlined,
+              ),
+            ),
             hintText: "Search for a course",
+            focusColor: CustomColors.GOLD,
             fillColor: CustomColors.GOLD),
         controller: this._typeAheadController,
         onSubmitted: (query) {
