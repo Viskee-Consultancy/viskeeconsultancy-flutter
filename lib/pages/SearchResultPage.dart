@@ -48,7 +48,7 @@ class SearchResultView extends State<SearchResultPage> {
         body: Container(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
           Padding(
-            padding: EdgeInsets.only(left: 5, right: 5, top: 80, bottom: 10),
+            padding: EdgeInsets.only(left: 5, right: 5, top: 120, bottom: 10),
             child: Align(
                 alignment: Alignment.center,
                 child: Text("Search Results For " + _result!.searchText!,

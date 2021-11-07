@@ -32,7 +32,9 @@ class SchoolCoursesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Padding(padding: EdgeInsets.only(top: 80), child:  Align(
+      Padding(
+        padding: EdgeInsets.only(top: 120),
+        child: Align(
             alignment: Alignment.center,
             child: Text(Utils.getSchoolTitle(_school!.name!),
                 textAlign: TextAlign.center,
@@ -40,9 +42,9 @@ class SchoolCoursesPageView extends StatelessWidget {
       ),
       Expanded(
           child: Align(
-            alignment: Alignment.topCenter,
-            child: _buildGrid(),
-          )),
+        alignment: Alignment.topCenter,
+        child: _buildGrid(),
+      )),
     ]);
   }
 

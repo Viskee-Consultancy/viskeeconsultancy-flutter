@@ -21,7 +21,10 @@ class CourseDetailPage extends StatelessWidget {
         appBar: CommonWidgets.getAppBar(context, false),
         body: Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: 80), child: _buildCourseName(),),
+            Padding(
+              padding: EdgeInsets.only(top: 120),
+              child: _buildCourseName(),
+            ),
             // Expanded(flex: 1, child: _buildVetCode()),
             Expanded(child: ListView(shrinkWrap: false, children: _getListData()))
           ],

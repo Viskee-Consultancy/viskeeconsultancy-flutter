@@ -34,8 +34,8 @@ class SchoolLogoPage extends StatelessWidget {
                   child: Container(
                     child: null,
                   )),
-              Expanded(
-                  flex: 3,
+              Padding(
+                  padding: EdgeInsets.only(top: 40),
                   child: Align(
                     alignment: Alignment.center,
                     child: _buildTitleLogo(),

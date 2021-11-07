@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class BrochureDownloadPage extends StatelessWidget {
   late String _groupName;
@@ -21,13 +21,8 @@ class BrochureDownloadPage extends StatelessWidget {
         appBar: CommonWidgets.getAppBar(context, false),
         body: Container(
             child: Column(children: [
-          Expanded(
-              flex: 1,
-              child: Container(
-                child: null,
-              )),
-          Expanded(
-            flex: 1,
+          Padding(
+            padding: EdgeInsets.only(top: 120),
             child: Align(
                 alignment: Alignment.center,
                 child: Text("Latest Brochures For " + _groupName,
@@ -88,7 +83,8 @@ class BrochureGridView extends StatelessWidget {
                 flex: 8,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(_brochure.name!, style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 15)),
+                  child: Text(_brochure.name!,
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 15)),
                 )),
           ],
         ),
