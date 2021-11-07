@@ -137,6 +137,8 @@ class SchoolGridView extends StatelessWidget {
   }
 
   String buildDepartmentString(List<Department> departments) {
-    return departments.map((e) => e.name!).join(" | ");
+    List<String> departmentNames = departments.map((e) => e.name!).toList();
+    departmentNames.removeWhere((element) => element.toLowerCase().contains("package"));
+    return departmentNames.join(" | ");
   }
 }
