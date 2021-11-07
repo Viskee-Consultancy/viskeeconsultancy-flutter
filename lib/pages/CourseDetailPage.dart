@@ -260,7 +260,10 @@ class CourseDetailPage extends StatelessWidget {
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
           ),
-          child: Text("Terms and Conditions"),
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+              child: Text("Terms and Conditions",
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
           onPressed: () {
             _launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
           }),

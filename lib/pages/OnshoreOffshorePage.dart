@@ -58,7 +58,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("ONSHORE", style: TextStyle(color: Colors.black))),
+                              child: Text("ONSHORE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
                             NavigationPath.PATH.add("Onshore");
                             Navigator.push(context,
@@ -77,7 +77,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("OFFSHORE", style: TextStyle(color: Colors.black))),
+                              child: Text("OFFSHORE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
                             NavigationPath.PATH.add("Offshore");
                             Navigator.push(context,

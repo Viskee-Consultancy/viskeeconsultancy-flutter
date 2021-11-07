@@ -38,7 +38,7 @@ class CoeSelectionPage extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.all(15), child: Text("COE", style: TextStyle(color: Colors.black))),
+                          padding: EdgeInsets.all(15), child: Text("COE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                       onPressed: () {
                         NavigationPath.PATH.add("COE");
                         Navigator.push(
@@ -59,7 +59,7 @@ class CoeSelectionPage extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.all(15), child: Text("NON-COE", style: TextStyle(color: Colors.black))),
+                          padding: EdgeInsets.all(15), child: Text("NON-COE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                       onPressed: () {
                         NavigationPath.PATH.add("Non-COE");
                         Navigator.push(
