@@ -39,11 +39,13 @@ class SchoolCoursesPageView extends StatelessWidget {
             child: null,
           )),
       Expanded(
-          flex: 2,
-          child: Align(
+        flex: 2,
+        child: Align(
             alignment: Alignment.center,
-            child: Utils.getSchoolLogo(_school!.name),
-          )),
+            child: Text(_school!.name!,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+      ),
       Expanded(
           flex: 8,
           child: Align(
