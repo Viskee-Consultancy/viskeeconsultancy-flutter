@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
-import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/School.dart';
-import 'package:viskeeconsultancy/pages/BrochureDownloadPage.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
 
 School? _school;
-List<Department> _departments = [];
 
 class SchoolCoursesPage extends StatelessWidget {
   SchoolCoursesPage(School schoolInput) {
@@ -22,28 +19,13 @@ class SchoolCoursesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    buildDepartmentList(_school!);
+    // buildDepartmentList(_school!);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CommonWidgets.getAppBar(context),
         body: Container(
           child: new SchoolCoursesPageView(),
         ));
-  }
-
-  void buildDepartmentList(School school) {
-    _departments.clear();
-    Map<String, List<Course>> m = new Map();
-    for (var i = 0; i < school.courses.length; i++) {
-      var course = school.courses[i];
-      if (m[course.department] == null) {
-        List<Course> courses = [course];
-        m[course.department!] = courses;
-      } else {
-        m[course.department!]!.add(course);
-      }
-    }
-    m.entries.forEach((entry) => {_departments.add(new Department(entry.key, entry.value))});
   }
 }
 
@@ -77,8 +59,8 @@ class SchoolCoursesPageView extends StatelessWidget {
         // padding: const EdgeInsets.all(1),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-        itemCount: _departments.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_departments.length),
+        itemCount: _school!.departments.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_school!.departments.length),
         itemBuilder: (BuildContext context, int index) {
           return new DepartmentCourseGridView(index);
         },
@@ -89,7 +71,7 @@ class DepartmentCourseGridView extends StatelessWidget {
   late Department _department;
 
   DepartmentCourseGridView(int position) {
-    this._department = _departments[position];
+    this._department = _school!.departments[position];
   }
 
   @override

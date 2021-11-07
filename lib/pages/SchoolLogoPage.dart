@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -47,7 +49,8 @@ class SchoolLogoPage extends StatelessWidget {
                         ),
                         child: Padding(
                             padding: EdgeInsets.all(15),
-                            child: Text("LATEST BROCHURES", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20))),
+                            child: Text("LATEST BROCHURES",
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -69,53 +72,71 @@ class SchoolLogoPage extends StatelessWidget {
 
   Widget _buildTitleLogo() {
     if (_group.name == StringConstants.AIBT_GROUP_NAME) {
-      return SvgPicture.asset("images/aibt.svg");
+      return Utils.isRunningOnMobileBrowser()
+          ? Padding(padding: EdgeInsets.all(30), child: Image.asset("images/aibt_landscape.png"))
+          : SvgPicture.asset("images/aibt.svg");
     } else {
-      return SvgPicture.asset("images/reach.svg");
+      return Utils.isRunningOnMobileBrowser()
+          ? Padding(padding: EdgeInsets.all(30), child: Image.asset("images/reach_landscape.png"))
+          : SvgPicture.asset("images/reach.svg");
     }
   }
 
-  Widget _buildGrid() => GridView.extent(
-      maxCrossAxisExtent: 240,
+  Widget _buildGrid() => new StaggeredGridView.countBuilder(
+      crossAxisCount: 1,
+      shrinkWrap: true,
+      // maxCrossAxisExtent: 240,
       padding: const EdgeInsets.all(20),
       mainAxisSpacing: 0,
       crossAxisSpacing: 0,
-      children: _buildGridTileList(_group.schools.length));
-
-  List<Container> _buildGridTileList(int count) => List.generate(count, (i) => Container(child: SchoolLogoGridView(_group.schools[i])));
+      itemCount: _group.schools.length,
+      staggeredTileBuilder: (int index) => new StaggeredTile.fit(_group.schools.length),
+      itemBuilder: (BuildContext context, int index) {
+        return new SchoolGridView(_group, index);
+      });
 }
 
-class SchoolLogoGridView extends StatelessWidget {
+class SchoolGridView extends StatelessWidget {
   late School _school;
+  late Group _group;
 
-  SchoolLogoGridView(School school) {
-    this._school = school;
+  SchoolGridView(Group group, int index) {
+    this._group = group;
+    this._school = group.schools[index];
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: CustomColors.GOLD),
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(
-              const Radius.circular(8),
-            )),
-        child: new Material(
-          child: new InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
-              },
-              child: Padding(
-                padding: EdgeInsets.all(5),
-                child: Utils.getSchoolLogo(_school.name),
-              )),
-          color: Colors.transparent,
-        ),
-      ),
-    );
+        padding: EdgeInsets.all(15),
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Utils.getGroupSecondaryColor(_group.name)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ))),
+          onPressed: () {
+            Navigator.push(
+                context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
+          },
+          child: Column(
+            children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(10, 14, 10, 7),
+                  child: Text(_school.name!,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(10, 7, 10, 14),
+                  child: Text(buildDepartmentString(_school.departments),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 15)))
+            ],
+          ),
+        ));
+  }
+
+  String buildDepartmentString(List<Department> departments) {
+    return departments.map((e) => e.name!).join(" | ");
   }
 }

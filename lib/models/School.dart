@@ -1,8 +1,11 @@
+import 'package:viskeeconsultancy/models/Department.dart';
+
 import 'Course.dart';
 
 class School {
   String? name;
   List<Course> courses = List.empty();
+  List<Department> departments = [];
 
   School.fromJson(Map<String, dynamic> json) {
     // name = json["name"];

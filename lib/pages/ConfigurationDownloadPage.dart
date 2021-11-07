@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
+import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/School.dart';
@@ -321,9 +322,8 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       //     basicSchool.courses.add(course);
       //   }
       // }
-    } else {
-      return basicSchool;
     }
+    buildDepartmentList(basicSchool);
     return basicSchool;
   }
 
@@ -383,5 +383,19 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     totalCourses.addAll(aibtCourses);
     totalCourses.addAll(reachCourses);
     return totalCourses;
+  }
+
+  void buildDepartmentList(School school) {
+    Map<String, List<Course>> m = new Map();
+    for (var i = 0; i < school.courses.length; i++) {
+      var course = school.courses[i];
+      if (m[course.department] == null) {
+        List<Course> courses = [course];
+        m[course.department!] = courses;
+      } else {
+        m[course.department!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {school.departments.add(new Department(entry.key, entry.value))});
   }
 }
