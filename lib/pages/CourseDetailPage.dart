@@ -18,7 +18,7 @@ class CourseDetailPage extends StatelessWidget {
     }
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context),
+        appBar: CommonWidgets.getAppBar(context, false),
         body: Container(child: ListView(shrinkWrap: false, children: _getListData())));
   }
 

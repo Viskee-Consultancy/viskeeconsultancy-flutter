@@ -22,7 +22,7 @@ class SchoolCoursesPage extends StatelessWidget {
     // buildDepartmentList(_school!);
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context),
+        appBar: CommonWidgets.getAppBar(context, true),
         body: Container(
           child: new SchoolCoursesPageView(),
         ));
@@ -42,7 +42,7 @@ class SchoolCoursesPageView extends StatelessWidget {
         flex: 2,
         child: Align(
             alignment: Alignment.center,
-            child: Text(_school!.name!,
+            child: Text(Utils.getSchoolTitle(_school!.name!),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
       ),

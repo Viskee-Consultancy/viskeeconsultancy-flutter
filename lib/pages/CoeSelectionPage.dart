@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
@@ -10,7 +11,7 @@ class CoeSelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: CommonWidgets.getAppBar(context),
+      appBar: CommonWidgets.getAppBar(context, true),
       body: Container(
           child: Column(children: [
         Expanded(
@@ -39,6 +40,7 @@ class CoeSelectionPage extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.all(15), child: Text("COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
+                        NavigationPath.PATH.add("COE");
                         Navigator.push(
                             context,
                             PageTransition(
@@ -59,6 +61,7 @@ class CoeSelectionPage extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.all(15), child: Text("NON-COE", style: TextStyle(color: Colors.black))),
                       onPressed: () {
+                        NavigationPath.PATH.add("Non-COE");
                         Navigator.push(
                             context,
                             PageTransition(

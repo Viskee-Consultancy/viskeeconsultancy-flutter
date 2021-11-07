@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
@@ -12,7 +13,7 @@ class RegionSelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: CommonWidgets.getAppBar(context),
+      appBar: CommonWidgets.getAppBar(context, true),
       body: Container(
           child: Column(children: [
         Expanded(
@@ -84,11 +85,13 @@ class CountrySelectionAutocomplete extends StatelessWidget {
       ));
     } else {
       if (Region.SEAPAE.any((country) => country.toLowerCase() == selected)) {
+        NavigationPath.PATH.add("SEAPAE");
         Navigator.push(
             context,
             PageTransition(
                 child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.topToBottom));
       } else {
+        NavigationPath.PATH.add("SISMIC");
         Navigator.push(
             context,
             PageTransition(

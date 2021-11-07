@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -80,6 +81,7 @@ class MainPage extends StatelessWidget {
                       constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                       child: new OutlinedButton(
                         onPressed: () {
+                          NavigationPath.PATH.add("AIBT");
                           Navigator.push(context,
                               PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
                         },
@@ -100,6 +102,7 @@ class MainPage extends StatelessWidget {
                       constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                       child: new OutlinedButton(
                         onPressed: () {
+                          NavigationPath.PATH.add("REACH");
                           Navigator.push(context,
                               PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
                         },

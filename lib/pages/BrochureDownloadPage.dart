@@ -18,7 +18,7 @@ class BrochureDownloadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context),
+        appBar: CommonWidgets.getAppBar(context, false),
         body: Container(
             child: Column(children: [
           Expanded(

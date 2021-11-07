@@ -44,7 +44,7 @@ class SearchResultView extends State<SearchResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context),
+        appBar: CommonWidgets.getAppBar(context, false),
         body: Container(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
           Expanded(

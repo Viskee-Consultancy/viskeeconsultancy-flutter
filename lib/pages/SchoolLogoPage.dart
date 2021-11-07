@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
@@ -24,7 +25,7 @@ class SchoolLogoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context),
+        appBar: CommonWidgets.getAppBar(context, true),
         body: Container(
           child: Column(
             children: [
@@ -116,6 +117,7 @@ class SchoolGridView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ))),
           onPressed: () {
+            NavigationPath.PATH.add(Utils.getSchoolTitle(_school.name!));
             Navigator.push(
                 context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
           },
@@ -123,7 +125,7 @@ class SchoolGridView extends StatelessWidget {
             children: [
               Padding(
                   padding: EdgeInsets.fromLTRB(10, 14, 10, 7),
-                  child: Text(_school.name!,
+                  child: Text(Utils.getSchoolTitle(_school.name!),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
               Padding(

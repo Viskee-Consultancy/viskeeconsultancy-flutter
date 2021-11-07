@@ -35,6 +35,35 @@ class Utils {
     }
   }
 
+  static getSchoolTitle(String? schoolName) {
+    var schoolNameEnum = SchoolNameEnumUtils.fromValue(schoolName!);
+    switch (schoolNameEnum) {
+      case SchoolNameEnum.ACE:
+        return "AVIATION";
+      case SchoolNameEnum.BESPOKE:
+        return "ENGLISH";
+      case SchoolNameEnum.BRANSON:
+        return "BUSINESS AND TECHNOLOGY";
+      case SchoolNameEnum.DIANA:
+        return "COMMUNITY SERVICES";
+      case SchoolNameEnum.EDISON:
+        return "TECH SCIENCES";
+      case SchoolNameEnum.SHELDON:
+        return "HOSPITALITY";
+      case SchoolNameEnum.BUSINESS_AND_TECHNOLOGY_FACULTY:
+        return "BUSINESS";
+      case SchoolNameEnum.EARLY_CHILDHOOD_FACULTY:
+        return "COMMUNITY SERVICES";
+      case SchoolNameEnum.ENGLISH_FACULTY:
+        return "ENGLISH";
+      case SchoolNameEnum.HOSPITALITY_FACULTY:
+        return "HOSPITALITY";
+      case SchoolNameEnum.TECH_SCIENCES_FACULTY:
+        return "TECH SCIENCES";
+      default:
+    }
+  }
+
   static getGroupPrimaryColor(String? groupName) {
       if (groupName == StringConstants.AIBT_GROUP_NAME) {
         return CustomColors.AIBT_PRIMARY_COLOR;
