@@ -3,13 +3,12 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
-import 'package:viskeeconsultancy/values/NavigationPath.dart';
-import 'package:viskeeconsultancy/values/StringConstants.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
-import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'BrochureDownloadPage.dart';
 import 'SchoolCoursesPage.dart';
@@ -30,12 +29,13 @@ class SchoolLogoPage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: null,
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(top: 40),
+                flex: 2,
+                child: Container(
+                  child: null,
+                ),
+              ),
+              Expanded(
+                  flex: 3,
                   child: Align(
                     alignment: Alignment.center,
                     child: _buildTitleLogo(),
