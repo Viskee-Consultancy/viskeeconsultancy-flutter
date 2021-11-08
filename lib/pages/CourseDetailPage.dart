@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
@@ -16,19 +17,24 @@ class CourseDetailPage extends StatelessWidget {
     if (_course == null) {
       _course = ModalRoute.of(context)!.settings.arguments as Course;
     }
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context, false),
-        body: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 120),
-              child: _buildCourseName(),
-            ),
-            // Expanded(flex: 1, child: _buildVetCode()),
-            Expanded(child: ListView(shrinkWrap: false, children: _getListData()))
-          ],
-        ));
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, false);
+          return true;
+        },
+        child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, false),
+            body: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 120),
+                  child: _buildCourseName(),
+                ),
+                // Expanded(flex: 1, child: _buildVetCode()),
+                Expanded(child: ListView(shrinkWrap: false, children: _getListData()))
+              ],
+            )));
   }
 
   List<Widget> _getListData() {

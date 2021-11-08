@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
@@ -16,26 +17,31 @@ class BrochureDownloadPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context, false),
-        body: Container(
-            child: Column(children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(10, 120, 10, 60),
-            child: Align(
-                alignment: Alignment.center,
-                child: Text("Latest Brochures For " + _groupName,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
-          ),
-          Expanded(
-              flex: 8,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: _buildGrid(),
-              ))
-        ])));
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, false);
+          return true;
+        },
+        child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, false),
+            body: Container(
+                child: Column(children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 120, 10, 60),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Text("Latest Brochures For " + _groupName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+              ),
+              Expanded(
+                  flex: 8,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: _buildGrid(),
+                  ))
+            ]))));
   }
 
   Widget _buildGrid() => new StaggeredGridView.countBuilder(

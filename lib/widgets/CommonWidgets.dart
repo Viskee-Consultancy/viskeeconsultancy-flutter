@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
 
 class CommonWidgets {
@@ -9,8 +10,7 @@ class CommonWidgets {
       leading: IconButton(
         icon: Icon(Icons.arrow_back, color: Colors.black, size: 40),
         onPressed: () => {
-          if (isRemovePath) {NavigationPath.PATH.removeLast()},
-          Navigator.of(context).pop()
+          Utils.onBackPressed(context, isRemovePath)
         },
       ),
       backgroundColor: Colors.transparent,
@@ -42,7 +42,7 @@ class CommonWidgets {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.arrow_back, color: Colors.white, size: 40),
-        onPressed: () => {NavigationPath.PATH.removeLast(), Navigator.of(context).pop()},
+        onPressed: () => {Utils.onBackPressed(context, true)},
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,

@@ -1,52 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:viskeeconsultancy/values/NavigationPath.dart';
-import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'package:viskeeconsultancy/models/Region.dart';
 import 'package:viskeeconsultancy/models/SubFolderEnum.dart';
 import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
+import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class RegionSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CommonWidgets.getAppBar(context, true),
-      body: Container(
-          child: Column(children: [
-        Expanded(
-            flex: 1,
-            child: Container(
-              child: null,
-            )),
-        Expanded(
-          flex: 1,
-          child: Align(
-              alignment: Alignment.center,
-              child: Text("Please choose your country",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
-        ),
-        ConstrainedBox(
-            constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
-            child: Padding(
-                padding: EdgeInsets.all(20.0),
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, true);
+          return true;
+        },
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: CommonWidgets.getAppBar(context, true),
+          body: Container(
+              child: Column(children: [
+            Expanded(
+                flex: 1,
                 child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: CustomColors.GOLD),
-                      borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                    ),
-                    child: new CountrySelectionAutocomplete()))),
-        Expanded(
-            flex: 3,
-            child: Container(
-              child: null,
-            )),
-      ])),
-    );
+                  child: null,
+                )),
+            Expanded(
+              flex: 1,
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Text("Please choose your country",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+            ),
+            ConstrainedBox(
+                constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
+                child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: CustomColors.GOLD),
+                          borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                        ),
+                        child: new CountrySelectionAutocomplete()))),
+            Expanded(
+                flex: 3,
+                child: Container(
+                  child: null,
+                )),
+          ])),
+        ));
   }
 }
 

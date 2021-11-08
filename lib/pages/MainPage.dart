@@ -28,106 +28,111 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CommonWidgets.getAppBarWhite(context),
-      body: Container(
-          decoration: BoxDecoration(
-            color: Colors.black,
-            image: DecorationImage(
-              image: AssetImage("images/background.jpg"),
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: null,
-                  )),
-              Expanded(
-                flex: 2,
-                child: Container(child: null),
-              ),
-              Expanded(
-                flex: 6,
-                child: Text("Explore Over 90+ Courses and Promotions",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Colors.white)),
-              ),
-              ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
-                  child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: CustomColors.GOLD),
-                            borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                          ),
-                          child: new CourseSearchAutocomplete(_courses)))),
-              Expanded(
-                flex: 2,
-                child: Container(child: null),
-              ),
-              Expanded(
-                  flex: 4,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                    Expanded(flex: 1, child: Container(child: null)),
-                    Container(
-                      constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                      child: new OutlinedButton(
-                        onPressed: () {
-                          NavigationPath.PATH.add("AIBT");
-                          Navigator.push(context,
-                              PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
-                        },
-                        child: Utils.isRunningOnMobileBrowser()
-                            ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
-                            : SvgPicture.asset("images/aibt.svg"),
-                        style: OutlinedButton.styleFrom(
-                          primary: Colors.grey,
-                          backgroundColor: Colors.white,
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(15),
-                          side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                        ),
-                      ),
-                    ),
-                    Expanded(flex: 2, child: Container(child: null)),
-                    Container(
-                      constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                      child: new OutlinedButton(
-                        onPressed: () {
-                          NavigationPath.PATH.add("REACH");
-                          Navigator.push(context,
-                              PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
-                        },
-                        child: Utils.isRunningOnMobileBrowser()
-                            ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
-                            : SvgPicture.asset("images/reach.svg"),
-                        style: OutlinedButton.styleFrom(
-                          primary: Colors.grey,
-                          backgroundColor: Colors.white,
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(15),
-                          side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                        ),
-                      ),
-                    ),
-                    Expanded(flex: 1, child: Container(child: null))
-                  ])),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: null,
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, true);
+          return true;
+        },
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: CommonWidgets.getAppBarWhite(context),
+          body: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                image: DecorationImage(
+                  image: AssetImage("images/background.jpg"),
+                  colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
+                  fit: BoxFit.cover,
                 ),
-              )
-            ],
-          )),
-    );
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: null,
+                      )),
+                  Expanded(
+                    flex: 2,
+                    child: Container(child: null),
+                  ),
+                  Expanded(
+                    flex: 6,
+                    child: Text("Explore Over 90+ Courses and Promotions",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Colors.white)),
+                  ),
+                  ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
+                      child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: CustomColors.GOLD),
+                                borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                              ),
+                              child: new CourseSearchAutocomplete(_courses)))),
+                  Expanded(
+                    flex: 2,
+                    child: Container(child: null),
+                  ),
+                  Expanded(
+                      flex: 4,
+                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                        Expanded(flex: 1, child: Container(child: null)),
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                          child: new OutlinedButton(
+                            onPressed: () {
+                              NavigationPath.PATH.add("AIBT");
+                              Navigator.push(context,
+                                  PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
+                            },
+                            child: Utils.isRunningOnMobileBrowser()
+                                ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
+                                : SvgPicture.asset("images/aibt.svg"),
+                            style: OutlinedButton.styleFrom(
+                              primary: Colors.grey,
+                              backgroundColor: Colors.white,
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(15),
+                              side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                            ),
+                          ),
+                        ),
+                        Expanded(flex: 2, child: Container(child: null)),
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                          child: new OutlinedButton(
+                            onPressed: () {
+                              NavigationPath.PATH.add("REACH");
+                              Navigator.push(context,
+                                  PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
+                            },
+                            child: Utils.isRunningOnMobileBrowser()
+                                ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
+                                : SvgPicture.asset("images/reach.svg"),
+                            style: OutlinedButton.styleFrom(
+                              primary: Colors.grey,
+                              backgroundColor: Colors.white,
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(15),
+                              side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                            ),
+                          ),
+                        ),
+                        Expanded(flex: 1, child: Container(child: null))
+                      ])),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: null,
+                    ),
+                  )
+                ],
+              )),
+        ));
   }
 }
 

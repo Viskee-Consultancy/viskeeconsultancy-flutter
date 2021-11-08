@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
+import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
@@ -42,62 +43,67 @@ class SearchResultPage extends StatefulWidget {
 class SearchResultView extends State<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context, false),
-        body: Container(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Padding(
-            padding: EdgeInsets.only(left: 5, right: 5, top: 120, bottom: 10),
-            child: Align(
-                alignment: Alignment.center,
-                child: Text("Search Results For " + _result!.searchText!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
-          ),
-          Expanded(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.center,
-                child: ToggleButtons(
-                  borderColor: CustomColors.GOLD,
-                  borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                  selectedColor: Colors.white,
-                  disabledColor: Colors.black,
-                  fillColor: CustomColors.GOLD,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text(StringConstants.AIBT_GROUP_NAME,
-                          style: TextStyle(fontWeight: _selections[0] ? FontWeight.bold : FontWeight.normal)),
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, false);
+          return true;
+        },
+        child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, false),
+            body: Container(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Padding(
+                padding: EdgeInsets.only(left: 5, right: 5, top: 120, bottom: 10),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Text("Search Results For " + _result!.searchText!,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: ToggleButtons(
+                      borderColor: CustomColors.GOLD,
+                      borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                      selectedColor: Colors.white,
+                      disabledColor: Colors.black,
+                      fillColor: CustomColors.GOLD,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          child: Text(StringConstants.AIBT_GROUP_NAME,
+                              style: TextStyle(fontWeight: _selections[0] ? FontWeight.bold : FontWeight.normal)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          child: Text(StringConstants.REACH_GROUP_NAME,
+                              style: TextStyle(fontWeight: _selections[1] ? FontWeight.bold : FontWeight.normal)),
+                        )
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          if (index == 0) {
+                            _selections = [true, false];
+                            _coursesToDisplay = _coursesAIBT;
+                          } else if (index == 1) {
+                            _selections = [false, true];
+                            _coursesToDisplay = _coursesREACH;
+                          }
+                        });
+                      },
+                      isSelected: _selections,
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: Text(StringConstants.REACH_GROUP_NAME,
-                          style: TextStyle(fontWeight: _selections[1] ? FontWeight.bold : FontWeight.normal)),
-                    )
-                  ],
-                  onPressed: (int index) {
-                    setState(() {
-                      if (index == 0) {
-                        _selections = [true, false];
-                        _coursesToDisplay = _coursesAIBT;
-                      } else if (index == 1) {
-                        _selections = [false, true];
-                        _coursesToDisplay = _coursesREACH;
-                      }
-                    });
-                  },
-                  isSelected: _selections,
-                ),
-              )),
-          Expanded(
-              flex: 8,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: new SearchResultGridView(),
-              ))
-        ])));
+                  )),
+              Expanded(
+                  flex: 8,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: new SearchResultGridView(),
+                  ))
+            ]))));
   }
 
   List<bool> _selections = buildSelections();

@@ -22,53 +22,59 @@ class SchoolLogoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context, true),
-        body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: null,
-                ),
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, true);
+          return true;
+        },
+        child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, true),
+            body: Container(
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: null,
+                    ),
+                  ),
+                  Expanded(
+                      flex: 3,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: _buildTitleLogo(),
+                      )),
+                  Expanded(
+                      flex: 2,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                            ),
+                            child: Padding(
+                                padding: EdgeInsets.all(15),
+                                child: Text("LATEST BROCHURES",
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      child: BrochureDownloadPage(_group.name!, _group.brochures),
+                                      type: PageTransitionType.topToBottom));
+                            }),
+                      )),
+                  Expanded(
+                      flex: 8,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: _buildGrid(),
+                      )),
+                ],
               ),
-              Expanded(
-                  flex: 3,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: _buildTitleLogo(),
-                  )),
-              Expanded(
-                  flex: 2,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
-                        ),
-                        child: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Text("LATEST BROCHURES",
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  child: BrochureDownloadPage(_group.name!, _group.brochures),
-                                  type: PageTransitionType.topToBottom));
-                        }),
-                  )),
-              Expanded(
-                  flex: 8,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: _buildGrid(),
-                  )),
-            ],
-          ),
-        ));
+            )));
   }
 
   Widget _buildTitleLogo() {

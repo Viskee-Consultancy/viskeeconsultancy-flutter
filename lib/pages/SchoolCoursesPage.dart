@@ -19,12 +19,17 @@ class SchoolCoursesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CommonWidgets.getAppBar(context, true),
-        body: Container(
-          child: new SchoolCoursesPageView(),
-        ));
+    return WillPopScope(
+        onWillPop: () async {
+          Utils.onBackPressed(context, true);
+          return true;
+        },
+        child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, true),
+            body: Container(
+              child: new SchoolCoursesPageView(),
+            )));
   }
 }
 

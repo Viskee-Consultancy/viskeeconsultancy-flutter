@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 class Utils {
@@ -95,5 +96,10 @@ class Utils {
     // if( html.window.navigator.platform!.toLowerCase().contains("macintel") && html.window.navigator.maxTouchPoints! > 0 ) return true;
 
     return false;
+  }
+
+  static onBackPressed(BuildContext context, bool isRemovePath) {
+    if (isRemovePath) {NavigationPath.PATH.removeLast();}
+    Navigator.of(context).pop();
   }
 }
