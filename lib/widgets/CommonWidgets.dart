@@ -9,9 +9,7 @@ class CommonWidgets {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.arrow_back, color: Colors.black, size: 40),
-        onPressed: () => {
-          Utils.onBackPressed(context, isRemovePath)
-        },
+        onPressed: () => {Utils.onBackPressed(context, isRemovePath)},
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -20,12 +18,14 @@ class CommonWidgets {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-              child: Text(NavigationPath.PATH.join(" > "),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  style: TextStyle(color: Colors.black, fontSize: 14))),
-          new Spacer(),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                  child: Text(NavigationPath.PATH.join(">"),
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      maxLines: 3,
+                      style: TextStyle(color: Colors.black, fontSize: 12)))),
+          // new Spacer(),
           Align(
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
@@ -51,12 +51,14 @@ class CommonWidgets {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-              child: Padding(padding: EdgeInsets.fromLTRB(0, 5, 0, 0),child:Text(NavigationPath.PATH.join(" > "),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  style: TextStyle(color: Colors.white, fontSize: 14)))),
-          new Spacer(),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                  child: Text(NavigationPath.PATH.join(">"),
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      maxLines: 3,
+                      style: TextStyle(color: Colors.white, fontSize: 12)))),
+          // new Spacer(),
           Align(
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(

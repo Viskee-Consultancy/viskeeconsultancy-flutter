@@ -6,6 +6,7 @@ import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
@@ -45,12 +46,12 @@ class SearchResultView extends State<SearchResultPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          Utils.onBackPressed(context, false);
+          Utils.onBackPressed(context, true);
           return true;
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: CommonWidgets.getAppBar(context, false),
+            appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
               Padding(
@@ -86,9 +87,13 @@ class SearchResultView extends State<SearchResultPage> {
                       onPressed: (int index) {
                         setState(() {
                           if (index == 0) {
+                            NavigationPath.PATH.removeLast();
+                            NavigationPath.PATH.add("AIBT");
                             _selections = [true, false];
                             _coursesToDisplay = _coursesAIBT;
                           } else if (index == 1) {
+                            NavigationPath.PATH.removeLast();
+                            NavigationPath.PATH.add("REACH");
                             _selections = [false, true];
                             _coursesToDisplay = _coursesREACH;
                           }
@@ -112,10 +117,13 @@ class SearchResultView extends State<SearchResultPage> {
 List<bool> buildSelections() {
   List<bool> _selections;
   if (!_coursesAIBT!.isEmpty) {
+    NavigationPath.PATH.add("AIBT");
     _selections = [true, false];
   } else if (_coursesAIBT!.isEmpty && !_coursesREACH!.isEmpty) {
+    NavigationPath.PATH.add("REACH");
     _selections = [false, true];
   } else {
+    NavigationPath.PATH.add("AIBT");
     _selections = [true, false];
   }
   return _selections;
