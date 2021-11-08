@@ -84,7 +84,7 @@ class BrochureGridView extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(_brochure.name!,
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 15)),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15)),
                 )),
           ],
         ),
