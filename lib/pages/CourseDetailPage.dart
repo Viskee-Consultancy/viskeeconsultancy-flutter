@@ -28,7 +28,7 @@ class CourseDetailPage extends StatelessWidget {
             body: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 120),
+                  padding: EdgeInsets.fromLTRB(5, 120, 5, 10),
                   child: _buildCourseName(),
                 ),
                 // Expanded(flex: 1, child: _buildVetCode()),

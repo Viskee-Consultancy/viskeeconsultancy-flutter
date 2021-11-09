@@ -39,13 +39,15 @@ class OnshoreOffshorePage extends StatelessWidget {
                   child: null,
                 )),
             Expanded(
-              flex: 1,
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Text("Are you ONSHORE or OFFSHORE ?",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
-            ),
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Are you currently onshore or offshore?",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+                )),
             Expanded(
                 flex: 1,
                 child: Align(
@@ -58,7 +60,8 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("ONSHORE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                              child: Text("ONSHORE",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
                             NavigationPath.PATH.add("Onshore");
                             Navigator.push(context,
@@ -77,7 +80,8 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("OFFSHORE", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                              child: Text("OFFSHORE",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
                             NavigationPath.PATH.add("Offshore");
                             Navigator.push(context,

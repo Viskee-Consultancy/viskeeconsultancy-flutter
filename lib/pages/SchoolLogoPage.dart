@@ -123,7 +123,7 @@ class SchoolGridView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ))),
           onPressed: () {
-            NavigationPath.PATH.add(Utils.getSchoolTitle(_school.name!));
+            NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(_school.name!));
             Navigator.push(
                 context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
           },

@@ -60,7 +60,7 @@ class MainPage extends StatelessWidget {
                     flex: 6,
                     child: Text("Explore Over 90+ Courses and Promotions",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Colors.white)),
+                        style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
                   ),
                   ConstrainedBox(
                       constraints: BoxConstraints(minHeight: 60, maxHeight: 100),

@@ -29,7 +29,7 @@ class CoeSelectionPage extends StatelessWidget {
               flex: 1,
               child: Padding(
                   padding: EdgeInsets.all(5),
-                  child: Text("Do you have Confirmation of Enrollment ?",
+                  child: Text("Do you require a Confirmation of Enrolment (CoE)?",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
             ),
