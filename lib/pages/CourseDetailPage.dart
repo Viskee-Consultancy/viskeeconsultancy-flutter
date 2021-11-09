@@ -7,13 +7,17 @@ import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class CourseDetailPage extends StatelessWidget {
   late Course _course;
+  late bool _isFromSearch;
+  late BuildContext _context;
 
-  CourseDetailPage(Course input) {
+  CourseDetailPage(Course input, bool isFromSearch) {
     _course = input;
+    _isFromSearch = isFromSearch;
   }
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     if (_course == null) {
       _course = ModalRoute.of(context)!.settings.arguments as Course;
     }
@@ -269,19 +273,44 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _buildTermsConditionSection() {
-    return Padding(
-      padding: EdgeInsets.all(20.0),
-      child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
-          ),
-          child: Padding(
-              padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: Text("Terms and Conditions",
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-          onPressed: () {
-            _launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
-          }),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          child:
+              Text("CONTACT US", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: CustomColors.GOLD)),
+        ),
+        Padding(
+            padding: EdgeInsets.all(20.0),
+            child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                ),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    child: Text("START A NEW SEARCH",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                onPressed: () {
+                  Utils.onBackPressed(_context, false);
+                  Utils.onBackPressed(_context, true);
+                  if (!_isFromSearch) {
+                    Utils.onBackPressed(_context, true);
+                  }
+                })),
+        Padding(
+            padding: EdgeInsets.all(20.0),
+            child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+                ),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    child: Text("TERMS AND CONDITIONS",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                onPressed: () {
+                  _launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
+                }))
+      ],
     );
   }
 

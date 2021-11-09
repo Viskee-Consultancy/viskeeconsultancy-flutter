@@ -174,7 +174,7 @@ class SearchResultGridItem extends StatelessWidget {
               child: new InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        PageTransition(child: CourseDetailPage(course!), type: PageTransitionType.topToBottom));
+                        PageTransition(child: CourseDetailPage(course!, true), type: PageTransitionType.topToBottom));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),

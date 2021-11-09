@@ -127,7 +127,7 @@ class CourseItemView extends StatelessWidget {
           child: new InkWell(
               onTap: () {
                 Navigator.push(
-                    context, PageTransition(child: CourseDetailPage(_course), type: PageTransitionType.topToBottom));
+                    context, PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
@@ -165,7 +165,7 @@ class PromotionCourseItemView extends StatelessWidget {
           child: new InkWell(
               onTap: () {
                 Navigator.push(
-                    context, PageTransition(child: CourseDetailPage(_course), type: PageTransitionType.topToBottom));
+                    context, PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                   padding: EdgeInsets.all(5),
