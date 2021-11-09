@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
@@ -85,6 +86,16 @@ class Utils {
     return CustomColors.GOLD_HINT;
   }
 
+  static getGroupVideoLink(String? groupName) {
+    if (groupName == StringConstants.AIBT_GROUP_NAME) {
+      return StringConstants.AIBT_VIDEOS_URL;
+    }
+    if (groupName == StringConstants.REACH_GROUP_NAME) {
+      return StringConstants.REACH_VIDEOS_URL;
+    }
+    return StringConstants.AIBT_VIDEOS_URL;
+  }
+
   static isRunningOnMobileBrowser() {
     final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
     // smartphone
@@ -101,5 +112,13 @@ class Utils {
   static onBackPressed(BuildContext context, bool isRemovePath) {
     if (isRemovePath) {NavigationPath.PATH.removeLast();}
     Navigator.of(context).pop();
+  }
+
+  static launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

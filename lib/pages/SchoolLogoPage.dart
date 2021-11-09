@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,7 +35,7 @@ class SchoolLogoPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 1,
                     child: Container(
                       child: null,
                     ),
@@ -47,30 +48,58 @@ class SchoolLogoPage extends StatelessWidget {
                       )),
                   Expanded(
                       flex: 2,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                                width: 260,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                                    ),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Text("LATEST BROCHURES",
+                                            style: TextStyle(
+                                                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: BrochureDownloadPage(_group.name!, _group.brochures),
+                                              type: PageTransitionType.topToBottom));
+                                    })),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                  width: 260,
+                                  child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                                      ),
+                                      child: Padding(
+                                          padding: EdgeInsets.all(5),
+                                          child: Text("LATEST VIDEOS",
+                                              style: TextStyle(
+                                                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                                      onPressed: () {
+                                        Utils.launchURL(Utils.getGroupVideoLink(_group.name));
+                                      })),
                             ),
-                            child: Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Text("LATEST BROCHURES",
-                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      child: BrochureDownloadPage(_group.name!, _group.brochures),
-                                      type: PageTransitionType.topToBottom));
-                            }),
+                          )
+                        ],
                       )),
                   Expanded(
                       flex: 8,
                       child: Align(
                         alignment: Alignment.center,
-                        child: _buildGrid(),
+                        child: _buildSchoolGrid(),
                       )),
                 ],
               ),
@@ -89,7 +118,7 @@ class SchoolLogoPage extends StatelessWidget {
     }
   }
 
-  Widget _buildGrid() => new StaggeredGridView.countBuilder(
+  Widget _buildSchoolGrid() => new StaggeredGridView.countBuilder(
       crossAxisCount: 1,
       shrinkWrap: true,
       // maxCrossAxisExtent: 240,

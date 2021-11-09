@@ -54,4 +54,8 @@ class StringConstants {
       "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/brochures/json/";
   static const String AIBT_BROCHURE_FILE_NAME = "aibt-brochures.json";
   static const String REACH_BROCHURE_FILE_NAME = "reach-brochures.json";
+
+  // Latest Videos URL
+  static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
+  static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
 }
