@@ -1,5 +1,5 @@
 class Region {
-  static final List<String> SEAPAE = [
+  static final List<String> SISMIC = [
     "Bangladesh",
     "Bhutan",
     "China (excluding Hong Kong)",
@@ -45,7 +45,7 @@ class Region {
     "Uzbekistan",
     "Yemen"
   ];
-  static final List<String> SISMIC = [
+  static final List<String> SEAPAE = [
     "Argentina",
     "Botswana",
     "Brazil",
