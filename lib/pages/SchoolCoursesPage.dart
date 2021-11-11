@@ -56,7 +56,7 @@ class SchoolCoursesPageView extends StatelessWidget {
   Widget _buildGrid() => new StaggeredGridView.countBuilder(
         crossAxisCount: 1,
         shrinkWrap: true,
-        // padding: const EdgeInsets.all(1),
+        padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
         itemCount: _school!.departments.length,
@@ -77,20 +77,23 @@ class DepartmentCourseGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Text(_department.name!,
-              textAlign: TextAlign.left,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
-          ListView(
-              physics: const ScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: _getListData()),
-        ],
-      ),
-    );
+        padding: EdgeInsets.all(10),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Column(
+            children: [
+              Text(_department.name!,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
+              ListView(
+                  padding: EdgeInsets.zero,
+                  physics: const ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: _getListData()),
+            ],
+          ),
+        ));
   }
 
   List<Widget> _getListData() {
@@ -126,8 +129,8 @@ class CourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.push(
-                    context, PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
+                Navigator.push(context,
+                    PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
@@ -164,8 +167,8 @@ class PromotionCourseItemView extends StatelessWidget {
         child: new Material(
           child: new InkWell(
               onTap: () {
-                Navigator.push(
-                    context, PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
+                Navigator.push(context,
+                    PageTransition(child: CourseDetailPage(_course, false), type: PageTransitionType.topToBottom));
               },
               child: Padding(
                   padding: EdgeInsets.all(5),

@@ -50,9 +50,10 @@ class SchoolLogoPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Align(
-                            alignment: Alignment.center,
+                            alignment: Alignment.topCenter,
                             child: SizedBox(
                                 width: 260,
+                                height: 40,
                                 child: ElevatedButton(
                                     style: ButtonStyle(
                                       backgroundColor:
@@ -71,27 +72,25 @@ class SchoolLogoPage extends StatelessWidget {
                                               type: PageTransitionType.topToBottom));
                                     })),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                  width: 260,
-                                  child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
-                                      ),
-                                      child: Padding(
-                                          padding: EdgeInsets.all(5),
-                                          child: Text("LATEST VIDEOS",
-                                              style: TextStyle(
-                                                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-                                      onPressed: () {
-                                        Utils.launchURL(Utils.getGroupVideoLink(_group.name));
-                                      })),
-                            ),
-                          )
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: SizedBox(
+                                width: 260,
+                                height: 40,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                                    ),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Text("LATEST VIDEOS",
+                                            style: TextStyle(
+                                                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                                    onPressed: () {
+                                      Utils.launchURL(Utils.getGroupVideoLink(_group.name));
+                                    })),
+                          ),
                         ],
                       )),
                   Expanded(
