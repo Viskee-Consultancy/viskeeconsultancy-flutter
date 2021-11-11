@@ -93,7 +93,7 @@ class CountrySelectionAutocomplete extends StatelessWidget {
       ));
     } else {
       NavigationPath.PATH.add(selected);
-      if (Region.SEAPAE.any((country) => country.toLowerCase() == selected)) {
+      if (Region.SEAPAE.any((country) => country.toLowerCase() == selected.toLowerCase())) {
         Navigator.push(
             context,
             PageTransition(
