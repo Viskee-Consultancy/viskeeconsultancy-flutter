@@ -293,6 +293,8 @@ class CourseDetailPage extends StatelessWidget {
                 onPressed: () {
                   Utils.onBackPressed(_context, false);
                   Utils.onBackPressed(_context, true);
+                  Utils.onBackPressed(_context, true);
+                  Utils.onBackPressed(_context, true);
                   if (!_isFromSearch) {
                     Utils.onBackPressed(_context, true);
                   }
