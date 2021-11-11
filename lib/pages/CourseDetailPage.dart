@@ -35,7 +35,7 @@ class CourseDetailPage extends StatelessWidget {
                   child: _buildCourseName(),
                 ),
                 // Expanded(flex: 1, child: _buildVetCode()),
-                Expanded(child: ListView(shrinkWrap: false, children: _getListData()))
+                Expanded(child: ListView(padding: EdgeInsets.zero,shrinkWrap: false, children: _getListData()))
               ],
             )));
   }
@@ -43,7 +43,7 @@ class CourseDetailPage extends StatelessWidget {
   List<Widget> _getListData() {
     List<Widget> widgets = [];
     // widgets.add(_buildCourseName());
-    widgets.add(_buildVetCode());
+    // widgets.add(_buildVetCode());
     widgets.add(_buildCourseDetail());
     return widgets;
   }
@@ -74,6 +74,7 @@ class CourseDetailPage extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Column(
         children: [
+          _buildVetCode(),
           _buildPromotionValiditySection(),
           _buildDurationSection(),
           _buildLocationSection(),
