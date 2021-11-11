@@ -38,7 +38,7 @@ class StringConstants {
 
   // Course Configuration BASE URL
   static const String COURSE_BASE_URL =
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/courses/json/";
+      "https://raw.githubusercontent.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/master/courses/json/";
   static const String ONSHORE_URL = "onshore/";
   static const String OFFSHORE_URL = "offshore/";
   static const String COE_URL = "coe/";
@@ -51,7 +51,7 @@ class StringConstants {
 
   // Brochure Configuration BASE URL
   static const String BROCHURE_BASE_URL =
-      "https://raw.githubusercontent.com/AibtGlobal/Viskee-Consultancy-Configuration/master/brochures/json/";
+      "https://raw.githubusercontent.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/master/brochures/json/";
   static const String AIBT_BROCHURE_FILE_NAME = "aibt-brochures.json";
   static const String REACH_BROCHURE_FILE_NAME = "reach-brochures.json";
 
