@@ -31,11 +31,11 @@ class CourseDetailPage extends StatelessWidget {
             body: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 120, 5, 10),
+                  padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 10),
                   child: _buildCourseName(),
                 ),
                 // Expanded(flex: 1, child: _buildVetCode()),
-                Expanded(child: ListView(padding: EdgeInsets.zero,shrinkWrap: false, children: _getListData()))
+                Expanded(child: ListView(padding: EdgeInsets.zero, shrinkWrap: false, children: _getListData()))
               ],
             )));
   }
@@ -282,36 +282,40 @@ class CourseDetailPage extends StatelessWidget {
         ),
         Padding(
             padding: EdgeInsets.all(20.0),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
-                ),
-                child: Padding(
-                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                    child: Text("START A NEW SEARCH",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-                onPressed: () {
-                  Utils.onBackPressed(_context, false);
-                  Utils.onBackPressed(_context, true);
-                  Utils.onBackPressed(_context, true);
-                  Utils.onBackPressed(_context, true);
-                  if (!_isFromSearch) {
-                    Utils.onBackPressed(_context, true);
-                  }
-                })),
+            child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                    ),
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Text("START A NEW SEARCH",
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                    onPressed: () {
+                      Utils.onBackPressed(_context, false);
+                      Utils.onBackPressed(_context, true);
+                      Utils.onBackPressed(_context, true);
+                      Utils.onBackPressed(_context, true);
+                      if (!_isFromSearch) {
+                        Utils.onBackPressed(_context, true);
+                      }
+                    }))),
         Padding(
             padding: EdgeInsets.all(20.0),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
-                ),
-                child: Padding(
-                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                    child: Text("TERMS AND CONDITIONS",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
-                onPressed: () {
-                  Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
-                }))
+            child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+                    ),
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Text("TERMS AND CONDITIONS",
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                    onPressed: () {
+                      Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
+                    })))
       ],
     );
   }

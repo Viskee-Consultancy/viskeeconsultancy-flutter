@@ -11,27 +11,24 @@ class CoeSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop:  () async {
+        onWillPop: () async {
           Utils.onBackPressed(context, true);
           return true;
-          },
+        },
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: CommonWidgets.getAppBar(context, true),
           body: Container(
               child: Column(children: [
             Expanded(
-                flex: 1,
-                child: Container(
-                  child: null,
-                )),
-            Expanded(
-              flex: 1,
+              flex: 2,
               child: Padding(
-                  padding: EdgeInsets.all(2),
-                  child: Text("Do you require a Confirmation of Enrolment (CoE)?",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+                  padding: EdgeInsets.fromLTRB(2, AppBar().preferredSize.height + 20, 2, 5),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Do you require a Confirmation of Enrolment (CoE)?",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD)))),
             ),
             Expanded(
                 flex: 1,

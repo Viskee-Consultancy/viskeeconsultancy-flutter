@@ -34,14 +34,9 @@ class OnshoreOffshorePage extends StatelessWidget {
           body: Container(
               child: Column(children: [
             Expanded(
-                flex: 1,
-                child: Container(
-                  child: null,
-                )),
-            Expanded(
-                flex: 1,
+                flex: 2,
                 child: Padding(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 5),
                   child: Align(
                       alignment: Alignment.center,
                       child: Text("Are you currently onshore or offshore?",

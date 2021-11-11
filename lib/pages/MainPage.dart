@@ -48,12 +48,7 @@ class MainPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: null,
-                      )),
-                  Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Container(child: null),
                   ),
                   Expanded(

@@ -28,7 +28,7 @@ class BrochureDownloadPage extends StatelessWidget {
             body: Container(
                 child: Column(children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(5, 120, 5, 60),
+                padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 60),
                 child: Align(
                     alignment: Alignment.center,
                     child: Text("Latest Brochures For " + _groupName,

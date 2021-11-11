@@ -38,9 +38,9 @@ class SchoolCoursesPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: EdgeInsets.fromLTRB(5, 120, 5, 10),
+        padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 10),
         child: Align(
-            alignment: Alignment.center,
+            alignment: Alignment.topCenter,
             child: Text(Utils.getSchoolTitle(_school!.name!),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),

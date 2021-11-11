@@ -23,14 +23,9 @@ class RegionSelectionPage extends StatelessWidget {
           body: Container(
               child: Column(children: [
             Expanded(
-                flex: 1,
-                child: Container(
-                  child: null,
-                )),
-            Expanded(
               flex: 1,
               child: Padding(
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 5),
                 child: Align(
                   alignment: Alignment.center,
                   child: Text("Please choose your country",

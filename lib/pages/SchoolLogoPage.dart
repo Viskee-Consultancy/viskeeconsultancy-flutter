@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
@@ -35,20 +36,18 @@ class SchoolLogoPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: null,
-                    ),
-                  ),
-                  Expanded(
-                      flex: 3,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: _buildTitleLogo(),
+                      flex: 4,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: AppBar().preferredSize.height + 20),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: _buildTitleLogo(),
+                        ),
                       )),
                   Expanded(
                       flex: 2,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Align(
                             alignment: Alignment.center,
