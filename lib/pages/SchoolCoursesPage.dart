@@ -132,11 +132,14 @@ class CourseItemView extends StatelessWidget {
               },
               child: Padding(
                 padding: EdgeInsets.all(5),
-                child: Text(
-                  _course.name!,
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.black),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: Text(
+                    _course.name!,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                 ),
               )),
           color: Colors.transparent,
@@ -177,13 +180,15 @@ class PromotionCourseItemView extends StatelessWidget {
                         color: CustomColors.GOLD,
                       ),
                       Flexible(
+                          child: Padding(
+                        padding: EdgeInsets.only(left: 5),
                         child: Text(
                           _course.name!,
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                      )
+                      ))
                     ],
                   ))),
           color: Colors.transparent,
