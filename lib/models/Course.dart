@@ -5,6 +5,7 @@ class Course {
    * Basic attributes
    */
   GroupEnum? group;
+  String? schoolName;
   String? vetCode;
   String? cricosCode;
   String? department;

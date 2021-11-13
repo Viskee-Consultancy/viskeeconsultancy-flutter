@@ -335,6 +335,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     Map<String, List<Course>> m = new Map();
     for (var i = 0; i < school.courses.length; i++) {
       var course = school.courses[i];
+      course.schoolName = school.name;
       if (m[course.department] == null) {
         List<Course> courses = [course];
         m[course.department!] = courses;

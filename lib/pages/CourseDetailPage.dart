@@ -19,12 +19,12 @@ class CourseDetailPage extends StatelessWidget {
     _context = context;
     return WillPopScope(
         onWillPop: () async {
-          Utils.onBackPressed(context, false);
+          Utils.onBackPressed(context, _isFromSearch? true : false);
           return true;
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: CommonWidgets.getAppBar(context, false),
+            appBar: CommonWidgets.getAppBar(context, _isFromSearch? true : false),
             body: Column(
               children: [
                 Padding(

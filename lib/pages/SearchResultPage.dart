@@ -35,7 +35,7 @@ class SearchResultPage extends StatefulWidget {
 }
 
 class SearchResultView extends State<SearchResultPage> {
-  late final List<bool> _selections;
+  late List<bool> _selections;
   late final _searchText;
 
   SearchResultView(String searchText) {
@@ -180,6 +180,7 @@ class SearchResultGridItem extends StatelessWidget {
             child: new Material(
               child: new InkWell(
                   onTap: () {
+                    NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(course.schoolName!));
                     Navigator.push(context,
                         PageTransition(child: CourseDetailPage(course, true), type: PageTransitionType.rightToLeft));
                   },
