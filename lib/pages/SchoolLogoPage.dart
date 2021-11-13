@@ -69,7 +69,7 @@ class SchoolLogoPage extends StatelessWidget {
                                           context,
                                           PageTransition(
                                               child: BrochureDownloadPage(_group.name!, _group.brochures),
-                                              type: PageTransitionType.topToBottom));
+                                              type: PageTransitionType.rightToLeft));
                                     })),
                           ),
                           Align(
@@ -152,7 +152,7 @@ class SchoolGridView extends StatelessWidget {
           onPressed: () {
             NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(_school.name!));
             Navigator.push(
-                context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.topToBottom));
+                context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.rightToLeft));
           },
           child: Column(
             children: [

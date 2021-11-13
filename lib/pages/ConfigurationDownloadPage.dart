@@ -47,7 +47,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     downloadConfigurations(context).then((value) => {
           _courses = prepareCourses(_aibtGroup, _reachGroup),
           Navigator.pushReplacement(context,
-              PageTransition(child: MainPage(_aibtGroup, _reachGroup, _courses), type: PageTransitionType.topToBottom))
+              PageTransition(child: MainPage(_aibtGroup, _reachGroup, _courses), type: PageTransitionType.rightToLeft))
         });
   }
 

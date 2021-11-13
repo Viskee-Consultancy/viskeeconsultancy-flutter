@@ -50,7 +50,7 @@ class CoeSelectionPage extends StatelessWidget {
                                 context,
                                 PageTransition(
                                     child: ConfigurationDownloadPage(SubFolderEnum.COE),
-                                    type: PageTransitionType.topToBottom));
+                                    type: PageTransitionType.rightToLeft));
                           }),
                     ))),
             Expanded(
@@ -73,7 +73,7 @@ class CoeSelectionPage extends StatelessWidget {
                                 context,
                                 PageTransition(
                                     child: ConfigurationDownloadPage(SubFolderEnum.NON_COE),
-                                    type: PageTransitionType.topToBottom));
+                                    type: PageTransitionType.rightToLeft));
                           }),
                     ))),
             Expanded(

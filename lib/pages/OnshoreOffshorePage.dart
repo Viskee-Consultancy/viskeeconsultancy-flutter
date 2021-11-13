@@ -60,7 +60,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                           onPressed: () {
                             NavigationPath.PATH.add("Onshore");
                             Navigator.push(context,
-                                PageTransition(child: CoeSelectionPage(), type: PageTransitionType.topToBottom));
+                                PageTransition(child: CoeSelectionPage(), type: PageTransitionType.rightToLeft));
                           }),
                     ))),
             Expanded(
@@ -80,7 +80,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                           onPressed: () {
                             NavigationPath.PATH.add("Offshore");
                             Navigator.push(context,
-                                PageTransition(child: RegionSelectionPage(), type: PageTransitionType.topToBottom));
+                                PageTransition(child: RegionSelectionPage(), type: PageTransitionType.rightToLeft));
                           }),
                     ))),
             Expanded(

@@ -82,7 +82,7 @@ class MainPage extends StatelessWidget {
                             onPressed: () {
                               NavigationPath.PATH.add("AIBT");
                               Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.topToBottom));
+                                  PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.rightToLeft));
                             },
                             child: Utils.isRunningOnMobileBrowser()
                                 ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
@@ -103,7 +103,7 @@ class MainPage extends StatelessWidget {
                             onPressed: () {
                               NavigationPath.PATH.add("REACH");
                               Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.topToBottom));
+                                  PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.rightToLeft));
                             },
                             child: Utils.isRunningOnMobileBrowser()
                                 ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
@@ -195,7 +195,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     Navigator.push(
         context,
         PageTransition(
-            child: SearchResultPage(_buildSearchResult(query, suggestions)), type: PageTransitionType.topToBottom));
+            child: SearchResultPage(_buildSearchResult(query, suggestions)), type: PageTransitionType.rightToLeft));
   }
 
   @override
@@ -236,7 +236,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
                 context,
                 PageTransition(
                     child: SearchResultPage(_buildSearchResult(query, suggestions)),
-                    type: PageTransitionType.topToBottom));
+                    type: PageTransitionType.rightToLeft));
           }
         },
       ),

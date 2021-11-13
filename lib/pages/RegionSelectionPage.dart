@@ -92,12 +92,12 @@ class CountrySelectionAutocomplete extends StatelessWidget {
         Navigator.push(
             context,
             PageTransition(
-                child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.topToBottom));
+                child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.rightToLeft));
       } else {
         Navigator.push(
             context,
             PageTransition(
-                child: ConfigurationDownloadPage(SubFolderEnum.SISMIC), type: PageTransitionType.topToBottom));
+                child: ConfigurationDownloadPage(SubFolderEnum.SISMIC), type: PageTransitionType.rightToLeft));
       }
     }
   }
