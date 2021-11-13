@@ -39,7 +39,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 5),
                   child: Align(
                       alignment: Alignment.center,
-                      child: Text("Are you currently onshore or offshore?",
+                      child: Text("Are you currently onshore or offshore ?",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
                 )),

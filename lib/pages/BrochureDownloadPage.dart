@@ -31,7 +31,7 @@ class BrochureDownloadPage extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 60),
                 child: Align(
                     alignment: Alignment.center,
-                    child: Text("Latest Brochures For " + _groupName,
+                    child: Text("Latest Brochures For: " + _groupName,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
               ),

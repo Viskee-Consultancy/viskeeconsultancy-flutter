@@ -58,7 +58,7 @@ class SearchResultView extends State<SearchResultPage> {
                 padding: EdgeInsets.only(left: 5, right: 5, top: AppBar().preferredSize.height + 20, bottom: 10),
                 child: Align(
                     alignment: Alignment.center,
-                    child: Text("Search Results For " + _result!.searchText!,
+                    child: Text("Search Results For: " + _result!.searchText!,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
               ),
