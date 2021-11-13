@@ -142,7 +142,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
   final TextEditingController _typeAheadController = TextEditingController();
 
   List<Course> _getCourseSuggestions(String query, List<Course> courses, List<Course> suggestions) {
-    if (query == '') {
+    if (query.trim().isEmpty) {
       return List.empty();
     }
     suggestions.clear();
@@ -223,7 +223,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
             fillColor: CustomColors.GOLD),
         controller: this._typeAheadController,
         onSubmitted: (query) {
-          if (query.isEmpty) {
+          if (query.trim().isEmpty) {
             suggestions.clear();
           }
           if (suggestions.isEmpty) {
