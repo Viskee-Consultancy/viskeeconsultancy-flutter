@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
+import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
@@ -180,9 +181,36 @@ class CourseSearchAutocomplete extends StatelessWidget {
         reachCourses.add(course);
       }
     }
+
+    List<School> aibtSchools = [];
+    Map<String, List<Course>> m = new Map();
+    for (var i = 0; i < aibtCourses.length; i++) {
+      var course = aibtCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {aibtSchools.add(new School(entry.key, entry.value))});
+
+    List<School> reachSchools = [];
+    m = new Map();
+    for (var i = 0; i < reachCourses.length; i++) {
+      var course = reachCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {reachSchools.add(new School(entry.key, entry.value))});
+
     SearchResult searchResult = new SearchResult();
-    searchResult.searchResults[GroupEnum.AIBT] = aibtCourses;
-    searchResult.searchResults[GroupEnum.REACH] = reachCourses;
+    searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
+    searchResult.searchResults[GroupEnum.REACH] = reachSchools;
     searchResult.searchText = query;
     return searchResult;
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
+import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
@@ -13,21 +15,21 @@ import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'CourseDetailPage.dart';
 
 
-List<Course> _coursesToDisplay = [];
-List<Course> _coursesAIBT = [];
-List<Course> _coursesREACH = [];
+List<School> _schoolsToDisplay = [];
+List<School> _schoolsAIBT = [];
+List<School> _schoolsREACH = [];
 
 class SearchResultPage extends StatefulWidget {
   late final SearchResult _result;
 
   SearchResultPage(SearchResult searchResult) {
     _result = searchResult;
-    _coursesAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
-    _coursesREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
-    if (_coursesAIBT.isNotEmpty) {
-      _coursesToDisplay = _coursesAIBT;
-    } else if (_coursesREACH.isNotEmpty) {
-      _coursesToDisplay = _coursesREACH;
+    _schoolsAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
+    _schoolsREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
+    if (_schoolsAIBT.isNotEmpty) {
+      _schoolsToDisplay = _schoolsAIBT;
+    } else if (_schoolsREACH.isNotEmpty) {
+      _schoolsToDisplay = _schoolsREACH;
     }
   }
 
@@ -37,10 +39,12 @@ class SearchResultPage extends StatefulWidget {
 class SearchResultView extends State<SearchResultPage> {
   late List<bool> _selections;
   late final _searchText;
+  late ScrollController scrollController;
 
   SearchResultView(String searchText) {
     this._searchText = searchText;
-    _selections = buildSelections();
+    this._selections = buildSelections();
+    this.scrollController = new ScrollController();
   }
 
   @override
@@ -95,16 +99,17 @@ class SearchResultView extends State<SearchResultPage> {
                       ],
                       onPressed: (int index) {
                         setState(() {
+                          scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);
                             _selections = [true, false];
-                            _coursesToDisplay = _coursesAIBT;
+                            _schoolsToDisplay = _schoolsAIBT;
                           } else if (index == 1) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_REACH);
                             _selections = [false, true];
-                            _coursesToDisplay = _coursesREACH;
+                            _schoolsToDisplay = _schoolsREACH;
                           }
                         });
                       },
@@ -115,17 +120,17 @@ class SearchResultView extends State<SearchResultPage> {
                   flex: 8,
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: new SearchResultGridView(),
+                    child: _buildResultDisplayColumn(),
                   ))
             ]))));
   }
 
   List<bool> buildSelections() {
     List<bool> _selections;
-    if (!_coursesAIBT.isEmpty) {
+    if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
       _selections = [true, false];
-    } else if (_coursesAIBT.isEmpty && !_coursesREACH.isEmpty) {
+    } else if (_schoolsAIBT.isEmpty && !_schoolsREACH.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
       _selections = [false, true];
     } else {
@@ -134,37 +139,53 @@ class SearchResultView extends State<SearchResultPage> {
     }
     return _selections;
   }
+
+  Widget _buildResultDisplayColumn() {
+    List<Widget> widgets = [];
+    for (School school in _schoolsToDisplay) {
+      widgets.add(new SchoolGridView(school));
+    }
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: widgets,
+    );
+  }
 }
 
-class SearchResultGridView extends StatelessWidget {
+class SchoolGridView extends StatelessWidget {
+  late final School _school;
+
+  SchoolGridView(School school) {
+    this._school = school;
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (_coursesToDisplay.isNotEmpty) {
-      return new StaggeredGridView.countBuilder(
-        crossAxisCount: 1,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(20),
-        mainAxisSpacing: 0,
-        crossAxisSpacing: 0,
-        itemCount: _coursesToDisplay.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_coursesToDisplay.length),
-        itemBuilder: (BuildContext context, int index) {
-          return new SearchResultGridItem(index);
-        },
-      );
-    } else {
-      return new Container(
-        child: null,
-      );
-    }
+    return SliverStickyHeader(
+      header: Container(
+        height: 40.0,
+        color: CustomColors.GOLD,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        alignment: Alignment.center,
+        child: Text(Utils.getSchoolTitle(_school.name!),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0, color: Colors.white)),
+      ),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+              (context, i) => ListTile(title: SearchResultGridItem(_school.courses[i])),
+          childCount: _school.courses.length,
+        ),
+      ),
+    );
   }
 }
 
 class SearchResultGridItem extends StatelessWidget {
-  late final Course course;
+  late final Course _course;
 
-  SearchResultGridItem(int position) {
-    this.course = _coursesToDisplay[position];
+  SearchResultGridItem(Course course) {
+    this._course = course;
   }
 
   @override
@@ -180,9 +201,9 @@ class SearchResultGridItem extends StatelessWidget {
             child: new Material(
               child: new InkWell(
                   onTap: () {
-                    NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(course.schoolName!));
+                    NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(_course.schoolName!));
                     Navigator.push(context,
-                        PageTransition(child: CourseDetailPage(course, true), type: PageTransitionType.rightToLeft));
+                        PageTransition(child: CourseDetailPage(_course, true), type: PageTransitionType.rightToLeft));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
@@ -212,7 +233,7 @@ class SearchResultGridItem extends StatelessWidget {
   }
 
   Widget _getCourseNameText() {
-    if (course.isOnPromotion) {
+    if (_course.isOnPromotion) {
       return Row(children: [
         Icon(
           Icons.sell_outlined,
@@ -222,7 +243,7 @@ class SearchResultGridItem extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 5),
             child: Text(
-              course.name!,
+              _course.name!,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
@@ -232,15 +253,15 @@ class SearchResultGridItem extends StatelessWidget {
       ]);
     } else {
       return Text(
-        course.name!,
+        _course.name!,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
       );
     }
   }
 
   Widget _getVetCodeText() {
-    if (course.vetCode != null && course.vetCode!.trim().isNotEmpty) {
-      return Text("VET National Code: " + course.vetCode!,
+    if (_course.vetCode != null && _course.vetCode!.trim().isNotEmpty) {
+      return Text("VET National Code: " + _course.vetCode!,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");
@@ -248,8 +269,8 @@ class SearchResultGridItem extends StatelessWidget {
   }
 
   Widget _getCricosCodeText() {
-    if (course.cricosCode != null && course.cricosCode!.trim().isNotEmpty) {
-      return Text("CRICOS Course Code: " + course.cricosCode!,
+    if (_course.cricosCode != null && _course.cricosCode!.trim().isNotEmpty) {
+      return Text("CRICOS Course Code: " + _course.cricosCode!,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");

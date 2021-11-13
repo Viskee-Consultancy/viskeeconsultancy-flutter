@@ -7,6 +7,11 @@ class School {
   List<Course> courses = List.empty();
   List<Department> departments = [];
 
+  School(String name, List<Course> courses) {
+    this.name = name;
+    this.courses = courses;
+  }
+
   School.fromJson(Map<String, dynamic> json) {
     // name = json["name"];
     if (json['courses'] == null) return;
