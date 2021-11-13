@@ -54,7 +54,7 @@ class RegionSelectionPage extends StatelessWidget {
 }
 
 class CountrySelectionAutocomplete extends StatelessWidget {
-  List<String> _countries = [];
+  final List<String> _countries = [];
 
   CountrySelectionAutocomplete() {
     _countries.addAll(Region.SEAPAE);

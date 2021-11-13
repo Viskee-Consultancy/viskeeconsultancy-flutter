@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/Brochure.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class BrochureDownloadPage extends StatelessWidget {
-  late String _groupName;
-  late List<Brochure> _brochures;
+  late final String _groupName;
+  late final List<Brochure> _brochures;
 
   BrochureDownloadPage(String groupNameInput, List<Brochure> brochuresInput) {
     _groupName = groupNameInput;
@@ -59,7 +58,7 @@ class BrochureDownloadPage extends StatelessWidget {
 }
 
 class BrochureGridView extends StatelessWidget {
-  late Brochure _brochure;
+  late final Brochure _brochure;
 
   BrochureGridView(Brochure brochure) {
     this._brochure = brochure;
@@ -71,7 +70,7 @@ class BrochureGridView extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
       ),
-      onPressed: () => launchURL(_brochure.link!),
+      onPressed: () => Utils.launchURL(_brochure.link!),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
@@ -96,13 +95,5 @@ class BrochureGridView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: false);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

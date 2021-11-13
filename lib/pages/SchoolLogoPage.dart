@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,7 +14,7 @@ import 'BrochureDownloadPage.dart';
 import 'SchoolCoursesPage.dart';
 
 class SchoolLogoPage extends StatelessWidget {
-  late Group _group;
+  late final Group _group;
 
   SchoolLogoPage(Group group) {
     _group = group;
@@ -131,8 +129,8 @@ class SchoolLogoPage extends StatelessWidget {
 }
 
 class SchoolGridView extends StatelessWidget {
-  late School _school;
-  late Group _group;
+  late final School _school;
+  late final Group _group;
 
   SchoolGridView(Group group, int index) {
     this._group = group;

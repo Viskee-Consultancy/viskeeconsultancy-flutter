@@ -11,7 +11,7 @@ import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 import 'CourseDetailPage.dart';
 
 class SchoolCoursesPage extends StatelessWidget {
-  late School _school;
+  late final School _school;
 
   SchoolCoursesPage(School schoolInput) {
     _school = schoolInput;
@@ -34,7 +34,7 @@ class SchoolCoursesPage extends StatelessWidget {
 }
 
 class SchoolCoursesPageView extends StatelessWidget {
-  late School _school;
+  late final School _school;
 
   SchoolCoursesPageView(School school) {
     this._school = school;
@@ -71,7 +71,7 @@ class SchoolCoursesPageView extends StatelessWidget {
 }
 
 class DepartmentCourseGridView extends StatelessWidget {
-  late Department _department;
+  late final Department _department;
 
   DepartmentCourseGridView(Department department) {
     this._department = department;
@@ -109,7 +109,7 @@ class DepartmentCourseGridView extends StatelessWidget {
 }
 
 class CourseItemView extends StatelessWidget {
-  late Course _course;
+  late final Course _course;
 
   CourseItemView(Course course) {
     this._course = course;
@@ -150,7 +150,7 @@ class CourseItemView extends StatelessWidget {
 }
 
 class PromotionCourseItemView extends StatelessWidget {
-  late Course _course;
+  late final Course _course;
 
   PromotionCourseItemView(Course course) {
     this._course = course;

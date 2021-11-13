@@ -5,9 +5,9 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class CourseDetailPage extends StatelessWidget {
-  late Course _course;
-  late bool _isFromSearch;
-  late BuildContext _context;
+  late final Course _course;
+  late final bool _isFromSearch;
+  late final BuildContext _context;
 
   CourseDetailPage(Course input, bool isFromSearch) {
     _course = input;

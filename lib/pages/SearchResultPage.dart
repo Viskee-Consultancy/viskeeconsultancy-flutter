@@ -12,36 +12,37 @@ import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
 
-SearchResult? _result;
-List<Course>? _coursesToDisplay = [];
-List<Course>? _coursesAIBT = [];
-List<Course>? _coursesREACH = [];
+
+List<Course> _coursesToDisplay = [];
+List<Course> _coursesAIBT = [];
+List<Course> _coursesREACH = [];
 
 class SearchResultPage extends StatefulWidget {
+  late final SearchResult _result;
+
   SearchResultPage(SearchResult searchResult) {
     _result = searchResult;
-    _coursesAIBT = searchResult.searchResults[GroupEnum.AIBT];
-    _coursesREACH = searchResult.searchResults[GroupEnum.REACH];
-    if (_coursesAIBT == null) {
-      _coursesAIBT = [];
-    }
-    if (_coursesREACH == null) {
-      _coursesREACH = [];
-    }
-    if (_coursesAIBT!.isNotEmpty) {
+    _coursesAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
+    _coursesREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
+    if (_coursesAIBT.isNotEmpty) {
       _coursesToDisplay = _coursesAIBT;
-    } else if (_coursesREACH!.isNotEmpty) {
+    } else if (_coursesREACH.isNotEmpty) {
       _coursesToDisplay = _coursesREACH;
-    }
-    if (_coursesToDisplay == null) {
-      _coursesToDisplay = [];
     }
   }
 
-  SearchResultView createState() => new SearchResultView();
+  SearchResultView createState() => new SearchResultView(_result.searchText!);
 }
 
 class SearchResultView extends State<SearchResultPage> {
+  late final List<bool> _selections;
+  late final _searchText;
+
+  SearchResultView(String searchText) {
+    this._searchText = searchText;
+    _selections = buildSelections();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -58,7 +59,7 @@ class SearchResultView extends State<SearchResultPage> {
                 padding: EdgeInsets.only(left: 5, right: 5, top: AppBar().preferredSize.height + 20, bottom: 10),
                 child: Align(
                     alignment: Alignment.center,
-                    child: Text("Search Results For: " + _result!.searchText!,
+                    child: Text("Search Results For: " + _searchText,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
               ),
@@ -119,36 +120,34 @@ class SearchResultView extends State<SearchResultPage> {
             ]))));
   }
 
-  List<bool> _selections = buildSelections();
-}
-
-List<bool> buildSelections() {
-  List<bool> _selections;
-  if (!_coursesAIBT!.isEmpty) {
-    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-    _selections = [true, false];
-  } else if (_coursesAIBT!.isEmpty && !_coursesREACH!.isEmpty) {
-    NavigationPath.PATH.add(StringConstants.PATH_REACH);
-    _selections = [false, true];
-  } else {
-    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-    _selections = [true, false];
+  List<bool> buildSelections() {
+    List<bool> _selections;
+    if (!_coursesAIBT.isEmpty) {
+      NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+      _selections = [true, false];
+    } else if (_coursesAIBT.isEmpty && !_coursesREACH.isEmpty) {
+      NavigationPath.PATH.add(StringConstants.PATH_REACH);
+      _selections = [false, true];
+    } else {
+      NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+      _selections = [true, false];
+    }
+    return _selections;
   }
-  return _selections;
 }
 
 class SearchResultGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (_coursesToDisplay!.isNotEmpty) {
+    if (_coursesToDisplay.isNotEmpty) {
       return new StaggeredGridView.countBuilder(
         crossAxisCount: 1,
         shrinkWrap: true,
         padding: const EdgeInsets.all(20),
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-        itemCount: _coursesToDisplay!.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_coursesToDisplay!.length),
+        itemCount: _coursesToDisplay.length,
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_coursesToDisplay.length),
         itemBuilder: (BuildContext context, int index) {
           return new SearchResultGridItem(index);
         },
@@ -162,10 +161,10 @@ class SearchResultGridView extends StatelessWidget {
 }
 
 class SearchResultGridItem extends StatelessWidget {
-  Course? course;
+  late final Course course;
 
   SearchResultGridItem(int position) {
-    this.course = _coursesToDisplay![position];
+    this.course = _coursesToDisplay[position];
   }
 
   @override
@@ -182,7 +181,7 @@ class SearchResultGridItem extends StatelessWidget {
               child: new InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        PageTransition(child: CourseDetailPage(course!, true), type: PageTransitionType.rightToLeft));
+                        PageTransition(child: CourseDetailPage(course, true), type: PageTransitionType.rightToLeft));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
@@ -212,7 +211,7 @@ class SearchResultGridItem extends StatelessWidget {
   }
 
   Widget _getCourseNameText() {
-    if (course!.isOnPromotion) {
+    if (course.isOnPromotion) {
       return Row(children: [
         Icon(
           Icons.sell_outlined,
@@ -222,7 +221,7 @@ class SearchResultGridItem extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 5),
             child: Text(
-              course!.name!,
+              course.name!,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
@@ -232,15 +231,15 @@ class SearchResultGridItem extends StatelessWidget {
       ]);
     } else {
       return Text(
-        course!.name!,
+        course.name!,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
       );
     }
   }
 
   Widget _getVetCodeText() {
-    if (course != null && course!.vetCode != null && course!.vetCode!.trim().isNotEmpty) {
-      return Text("VET National Code: " + course!.vetCode!,
+    if (course.vetCode != null && course.vetCode!.trim().isNotEmpty) {
+      return Text("VET National Code: " + course.vetCode!,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");
@@ -248,8 +247,8 @@ class SearchResultGridItem extends StatelessWidget {
   }
 
   Widget _getCricosCodeText() {
-    if (course != null && course!.cricosCode != null && course!.cricosCode!.trim().isNotEmpty) {
-      return Text("CRICOS Course Code: " + course!.cricosCode!,
+    if (course.cricosCode != null && course.cricosCode!.trim().isNotEmpty) {
+      return Text("CRICOS Course Code: " + course.cricosCode!,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");

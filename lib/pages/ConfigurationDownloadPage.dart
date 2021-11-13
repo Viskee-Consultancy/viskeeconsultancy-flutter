@@ -16,7 +16,7 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 
 class ConfigurationDownloadPage extends StatefulWidget {
-  late SubFolderEnum _subfolder;
+  late final SubFolderEnum _subfolder;
 
   ConfigurationDownloadPage(SubFolderEnum subFolderEnum) {
     this._subfolder = subFolderEnum;
