@@ -78,4 +78,9 @@ flutter:
 
 flutter_native_splash:
   image: images/vc_logo_landscape.png
-  color: ffffff
+  color: "#ffffff"
+  color_dark: "#ffffff"
+  image_dark: images/vc_logo_landscape.png
+  android: true
+  ios: false
+  web: false
