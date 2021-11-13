@@ -17,14 +17,14 @@ import 'SchoolLogoPage.dart';
 import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
-  Group? _aibt;
-  Group? _reach;
-  List<Course> _courses = [];
+  late final Group _aibt;
+  late final Group _reach;
+  late final List<Course> _courses = [];
 
   MainPage(Group aibtGroup, Group reachGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._reach = reachGroup;
-    this._courses = totalCourses;
+    this._courses.addAll(totalCourses);
   }
 
   @override
@@ -83,7 +83,7 @@ class MainPage extends StatelessWidget {
                             onPressed: () {
                               NavigationPath.PATH.add(StringConstants.PATH_AIBT);
                               Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.rightToLeft));
+                                  PageTransition(child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
                             },
                             child: Utils.isRunningOnMobileBrowser()
                                 ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
@@ -104,7 +104,7 @@ class MainPage extends StatelessWidget {
                             onPressed: () {
                               NavigationPath.PATH.add(StringConstants.PATH_REACH);
                               Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.rightToLeft));
+                                  PageTransition(child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
                             },
                             child: Utils.isRunningOnMobileBrowser()
                                 ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
@@ -133,10 +133,10 @@ class MainPage extends StatelessWidget {
 }
 
 class CourseSearchAutocomplete extends StatelessWidget {
-  List<Course> _courses = [];
+  late final List<Course> _courses = [];
 
   CourseSearchAutocomplete(List<Course> courses) {
-    this._courses = courses;
+    this._courses.addAll(courses);
   }
 
   final TextEditingController _typeAheadController = TextEditingController();
