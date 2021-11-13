@@ -17,9 +17,6 @@ class CourseDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _context = context;
-    if (_course == null) {
-      _course = ModalRoute.of(context)!.settings.arguments as Course;
-    }
     return WillPopScope(
         onWillPop: () async {
           Utils.onBackPressed(context, false);
@@ -206,7 +203,7 @@ class CourseDetailPage extends StatelessWidget {
   }
 
   Widget _buildPlacementSection() {
-    if (_course != null && _course.placementFee != null) {
+    if (_course.placementFee != null) {
       return Column(
         children: [
           Padding(
@@ -319,8 +316,8 @@ class CourseDetailPage extends StatelessWidget {
     );
   }
 
-  Text _getVetCodeText(Course? course) {
-    if (course != null && course.vetCode != null) {
+  Text _getVetCodeText(Course course) {
+    if (course.vetCode != null) {
       return Text(
         "VET National Code:" + course.vetCode!,
         textAlign: TextAlign.center,
@@ -331,8 +328,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Text _getCricosCodeText(Course? course) {
-    if (course != null && course.cricosCode != null) {
+  Text _getCricosCodeText(Course course) {
+    if (course.cricosCode != null) {
       return Text(
         "CRICOS Course Code:" + course.cricosCode!,
         textAlign: TextAlign.center,
@@ -343,8 +340,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getTotalDurationText(Course? course) {
-    if (course != null && course.duration != null) {
+  Widget _getTotalDurationText(Course course) {
+    if (course.duration != null) {
       return Text(
         course.getDurationString(),
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
@@ -355,8 +352,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getDurationDetailText(Course? course) {
-    if (course != null && course.durationDetail != null && course.durationDetail!.trim().isNotEmpty) {
+  Widget _getDurationDetailText(Course course) {
+    if (course.durationDetail != null && course.durationDetail!.trim().isNotEmpty) {
       return Text(
         course.durationDetail!,
         textAlign: TextAlign.center,
@@ -368,8 +365,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getLocationText(Course? course) {
-    if (course != null && course.location != null && course.location!.trim().isNotEmpty) {
+  Widget _getLocationText(Course course) {
+    if (course.location != null && course.location!.trim().isNotEmpty) {
       return Text(
         course.location!.toString(),
         textAlign: TextAlign.center,
@@ -381,8 +378,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getLocationDetailText(Course? course) {
-    if (course != null && course.locationDetail != null && course.locationDetail!.trim().isNotEmpty) {
+  Widget _getLocationDetailText(Course course) {
+    if (course.locationDetail != null && course.locationDetail!.trim().isNotEmpty) {
       return Text(
         course.locationDetail!.toString(),
         textAlign: TextAlign.center,
@@ -394,8 +391,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getTuitionText(Course? course) {
-    if (course != null && course.tuition != null && course.tuition!.trim().isNotEmpty) {
+  Widget _getTuitionText(Course course) {
+    if (course.tuition != null && course.tuition!.trim().isNotEmpty) {
       return Text(
         course.getTuitionString(),
         textAlign: TextAlign.center,
@@ -407,8 +404,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getTuitionDetailText(Course? course) {
-    if (course != null && course.tuitionDetail != null && course.tuitionDetail!.trim().isNotEmpty) {
+  Widget _getTuitionDetailText(Course course) {
+    if (course.tuitionDetail != null && course.tuitionDetail!.trim().isNotEmpty) {
       return Text(
         course.tuitionDetail!.toString(),
         textAlign: TextAlign.center,
@@ -420,8 +417,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getTuitionHalfText(Course? course) {
-    if (course != null && course.tuitionHalf != null && course.tuitionHalf!.trim().isNotEmpty) {
+  Widget _getTuitionHalfText(Course course) {
+    if (course.tuitionHalf != null && course.tuitionHalf!.trim().isNotEmpty) {
       return Text(
         course.getTuitionHalfString(),
         textAlign: TextAlign.center,
@@ -433,8 +430,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getTuitionHalfDetailText(Course? course) {
-    if (course != null && course.tuitionHalfDetail != null && course.tuitionHalfDetail!.trim().isNotEmpty) {
+  Widget _getTuitionHalfDetailText(Course course) {
+    if (course.tuitionHalfDetail != null && course.tuitionHalfDetail!.trim().isNotEmpty) {
       return Text(
         course.getTuitionHalfDetailString(),
         textAlign: TextAlign.center,
@@ -446,8 +443,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getPlacementFeeText(Course? course) {
-    if (course != null && course.placementFee != null && course.placementFee!.trim().isNotEmpty) {
+  Widget _getPlacementFeeText(Course course) {
+    if (course.placementFee != null && course.placementFee!.trim().isNotEmpty) {
       return Text(
         course.getPlacementFeeString(),
         textAlign: TextAlign.center,
@@ -459,8 +456,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getPlacementDurationText(Course? course) {
-    if (course != null && course.placementDuration != null && course.placementDuration!.trim().isNotEmpty) {
+  Widget _getPlacementDurationText(Course course) {
+    if (course.placementDuration != null && course.placementDuration!.trim().isNotEmpty) {
       return Text(
         course.getPlacementDurationString(),
         textAlign: TextAlign.center,
@@ -472,8 +469,8 @@ class CourseDetailPage extends StatelessWidget {
     }
   }
 
-  Widget _getPlacementDetailText(Course? course) {
-    if (course != null && course.placementDetail != null && course.placementDetail!.trim().isNotEmpty) {
+  Widget _getPlacementDetailText(Course course) {
+    if (course.placementDetail != null && course.placementDetail!.trim().isNotEmpty) {
       return Text(
         course.getPlacementDetailString(),
         textAlign: TextAlign.center,
