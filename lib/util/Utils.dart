@@ -97,16 +97,16 @@ class Utils {
   }
 
   static isRunningOnMobileBrowser() {
-    final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
-    // smartphone
-    if( userAgent.contains("iphone"))  return true;
-    if( userAgent.contains("android"))  return true;
+    // final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
+    // // smartphone
+    // if( userAgent.contains("iphone"))  return true;
+    // if( userAgent.contains("android"))  return true;
+    //
+    // // tablet
+    // if( userAgent.contains("ipad")) return true;
+    // if( html.window.navigator.platform!.toLowerCase().contains("macintel") && html.window.navigator.maxTouchPoints! > 0 ) return true;
 
-    // tablet
-    if( userAgent.contains("ipad")) return true;
-    if( html.window.navigator.platform!.toLowerCase().contains("macintel") && html.window.navigator.maxTouchPoints! > 0 ) return true;
-
-    return false;
+    return true;
   }
 
   static onBackPressed(BuildContext context, bool isRemovePath) {
