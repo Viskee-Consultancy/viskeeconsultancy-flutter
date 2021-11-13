@@ -303,63 +303,9 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       List<Course> promotionCourses = promotionSchool.courses;
       promotionCourses.forEach((element) {element.isOnPromotion = true;});
       basicSchool.courses.addAll(promotionCourses);
-      // Map<String, Course> map = new Map();
-      // for (Course promotionCourse in promotionCourses) {
-      //   String key = buildCourseKey(promotionCourse);
-      //   map[key] = promotionCourse;
-      // }
-      // for (Course course in basicSchool.courses) {
-      //   String courseKey = buildCourseKey(course);
-      //   Course? promotionCourse = map[courseKey];
-      //   if (promotionCourse != null) {
-      //     map.remove(courseKey);
-      //     updateCourseWithPromotionInfo(course, promotionCourse);
-      //   }
-      // }
-      // if (map.isNotEmpty) {
-      //   for (Course course in map.values) {
-      //     updateCourseWithPromotionInfo(course, course);
-      //     basicSchool.courses.add(course);
-      //   }
-      // }
     }
     buildDepartmentList(basicSchool);
     return basicSchool;
-  }
-
-  String buildCourseKey(Course course) {
-    String key = "";
-    if (course.vetCode != null) {
-      key += "_" + course.vetCode!.trim().toLowerCase();
-    }
-    if (course.cricosCode != null) {
-      key += "_" + course.cricosCode!.trim().toLowerCase();
-    }
-    // if (course.name != null) {
-    //   key += "_" + course.name!.trim().toLowerCase();
-    // }
-    return key;
-  }
-
-  void updateCourseWithPromotionInfo(Course course, Course promotionCourse) {
-    course.isOnPromotion = true;
-    // Duration section
-    course.promotionDuration = promotionCourse.duration;
-    course.promotionMinDuration = promotionCourse.promotionMinDuration;
-    course.promotionMaxDuration = promotionCourse.promotionMaxDuration;
-    course.promotionDurationDetail = promotionCourse.durationDetail;
-    // Tuition section
-    course.promotionTuition = promotionCourse.tuition;
-    course.promotionTuitionDetail = promotionCourse.tuitionDetail;
-    course.promotionTuitionHalf = promotionCourse.tuitionHalf;
-    course.promotionTuitionHalfDetail = promotionCourse.tuitionHalfDetail;
-    // Location section
-    course.promotionLocation = promotionCourse.location;
-    course.promotionLocationDetail = promotionCourse.locationDetail;
-    // Placement section
-    course.promotionPlacementFee = promotionCourse.placementFee;
-    course.promotionPlacementDuration = promotionCourse.placementDuration;
-    course.promotionPlacementDetail = promotionCourse.placementDetail;
   }
 
   List<Course> prepareCourses(Group aibtGroup, Group reachGroup) {
