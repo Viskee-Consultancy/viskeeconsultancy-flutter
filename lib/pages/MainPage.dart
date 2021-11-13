@@ -81,7 +81,7 @@ class MainPage extends StatelessWidget {
                           constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                           child: new OutlinedButton(
                             onPressed: () {
-                              NavigationPath.PATH.add(StringConstants.AIBT_GROUP_NAME);
+                              NavigationPath.PATH.add(StringConstants.PATH_AIBT);
                               Navigator.push(context,
                                   PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.rightToLeft));
                             },
@@ -102,7 +102,7 @@ class MainPage extends StatelessWidget {
                           constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                           child: new OutlinedButton(
                             onPressed: () {
-                              NavigationPath.PATH.add(StringConstants.REACH_GROUP_NAME);
+                              NavigationPath.PATH.add(StringConstants.PATH_REACH);
                               Navigator.push(context,
                                   PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.rightToLeft));
                             },

@@ -55,10 +55,10 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("ONSHORE",
+                              child: Text(StringConstants.PATH_ONSHORE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
-                            NavigationPath.PATH.add("Onshore");
+                            NavigationPath.PATH.add(StringConstants.PATH_ONSHORE);
                             Navigator.push(context,
                                 PageTransition(child: CoeSelectionPage(), type: PageTransitionType.rightToLeft));
                           }),
@@ -75,10 +75,10 @@ class OnshoreOffshorePage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("OFFSHORE",
+                              child: Text(StringConstants.PATH_OFFSHORE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
-                            NavigationPath.PATH.add("Offshore");
+                            NavigationPath.PATH.add(StringConstants.PATH_OFFSHORE);
                             Navigator.push(context,
                                 PageTransition(child: RegionSelectionPage(), type: PageTransitionType.rightToLeft));
                           }),

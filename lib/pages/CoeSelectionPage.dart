@@ -5,6 +5,7 @@ import 'package:viskeeconsultancy/pages/ConfigurationDownloadPage.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class CoeSelectionPage extends StatelessWidget {
@@ -42,10 +43,10 @@ class CoeSelectionPage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("COE",
+                              child: Text(StringConstants.PATH_COE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
-                            NavigationPath.PATH.add("COE");
+                            NavigationPath.PATH.add(StringConstants.PATH_COE);
                             Navigator.push(
                                 context,
                                 PageTransition(
@@ -65,10 +66,10 @@ class CoeSelectionPage extends StatelessWidget {
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
-                              child: Text("NON-COE",
+                              child: Text(StringConstants.PATH_NON_COE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
-                            NavigationPath.PATH.add("Non-COE");
+                            NavigationPath.PATH.add(StringConstants.PATH_NON_COE);
                             Navigator.push(
                                 context,
                                 PageTransition(

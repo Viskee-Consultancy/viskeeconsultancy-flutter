@@ -5,6 +5,14 @@ class StringConstants {
   static const String AIBT_GROUP_NAME = "AIBT";
   static const String REACH_GROUP_NAME = "REACH";
 
+  // Navigation Path
+  static const String PATH_AIBT = "AIBT";
+  static const String PATH_REACH = "REACH";
+  static const String PATH_COE = "COE";
+  static const String PATH_NON_COE = "NON-COE";
+  static const String PATH_ONSHORE = "ONSHORE";
+  static const String PATH_OFFSHORE = "OFFSHORE";
+
   // AIBT School Name
   static const String ACE_SCHOOL_NAME = "ACE AVIATION AEROSPACE ACADEMY";
   static const String BESPOKE_SCHOOL_NAME = "BESPOKE GRAMMAR SCHOOL OF ENGLISH";

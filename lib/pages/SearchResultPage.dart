@@ -96,12 +96,12 @@ class SearchResultView extends State<SearchResultPage> {
                         setState(() {
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.AIBT_GROUP_NAME);
+                            NavigationPath.PATH.add(StringConstants.PATH_AIBT);
                             _selections = [true, false];
                             _coursesToDisplay = _coursesAIBT;
                           } else if (index == 1) {
                             NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.REACH_GROUP_NAME);
+                            NavigationPath.PATH.add(StringConstants.PATH_REACH);
                             _selections = [false, true];
                             _coursesToDisplay = _coursesREACH;
                           }
@@ -125,13 +125,13 @@ class SearchResultView extends State<SearchResultPage> {
 List<bool> buildSelections() {
   List<bool> _selections;
   if (!_coursesAIBT!.isEmpty) {
-    NavigationPath.PATH.add(StringConstants.AIBT_GROUP_NAME);
+    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
     _selections = [true, false];
   } else if (_coursesAIBT!.isEmpty && !_coursesREACH!.isEmpty) {
-    NavigationPath.PATH.add(StringConstants.REACH_GROUP_NAME);
+    NavigationPath.PATH.add(StringConstants.PATH_REACH);
     _selections = [false, true];
   } else {
-    NavigationPath.PATH.add(StringConstants.AIBT_GROUP_NAME);
+    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
     _selections = [true, false];
   }
   return _selections;
