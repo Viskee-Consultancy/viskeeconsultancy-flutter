@@ -99,7 +99,7 @@ class SearchResultView extends State<SearchResultPage> {
                       ],
                       onPressed: (int index) {
                         setState(() {
-                          scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                          scrollController.animateTo(0, duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);

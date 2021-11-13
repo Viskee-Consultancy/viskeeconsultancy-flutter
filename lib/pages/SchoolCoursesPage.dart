@@ -81,13 +81,13 @@ class DepartmentCourseGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverStickyHeader(
       header: Container(
-        height: 60.0,
-        color: Theme.of(context).scaffoldBackgroundColor,
+        height: 40.0,
+        color: CustomColors.GOLD,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.center,
         child: Text(_department.name!,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0, color: Colors.white)),
       ),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
