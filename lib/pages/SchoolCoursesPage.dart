@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
@@ -10,9 +10,9 @@ import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
 
-School? _school;
-
 class SchoolCoursesPage extends StatelessWidget {
+  late School _school;
+
   SchoolCoursesPage(School schoolInput) {
     _school = schoolInput;
   }
@@ -28,12 +28,18 @@ class SchoolCoursesPage extends StatelessWidget {
             extendBodyBehindAppBar: true,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
-              child: new SchoolCoursesPageView(),
+              child: new SchoolCoursesPageView(_school),
             )));
   }
 }
 
 class SchoolCoursesPageView extends StatelessWidget {
+  late School _school;
+
+  SchoolCoursesPageView(School school) {
+    this._school = school;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -41,72 +47,64 @@ class SchoolCoursesPageView extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 10),
         child: Align(
             alignment: Alignment.topCenter,
-            child: Text(Utils.getSchoolTitle(_school!.name!),
+            child: Text(Utils.getSchoolTitle(_school.name!),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
       ),
       Expanded(
           child: Align(
         alignment: Alignment.topCenter,
-        child: _buildGrid(),
+        child: _buildColumn(),
       )),
     ]);
   }
 
-  Widget _buildGrid() => new StaggeredGridView.countBuilder(
-        crossAxisCount: 1,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(20),
-        mainAxisSpacing: 0,
-        crossAxisSpacing: 0,
-        itemCount: _school!.departments.length,
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(_school!.departments.length),
-        itemBuilder: (BuildContext context, int index) {
-          return new DepartmentCourseGridView(index);
-        },
-      );
+  Widget _buildColumn() {
+    List<Widget> widgets = [];
+    for (Department department in _school.departments) {
+      widgets.add(new DepartmentCourseGridView(department));
+    }
+    return CustomScrollView(
+      slivers: widgets,
+    );
+  }
 }
 
 class DepartmentCourseGridView extends StatelessWidget {
   late Department _department;
 
-  DepartmentCourseGridView(int position) {
-    this._department = _school!.departments[position];
+  DepartmentCourseGridView(Department department) {
+    this._department = department;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(10),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Column(
-            children: [
-              Text(_department.name!,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
-              ListView(
-                  padding: EdgeInsets.zero,
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children: _getListData()),
-            ],
-          ),
-        ));
+    return SliverStickyHeader(
+      header: Container(
+        height: 60.0,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        alignment: Alignment.center,
+        child: Text(_department.name!,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: CustomColors.GOLD)),
+      ),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, i) => ListTile(title: _getCourseItem(i)),
+          childCount: _department.courses.length,
+        ),
+      ),
+    );
   }
 
-  List<Widget> _getListData() {
-    List<Widget> widgets = [];
-    for (int i = 0; i < _department.courses.length; i++) {
-      Course course = _department.courses[i];
-      if (course.isOnPromotion) {
-        widgets.add(new PromotionCourseItemView(_department.courses[i]));
-      } else {
-        widgets.add(new CourseItemView(_department.courses[i]));
-      }
+  Widget _getCourseItem(int index) {
+    Course course = _department.courses[index];
+    if (course.isOnPromotion) {
+      return new PromotionCourseItemView(_department.courses[index]);
+    } else {
+      return new CourseItemView(_department.courses[index]);
     }
-    return widgets;
   }
 }
 
