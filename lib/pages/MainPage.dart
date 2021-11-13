@@ -9,6 +9,7 @@ import 'package:viskeeconsultancy/models/SearchResult.dart';
 import 'package:viskeeconsultancy/util/SearchUtils.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
+import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import '../values/CustomColors.dart';
@@ -80,7 +81,7 @@ class MainPage extends StatelessWidget {
                           constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                           child: new OutlinedButton(
                             onPressed: () {
-                              NavigationPath.PATH.add("AIBT");
+                              NavigationPath.PATH.add(StringConstants.AIBT_GROUP_NAME);
                               Navigator.push(context,
                                   PageTransition(child: SchoolLogoPage(_aibt!), type: PageTransitionType.rightToLeft));
                             },
@@ -101,7 +102,7 @@ class MainPage extends StatelessWidget {
                           constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                           child: new OutlinedButton(
                             onPressed: () {
-                              NavigationPath.PATH.add("REACH");
+                              NavigationPath.PATH.add(StringConstants.REACH_GROUP_NAME);
                               Navigator.push(context,
                                   PageTransition(child: SchoolLogoPage(_reach!), type: PageTransitionType.rightToLeft));
                             },
