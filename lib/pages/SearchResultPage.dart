@@ -73,15 +73,23 @@ class SearchResultView extends State<SearchResultPage> {
                       disabledColor: Colors.black,
                       fillColor: CustomColors.GOLD,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: Text(StringConstants.AIBT_GROUP_NAME,
-                              style: TextStyle(fontWeight: _selections[0] ? FontWeight.bold : FontWeight.normal)),
+                        SizedBox(
+                          width: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: Text(StringConstants.AIBT_GROUP_NAME,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: Text(StringConstants.REACH_GROUP_NAME,
-                              style: TextStyle(fontWeight: _selections[1] ? FontWeight.bold : FontWeight.normal)),
+                        SizedBox(
+                          width: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: Text(StringConstants.REACH_GROUP_NAME,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                         )
                       ],
                       onPressed: (int index) {
@@ -211,25 +219,29 @@ class SearchResultGridItem extends StatelessWidget {
           color: CustomColors.GOLD,
         ),
         Flexible(
-          child: Text(
-            course!.name!,
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+          child: Padding(
+            padding: EdgeInsets.only(left: 5),
+            child: Text(
+              course!.name!,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+            ),
           ),
         )
       ]);
     } else {
       return Text(
         course!.name!,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
       );
     }
   }
 
   Widget _getVetCodeText() {
     if (course != null && course!.vetCode != null && course!.vetCode!.trim().isNotEmpty) {
-      return Text("VET National Code: " + course!.vetCode!, style: TextStyle(color: Colors.black));
+      return Text("VET National Code: " + course!.vetCode!,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");
     }
@@ -237,7 +249,8 @@ class SearchResultGridItem extends StatelessWidget {
 
   Widget _getCricosCodeText() {
     if (course != null && course!.cricosCode != null && course!.cricosCode!.trim().isNotEmpty) {
-      return Text("CRICOS Course Code: " + course!.cricosCode!, style: TextStyle(color: Colors.black));
+      return Text("CRICOS Course Code: " + course!.cricosCode!,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold));
     } else {
       return Text("");
     }

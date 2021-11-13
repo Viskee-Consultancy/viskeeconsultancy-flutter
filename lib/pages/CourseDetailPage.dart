@@ -261,7 +261,9 @@ class CourseDetailPage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 5),
-            child: Text(_course.note!, textAlign: TextAlign.center, style: TextStyle(color: Colors.black)),
+            child: Text(_course.note!,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)),
           )
         ],
       );
