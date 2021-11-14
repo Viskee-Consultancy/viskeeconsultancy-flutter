@@ -116,7 +116,7 @@ class Utils {
 
   static launchURL(String url) async {
     if (await canLaunch(url)) {
-      await launch(url, forceWebView: true);
+      await launch(url, forceWebView: false);
     } else {
       throw 'Could not launch $url';
     }
