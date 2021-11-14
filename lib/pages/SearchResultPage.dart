@@ -115,9 +115,11 @@ class SearchResultView extends State<SearchResultPage> {
                     ),
                   )),
               Expanded(
-                flex: 8,
-                child: _buildResultDisplayColumn(),
-              )
+                  flex: 8,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: _buildResultDisplayColumn(),
+                  ))
             ]))));
   }
 
@@ -169,9 +171,11 @@ class SchoolGridView extends StatelessWidget {
       ),
       sliver: SliverGrid(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 1 : 2,
+            crossAxisCount: Utils.isPortrait(context) ? 1 : 2,
             mainAxisSpacing: 0,
-            childAspectRatio: 1.5),
+            childAspectRatio: Utils.isPortrait(context)
+                ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2)
+                : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width / 2)),
         delegate: SliverChildBuilderDelegate(
           (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
           childCount: _school.courses.length,
@@ -212,7 +216,7 @@ class SearchResultGridItem extends StatelessWidget {
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: _getCourseNameText(),
+                          child: _getCourseNameText(context),
                         ),
                         Align(
                             alignment: Alignment.centerLeft,
@@ -233,7 +237,7 @@ class SearchResultGridItem extends StatelessWidget {
             )));
   }
 
-  Widget _getCourseNameText() {
+  Widget _getCourseNameText(BuildContext context) {
     if (_course.isOnPromotion) {
       return Row(children: [
         Icon(
@@ -245,7 +249,7 @@ class SearchResultGridItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 5),
             child: Text(
               _course.name!,
-              maxLines: 4,
+              maxLines: Utils.isPortrait(context) ? 4 : 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
             ),
@@ -255,7 +259,7 @@ class SearchResultGridItem extends StatelessWidget {
     } else {
       return Text(
         _course.name!,
-        maxLines: 4,
+        maxLines: Utils.isPortrait(context) ? 4 : 3,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
       );

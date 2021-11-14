@@ -120,4 +120,8 @@ class Utils {
       throw 'Could not launch $url';
     }
   }
+
+  static isPortrait(BuildContext context) {
+    return MediaQuery.of(context).orientation == Orientation.portrait;
+  }
 }
