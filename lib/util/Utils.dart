@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
