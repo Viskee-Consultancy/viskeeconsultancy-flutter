@@ -168,8 +168,10 @@ class SchoolGridView extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0, color: Colors.white)),
       ),
       sliver: SliverGrid(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1, mainAxisSpacing: 0, childAspectRatio: 1.5),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 1 : 2,
+            mainAxisSpacing: 0,
+            childAspectRatio: 1.5),
         delegate: SliverChildBuilderDelegate(
           (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
           childCount: _school.courses.length,
