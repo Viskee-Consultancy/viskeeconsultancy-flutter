@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -13,7 +12,6 @@ import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
-
 
 List<School> _schoolsToDisplay = [];
 List<School> _schoolsAIBT = [];
@@ -99,7 +97,8 @@ class SearchResultView extends State<SearchResultPage> {
                       ],
                       onPressed: (int index) {
                         setState(() {
-                          scrollController.animateTo(0, duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
+                          scrollController.animateTo(0,
+                              duration: Duration(milliseconds: 1500), curve: Curves.easeInOut);
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);
@@ -117,11 +116,9 @@ class SearchResultView extends State<SearchResultPage> {
                     ),
                   )),
               Expanded(
-                  flex: 8,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: _buildResultDisplayColumn(),
-                  ))
+                flex: 8,
+                child: _buildResultDisplayColumn(),
+              )
             ]))));
   }
 
@@ -171,9 +168,11 @@ class SchoolGridView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0, color: Colors.white)),
       ),
-      sliver: SliverList(
+      sliver: SliverGrid(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1, mainAxisSpacing: 0, childAspectRatio: 1.5),
         delegate: SliverChildBuilderDelegate(
-              (context, i) => ListTile(title: SearchResultGridItem(_school.courses[i])),
+          (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
           childCount: _school.courses.length,
         ),
       ),
@@ -206,8 +205,9 @@ class SearchResultGridItem extends StatelessWidget {
                         PageTransition(child: CourseDetailPage(_course, true), type: PageTransitionType.rightToLeft));
                   },
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
+                    padding: EdgeInsets.only(left: 20, top: 10, right: 5, bottom: 10),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
@@ -254,6 +254,8 @@ class SearchResultGridItem extends StatelessWidget {
     } else {
       return Text(
         _course.name!,
+        maxLines: 4,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
       );
     }
