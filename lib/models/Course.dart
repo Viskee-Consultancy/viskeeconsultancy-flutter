@@ -118,14 +118,14 @@ class Course {
 
   String getPlacementFeeString() {
     if (placementFee != null && placementFee!.isNotEmpty) {
-      return "Placement Fee: \$ " + placementFee.toString();
+      return "Placement Fee: " + placementFee.toString() + " \$";
     }
     return "";
   }
 
   String getPlacementDurationString() {
     if (placementDuration != null && placementDuration!.isNotEmpty) {
-      return "Placement Duration: \$ " + placementDuration.toString();
+      return "Placement Duration: " + placementDuration.toString() + " hours";
     }
     return "";
   }

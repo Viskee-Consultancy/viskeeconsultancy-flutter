@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
+import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
@@ -19,12 +20,12 @@ class CourseDetailPage extends StatelessWidget {
     _context = context;
     return WillPopScope(
         onWillPop: () async {
-          Utils.onBackPressed(context, _isFromSearch? true : false);
+          Utils.onBackPressed(context, _isFromSearch ? true : false);
           return true;
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: CommonWidgets.getAppBar(context, _isFromSearch? true : false),
+            appBar: CommonWidgets.getAppBar(context, _isFromSearch ? true : false),
             body: Column(
               children: [
                 Padding(
@@ -125,7 +126,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          _course.isOnPromotion ? "Promotion Duration" : "Total Duration",
+          "Total Duration",
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: Colors.black),
         ),
         Padding(
@@ -152,7 +153,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          _course.isOnPromotion ? "Promotion Location" : "Location",
+          "Location",
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: Colors.black),
         ),
         Padding(
@@ -179,7 +180,7 @@ class CourseDetailPage extends StatelessWidget {
           ),
         ),
         Text(
-          _course.isOnPromotion ? "Promotion Tuition" : "Tuition",
+          "Tuition",
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: Colors.black),
         ),
         Padding(
@@ -215,7 +216,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            _course.isOnPromotion ? "Promotion Placement" : "Placement",
+            "Placement",
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: Colors.black),
           ),
           Padding(
@@ -250,7 +251,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            _course.isOnPromotion ? "Promotion Note" : "Note",
+            "Note",
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: Colors.black),
           ),
           Padding(
@@ -272,10 +273,24 @@ class CourseDetailPage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(20.0),
-          child:
-              Text("CONTACT US", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20, color: CustomColors.GOLD)),
-        ),
+            padding: EdgeInsets.all(20.0),
+            child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                    ),
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Text("CONTACT US",
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
+                    onPressed: () {
+                      if (_course.group == GroupEnum.AIBT) {
+                        Utils.launchURL("https://aibtglobal.edu.au/contact/");
+                      } else {
+                        Utils.launchURL("https://reachcollege.edu.au/contact/");
+                      }
+                    }))),
         Padding(
             padding: EdgeInsets.all(20.0),
             child: SizedBox(
@@ -289,13 +304,7 @@ class CourseDetailPage extends StatelessWidget {
                         child: Text("START A NEW SEARCH",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
-                      Utils.onBackPressed(_context, false);
-                      Utils.onBackPressed(_context, true);
-                      Utils.onBackPressed(_context, true);
-                      Utils.onBackPressed(_context, true);
-                      if (!_isFromSearch) {
-                        Utils.onBackPressed(_context, true);
-                      }
+                      Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
                     }))),
         Padding(
             padding: EdgeInsets.all(20.0),
