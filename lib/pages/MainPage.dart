@@ -153,6 +153,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     searchText = searchText.replaceAll(")", "");
     searchText = searchText.replaceAll("\r", "");
     searchText = searchText.replaceAll("\n", "");
+    searchText = searchText.replaceAll("#", "");
     for (var course in courses) {
       List<String> splitList = searchText.split(" ");
       num? year = SearchUtils.extractYear(splitList);
