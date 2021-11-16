@@ -179,7 +179,7 @@ class SchoolGridView extends StatelessWidget {
       header: _buildHeader(),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
-          (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
+          (context, i) => ListTile(title: SearchResultGridItem(_school.courses[i])),
           childCount: _school.courses.length,
         ),
       ),
