@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -188,8 +187,10 @@ class SchoolGridView extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    if (_school.name == "PLACE_HOLDER"){
-      return Container(child: null,);
+    if (_school.name == "PLACE_HOLDER") {
+      return Container(
+        child: null,
+      );
     } else {
       return Container(
         height: 40.0,
@@ -268,20 +269,17 @@ class SearchResultGridItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 5),
             child: Text(
               _course.name!,
-              maxLines: Utils.isPortrait(context) ? 4 : 3,
-              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
             ),
           ),
         )
       ]);
     } else {
-      return Text(
+      return Flexible(
+          child: Text(
         _course.name!,
-        maxLines: Utils.isPortrait(context) ? 4 : 3,
-        overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
-      );
+      ));
     }
   }
 
