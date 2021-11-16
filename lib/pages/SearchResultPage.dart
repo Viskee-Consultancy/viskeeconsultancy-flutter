@@ -269,17 +269,20 @@ class SearchResultGridItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 5),
             child: Text(
               _course.name!,
+              maxLines: Utils.isPortrait(context) ? 4 : 3,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
             ),
           ),
         )
       ]);
     } else {
-      return Flexible(
-          child: Text(
+      return Text(
         _course.name!,
+        maxLines: Utils.isPortrait(context) ? 4 : 3,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: CustomColors.GOLD),
-      ));
+      );
     }
   }
 
