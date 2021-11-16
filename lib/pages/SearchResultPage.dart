@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -24,11 +25,27 @@ class SearchResultPage extends StatefulWidget {
     _result = searchResult;
     _schoolsAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
     _schoolsREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
+    if (_schoolsAIBT.length != _schoolsREACH.length) {
+      if (_schoolsAIBT.length > _schoolsREACH.length) {
+        _schoolsREACH.addAll(buildPlaceHolderSchools(_schoolsAIBT.length - _schoolsREACH.length));
+      } else {
+        _schoolsREACH.addAll(buildPlaceHolderSchools(_schoolsREACH.length - _schoolsAIBT.length));
+      }
+    }
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
     } else if (_schoolsREACH.isNotEmpty) {
       _schoolsToDisplay = _schoolsREACH;
     }
+  }
+
+  List<School> buildPlaceHolderSchools(int number) {
+    List<School> placeHolders = [];
+    for (int i = 0; i < number; i++) {
+      School school = new School("PLACE_HOLDER", []);
+      placeHolders.add(school);
+    }
+    return placeHolders;
   }
 
   SearchResultView createState() => new SearchResultView(_result.searchText!);
@@ -160,7 +177,21 @@ class SchoolGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverStickyHeader(
-      header: Container(
+      header: _buildHeader(),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
+          childCount: _school.courses.length,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    if (_school.name == "PLACE_HOLDER"){
+      return Container(child: null,);
+    } else {
+      return Container(
         height: 40.0,
         color: CustomColors.GOLD,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -168,20 +199,8 @@ class SchoolGridView extends StatelessWidget {
         child: Text(Utils.getSchoolTitle(_school.name!),
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0, color: Colors.white)),
-      ),
-      sliver: SliverGrid(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: Utils.isPortrait(context) ? 1 : 2,
-            mainAxisSpacing: 0,
-            childAspectRatio: Utils.isPortrait(context)
-                ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2)
-                : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width / 2)),
-        delegate: SliverChildBuilderDelegate(
-          (context, i) => GridTile(child: SearchResultGridItem(_school.courses[i])),
-          childCount: _school.courses.length,
-        ),
-      ),
-    );
+      );
+    }
   }
 }
 
