@@ -304,7 +304,13 @@ class CourseDetailPage extends StatelessWidget {
                         child: Text("START A NEW SEARCH",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
-                      Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
+                      Utils.onBackPressed(_context, false);
+                      Utils.onBackPressed(_context, true);
+                      Utils.onBackPressed(_context, true);
+                      Utils.onBackPressed(_context, true);
+                      if (!_isFromSearch) {
+                        Utils.onBackPressed(_context, true);
+                      }
                     }))),
         Padding(
             padding: EdgeInsets.all(20.0),
