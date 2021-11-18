@@ -221,7 +221,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     query = query.replaceAll("\r", "");
     query = query.replaceAll("\n", "");
     this._typeAheadController.text = query;
-    suggestions = _getCourseSuggestions(query, _courses, suggestions);
+    _getCourseSuggestions(query, _courses, suggestions);
     Navigator.push(
         context,
         PageTransition(
