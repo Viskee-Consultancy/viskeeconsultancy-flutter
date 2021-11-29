@@ -42,7 +42,7 @@ class MainPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black,
                 image: DecorationImage(
-                  image: AssetImage("images/background.jpg"),
+                  image: AssetImage("images/background.png"),
                   colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstATop),
                   fit: BoxFit.cover,
                 ),

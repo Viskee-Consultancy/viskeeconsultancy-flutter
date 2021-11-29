@@ -150,7 +150,7 @@ class SchoolGridView extends StatelessWidget {
           onPressed: () {
             NavigationPath.PATH.add("\n" + Utils.getSchoolTitle(_school.name!));
             Navigator.push(
-                context, PageTransition(child: SchoolCoursesPage(_school), type: PageTransitionType.rightToLeft));
+                context, PageTransition(child: SchoolCoursesPage(_school, _group.name!), type: PageTransitionType.rightToLeft));
           },
           child: Column(
             children: [

@@ -118,7 +118,7 @@ class Course {
 
   String getPlacementFeeString() {
     if (placementFee != null && placementFee!.isNotEmpty) {
-      return "Placement Fee: " + placementFee.toString() + " \$";
+      return "Placement Fee: \$ " + placementFee.toString();
     }
     return "";
   }

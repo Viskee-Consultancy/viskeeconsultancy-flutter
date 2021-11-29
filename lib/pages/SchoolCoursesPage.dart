@@ -12,9 +12,11 @@ import 'CourseDetailPage.dart';
 
 class SchoolCoursesPage extends StatelessWidget {
   late final School _school;
+  late final String _groupName;
 
-  SchoolCoursesPage(School schoolInput) {
+  SchoolCoursesPage(School schoolInput, String groupName) {
     _school = schoolInput;
+    _groupName = groupName;
   }
 
   @override
@@ -28,28 +30,44 @@ class SchoolCoursesPage extends StatelessWidget {
             extendBodyBehindAppBar: true,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
-              child: new SchoolCoursesPageView(_school),
+              child: new SchoolCoursesPageView(_school, _groupName),
             )));
   }
 }
 
 class SchoolCoursesPageView extends StatelessWidget {
   late final School _school;
+  late final String _groupName;
 
-  SchoolCoursesPageView(School school) {
+  SchoolCoursesPageView(School school, String groupName) {
     this._school = school;
+    this._groupName = groupName;
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 10),
+        padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 30),
         child: Align(
             alignment: Alignment.topCenter,
-            child: Text(Utils.getSchoolTitle(_school.name!),
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+            child: Container(
+                padding: EdgeInsets.all(15),
+                width: double.infinity,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Utils.getGroupSecondaryColor(_groupName),
+                    border: null,
+                    borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    child: Text(Utils.getSchoolTitle(_school.name!),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0, color: Colors.white)),
+                  ),
+                ))
+            ),
       ),
       Expanded(
           child: Align(

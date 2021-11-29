@@ -325,7 +325,9 @@ class CourseDetailPage extends StatelessWidget {
                         child: Text("TERMS AND CONDITIONS",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
-                      Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
+                      _course.group == GroupEnum.AIBT
+                          ? Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/")
+                          : Utils.launchURL("https://reachcollege.edu.au/course-terms/");
                     })))
       ],
     );
