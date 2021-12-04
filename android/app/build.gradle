@@ -45,8 +45,8 @@ android {
         applicationId "com.viskee.brochure"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 38
-        versionName "0.38"
+        versionCode 39
+        versionName "0.39"
     }
 
     signingConfigs {
