@@ -3,6 +3,7 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/GroupEnum.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
+import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 class CourseDetailPage extends StatelessWidget {
@@ -305,12 +306,13 @@ class CourseDetailPage extends StatelessWidget {
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
                       Utils.onBackPressed(_context, false);
-                      Utils.onBackPressed(_context, true);
-                      Utils.onBackPressed(_context, true);
-                      Utils.onBackPressed(_context, true);
+                      Utils.onBackPressed(_context, false);
+                      Utils.onBackPressed(_context, false);
+                      Utils.onBackPressed(_context, false);
                       if (!_isFromSearch) {
-                        Utils.onBackPressed(_context, true);
+                        Utils.onBackPressed(_context, false);
                       }
+                      NavigationPath.PATH.clear();
                     }))),
         Padding(
             padding: EdgeInsets.all(20.0),
