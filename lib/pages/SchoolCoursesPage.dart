@@ -48,7 +48,7 @@ class SchoolCoursesPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 30),
+        padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 40, 5, 30),
         child: Align(
             alignment: Alignment.topCenter,
             child: Container(
