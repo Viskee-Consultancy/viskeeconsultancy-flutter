@@ -5,6 +5,9 @@ import 'package:viskeeconsultancy/models/SchoolNameEnum.dart';
 import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
+import 'dart:io';
+import 'package:page_transition/page_transition.dart';
+import 'package:viskeeconsultancy/pages/PDFViewer.dart';
 
 class Utils {
   static getSchoolLogo(String? schoolName) {
@@ -118,6 +121,25 @@ class Utils {
       await launch(url, forceWebView: false);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  static openBrochure(String name, String url, BuildContext context) async {
+    if (await canLaunch(url)) {
+              if (Platform.isIOS) {
+          Navigator.push(context, 
+                          PageTransition(
+                                        child: PDFViewer(name, url),
+                                              type: PageTransitionType.rightToLeft));
+        } else {
+        await launch(url, forceWebView: false);
+        }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: CustomColors.GOLD,
+        duration: Duration(milliseconds: 2000),
+        content: Text('The Brochure selected is currentyl not available, please try later.'),
+      ));
     }
   }
 

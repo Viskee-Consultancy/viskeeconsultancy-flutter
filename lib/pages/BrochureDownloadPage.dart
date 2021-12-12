@@ -70,7 +70,7 @@ class BrochureGridView extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
       ),
-      onPressed: () => Utils.launchURL(_brochure.link!),
+      onPressed: () => Utils.openBrochure(_brochure.name!, _brochure.link!, context),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
