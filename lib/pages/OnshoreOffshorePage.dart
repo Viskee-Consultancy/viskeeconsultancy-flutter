@@ -25,7 +25,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: SvgPicture.asset(
                     "images/vc_logo_landscape.svg",
-                    height: 50,
+                    height: 20,
                   ),
                 )
               ],
