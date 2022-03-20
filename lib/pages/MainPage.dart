@@ -36,99 +36,124 @@ class MainPage extends StatelessWidget {
           return true;
         },
         child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: CommonWidgets.getAppBar(context, true),
-          body: Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-                image: DecorationImage(
-                  image: AssetImage("images/background.png"),
+            extendBodyBehindAppBar: true,
+            appBar: CommonWidgets.getAppBar(context, true),
+            body: Stack(
+              children: [
+                Image.network(
+                  "https://github.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/raw/master/background/background.png",
                   fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  errorBuilder: (context, exception, stackTrace) {
+                    return Image.asset(
+                      "images/background.png",
+                      height: MediaQuery.of(context).size.height,
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
+                    );
+                  },
                 ),
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(child: null),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Text("Explore Over 90+ Courses and Promotions",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
-                  ),
-                  ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
-                      child: Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: CustomColors.GOLD),
-                                borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                Container(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(child: null),
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Text("Explore Over 90+ Courses and Promotions",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold, color: Colors.white)),
+                      ),
+                      ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
+                          child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(color: CustomColors.GOLD),
+                                    borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                                  ),
+                                  child: new CourseSearchAutocomplete(_courses)))),
+                      Expanded(
+                        flex: 2,
+                        child: Container(child: null),
+                      ),
+                      Expanded(
+                          flex: 4,
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                            Expanded(flex: 1, child: Container(child: null)),
+                            Container(
+                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                              child: new OutlinedButton(
+                                onPressed: () {
+                                  NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
+                                },
+                                child: Utils.isRunningOnMobileBrowser()
+                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
+                                    : SvgPicture.asset("images/aibt.svg"),
+                                style: OutlinedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  backgroundColor: Colors.white,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                ),
                               ),
-                              child: new CourseSearchAutocomplete(_courses)))),
-                  Expanded(
-                    flex: 2,
-                    child: Container(child: null),
+                            ),
+                            Expanded(flex: 2, child: Container(child: null)),
+                            Container(
+                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                              child: new OutlinedButton(
+                                onPressed: () {
+                                  NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
+                                },
+                                child: Utils.isRunningOnMobileBrowser()
+                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
+                                    : SvgPicture.asset("images/reach.svg"),
+                                style: OutlinedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  backgroundColor: Colors.white,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                ),
+                              ),
+                            ),
+                            Expanded(flex: 1, child: Container(child: null))
+                          ])),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          child: null,
+                        ),
+                      )
+                    ],
                   ),
-                  Expanded(
-                      flex: 4,
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                        Expanded(flex: 1, child: Container(child: null)),
-                        Container(
-                          constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                          child: new OutlinedButton(
-                            onPressed: () {
-                              NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                              Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
-                            },
-                            child: Utils.isRunningOnMobileBrowser()
-                                ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
-                                : SvgPicture.asset("images/aibt.svg"),
-                            style: OutlinedButton.styleFrom(
-                              primary: Colors.grey,
-                              backgroundColor: Colors.white,
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(15),
-                              side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                            ),
-                          ),
-                        ),
-                        Expanded(flex: 2, child: Container(child: null)),
-                        Container(
-                          constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                          child: new OutlinedButton(
-                            onPressed: () {
-                              NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                              Navigator.push(context,
-                                  PageTransition(child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
-                            },
-                            child: Utils.isRunningOnMobileBrowser()
-                                ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
-                                : SvgPicture.asset("images/reach.svg"),
-                            style: OutlinedButton.styleFrom(
-                              primary: Colors.grey,
-                              backgroundColor: Colors.white,
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(15),
-                              side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                            ),
-                          ),
-                        ),
-                        Expanded(flex: 1, child: Container(child: null))
-                      ])),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      child: null,
-                    ),
-                  )
-                ],
-              )),
-        ));
+                )
+              ],
+            )
+            // Container(
+            //     decoration: BoxDecoration(
+            //       color: Colors.black,
+            //       image: DecorationImage(
+            //         image: true ? NetworkImage("https://github.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/raw/master/background/background1.png"): AssetImage("images/background.png") as ImageProvider,
+            //         fit: BoxFit.cover,
+            //       ),
+            //     ),
+            //     child: ),
+            ));
   }
 }
 
