@@ -57,8 +57,9 @@ class CountrySelectionAutocomplete extends StatelessWidget {
   final List<String> _countries = [];
 
   CountrySelectionAutocomplete() {
-    _countries.addAll(Region.SEAPAE);
-    _countries.addAll(Region.SISMIC);
+    _countries.addAll(Region.REGION_1);
+    _countries.addAll(Region.REGION_2);
+    _countries.addAll(Region.REGION_3);
   }
 
   final TextEditingController _typeAheadController = TextEditingController();
@@ -88,16 +89,21 @@ class CountrySelectionAutocomplete extends StatelessWidget {
       ));
     } else {
       NavigationPath.PATH.add(selected);
-      if (Region.SEAPAE.any((country) => country.toLowerCase() == selected.toLowerCase())) {
+      if (Region.REGION_1.any((country) => country.toLowerCase() == selected.toLowerCase())) {
         Navigator.push(
             context,
             PageTransition(
-                child: ConfigurationDownloadPage(SubFolderEnum.SEAPAE), type: PageTransitionType.rightToLeft));
+                child: ConfigurationDownloadPage(SubFolderEnum.REGION_1), type: PageTransitionType.rightToLeft));
+      } else if (Region.REGION_2.any((country) => country.toLowerCase() == selected.toLowerCase())) {
+        Navigator.push(
+            context,
+            PageTransition(
+                child: ConfigurationDownloadPage(SubFolderEnum.REGION_2), type: PageTransitionType.rightToLeft));
       } else {
         Navigator.push(
             context,
             PageTransition(
-                child: ConfigurationDownloadPage(SubFolderEnum.SISMIC), type: PageTransitionType.rightToLeft));
+                child: ConfigurationDownloadPage(SubFolderEnum.REGION_3), type: PageTransitionType.rightToLeft));
       }
     }
   }

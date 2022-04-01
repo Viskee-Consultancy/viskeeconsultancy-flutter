@@ -92,10 +92,12 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         return StringConstants.ONSHORE_URL + StringConstants.COE_URL;
       case SubFolderEnum.NON_COE:
         return StringConstants.ONSHORE_URL + StringConstants.NON_COE_URL;
-      case SubFolderEnum.SEAPAE:
-        return StringConstants.OFFSHORE_URL + StringConstants.SEAPAE_URL;
-      case SubFolderEnum.SISMIC:
-        return StringConstants.OFFSHORE_URL + StringConstants.SISMIC_URL;
+      case SubFolderEnum.REGION_1:
+        return StringConstants.OFFSHORE_URL + StringConstants.REGION_1_URL;
+      case SubFolderEnum.REGION_2:
+        return StringConstants.OFFSHORE_URL + StringConstants.REGION_2_URL;
+      case SubFolderEnum.REGION_3:
+        return StringConstants.OFFSHORE_URL + StringConstants.REGION_3_URL;
       default:
         return "";
     }

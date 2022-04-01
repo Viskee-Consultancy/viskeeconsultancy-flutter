@@ -51,8 +51,9 @@ class StringConstants {
   static const String OFFSHORE_URL = "offshore/";
   static const String COE_URL = "coe/";
   static const String NON_COE_URL = "non-coe/";
-  static const String SEAPAE_URL = "seapae/";
-  static const String SISMIC_URL = "sismic/";
+  static const String REGION_1_URL = "region-1/";
+  static const String REGION_2_URL = "region-2/";
+  static const String REGION_3_URL = "region-3/";
   static const String AIBT_URL = "aibt/";
   static const String REACH_URL = "reach/";
   static const String PROMOTIONS_URL = "promotions/";
