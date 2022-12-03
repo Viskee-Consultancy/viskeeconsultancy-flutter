@@ -107,32 +107,32 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     String aibtSubUrl = subUrl + StringConstants.AIBT_URL;
     // AIBT School Configurations
     final aceResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.ACE_FILE_NAME));
-    final bespokeResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.BESPOKE_FILE_NAME));
-    final bransonResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.BRANSON_FILE_NAME));
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_ACE_FILE_NAME));
+    final bespokeResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_BESPOKE_FILE_NAME));
+    final bransonResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_BRANSON_FILE_NAME));
     final dianaResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.DIANA_FILE_NAME));
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_DIANA_FILE_NAME));
     final edisonResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.EDISON_FILE_NAME));
-    final sheldonResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.SHELDON_FILE_NAME));
+        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_EDISON_FILE_NAME));
+    final sheldonResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_SHELDON_FILE_NAME));
 
     String aibtPromotionSubUrl = subUrl + StringConstants.AIBT_URL + StringConstants.PROMOTIONS_URL;
     // AIBT School Promotion Configurations
     final acePromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.ACE_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_ACE_FILE_NAME));
     final bespokePromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.BESPOKE_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_BESPOKE_FILE_NAME));
     final bransonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.BRANSON_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_BRANSON_FILE_NAME));
     final dianaPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.DIANA_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_DIANA_FILE_NAME));
     final edisonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.EDISON_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_EDISON_FILE_NAME));
     final sheldonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.SHELDON_FILE_NAME));
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_SHELDON_FILE_NAME));
 
     if (aceResponse.statusCode != 200 &&
         bespokeResponse.statusCode != 200 &&
@@ -149,17 +149,18 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     } else {
       List<School> aibtSchools = <School>[];
 
-      School? ace = await mergePromotionToBasic(aceResponse, acePromotionResponse, StringConstants.ACE_SCHOOL_NAME);
-      School? bespoke =
-          await mergePromotionToBasic(bespokeResponse, bespokePromotionResponse, StringConstants.BESPOKE_SCHOOL_NAME);
-      School? branson =
-          await mergePromotionToBasic(bransonResponse, bransonPromotionResponse, StringConstants.BRANSON_SCHOOL_NAME);
+      School? ace =
+          await mergePromotionToBasic(aceResponse, acePromotionResponse, StringConstants.AIBT_ACE_SCHOOL_NAME);
+      School? bespoke = await mergePromotionToBasic(
+          bespokeResponse, bespokePromotionResponse, StringConstants.AIBT_BESPOKE_SCHOOL_NAME);
+      School? branson = await mergePromotionToBasic(
+          bransonResponse, bransonPromotionResponse, StringConstants.AIBT_BRANSON_SCHOOL_NAME);
       School? diana =
-          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, StringConstants.DIANA_SCHOOL_NAME);
+          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, StringConstants.AIBT_DIANA_SCHOOL_NAME);
       School? edison =
-          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, StringConstants.EDISON_SCHOOL_NAME);
-      School? sheldon =
-          await mergePromotionToBasic(sheldonResponse, sheldonPromotionResponse, StringConstants.SHELDON_SCHOOL_NAME);
+          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, StringConstants.AIBT_EDISON_SCHOOL_NAME);
+      School? sheldon = await mergePromotionToBasic(
+          sheldonResponse, sheldonPromotionResponse, StringConstants.AIBT_SHELDON_SCHOOL_NAME);
 
       if (ace != null) {
         aibtSchools.add(ace);
@@ -188,29 +189,30 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
     String reachSubUrl = subUrl + StringConstants.REACH_URL;
     // REACH School Configurations
-    final businessTechnologyResponse =
-    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodResponse =
-    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.EARLY_CHILDHOOD_FILE_NAME));
-    final englishResponse =
-    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.ENGLISH_FILE_NAME));
-    final hospitalityResponse =
-    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.HOSPITALITY_FILE_NAME));
-    final techScienceResponse =
-    await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.TECH_SCIENCES_FILE_NAME));
+    final businessTechnologyResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodResponse = await http.get(
+        Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_EARLY_CHILDHOOD_FILE_NAME));
+    final englishResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_ENGLISH_FILE_NAME));
+    final hospitalityResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_HOSPITALITY_FILE_NAME));
+    final techScienceResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_TECH_SCIENCES_FILE_NAME));
 
     String reachPromotionSubUrl = subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
     // AIBT School Promotion Configurations
-    final businessTechnologyPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.EARLY_CHILDHOOD_FILE_NAME));
-    final englishPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.ENGLISH_FILE_NAME));
-    final hospitalityPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.HOSPITALITY_FILE_NAME));
-    final techSciencePromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.TECH_SCIENCES_FILE_NAME));
+    final businessTechnologyPromotionResponse = await http.get(Uri.parse(StringConstants.COURSE_BASE_URL +
+        reachPromotionSubUrl +
+        StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodPromotionResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_EARLY_CHILDHOOD_FILE_NAME));
+    final englishPromotionResponse = await http.get(
+        Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_ENGLISH_FILE_NAME));
+    final hospitalityPromotionResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_HOSPITALITY_FILE_NAME));
+    final techSciencePromotionResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_TECH_SCIENCES_FILE_NAME));
 
     if (businessTechnologyResponse.statusCode != 200 &&
         earlyChildhoodResponse.statusCode != 200 &&
@@ -226,15 +228,16 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     } else {
       List<School> reachSchools = <School>[];
 
-      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse, businessTechnologyPromotionResponse, StringConstants.BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
-      School? earlyChildhoodFaculty =
-      await mergePromotionToBasic(earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.EARLY_CHILDHOOD_SCHOOL_NAME);
-      School? englishFaculty =
-      await mergePromotionToBasic(englishResponse, englishPromotionResponse, StringConstants.ENGLISH_SCHOOL_NAME);
-      School? hospitalityFaculty =
-      await mergePromotionToBasic(hospitalityResponse, hospitalityPromotionResponse, StringConstants.HOSPITALITY_SCHOOL_NAME);
-      School? techScienceFaculty =
-      await mergePromotionToBasic(techScienceResponse, techSciencePromotionResponse, StringConstants.TECH_SCIENCES_SCHOOL_NAME);
+      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse,
+          businessTechnologyPromotionResponse, StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
+      School? earlyChildhoodFaculty = await mergePromotionToBasic(
+          earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.REACH_EARLY_CHILDHOOD_SCHOOL_NAME);
+      School? englishFaculty = await mergePromotionToBasic(
+          englishResponse, englishPromotionResponse, StringConstants.REACH_ENGLISH_SCHOOL_NAME);
+      School? hospitalityFaculty = await mergePromotionToBasic(
+          hospitalityResponse, hospitalityPromotionResponse, StringConstants.REACH_HOSPITALITY_SCHOOL_NAME);
+      School? techScienceFaculty = await mergePromotionToBasic(
+          techScienceResponse, techSciencePromotionResponse, StringConstants.REACH_TECH_SCIENCES_SCHOOL_NAME);
 
       if (businessTechnologyFaculty != null) {
         reachSchools.add(businessTechnologyFaculty);
@@ -303,7 +306,9 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       promotionSchool = School.fromJson(promotionData);
 
       List<Course> promotionCourses = promotionSchool.courses;
-      promotionCourses.forEach((element) {element.isOnPromotion = true;});
+      promotionCourses.forEach((element) {
+        element.isOnPromotion = true;
+      });
       basicSchool.courses.addAll(promotionCourses);
     }
     buildDepartmentList(basicSchool);
