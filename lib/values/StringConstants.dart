@@ -1,5 +1,5 @@
 class StringConstants {
-  static String APP_NAME = 'VISKEE Consultancy';
+  static String APP_NAME = 'VConsultancy';
 
   // Group Name
   static const String AIBT_GROUP_NAME = "AIBT";

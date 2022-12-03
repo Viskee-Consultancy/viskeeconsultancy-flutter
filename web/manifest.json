@@ -1,6 +1,6 @@
 {
-    "name": "viskeeconsultancy",
-    "short_name": "viskeeconsultancy",
+    "name": "VConsultancy",
+    "short_name": "VConsultancy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
