@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,6 +18,7 @@ import 'CourseDetailPage.dart';
 List<School> _schoolsToDisplay = [];
 List<School> _schoolsAIBT = [];
 List<School> _schoolsREACH = [];
+List<School> _schoolsAVTA = [];
 
 class SearchResultPage extends StatefulWidget {
   late final SearchResult _result;
@@ -24,17 +27,28 @@ class SearchResultPage extends StatefulWidget {
     _result = searchResult;
     _schoolsAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
     _schoolsREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
-    if (_schoolsAIBT.length != _schoolsREACH.length) {
-      if (_schoolsAIBT.length > _schoolsREACH.length) {
-        _schoolsREACH.addAll(buildPlaceHolderSchools(_schoolsAIBT.length - _schoolsREACH.length));
-      } else {
-        _schoolsREACH.addAll(buildPlaceHolderSchools(_schoolsREACH.length - _schoolsAIBT.length));
-      }
+    _schoolsAVTA = searchResult.searchResults[GroupEnum.AVTA] ?? [];
+
+    // Avoid crash at the bottom of gridview, add placeholder schools to each groups in order to make them with the
+    // same length.
+    // But if the group is empty, then not adding place older school to it.
+    int maxLength = max(_schoolsAIBT.length, max(_schoolsREACH.length, _schoolsAVTA.length));
+    if (!_schoolsAIBT.isEmpty) {
+      _schoolsAIBT.addAll(buildPlaceHolderSchools(maxLength - _schoolsAIBT.length));
     }
+    if (!_schoolsREACH.isEmpty) {
+      _schoolsREACH.addAll(buildPlaceHolderSchools(maxLength - _schoolsREACH.length));
+    }
+    if (!_schoolsAVTA.isEmpty) {
+      _schoolsAVTA.addAll(buildPlaceHolderSchools(maxLength - _schoolsAVTA.length));
+    }
+
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
     } else if (_schoolsREACH.isNotEmpty) {
       _schoolsToDisplay = _schoolsREACH;
+    } else {
+      _schoolsToDisplay = _schoolsAVTA;
     }
   }
 
@@ -109,6 +123,15 @@ class SearchResultView extends State<SearchResultPage> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                           ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: Text(StringConstants.AVTA_GROUP_NAME,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                         )
                       ],
                       onPressed: (int index) {
@@ -117,13 +140,18 @@ class SearchResultView extends State<SearchResultPage> {
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                            _selections = [true, false];
+                            _selections = [true, false, false];
                             _schoolsToDisplay = _schoolsAIBT;
                           } else if (index == 1) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                            _selections = [false, true];
+                            _selections = [false, true, false];
                             _schoolsToDisplay = _schoolsREACH;
+                          } else {
+                            NavigationPath.PATH.removeLast();
+                            NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                            _selections = [false, false, true];
+                            _schoolsToDisplay = _schoolsAVTA;
                           }
                         });
                       },
@@ -143,13 +171,16 @@ class SearchResultView extends State<SearchResultPage> {
     List<bool> _selections;
     if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false];
+      _selections = [true, false, false];
     } else if (_schoolsAIBT.isEmpty && !_schoolsREACH.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
-      _selections = [false, true];
+      _selections = [false, true, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && !_schoolsAVTA.isEmpty) {
+      NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+      _selections = [false, false, true];
     } else {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false];
+      _selections = [true, false, false];
     }
     return _selections;
   }
