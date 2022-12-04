@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
-import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'BrochureDownloadPage.dart';

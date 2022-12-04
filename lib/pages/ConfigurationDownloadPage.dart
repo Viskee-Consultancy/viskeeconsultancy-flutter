@@ -376,8 +376,8 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     }
 
     if (avtaBrochureResponse.statusCode == 200) {
-      final avataBrochureData = await json.decode(avtaBrochureResponse.body);
-      Brochures avtaBrochures = Brochures.fromJson(avataBrochureData);
+      final avtaBrochureData = await json.decode(avtaBrochureResponse.body);
+      Brochures avtaBrochures = Brochures.fromJson(avtaBrochureData);
       _avtaGroup.brochures = avtaBrochures.brochures;
     }
   }
