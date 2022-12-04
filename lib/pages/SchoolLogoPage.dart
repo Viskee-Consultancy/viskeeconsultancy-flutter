@@ -6,6 +6,7 @@ import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/Group.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
+import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
@@ -63,11 +64,19 @@ class SchoolLogoPage extends StatelessWidget {
                                             style: TextStyle(
                                                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              child: BrochureDownloadPage(_group.name!, _group.brochures),
-                                              type: PageTransitionType.rightToLeft));
+                                      if (_group.brochures.isNotEmpty) {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: BrochureDownloadPage(_group.name!, _group.brochures),
+                                                type: PageTransitionType.rightToLeft));
+                                      } else {
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                          backgroundColor: CustomColors.AVTA_PRIMARY_COLOR,
+                                          duration: Duration(milliseconds: 2000),
+                                          content: Text('Currently there is no available brochures, please try later.'),
+                                        ));
+                                      }
                                     })),
                           ),
                           Align(
@@ -94,7 +103,7 @@ class SchoolLogoPage extends StatelessWidget {
                   Expanded(
                       flex: 8,
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topCenter,
                         child: _buildSchoolGrid(),
                       )),
                 ],

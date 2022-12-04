@@ -165,22 +165,22 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       School? sheldon = await mergePromotionToBasic(
           sheldonResponse, sheldonPromotionResponse, StringConstants.AIBT_SHELDON_SCHOOL_NAME);
 
-      if (ace != null) {
+      if (ace != null && ace.courses.isNotEmpty) {
         aibtSchools.add(ace);
       }
-      if (bespoke != null) {
+      if (bespoke != null && bespoke.courses.isNotEmpty) {
         aibtSchools.add(bespoke);
       }
-      if (branson != null) {
+      if (branson != null && branson.courses.isNotEmpty) {
         aibtSchools.add(branson);
       }
-      if (diana != null) {
+      if (diana != null && diana.courses.isNotEmpty) {
         aibtSchools.add(diana);
       }
-      if (edison != null) {
+      if (edison != null && edison.courses.isNotEmpty) {
         aibtSchools.add(edison);
       }
-      if (sheldon != null) {
+      if (sheldon != null && sheldon.courses.isNotEmpty) {
         aibtSchools.add(sheldon);
       }
       _aibtGroup.schools = aibtSchools;
@@ -242,19 +242,19 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       School? techScienceFaculty = await mergePromotionToBasic(
           techScienceResponse, techSciencePromotionResponse, StringConstants.REACH_TECH_SCIENCES_SCHOOL_NAME);
 
-      if (businessTechnologyFaculty != null) {
+      if (businessTechnologyFaculty != null && businessTechnologyFaculty.courses.isNotEmpty) {
         reachSchools.add(businessTechnologyFaculty);
       }
-      if (earlyChildhoodFaculty != null) {
+      if (earlyChildhoodFaculty != null && earlyChildhoodFaculty.courses.isNotEmpty) {
         reachSchools.add(earlyChildhoodFaculty);
       }
-      if (englishFaculty != null) {
+      if (englishFaculty != null && englishFaculty.courses.isNotEmpty) {
         reachSchools.add(englishFaculty);
       }
-      if (hospitalityFaculty != null) {
+      if (hospitalityFaculty != null && hospitalityFaculty.courses.isNotEmpty) {
         reachSchools.add(hospitalityFaculty);
       }
-      if (techScienceFaculty != null) {
+      if (techScienceFaculty != null && techScienceFaculty.courses.isNotEmpty) {
         reachSchools.add(techScienceFaculty);
       }
 
@@ -325,22 +325,22 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       School? techScienceFaculty = await mergePromotionToBasic(
           techScienceResponse, techSciencePromotionResponse, StringConstants.AVTA_TECH_SCIENCES_SCHOOL_NAME);
 
-      if (businessTechnologyFaculty != null) {
+      if (businessTechnologyFaculty != null && businessTechnologyFaculty.courses.isNotEmpty) {
         avtaSchools.add(businessTechnologyFaculty);
       }
-      if (earlyChildhoodFaculty != null) {
+      if (earlyChildhoodFaculty != null && earlyChildhoodFaculty.courses.isNotEmpty) {
         avtaSchools.add(earlyChildhoodFaculty);
       }
-      if (englishFaculty != null) {
+      if (englishFaculty != null && englishFaculty.courses.isNotEmpty) {
         avtaSchools.add(englishFaculty);
       }
-      if (horticultureFaculty != null) {
+      if (horticultureFaculty != null && horticultureFaculty.courses.isNotEmpty) {
         avtaSchools.add(horticultureFaculty);
       }
-      if (hospitalityFaculty != null) {
+      if (hospitalityFaculty != null && hospitalityFaculty.courses.isNotEmpty) {
         avtaSchools.add(hospitalityFaculty);
       }
-      if (techScienceFaculty != null) {
+      if (techScienceFaculty != null && techScienceFaculty.courses.isNotEmpty) {
         avtaSchools.add(techScienceFaculty);
       }
 

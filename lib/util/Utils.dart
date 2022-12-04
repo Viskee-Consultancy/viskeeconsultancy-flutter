@@ -149,7 +149,7 @@ class Utils {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
         duration: Duration(milliseconds: 2000),
-        content: Text('The Brochure selected is currentyl not available, please try later.'),
+        content: Text('The Brochure selected is currently not available, please try later.'),
       ));
     }
   }
