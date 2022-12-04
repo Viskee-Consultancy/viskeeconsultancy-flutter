@@ -103,6 +103,7 @@ class CourseDetailPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 5),
             child: Text(
               _course.promotionValidity!,
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16),
             ),
           )
@@ -288,8 +289,10 @@ class CourseDetailPage extends StatelessWidget {
                     onPressed: () {
                       if (_course.group == GroupEnum.AIBT) {
                         Utils.launchURL("https://aibtglobal.edu.au/contact/");
-                      } else {
+                      } else if (_course.group == GroupEnum.REACH) {
                         Utils.launchURL("https://reachcollege.edu.au/contact/");
+                      } else {
+                        Utils.launchURL("https://avta.edu.au/contact/");
                       }
                     }))),
         Padding(
@@ -327,9 +330,13 @@ class CourseDetailPage extends StatelessWidget {
                         child: Text("TERMS AND CONDITIONS",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
-                      _course.group == GroupEnum.AIBT
-                          ? Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/")
-                          : Utils.launchURL("https://reachcollege.edu.au/course-terms/");
+                      if (_course.group == GroupEnum.AIBT) {
+                        Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
+                      } else if (_course.group == GroupEnum.REACH) {
+                        Utils.launchURL("https://reachcollege.edu.au/course-terms/");
+                      } else {
+                        Utils.launchURL("https://avta.edu.au/contact/");
+                      }
                     })))
       ],
     );
