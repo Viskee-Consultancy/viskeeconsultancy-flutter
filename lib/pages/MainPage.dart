@@ -20,11 +20,13 @@ import 'SearchResultPage.dart';
 class MainPage extends StatelessWidget {
   late final Group _aibt;
   late final Group _reach;
+  late final Group _avta;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group reachGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group reachGroup, Group avtaGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._reach = reachGroup;
+    this._avta = avtaGroup;
     this._courses.addAll(totalCourses);
   }
 
@@ -108,7 +110,7 @@ class MainPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(flex: 2, child: Container(child: null)),
+                            Expanded(flex: 1, child: Container(child: null)),
                             Container(
                               constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                               child: new OutlinedButton(
@@ -118,6 +120,29 @@ class MainPage extends StatelessWidget {
                                       context,
                                       PageTransition(
                                           child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
+                                },
+                                child: Utils.isRunningOnMobileBrowser()
+                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
+                                    : SvgPicture.asset("images/reach.svg"),
+                                style: OutlinedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  backgroundColor: Colors.white,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                ),
+                              ),
+                            ),
+                            Expanded(flex: 1, child: Container(child: null)),
+                            Container(
+                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                              child: new OutlinedButton(
+                                onPressed: () {
+                                  NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
                                 },
                                 child: Utils.isRunningOnMobileBrowser()
                                     ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
@@ -143,17 +168,7 @@ class MainPage extends StatelessWidget {
                   ),
                 )
               ],
-            )
-            // Container(
-            //     decoration: BoxDecoration(
-            //       color: Colors.black,
-            //       image: DecorationImage(
-            //         image: true ? NetworkImage("https://github.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/raw/master/background/background1.png"): AssetImage("images/background.png") as ImageProvider,
-            //         fit: BoxFit.cover,
-            //       ),
-            //     ),
-            //     child: ),
-            ));
+            )));
   }
 }
 

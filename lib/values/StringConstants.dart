@@ -74,7 +74,7 @@ class StringConstants {
   static const String REGION_3_URL = "region-3/";
   static const String AIBT_URL = "aibt/";
   static const String REACH_URL = "reach/";
-  static const String AVTA_URL = "reach/";
+  static const String AVTA_URL = "avta/";
   static const String PROMOTIONS_URL = "promotions/";
 
   // Brochure Configuration BASE URL

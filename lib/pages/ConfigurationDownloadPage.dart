@@ -35,6 +35,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   Group _aibtGroup = new Group();
   Group _reachGroup = new Group();
+  Group _avtaGroup = new Group();
   List<Course> _courses = [];
 
   @override
@@ -45,9 +46,11 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   void init() async {
     downloadConfigurations(context).then((value) => {
-          _courses = prepareCourses(_aibtGroup, _reachGroup),
-          Navigator.pushReplacement(context,
-              PageTransition(child: MainPage(_aibtGroup, _reachGroup, _courses), type: PageTransitionType.rightToLeft))
+          _courses = prepareCourses(_aibtGroup, _reachGroup, _avtaGroup),
+          Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  child: MainPage(_aibtGroup, _reachGroup, _avtaGroup, _courses), type: PageTransitionType.rightToLeft))
         });
   }
 
@@ -201,7 +204,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_TECH_SCIENCES_FILE_NAME));
 
     String reachPromotionSubUrl = subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
-    // AIBT School Promotion Configurations
+    // REACH School Promotion Configurations
     final businessTechnologyPromotionResponse = await http.get(Uri.parse(StringConstants.COURSE_BASE_URL +
         reachPromotionSubUrl +
         StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
@@ -261,6 +264,92 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     return _reachGroup;
   }
 
+  Future<Group> downloadAvtaBasicConfigurationFiles(var context, String subUrl) async {
+    String avtaSubUrl = subUrl + StringConstants.AVTA_URL;
+    // AVTA School Configurations
+    final businessTechnologyResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_EARLY_CHILDHOOD_FILE_NAME));
+    final englishResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_ENGLISH_FILE_NAME));
+    final horticultureResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_HORTICULTURE_FILE_NAME));
+    final hospitalityResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_HOSPITALITY_FILE_NAME));
+    final techScienceResponse = await http
+        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_TECH_SCIENCES_FILE_NAME));
+
+    String avtaPromotionSubUrl = subUrl + StringConstants.AVTA_URL + StringConstants.PROMOTIONS_URL;
+    // AVTA School Promotion Configurations
+    final businessTechnologyPromotionResponse = await http.get(Uri.parse(StringConstants.COURSE_BASE_URL +
+        avtaPromotionSubUrl +
+        StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
+    final earlyChildhoodPromotionResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_EARLY_CHILDHOOD_FILE_NAME));
+    final englishPromotionResponse = await http.get(
+        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_ENGLISH_FILE_NAME));
+    final horticulturePromotionResponse = await http.get(
+        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_HORTICULTURE_FILE_NAME));
+    final hospitalityPromotionResponse = await http.get(
+        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_HOSPITALITY_FILE_NAME));
+    final techSciencePromotionResponse = await http.get(Uri.parse(
+        StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_TECH_SCIENCES_FILE_NAME));
+
+    if (businessTechnologyResponse.statusCode != 200 &&
+        earlyChildhoodResponse.statusCode != 200 &&
+        englishResponse.statusCode != 200 &&
+        horticultureResponse.statusCode != 200 &&
+        hospitalityResponse.statusCode != 200 &&
+        techScienceResponse.statusCode != 200) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: CustomColors.GOLD,
+        duration: Duration(milliseconds: 2000),
+        content: Text('Cannot load configuration file successfully, please try later.'),
+      ));
+      Navigator.of(context).pop();
+    } else {
+      List<School> avtaSchools = <School>[];
+
+      print(businessTechnologyResponse);
+      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse,
+          businessTechnologyPromotionResponse, StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
+      School? earlyChildhoodFaculty = await mergePromotionToBasic(
+          earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.AVTA_EARLY_CHILDHOOD_SCHOOL_NAME);
+      School? englishFaculty = await mergePromotionToBasic(
+          englishResponse, englishPromotionResponse, StringConstants.AVTA_ENGLISH_SCHOOL_NAME);
+      School? horticultureFaculty = await mergePromotionToBasic(
+          hospitalityResponse, horticulturePromotionResponse, StringConstants.AVTA_HORTICULTURE_SCHOOL_NAME);
+      School? hospitalityFaculty = await mergePromotionToBasic(
+          hospitalityResponse, hospitalityPromotionResponse, StringConstants.AVTA_HOSPITALITY_SCHOOL_NAME);
+      School? techScienceFaculty = await mergePromotionToBasic(
+          techScienceResponse, techSciencePromotionResponse, StringConstants.AVTA_TECH_SCIENCES_SCHOOL_NAME);
+
+      if (businessTechnologyFaculty != null) {
+        avtaSchools.add(businessTechnologyFaculty);
+      }
+      if (earlyChildhoodFaculty != null) {
+        avtaSchools.add(earlyChildhoodFaculty);
+      }
+      if (englishFaculty != null) {
+        avtaSchools.add(englishFaculty);
+      }
+      if (horticultureFaculty != null) {
+        avtaSchools.add(horticultureFaculty);
+      }
+      if (hospitalityFaculty != null) {
+        avtaSchools.add(hospitalityFaculty);
+      }
+      if (techScienceFaculty != null) {
+        avtaSchools.add(techScienceFaculty);
+      }
+
+      _avtaGroup.schools = avtaSchools;
+      _avtaGroup.name = StringConstants.AVTA_GROUP_NAME;
+    }
+    return _avtaGroup;
+  }
+
   Future<void> downloadBrochureConfigurationFiles(String subUrl) async {
     // AIBT Brochure Configuration
     final aibtBrochureResponse =
@@ -269,6 +358,10 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     // REACH Brochure Configuration
     final reachBrochureResponse = await http
         .get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.REACH_BROCHURE_FILE_NAME));
+
+    // AVTA Brochure Configuration
+    final avtaBrochureResponse =
+        await http.get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.AVTA_BROCHURE_FILE_NAME));
 
     if (aibtBrochureResponse.statusCode == 200) {
       final aibtBrochureData = await json.decode(aibtBrochureResponse.body);
@@ -281,12 +374,19 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       Brochures reachBrochures = Brochures.fromJson(reachBrochureData);
       _reachGroup.brochures = reachBrochures.brochures;
     }
+
+    if (avtaBrochureResponse.statusCode == 200) {
+      final avataBrochureData = await json.decode(avtaBrochureResponse.body);
+      Brochures avtaBrochures = Brochures.fromJson(avataBrochureData);
+      _avtaGroup.brochures = avtaBrochures.brochures;
+    }
   }
 
   Future<void> downloadConfigurations(var context) async {
     String subUrl = buildSubUrl(_subfolder);
     await downloadAibtBasicConfigurationFiles(context, subUrl);
     await downloadReachBasicConfigurationFiles(context, subUrl);
+    await downloadAvtaBasicConfigurationFiles(context, subUrl);
     await downloadBrochureConfigurationFiles(subUrl);
     await Future.delayed(Duration(seconds: 1));
   }
@@ -315,26 +415,37 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     return basicSchool;
   }
 
-  List<Course> prepareCourses(Group aibtGroup, Group reachGroup) {
+  List<Course> prepareCourses(Group aibtGroup, Group reachGroup, Group avtaGroup) {
     List<School> aibtSchools = aibtGroup.schools;
     List<School> reachSchools = reachGroup.schools;
+    List<School> avtaSchools = avtaGroup.schools;
 
     List<Course> totalCourses = [];
+
+    // Setup aibt courses
     List<Course> aibtCourses = [];
     for (var school in aibtSchools) {
       aibtCourses.addAll(school.courses);
     }
-
     aibtCourses.forEach((course) => course.group = GroupEnum.AIBT);
 
+    // Setup reach courses
     List<Course> reachCourses = [];
     for (var school in reachSchools) {
       reachCourses.addAll(school.courses);
     }
     reachCourses.forEach((course) => course.group = GroupEnum.REACH);
 
+    // Setup avta courses
+    List<Course> avtaCourses = [];
+    for (var school in avtaSchools) {
+      avtaCourses.addAll(school.courses);
+    }
+    avtaCourses.forEach((course) => course.group = GroupEnum.AVTA);
+
     totalCourses.addAll(aibtCourses);
     totalCourses.addAll(reachCourses);
+    totalCourses.addAll(avtaCourses);
     return totalCourses;
   }
 

@@ -61,6 +61,8 @@ class Utils {
         return "COMMUNITY SERVICES";
       case SchoolNameEnum.ENGLISH_FACULTY:
         return "ENGLISH";
+      case SchoolNameEnum.HORTICULTURE_FACULTY:
+        return "HORTICULTURE";
       case SchoolNameEnum.HOSPITALITY_FACULTY:
         return "HOSPITALITY";
       case SchoolNameEnum.TECH_SCIENCES_FACULTY:
