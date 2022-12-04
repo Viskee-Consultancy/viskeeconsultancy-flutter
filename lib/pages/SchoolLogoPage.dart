@@ -107,10 +107,14 @@ class SchoolLogoPage extends StatelessWidget {
       return Utils.isRunningOnMobileBrowser()
           ? Padding(padding: EdgeInsets.all(30), child: Image.asset("images/aibt_landscape.png"))
           : SvgPicture.asset("images/aibt.svg");
-    } else {
+    } else if (_group.name == StringConstants.REACH_GROUP_NAME) {
       return Utils.isRunningOnMobileBrowser()
           ? Padding(padding: EdgeInsets.all(30), child: Image.asset("images/reach_landscape.png"))
           : SvgPicture.asset("images/reach.svg");
+    } else {
+      return Utils.isRunningOnMobileBrowser()
+          ? Padding(padding: EdgeInsets.all(30), child: Image.asset("images/avta_landscape.png"))
+          : SvgPicture.asset("images/avta.svg");
     }
   }
 

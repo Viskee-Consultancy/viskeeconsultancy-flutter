@@ -145,8 +145,8 @@ class MainPage extends StatelessWidget {
                                           child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
                                 },
                                 child: Utils.isRunningOnMobileBrowser()
-                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
-                                    : SvgPicture.asset("images/reach.svg"),
+                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png"))
+                                    : SvgPicture.asset("images/avta.svg"),
                                 style: OutlinedButton.styleFrom(
                                   primary: Colors.grey,
                                   backgroundColor: Colors.white,

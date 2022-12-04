@@ -87,4 +87,5 @@ class StringConstants {
   // Latest Videos URL
   static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
   static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
+  static const String AVTA_VIDEOS_URL = "https://avta.edu.au/about/";
 }

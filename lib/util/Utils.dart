@@ -78,6 +78,9 @@ class Utils {
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return CustomColors.REACH_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.AVTA_GROUP_NAME) {
+      return CustomColors.AVTA_PRIMARY_COLOR;
+    }
     return CustomColors.GOLD;
   }
 
@@ -88,6 +91,9 @@ class Utils {
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return CustomColors.REACH_SECONDARY_COLOR;
     }
+    if (groupName == StringConstants.AVTA_GROUP_NAME) {
+      return CustomColors.AVTA_SECONDARY_COLOR;
+    }
     return CustomColors.GOLD_HINT;
   }
 
@@ -97,6 +103,9 @@ class Utils {
     }
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return StringConstants.REACH_VIDEOS_URL;
+    }
+    if (groupName == StringConstants.AVTA_GROUP_NAME) {
+      return StringConstants.AVTA_VIDEOS_URL;
     }
     return StringConstants.AIBT_VIDEOS_URL;
   }

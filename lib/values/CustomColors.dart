@@ -9,4 +9,6 @@ class CustomColors {
   static const AIBT_SECONDARY_COLOR = Color(0xFF0D0D2F);
   static const REACH_PRIMARY_COLOR = Color(0xFFEDB41B);
   static const REACH_SECONDARY_COLOR = Color(0xFF146B9A);
+  static const AVTA_PRIMARY_COLOR = Color(0xFFEB1C24);
+  static const AVTA_SECONDARY_COLOR = Color(0xFF040404);
 }
