@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Brochures.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -46,7 +47,9 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
 
   void init() async {
     downloadConfigurations(context).then((value) => {
-          _courses = prepareCourses(_aibtGroup, _reachGroup, _avtaGroup),
+          _courses.addAll(prepareCourses(_aibtGroup, GroupEnum.AIBT)),
+          _courses.addAll(prepareCourses(_reachGroup, GroupEnum.REACH)),
+          _courses.addAll(prepareCourses(_avtaGroup, GroupEnum.AVTA)),
           Navigator.pushReplacement(
               context,
               PageTransition(
@@ -106,43 +109,22 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     }
   }
 
-  Future<Group> downloadAibtBasicConfigurationFiles(var context, String subUrl) async {
-    String aibtSubUrl = subUrl + StringConstants.AIBT_URL;
-    // AIBT School Configurations
-    final aceResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_ACE_FILE_NAME));
-    final bespokeResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_BESPOKE_FILE_NAME));
-    final bransonResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_BRANSON_FILE_NAME));
-    final dianaResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_DIANA_FILE_NAME));
-    final edisonResponse =
-        await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_EDISON_FILE_NAME));
-    final sheldonResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtSubUrl + StringConstants.AIBT_SHELDON_FILE_NAME));
+  Future<Group> downloadGroupConfigurationAndMapping(var context, String subUrl, List<String> fileNames, List<String> schoolNames, String groupName) async {
+    Group group = new Group();
+    // School Configurations
+    List<Response> responseList = [];
+    for (int i = 0; i < fileNames.length; i++) {
+      responseList.add(await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + subUrl + fileNames[i])));
+    }
 
+    // Promotion Configurations
     String aibtPromotionSubUrl = subUrl + StringConstants.AIBT_URL + StringConstants.PROMOTIONS_URL;
-    // AIBT School Promotion Configurations
-    final acePromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_ACE_FILE_NAME));
-    final bespokePromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_BESPOKE_FILE_NAME));
-    final bransonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_BRANSON_FILE_NAME));
-    final dianaPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_DIANA_FILE_NAME));
-    final edisonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_EDISON_FILE_NAME));
-    final sheldonPromotionResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + StringConstants.AIBT_SHELDON_FILE_NAME));
+    List<Response> promotionResponseList = [];
+    for (int i = 0; i < fileNames.length; i++) {
+      promotionResponseList.add(await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + fileNames[i])));
+    }
 
-    if (aceResponse.statusCode != 200 &&
-        bespokeResponse.statusCode != 200 &&
-        bransonResponse.statusCode != 200 &&
-        dianaResponse.statusCode != 200 &&
-        edisonResponse.statusCode != 200 &&
-        sheldonResponse.statusCode != 200) {
+    if (responseList.any((element) => element.statusCode != 200)) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: CustomColors.GOLD,
         duration: Duration(milliseconds: 2000),
@@ -150,244 +132,40 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       ));
       Navigator.of(context).pop();
     } else {
-      List<School> aibtSchools = <School>[];
+      List<School> schools = <School>[];
 
-      School? ace =
-          await mergePromotionToBasic(aceResponse, acePromotionResponse, StringConstants.AIBT_ACE_SCHOOL_NAME);
-      School? bespoke = await mergePromotionToBasic(
-          bespokeResponse, bespokePromotionResponse, StringConstants.AIBT_BESPOKE_SCHOOL_NAME);
-      School? branson = await mergePromotionToBasic(
-          bransonResponse, bransonPromotionResponse, StringConstants.AIBT_BRANSON_SCHOOL_NAME);
-      School? diana =
-          await mergePromotionToBasic(dianaResponse, dianaPromotionResponse, StringConstants.AIBT_DIANA_SCHOOL_NAME);
-      School? edison =
-          await mergePromotionToBasic(edisonResponse, edisonPromotionResponse, StringConstants.AIBT_EDISON_SCHOOL_NAME);
-      School? sheldon = await mergePromotionToBasic(
-          sheldonResponse, sheldonPromotionResponse, StringConstants.AIBT_SHELDON_SCHOOL_NAME);
-
-      if (ace != null && ace.courses.isNotEmpty) {
-        aibtSchools.add(ace);
+      for (int i = 0; i < schoolNames.length; i++) {
+        School? school = await mergePromotionToBasic(responseList[i], promotionResponseList[i], schoolNames[i]);
+        if (school != null && school.courses.isNotEmpty) {
+          print(school.name);
+          schools.add(school);
+        }
       }
-      if (bespoke != null && bespoke.courses.isNotEmpty) {
-        aibtSchools.add(bespoke);
-      }
-      if (branson != null && branson.courses.isNotEmpty) {
-        aibtSchools.add(branson);
-      }
-      if (diana != null && diana.courses.isNotEmpty) {
-        aibtSchools.add(diana);
-      }
-      if (edison != null && edison.courses.isNotEmpty) {
-        aibtSchools.add(edison);
-      }
-      if (sheldon != null && sheldon.courses.isNotEmpty) {
-        aibtSchools.add(sheldon);
-      }
-      _aibtGroup.schools = aibtSchools;
-      _aibtGroup.name = StringConstants.AIBT_GROUP_NAME;
+      group.schools = schools;
+      group.name = groupName;
     }
-    return _aibtGroup;
+    return group;
   }
 
-  Future<Group> downloadReachBasicConfigurationFiles(var context, String subUrl) async {
-    String reachSubUrl = subUrl + StringConstants.REACH_URL;
-    // REACH School Configurations
-    final businessTechnologyResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodResponse = await http.get(
-        Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_EARLY_CHILDHOOD_FILE_NAME));
-    final englishResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_ENGLISH_FILE_NAME));
-    final hospitalityResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_HOSPITALITY_FILE_NAME));
-    final techScienceResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + reachSubUrl + StringConstants.REACH_TECH_SCIENCES_FILE_NAME));
+  Future<void> downloadBrochureConfigurationAndMapping(String subUrl, Group group) async {
+    final brochureResponse =
+        await http.get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl));
 
-    String reachPromotionSubUrl = subUrl + StringConstants.REACH_URL + StringConstants.PROMOTIONS_URL;
-    // REACH School Promotion Configurations
-    final businessTechnologyPromotionResponse = await http.get(Uri.parse(StringConstants.COURSE_BASE_URL +
-        reachPromotionSubUrl +
-        StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_EARLY_CHILDHOOD_FILE_NAME));
-    final englishPromotionResponse = await http.get(
-        Uri.parse(StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_ENGLISH_FILE_NAME));
-    final hospitalityPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_HOSPITALITY_FILE_NAME));
-    final techSciencePromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + reachPromotionSubUrl + StringConstants.REACH_TECH_SCIENCES_FILE_NAME));
-
-    if (businessTechnologyResponse.statusCode != 200 &&
-        earlyChildhoodResponse.statusCode != 200 &&
-        englishResponse.statusCode != 200 &&
-        hospitalityResponse.statusCode != 200 &&
-        techScienceResponse.statusCode != 200) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: CustomColors.GOLD,
-        duration: Duration(milliseconds: 2000),
-        content: Text('Cannot load configuration file successfully, please try later.'),
-      ));
-      Navigator.of(context).pop();
-    } else {
-      List<School> reachSchools = <School>[];
-
-      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse,
-          businessTechnologyPromotionResponse, StringConstants.REACH_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
-      School? earlyChildhoodFaculty = await mergePromotionToBasic(
-          earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.REACH_EARLY_CHILDHOOD_SCHOOL_NAME);
-      School? englishFaculty = await mergePromotionToBasic(
-          englishResponse, englishPromotionResponse, StringConstants.REACH_ENGLISH_SCHOOL_NAME);
-      School? hospitalityFaculty = await mergePromotionToBasic(
-          hospitalityResponse, hospitalityPromotionResponse, StringConstants.REACH_HOSPITALITY_SCHOOL_NAME);
-      School? techScienceFaculty = await mergePromotionToBasic(
-          techScienceResponse, techSciencePromotionResponse, StringConstants.REACH_TECH_SCIENCES_SCHOOL_NAME);
-
-      if (businessTechnologyFaculty != null && businessTechnologyFaculty.courses.isNotEmpty) {
-        reachSchools.add(businessTechnologyFaculty);
-      }
-      if (earlyChildhoodFaculty != null && earlyChildhoodFaculty.courses.isNotEmpty) {
-        reachSchools.add(earlyChildhoodFaculty);
-      }
-      if (englishFaculty != null && englishFaculty.courses.isNotEmpty) {
-        reachSchools.add(englishFaculty);
-      }
-      if (hospitalityFaculty != null && hospitalityFaculty.courses.isNotEmpty) {
-        reachSchools.add(hospitalityFaculty);
-      }
-      if (techScienceFaculty != null && techScienceFaculty.courses.isNotEmpty) {
-        reachSchools.add(techScienceFaculty);
-      }
-
-      _reachGroup.schools = reachSchools;
-      _reachGroup.name = StringConstants.REACH_GROUP_NAME;
-    }
-    return _reachGroup;
-  }
-
-  Future<Group> downloadAvtaBasicConfigurationFiles(var context, String subUrl) async {
-    String avtaSubUrl = subUrl + StringConstants.AVTA_URL;
-    // AVTA School Configurations
-    final businessTechnologyResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_EARLY_CHILDHOOD_FILE_NAME));
-    final englishResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_ENGLISH_FILE_NAME));
-    final horticultureResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_HORTICULTURE_FILE_NAME));
-    final hospitalityResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_HOSPITALITY_FILE_NAME));
-    final techScienceResponse = await http
-        .get(Uri.parse(StringConstants.COURSE_BASE_URL + avtaSubUrl + StringConstants.AVTA_TECH_SCIENCES_FILE_NAME));
-
-    String avtaPromotionSubUrl = subUrl + StringConstants.AVTA_URL + StringConstants.PROMOTIONS_URL;
-    // AVTA School Promotion Configurations
-    final businessTechnologyPromotionResponse = await http.get(Uri.parse(StringConstants.COURSE_BASE_URL +
-        avtaPromotionSubUrl +
-        StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_FILE_NAME));
-    final earlyChildhoodPromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_EARLY_CHILDHOOD_FILE_NAME));
-    final englishPromotionResponse = await http.get(
-        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_ENGLISH_FILE_NAME));
-    final horticulturePromotionResponse = await http.get(
-        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_HORTICULTURE_FILE_NAME));
-    final hospitalityPromotionResponse = await http.get(
-        Uri.parse(StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_HOSPITALITY_FILE_NAME));
-    final techSciencePromotionResponse = await http.get(Uri.parse(
-        StringConstants.COURSE_BASE_URL + avtaPromotionSubUrl + StringConstants.AVTA_TECH_SCIENCES_FILE_NAME));
-
-    if (businessTechnologyResponse.statusCode != 200 &&
-        earlyChildhoodResponse.statusCode != 200 &&
-        englishResponse.statusCode != 200 &&
-        horticultureResponse.statusCode != 200 &&
-        hospitalityResponse.statusCode != 200 &&
-        techScienceResponse.statusCode != 200) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: CustomColors.GOLD,
-        duration: Duration(milliseconds: 2000),
-        content: Text('Cannot load configuration file successfully, please try later.'),
-      ));
-      Navigator.of(context).pop();
-    } else {
-      List<School> avtaSchools = <School>[];
-
-      print(businessTechnologyResponse);
-      School? businessTechnologyFaculty = await mergePromotionToBasic(businessTechnologyResponse,
-          businessTechnologyPromotionResponse, StringConstants.AVTA_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME);
-      School? earlyChildhoodFaculty = await mergePromotionToBasic(
-          earlyChildhoodResponse, earlyChildhoodPromotionResponse, StringConstants.AVTA_EARLY_CHILDHOOD_SCHOOL_NAME);
-      School? englishFaculty = await mergePromotionToBasic(
-          englishResponse, englishPromotionResponse, StringConstants.AVTA_ENGLISH_SCHOOL_NAME);
-      School? horticultureFaculty = await mergePromotionToBasic(
-          hospitalityResponse, horticulturePromotionResponse, StringConstants.AVTA_HORTICULTURE_SCHOOL_NAME);
-      School? hospitalityFaculty = await mergePromotionToBasic(
-          hospitalityResponse, hospitalityPromotionResponse, StringConstants.AVTA_HOSPITALITY_SCHOOL_NAME);
-      School? techScienceFaculty = await mergePromotionToBasic(
-          techScienceResponse, techSciencePromotionResponse, StringConstants.AVTA_TECH_SCIENCES_SCHOOL_NAME);
-
-      if (businessTechnologyFaculty != null && businessTechnologyFaculty.courses.isNotEmpty) {
-        avtaSchools.add(businessTechnologyFaculty);
-      }
-      if (earlyChildhoodFaculty != null && earlyChildhoodFaculty.courses.isNotEmpty) {
-        avtaSchools.add(earlyChildhoodFaculty);
-      }
-      if (englishFaculty != null && englishFaculty.courses.isNotEmpty) {
-        avtaSchools.add(englishFaculty);
-      }
-      if (horticultureFaculty != null && horticultureFaculty.courses.isNotEmpty) {
-        avtaSchools.add(horticultureFaculty);
-      }
-      if (hospitalityFaculty != null && hospitalityFaculty.courses.isNotEmpty) {
-        avtaSchools.add(hospitalityFaculty);
-      }
-      if (techScienceFaculty != null && techScienceFaculty.courses.isNotEmpty) {
-        avtaSchools.add(techScienceFaculty);
-      }
-
-      _avtaGroup.schools = avtaSchools;
-      _avtaGroup.name = StringConstants.AVTA_GROUP_NAME;
-    }
-    return _avtaGroup;
-  }
-
-  Future<void> downloadBrochureConfigurationFiles(String subUrl) async {
-    // AIBT Brochure Configuration
-    final aibtBrochureResponse =
-        await http.get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.AIBT_BROCHURE_FILE_NAME));
-
-    // REACH Brochure Configuration
-    final reachBrochureResponse = await http
-        .get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.REACH_BROCHURE_FILE_NAME));
-
-    // AVTA Brochure Configuration
-    final avtaBrochureResponse =
-        await http.get(Uri.parse(StringConstants.BROCHURE_BASE_URL + subUrl + StringConstants.AVTA_BROCHURE_FILE_NAME));
-
-    if (aibtBrochureResponse.statusCode == 200) {
-      final aibtBrochureData = await json.decode(aibtBrochureResponse.body);
-      Brochures aibtBrochures = Brochures.fromJson(aibtBrochureData);
-      _aibtGroup.brochures = aibtBrochures.brochures;
-    }
-
-    if (reachBrochureResponse.statusCode == 200) {
-      final reachBrochureData = await json.decode(reachBrochureResponse.body);
-      Brochures reachBrochures = Brochures.fromJson(reachBrochureData);
-      _reachGroup.brochures = reachBrochures.brochures;
-    }
-
-    if (avtaBrochureResponse.statusCode == 200) {
-      final avtaBrochureData = await json.decode(avtaBrochureResponse.body);
-      Brochures avtaBrochures = Brochures.fromJson(avtaBrochureData);
-      _avtaGroup.brochures = avtaBrochures.brochures;
+    if (brochureResponse.statusCode == 200) {
+      final brochureData = await json.decode(brochureResponse.body);
+      Brochures brochures = Brochures.fromJson(brochureData);
+      group.brochures = brochures.brochures;
     }
   }
 
   Future<void> downloadConfigurations(var context) async {
     String subUrl = buildSubUrl(_subfolder);
-    await downloadAibtBasicConfigurationFiles(context, subUrl);
-    await downloadReachBasicConfigurationFiles(context, subUrl);
-    await downloadAvtaBasicConfigurationFiles(context, subUrl);
-    await downloadBrochureConfigurationFiles(subUrl);
+    _aibtGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.AIBT_URL, StringConstants.AIBT_FILE_NAMES, StringConstants.AIBT_SCHOOL_NAMES, StringConstants.AIBT_GROUP_NAME);
+    _reachGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.REACH_URL, StringConstants.REACH_FILE_NAMES, StringConstants.REACH_SCHOOL_NAMES, StringConstants.REACH_GROUP_NAME);
+    _avtaGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.AVTA_URL, StringConstants.AVTA_FILE_NAMES, StringConstants.AVTA_SCHOOL_NAMES, StringConstants.AVTA_GROUP_NAME);
+    await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.AIBT_BROCHURE_FILE_NAME, _aibtGroup);
+    await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.REACH_BROCHURE_FILE_NAME, _reachGroup);
+    await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.AVTA_BROCHURE_FILE_NAME, _avtaGroup);
     await Future.delayed(Duration(seconds: 1));
   }
 
@@ -415,38 +193,14 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     return basicSchool;
   }
 
-  List<Course> prepareCourses(Group aibtGroup, Group reachGroup, Group avtaGroup) {
-    List<School> aibtSchools = aibtGroup.schools;
-    List<School> reachSchools = reachGroup.schools;
-    List<School> avtaSchools = avtaGroup.schools;
-
-    List<Course> totalCourses = [];
-
-    // Setup aibt courses
-    List<Course> aibtCourses = [];
-    for (var school in aibtSchools) {
-      aibtCourses.addAll(school.courses);
+  List<Course> prepareCourses(Group group, GroupEnum groupEnum) {
+    List<School> schools = group.schools;
+    List<Course> courses = [];
+    for (var school in schools) {
+      courses.addAll(school.courses);
     }
-    aibtCourses.forEach((course) => course.group = GroupEnum.AIBT);
-
-    // Setup reach courses
-    List<Course> reachCourses = [];
-    for (var school in reachSchools) {
-      reachCourses.addAll(school.courses);
-    }
-    reachCourses.forEach((course) => course.group = GroupEnum.REACH);
-
-    // Setup avta courses
-    List<Course> avtaCourses = [];
-    for (var school in avtaSchools) {
-      avtaCourses.addAll(school.courses);
-    }
-    avtaCourses.forEach((course) => course.group = GroupEnum.AVTA);
-
-    totalCourses.addAll(aibtCourses);
-    totalCourses.addAll(reachCourses);
-    totalCourses.addAll(avtaCourses);
-    return totalCourses;
+    courses.forEach((course) => course.group = groupEnum);
+    return courses;
   }
 
   void buildDepartmentList(School school) {
