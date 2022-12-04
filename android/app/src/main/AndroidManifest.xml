@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.viskee.brochure">
    <application
-        android:label="viskeeconsultancy"
+        android:label="VConsultancy"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
