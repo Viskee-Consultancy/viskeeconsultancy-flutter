@@ -193,14 +193,10 @@ class Region {
   static final List<String> REGION_2 = [
     "Bhutan",
     "China (excluding Hong Kong)",
-    "India",
     "Madagascar",
     "Maldives",
-    "Mauritius",
     "Pakistan",
     "Russia",
-    "Seychelles",
-    "Sri Lanka",
     "Afghanistan",
     "Armenia",
     "Azerbaijan",
@@ -237,6 +233,10 @@ class Region {
 
   static final List<String> REGION_3 =[
     "Bangladesh",
-    "Nepal"
+    "Nepal",
+    "India",
+    "Mauritius",
+    "Seychelles",
+    "Sri Lanka"
   ];
 }
