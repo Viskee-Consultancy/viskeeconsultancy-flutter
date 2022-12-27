@@ -80,7 +80,7 @@ class SchoolCoursesPageView extends StatelessWidget {
   Widget _buildColumn() {
     List<Widget> widgets = [];
     for (Department department in _school.departments) {
-      widgets.add(new DepartmentCourseGridView(department));
+      widgets.add(new DepartmentCourseGridView(department, _groupName));
     }
     return CustomScrollView(
       slivers: widgets,
@@ -90,9 +90,11 @@ class SchoolCoursesPageView extends StatelessWidget {
 
 class DepartmentCourseGridView extends StatelessWidget {
   late final Department _department;
+  late final String _groupName;
 
-  DepartmentCourseGridView(Department department) {
+  DepartmentCourseGridView(Department department, String groupName) {
     this._department = department;
+    this._groupName = groupName;
   }
 
   @override
@@ -100,7 +102,7 @@ class DepartmentCourseGridView extends StatelessWidget {
     return SliverStickyHeader(
       header: Container(
         height: 40.0,
-        color: CustomColors.GOLD,
+        color: Utils.getGroupPrimaryColor(_groupName),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.center,
         child: Text(_department.name!,
@@ -119,7 +121,7 @@ class DepartmentCourseGridView extends StatelessWidget {
   Widget _getCourseItem(int index) {
     Course course = _department.courses[index];
     if (course.isOnPromotion) {
-      return new PromotionCourseItemView(_department.courses[index]);
+      return new PromotionCourseItemView(_department.courses[index], _groupName);
     } else {
       return new CourseItemView(_department.courses[index]);
     }
@@ -169,9 +171,11 @@ class CourseItemView extends StatelessWidget {
 
 class PromotionCourseItemView extends StatelessWidget {
   late final Course _course;
+  late final String _groupName;
 
-  PromotionCourseItemView(Course course) {
+  PromotionCourseItemView(Course course, String groupName) {
     this._course = course;
+    this._groupName = groupName;
   }
 
   @override
@@ -195,7 +199,7 @@ class PromotionCourseItemView extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.sell_outlined,
-                        color: CustomColors.GOLD,
+                        color: Utils.getGroupPrimaryColor(_groupName),
                       ),
                       Flexible(
                           child: Padding(
