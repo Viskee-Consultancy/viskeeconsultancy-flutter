@@ -118,10 +118,10 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     }
 
     // Promotion Configurations
-    String aibtPromotionSubUrl = subUrl + StringConstants.AIBT_URL + StringConstants.PROMOTIONS_URL;
+    String promotionSubUrl = subUrl + StringConstants.PROMOTIONS_URL;
     List<Response> promotionResponseList = [];
     for (int i = 0; i < fileNames.length; i++) {
-      promotionResponseList.add(await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + aibtPromotionSubUrl + fileNames[i])));
+      promotionResponseList.add(await http.get(Uri.parse(StringConstants.COURSE_BASE_URL + promotionSubUrl + fileNames[i])));
     }
 
     if (responseList.any((element) => element.statusCode != 200)) {
@@ -189,6 +189,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       });
       basicSchool.courses.addAll(promotionCourses);
     }
+    basicSchool.courses.sort((o1, o2) => o1.name!.compareTo(o2.name!));
     buildDepartmentList(basicSchool);
     return basicSchool;
   }
@@ -208,11 +209,12 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     for (var i = 0; i < school.courses.length; i++) {
       var course = school.courses[i];
       course.schoolName = school.name;
-      if (m[course.department] == null) {
+      String departmentName = course.department!.toUpperCase();
+      if (m[departmentName] == null) {
         List<Course> courses = [course];
-        m[course.department!] = courses;
+        m[departmentName] = courses;
       } else {
-        m[course.department!]!.add(course);
+        m[departmentName]!.add(course);
       }
     }
     m.entries.forEach((entry) => {school.departments.add(new Department(entry.key, entry.value))});
