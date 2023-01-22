@@ -48,7 +48,7 @@ class Utils {
       case SchoolNameEnum.SHELDON:
         return "HOSPITALITY";
       case SchoolNameEnum.BUSINESS_AND_TECHNOLOGY_FACULTY:
-        return "BUSINESS";
+        return "BUSINESS AND TECHNOLOGY";
       case SchoolNameEnum.EARLY_CHILDHOOD_FACULTY:
         return "COMMUNITY SERVICES";
       case SchoolNameEnum.ENGLISH_FACULTY:
