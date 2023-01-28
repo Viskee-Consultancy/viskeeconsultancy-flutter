@@ -335,7 +335,7 @@ class CourseDetailPage extends StatelessWidget {
                       } else if (_course.group == GroupEnum.REACH) {
                         Utils.launchURL("https://reachcollege.edu.au/course-terms/");
                       } else {
-                        Utils.launchURL("https://avta.edu.au/contact/");
+                        Utils.launchURL("https://avta.edu.au/course-terms/");
                       }
                     })))
       ],
