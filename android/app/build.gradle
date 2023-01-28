@@ -44,9 +44,9 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.viskee.brochure"
         minSdkVersion 26
-        targetSdkVersion 30
-        versionCode 43
-        versionName "0.43"
+        targetSdkVersion 31
+        versionCode 44
+        versionName "0.44"
     }
 
     signingConfigs {
