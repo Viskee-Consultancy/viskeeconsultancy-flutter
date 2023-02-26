@@ -168,7 +168,7 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                    NavigationPath.PATH.add(StringConstants.PATH_NPA);
                                     Navigator.push(
                                         context,
                                         PageTransition(
@@ -246,13 +246,16 @@ class CourseSearchAutocomplete extends StatelessWidget {
     List<Course> aibtCourses = [];
     List<Course> reachCourses = [];
     List<Course> avtaCourses = [];
+    List<Course> npaCourses = [];
     for (Course course in suggestions) {
       if (course.group == GroupEnum.AIBT) {
         aibtCourses.add(course);
       } else if (course.group == GroupEnum.REACH) {
         reachCourses.add(course);
-      } else {
+      } else if (course.group == GroupEnum.AVTA){
         avtaCourses.add(course);
+      } else {
+        npaCourses.add(course);
       }
     }
 
@@ -295,10 +298,24 @@ class CourseSearchAutocomplete extends StatelessWidget {
     }
     m.entries.forEach((entry) => {avtaSchools.add(new School(entry.key, entry.value))});
 
+    List<School> npaSchools = [];
+    m = new Map();
+    for (var i = 0; i < npaCourses.length; i++) {
+      var course = npaCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {npaSchools.add(new School(entry.key, entry.value))});
+
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
     searchResult.searchResults[GroupEnum.REACH] = reachSchools;
     searchResult.searchResults[GroupEnum.AVTA] = avtaSchools;
+    searchResult.searchResults[GroupEnum.NPA] = npaSchools;
     searchResult.searchText = query;
     return searchResult;
   }

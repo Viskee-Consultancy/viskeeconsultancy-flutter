@@ -19,6 +19,7 @@ List<School> _schoolsToDisplay = [];
 List<School> _schoolsAIBT = [];
 List<School> _schoolsREACH = [];
 List<School> _schoolsAVTA = [];
+List<School> _schoolsNPA = [];
 
 class SearchResultPage extends StatefulWidget {
   late final SearchResult _result;
@@ -28,6 +29,7 @@ class SearchResultPage extends StatefulWidget {
     _schoolsAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
     _schoolsREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
     _schoolsAVTA = searchResult.searchResults[GroupEnum.AVTA] ?? [];
+    _schoolsNPA = searchResult.searchResults[GroupEnum.NPA] ?? [];
 
     // Avoid crash at the bottom of gridview, add placeholder schools to each groups in order to make them with the
     // same length.
@@ -42,13 +44,18 @@ class SearchResultPage extends StatefulWidget {
     if (!_schoolsAVTA.isEmpty) {
       _schoolsAVTA.addAll(buildPlaceHolderSchools(maxLength - _schoolsAVTA.length));
     }
+    if (!_schoolsNPA.isEmpty) {
+      _schoolsNPA.addAll(buildPlaceHolderSchools(maxLength - _schoolsNPA.length));
+    }
 
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
     } else if (_schoolsREACH.isNotEmpty) {
       _schoolsToDisplay = _schoolsREACH;
-    } else {
+    } else if (_schoolsAVTA.isNotEmpty){
       _schoolsToDisplay = _schoolsAVTA;
+    } else {
+      _schoolsToDisplay = _schoolsNPA;
     }
   }
 
@@ -132,6 +139,15 @@ class SearchResultView extends State<SearchResultPage> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                           ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: Text(StringConstants.NPA_GROUP_NAME,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                         )
                       ],
                       onPressed: (int index) {
@@ -140,18 +156,23 @@ class SearchResultView extends State<SearchResultPage> {
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                            _selections = [true, false, false];
+                            _selections = [true, false, false, false];
                             _schoolsToDisplay = _schoolsAIBT;
                           } else if (index == 1) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                            _selections = [false, true, false];
+                            _selections = [false, true, false, false];
                             _schoolsToDisplay = _schoolsREACH;
-                          } else {
+                          } else if (index == 2) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-                            _selections = [false, false, true];
+                            _selections = [false, false, true, false];
                             _schoolsToDisplay = _schoolsAVTA;
+                          } else {
+                            NavigationPath.PATH.removeLast();
+                            NavigationPath.PATH.add(StringConstants.PATH_NPA);
+                            _selections = [false, false, false, true];
+                            _schoolsToDisplay = _schoolsNPA;
                           }
                         });
                       },
@@ -171,16 +192,18 @@ class SearchResultView extends State<SearchResultPage> {
     List<bool> _selections;
     if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false, false];
-    } else if (_schoolsAIBT.isEmpty && !_schoolsREACH.isEmpty) {
+      _selections = [true, false, false, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
-      _selections = [false, true, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && !_schoolsAVTA.isEmpty) {
+      _selections = [false, true, false, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-      _selections = [false, false, true];
+      _selections = [false, false, true, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isEmpty && _schoolsNPA.isNotEmpty) {
+      NavigationPath.PATH.add(StringConstants.PATH_NPA);
+      _selections = [false, false, false, true];
     } else {
-      NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false, false];
+      _selections = [true, false, false, false];
     }
     return _selections;
   }

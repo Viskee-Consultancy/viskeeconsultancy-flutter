@@ -11,6 +11,7 @@ class StringConstants {
   static const String PATH_AIBT = "AIBT";
   static const String PATH_REACH = "REACH";
   static const String PATH_AVTA = "AVTA";
+  static const String PATH_NPA = "NPA";
   static const String PATH_COE = "COE";
   static const String PATH_NON_COE = "NON-COE";
   static const String PATH_ONSHORE = "ONSHORE";
