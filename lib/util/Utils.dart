@@ -17,8 +17,10 @@ class Utils {
       return Image.asset("images/aibt_landscape.png");
     } else if (groupName == StringConstants.REACH_GROUP_NAME) {
       return Image.asset("images/reach_landscape.png");
-    } else {
+    } else if (groupName == StringConstants.AVTA_GROUP_NAME){
       return Image.asset("images/avta_landscape.png");
+    } else {
+      return Image.asset("images/npa.png");
     }
   }
 
@@ -27,8 +29,10 @@ class Utils {
       return SvgPicture.asset("images/aibt.svg");
     } else if (groupName == StringConstants.REACH_GROUP_NAME) {
       return SvgPicture.asset("images/reach.svg");
-    } else {
+    } else if (groupName == StringConstants.AVTA_GROUP_NAME){
       return SvgPicture.asset("images/avta.svg");
+    } else {
+      return SvgPicture.asset("images/npa.svg");
     }
   }
 
@@ -73,6 +77,9 @@ class Utils {
     if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return CustomColors.AVTA_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.NPA_GROUP_NAME) {
+      return CustomColors.NPA_PRIMARY_COLOR;
+    }
     return CustomColors.GOLD;
   }
 
@@ -86,6 +93,9 @@ class Utils {
     if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return CustomColors.AVTA_SECONDARY_COLOR;
     }
+    if (groupName == StringConstants.NPA_GROUP_NAME) {
+      return CustomColors.NPA_SECONDARY_COLOR;
+    }
     return CustomColors.GOLD_HINT;
   }
 
@@ -98,6 +108,9 @@ class Utils {
     }
     if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return StringConstants.AVTA_VIDEOS_URL;
+    }
+    if (groupName == StringConstants.NPA_GROUP_NAME) {
+      return StringConstants.NPA_VIDEOS_URL;
     }
     return StringConstants.AIBT_VIDEOS_URL;
   }

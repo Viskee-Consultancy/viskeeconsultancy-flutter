@@ -291,8 +291,10 @@ class CourseDetailPage extends StatelessWidget {
                         Utils.launchURL("https://aibtglobal.edu.au/contact/");
                       } else if (_course.group == GroupEnum.REACH) {
                         Utils.launchURL("https://reachcollege.edu.au/contact/");
-                      } else {
+                      } else if (_course.group == GroupEnum.AVTA){
                         Utils.launchURL("https://avta.edu.au/contact/");
+                      } else {
+                        Utils.launchURL("https://npa.edu.au/contact/");
                       }
                     }))),
         Padding(
@@ -334,6 +336,8 @@ class CourseDetailPage extends StatelessWidget {
                         Utils.launchURL("https://aibtglobal.edu.au/courses/terms-for-courses/");
                       } else if (_course.group == GroupEnum.REACH) {
                         Utils.launchURL("https://reachcollege.edu.au/course-terms/");
+                      } else if (_course.group == GroupEnum.AVTA) {
+                        Utils.launchURL("https://avta.edu.au/course-terms/");
                       } else {
                         Utils.launchURL("https://avta.edu.au/course-terms/");
                       }
