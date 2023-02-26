@@ -10,6 +10,8 @@ import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/values/NavigationPath.dart';
 import 'package:viskeeconsultancy/values/StringConstants.dart';
 
+import '../models/GroupEnum.dart';
+
 class Utils {
 
   static getGroupLogoLandscape(String? groupName) {
@@ -113,6 +115,38 @@ class Utils {
       return StringConstants.NPA_VIDEOS_URL;
     }
     return StringConstants.AIBT_VIDEOS_URL;
+  }
+
+  static getTermsLink(GroupEnum? groupName) {
+    if (groupName == GroupEnum.AIBT) {
+      return StringConstants.AIBT_TERMS_URL;
+    }
+    if (groupName == GroupEnum.REACH) {
+      return StringConstants.REACH_TERMS_URL;
+    }
+    if (groupName == GroupEnum.AVTA) {
+      return StringConstants.AVTA_TERMS_URL;
+    }
+    if (groupName == GroupEnum.NPA) {
+      return StringConstants.NPA_TERMS_URL;
+    }
+    return StringConstants.AIBT_TERMS_URL;
+  }
+
+  static getContactLink(GroupEnum? groupName) {
+    if (groupName == GroupEnum.AIBT) {
+      return StringConstants.AIBT_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.REACH) {
+      return StringConstants.REACH_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.AVTA) {
+      return StringConstants.AVTA_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.NPA) {
+      return StringConstants.NPA_CONTACT_URL;
+    }
+    return StringConstants.AIBT_CONTACT_URL;
   }
 
   static isRunningOnMobileBrowser() {
