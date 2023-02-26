@@ -81,85 +81,114 @@ class MainPage extends StatelessWidget {
                                   ),
                                   child: new CourseSearchAutocomplete(_courses)))),
                       Expanded(
-                        flex: 2,
+                        flex: 1,
                         child: Container(child: null),
                       ),
                       Expanded(
-                          flex: 4,
-                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                            Expanded(flex: 1, child: Container(child: null)),
-                            Container(
-                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                              child: new OutlinedButton(
-                                onPressed: () {
-                                  NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                                  Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
-                                },
-                                child: Utils.isRunningOnMobileBrowser()
-                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
-                                    : SvgPicture.asset("images/aibt.svg"),
-                                style: OutlinedButton.styleFrom(
-                                  primary: Colors.grey,
-                                  backgroundColor: Colors.white,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                          flex: 5,
+                          child: Column(children: [
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Utils.isRunningOnMobileBrowser()
+                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
+                                      : SvgPicture.asset("images/aibt.svg"),
+                                  style: OutlinedButton.styleFrom(
+                                    primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(flex: 1, child: Container(child: null)),
-                            Container(
-                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                              child: new OutlinedButton(
-                                onPressed: () {
-                                  NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                                  Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
-                                },
-                                child: Utils.isRunningOnMobileBrowser()
-                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
-                                    : SvgPicture.asset("images/reach.svg"),
-                                style: OutlinedButton.styleFrom(
-                                  primary: Colors.grey,
-                                  backgroundColor: Colors.white,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Utils.isRunningOnMobileBrowser()
+                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
+                                      : SvgPicture.asset("images/reach.svg"),
+                                  style: OutlinedButton.styleFrom(
+                                    primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(flex: 1, child: Container(child: null)),
-                            Container(
-                              constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
-                              child: new OutlinedButton(
-                                onPressed: () {
-                                  NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-                                  Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
-                                },
-                                child: Utils.isRunningOnMobileBrowser()
-                                    ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png"))
-                                    : SvgPicture.asset("images/avta.svg"),
-                                style: OutlinedButton.styleFrom(
-                                  primary: Colors.grey,
-                                  backgroundColor: Colors.white,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                              Expanded(flex: 1, child: Container(child: null))
+                            ]),
+                            Spacer(),
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Utils.isRunningOnMobileBrowser()
+                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png"))
+                                      : SvgPicture.asset("images/avta.svg"),
+                                  style: OutlinedButton.styleFrom(
+                                    primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(flex: 1, child: Container(child: null))
-                          ])),
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Utils.isRunningOnMobileBrowser()
+                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png"))
+                                      : SvgPicture.asset("images/npa.svg"),
+                                  style: OutlinedButton.styleFrom(
+                                    primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
+                                ),
+                              ),
+                              Expanded(flex: 1, child: Container(child: null))
+                            ],)
+                          ],)),
                       Expanded(
-                        flex: 2,
+                        flex: 1,
                         child: Container(
                           child: null,
                         ),
