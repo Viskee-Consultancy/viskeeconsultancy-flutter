@@ -21,12 +21,14 @@ class MainPage extends StatelessWidget {
   late final Group _aibt;
   late final Group _reach;
   late final Group _avta;
+  late final Group _npa;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group reachGroup, Group avtaGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group reachGroup, Group avtaGroup, Group npaGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._reach = reachGroup;
     this._avta = avtaGroup;
+    this._npa = npaGroup;
     this._courses.addAll(totalCourses);
   }
 
@@ -170,7 +172,7 @@ class MainPage extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
+                                            child: SchoolLogoPage(_npa), type: PageTransitionType.rightToLeft));
                                   },
                                   child: Utils.isRunningOnMobileBrowser()
                                       ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png"))

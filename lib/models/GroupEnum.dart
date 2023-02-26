@@ -1,1 +1,1 @@
-enum GroupEnum { AIBT, REACH, AVTA }
+enum GroupEnum { AIBT, REACH, AVTA, NPA }

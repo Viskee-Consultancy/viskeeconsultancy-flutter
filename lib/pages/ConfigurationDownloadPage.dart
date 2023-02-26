@@ -37,6 +37,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   Group _aibtGroup = new Group();
   Group _reachGroup = new Group();
   Group _avtaGroup = new Group();
+  Group _npaGroup = new Group();
   List<Course> _courses = [];
 
   @override
@@ -50,10 +51,11 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
           _courses.addAll(prepareCourses(_aibtGroup, GroupEnum.AIBT)),
           _courses.addAll(prepareCourses(_reachGroup, GroupEnum.REACH)),
           _courses.addAll(prepareCourses(_avtaGroup, GroupEnum.AVTA)),
+          _courses.addAll(prepareCourses(_npaGroup, GroupEnum.NPA)),
           Navigator.pushReplacement(
               context,
               PageTransition(
-                  child: MainPage(_aibtGroup, _reachGroup, _avtaGroup, _courses), type: PageTransitionType.rightToLeft))
+                  child: MainPage(_aibtGroup, _reachGroup, _avtaGroup, _npaGroup, _courses), type: PageTransitionType.rightToLeft))
         });
   }
 
@@ -163,9 +165,11 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
     _aibtGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.AIBT_URL, StringConstants.AIBT_FILE_NAMES, StringConstants.AIBT_SCHOOL_NAMES, StringConstants.AIBT_GROUP_NAME);
     _reachGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.REACH_URL, StringConstants.REACH_FILE_NAMES, StringConstants.REACH_SCHOOL_NAMES, StringConstants.REACH_GROUP_NAME);
     _avtaGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.AVTA_URL, StringConstants.AVTA_FILE_NAMES, StringConstants.AVTA_SCHOOL_NAMES, StringConstants.AVTA_GROUP_NAME);
+    _npaGroup = await downloadGroupConfigurationAndMapping(context, subUrl + StringConstants.NPA_URL, StringConstants.NPA_FILE_NAMES, StringConstants.NPA_SCHOOL_NAMES, StringConstants.NPA_GROUP_NAME);
     await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.AIBT_BROCHURE_FILE_NAME, _aibtGroup);
     await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.REACH_BROCHURE_FILE_NAME, _reachGroup);
     await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.AVTA_BROCHURE_FILE_NAME, _avtaGroup);
+    await downloadBrochureConfigurationAndMapping(subUrl+StringConstants.NPA_BROCHURE_FILE_NAME, _npaGroup);
     await Future.delayed(Duration(seconds: 1));
   }
 

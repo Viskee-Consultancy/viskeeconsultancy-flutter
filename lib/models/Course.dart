@@ -58,19 +58,19 @@ class Course {
     cricosCode = json["cricosCode"];
     department = json["department"];
     name = json["name"];
-    if (json["duration"] != null && num.tryParse(json["duration"]) != null) {
-      duration = int.tryParse(json["duration"]);
+    if (json["duration"] != null && num.tryParse(json["duration"].toString()) != null) {
+      duration = int.tryParse(json["duration"].toString());
     }
-    if (json["durationMin"] != null && num.tryParse(json["durationMin"]) != null) {
-      durationMin = int.tryParse(json["durationMin"]);
+    if (json["durationMin"] != null && num.tryParse(json["durationMin"].toString()) != null) {
+      durationMin = int.tryParse(json["durationMin"].toString());
     }
-    if (json["durationMax"] != null && num.tryParse(json["durationMax"]) != null) {
-      durationMax = int.tryParse(json["durationMax"]);
+    if (json["durationMax"] != null && num.tryParse(json["durationMax"].toString()) != null) {
+      durationMax = int.tryParse(json["durationMax"].toString());
     }
     durationDetail = json["durationDetail"];
-    tuition = json["tuition"];
+    tuition = json["tuition"].toString();
     tuitionDetail = json["tuitionDetail"];
-    tuitionHalf = json["tuitionHalf"];
+    tuitionHalf = json["tuitionHalf"].toString();
     tuitionHalfDetail = json["tuitionHalfDetail"];
     location = json["location"];
     locationDetail = json["locationDetail"];
@@ -78,8 +78,8 @@ class Course {
       location = "";
     }
     locationList = location!.split("/");
-    placementFee = json["placementFee"];
-    placementDuration = json["placementDuration"];
+    placementFee = json["placementFee"].toString();
+    placementDuration = json["placementDuration"].toString();
     placementDetail = json["placementDetail"];
     note = json["note"];
     promotionValidity = json["promotionValidity"];
