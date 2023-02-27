@@ -22,7 +22,7 @@ class Utils {
     } else if (groupName == StringConstants.AVTA_GROUP_NAME){
       return Image.asset("images/avta_landscape.png");
     } else {
-      return Image.asset("images/npa.png");
+      return Image.asset("images/npa_landscape.png");
     }
   }
 
