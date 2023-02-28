@@ -121,13 +121,13 @@ class StringConstants {
   static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
   static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
   static const String AVTA_VIDEOS_URL = "https://avta.edu.au/latest-videos/";
-  static const String NPA_VIDEOS_URL = "https://avta.edu.au/latest-videos/";
+  static const String NPA_VIDEOS_URL = "https://npa.edu.au/latest-videos/";
 
   // Terms and Conditions URL
   static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
   static const String REACH_TERMS_URL = "https://reachcollege.edu.au/course-terms/";
   static const String AVTA_TERMS_URL = "https://avta.edu.au/course-terms/";
-  static const String NPA_TERMS_URL = "https://avta.edu.au/course-terms/";
+  static const String NPA_TERMS_URL = "https://npa.edu.au/course-terms/";
 
   // Contact us URL
   static const String AIBT_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
