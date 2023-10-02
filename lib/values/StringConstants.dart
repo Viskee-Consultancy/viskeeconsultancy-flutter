@@ -3,12 +3,14 @@ class StringConstants {
 
   // Group Name
   static const String AIBT_GROUP_NAME = "AIBT";
+  static const String AIBT_I_GROUP_NAME = "AIBT-I";
   static const String REACH_GROUP_NAME = "REACH";
   static const String AVTA_GROUP_NAME = "AVTA";
   static const String NPA_GROUP_NAME = "NPA";
 
   // Navigation Path
   static const String PATH_AIBT = "AIBT";
+  static const String PATH_AIBT_I = "AIBT-I";
   static const String PATH_REACH = "REACH";
   static const String PATH_AVTA = "AVTA";
   static const String PATH_NPA = "NPA";
@@ -26,6 +28,15 @@ class StringConstants {
   static const String AIBT_SHELDON_SCHOOL_NAME = "SHELDON SCHOOL OF HOSPITALITY";
 
   static const List<String> AIBT_SCHOOL_NAMES = [AIBT_ACE_SCHOOL_NAME, AIBT_BESPOKE_SCHOOL_NAME, AIBT_BRANSON_SCHOOL_NAME, AIBT_DIANA_SCHOOL_NAME, AIBT_EDISON_SCHOOL_NAME, AIBT_SHELDON_SCHOOL_NAME];
+
+  // AIBT_I School Name
+  static const String AIBT_I_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME = "FACULTY OF BUSINESS AND TECHNOLOGY";
+  static const String AIBT_I_EARLY_CHILDHOOD_SCHOOL_NAME = "FACULTY OF EARLY CHILDHOOD AND COMMUNITY SERVICES";
+  static const String AIBT_I_ENGLISH_SCHOOL_NAME = "FACULTY OF ENGLISH";
+  static const String AIBT_I_HOSPITALITY_SCHOOL_NAME = "FACULTY OF HOSPITALITY";
+  static const String AIBT_I_TECH_SCIENCES_SCHOOL_NAME = "FACULTY OF TECH SCIENCES";
+
+  static const List<String> AIBT_I_SCHOOL_NAMES = [AIBT_I_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME, AIBT_I_EARLY_CHILDHOOD_SCHOOL_NAME, AIBT_I_ENGLISH_SCHOOL_NAME, AIBT_I_HOSPITALITY_SCHOOL_NAME, AIBT_I_TECH_SCIENCES_SCHOOL_NAME];
 
   // REACH School Name
   static const String REACH_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME = "FACULTY OF BUSINESS AND TECHNOLOGY";
@@ -64,6 +75,15 @@ class StringConstants {
   static const String AIBT_SHELDON_FILE_NAME = "SHELDON_SCHOOL_OF_HOSPITALITY.json";
 
   static const List<String> AIBT_FILE_NAMES = [AIBT_ACE_FILE_NAME, AIBT_BESPOKE_FILE_NAME, AIBT_BRANSON_FILE_NAME, AIBT_DIANA_FILE_NAME, AIBT_EDISON_FILE_NAME, AIBT_SHELDON_FILE_NAME];
+
+  // AIBT_I File Name
+  static const String AIBT_I_BUSINESS_AND_TECHNOLOGY_FILE_NAME = "FACULTY_OF_BUSINESS_AND_TECHNOLOGY.json";
+  static const String AIBT_I_EARLY_CHILDHOOD_FILE_NAME = "FACULTY_OF_EARLY_CHILDHOOD_AND_COMMUNITY_SERVICES.json";
+  static const String AIBT_I_ENGLISH_FILE_NAME = "FACULTY_OF_ENGLISH.json";
+  static const String AIBT_I_HOSPITALITY_FILE_NAME = "FACULTY_OF_HOSPITALITY.json";
+  static const String AIBT_I_TECH_SCIENCES_FILE_NAME = "FACULTY_OF_TECH_SCIENCES.json";
+
+  static const List<String> AIBT_I_FILE_NAMES = [AIBT_I_BUSINESS_AND_TECHNOLOGY_FILE_NAME, AIBT_I_EARLY_CHILDHOOD_FILE_NAME, AIBT_I_ENGLISH_FILE_NAME, AIBT_I_HOSPITALITY_FILE_NAME, AIBT_I_TECH_SCIENCES_FILE_NAME];
 
   // REACH File Name
   static const String REACH_BUSINESS_AND_TECHNOLOGY_FILE_NAME = "FACULTY_OF_BUSINESS_AND_TECHNOLOGY.json";
@@ -104,6 +124,7 @@ class StringConstants {
   static const String REGION_2_URL = "region-2/";
   static const String REGION_3_URL = "region-3/";
   static const String AIBT_URL = "aibt/";
+  static const String AIBT_I_URL = "aibt-i/";
   static const String REACH_URL = "reach/";
   static const String AVTA_URL = "avta/";
   static const String NPA_URL = "npa/";
@@ -113,24 +134,28 @@ class StringConstants {
   static const String BROCHURE_BASE_URL =
       "https://raw.githubusercontent.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/master/brochures/json/";
   static const String AIBT_BROCHURE_FILE_NAME = "aibt-brochures.json";
+  static const String AIBT_I_BROCHURE_FILE_NAME = "aibt-i-brochures.json";
   static const String REACH_BROCHURE_FILE_NAME = "reach-brochures.json";
   static const String AVTA_BROCHURE_FILE_NAME = "avta-brochures.json";
   static const String NPA_BROCHURE_FILE_NAME = "npa-brochures.json";
 
   // Latest Videos URL
   static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
+  static const String AIBT_I_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
   static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
   static const String AVTA_VIDEOS_URL = "https://avta.edu.au/latest-videos/";
   static const String NPA_VIDEOS_URL = "https://npa.edu.au/latest-videos/";
 
   // Terms and Conditions URL
   static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
+  static const String AIBT_I_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
   static const String REACH_TERMS_URL = "https://reachcollege.edu.au/course-terms/";
   static const String AVTA_TERMS_URL = "https://avta.edu.au/course-terms/";
   static const String NPA_TERMS_URL = "https://npa.edu.au/course-terms/";
 
   // Contact us URL
   static const String AIBT_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
+  static const String AIBT_I_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
   static const String REACH_CONTACT_URL = "https://reachcollege.edu.au/contact/";
   static const String AVTA_CONTACT_URL = "https://avta.edu.au/contact/";
   static const String NPA_CONTACT_URL = "https://npa.edu.au/contact/";

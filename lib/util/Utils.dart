@@ -17,17 +17,26 @@ class Utils {
   static getGroupLogoLandscape(String? groupName) {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
       return Image.asset("images/aibt_landscape.png");
-    } else if (groupName == StringConstants.REACH_GROUP_NAME) {
+    }
+    if (groupName == StringConstants.AIBT_I_GROUP_NAME) {
+      return Image.asset("images/aibt-i_landscape.png");
+    }
+    if (groupName == StringConstants.REACH_GROUP_NAME) {
       return Image.asset("images/reach_landscape.png");
-    } else if (groupName == StringConstants.AVTA_GROUP_NAME){
+    }
+    if (groupName == StringConstants.AVTA_GROUP_NAME){
       return Image.asset("images/avta_landscape.png");
-    } else {
+    }
+    if (groupName == StringConstants.NPA_GROUP_NAME){
       return Image.asset("images/npa_landscape.png");
     }
+    return Image.asset("images/aibt_landscape.png");
   }
 
   static getGroupLogoSVG(String? groupName) {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
+      return SvgPicture.asset("images/aibt.svg");
+    } else if (groupName == StringConstants.AIBT_I_GROUP_NAME) {
       return SvgPicture.asset("images/aibt.svg");
     } else if (groupName == StringConstants.REACH_GROUP_NAME) {
       return SvgPicture.asset("images/reach.svg");
@@ -73,6 +82,9 @@ class Utils {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
       return CustomColors.AIBT_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.AIBT_I_GROUP_NAME) {
+      return CustomColors.AIBT_I_PRIMARY_COLOR;
+    }
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return CustomColors.REACH_PRIMARY_COLOR;
     }
@@ -88,6 +100,9 @@ class Utils {
   static getGroupSecondaryColor(String? groupName) {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
       return CustomColors.AIBT_SECONDARY_COLOR;
+    }
+    if (groupName == StringConstants.AIBT_I_GROUP_NAME) {
+      return CustomColors.AIBT_I_SECONDARY_COLOR;
     }
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return CustomColors.REACH_SECONDARY_COLOR;
@@ -105,6 +120,9 @@ class Utils {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
       return StringConstants.AIBT_VIDEOS_URL;
     }
+    if (groupName == StringConstants.AIBT_I_GROUP_NAME) {
+      return StringConstants.AIBT_I_VIDEOS_URL;
+    }
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return StringConstants.REACH_VIDEOS_URL;
     }
@@ -121,6 +139,9 @@ class Utils {
     if (groupName == GroupEnum.AIBT) {
       return StringConstants.AIBT_TERMS_URL;
     }
+    if (groupName == GroupEnum.AIBT_I) {
+      return StringConstants.AIBT_I_TERMS_URL;
+    }
     if (groupName == GroupEnum.REACH) {
       return StringConstants.REACH_TERMS_URL;
     }
@@ -136,6 +157,9 @@ class Utils {
   static getContactLink(GroupEnum? groupName) {
     if (groupName == GroupEnum.AIBT) {
       return StringConstants.AIBT_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.AIBT_I) {
+      return StringConstants.AIBT_I_CONTACT_URL;
     }
     if (groupName == GroupEnum.REACH) {
       return StringConstants.REACH_CONTACT_URL;

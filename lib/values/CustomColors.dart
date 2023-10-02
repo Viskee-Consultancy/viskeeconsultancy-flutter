@@ -7,6 +7,8 @@ class CustomColors {
   static const GREY_RGB = Color.fromRGBO(209, 209, 209, 1);
   static const AIBT_PRIMARY_COLOR = Color(0xFF40AD49);
   static const AIBT_SECONDARY_COLOR = Color(0xFF0D0D2F);
+  static const AIBT_I_PRIMARY_COLOR = Color(0xFFe9921c);
+  static const AIBT_I_SECONDARY_COLOR = Color(0xFF0D1030);
   static const REACH_PRIMARY_COLOR = Color(0xFFEDB41B);
   static const REACH_SECONDARY_COLOR = Color(0xFF146B9A);
   static const AVTA_PRIMARY_COLOR = Color(0xFFEB1C24);

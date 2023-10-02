@@ -19,13 +19,15 @@ import 'SearchResultPage.dart';
 
 class MainPage extends StatelessWidget {
   late final Group _aibt;
+  late final Group _aibt_i;
   late final Group _reach;
   late final Group _avta;
   late final Group _npa;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group reachGroup, Group avtaGroup, Group npaGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
+    this._aibt_i = aibtIGroup;
     this._reach = reachGroup;
     this._avta = avtaGroup;
     this._npa = npaGroup;
@@ -103,6 +105,29 @@ class MainPage extends StatelessWidget {
                                   },
                                   child: Utils.isRunningOnMobileBrowser()
                                       ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
+                                      : SvgPicture.asset("images/aibt.svg"),
+                                  style: OutlinedButton.styleFrom(
+                                    primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
+                                ),
+                              ),
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Utils.isRunningOnMobileBrowser()
+                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png"))
                                       : SvgPicture.asset("images/aibt.svg"),
                                   style: OutlinedButton.styleFrom(
                                     primary: Colors.grey,
