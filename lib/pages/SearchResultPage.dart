@@ -17,6 +17,7 @@ import 'CourseDetailPage.dart';
 
 List<School> _schoolsToDisplay = [];
 List<School> _schoolsAIBT = [];
+List<School> _schoolsAIBT_I = [];
 List<School> _schoolsREACH = [];
 List<School> _schoolsAVTA = [];
 List<School> _schoolsNPA = [];
@@ -27,6 +28,7 @@ class SearchResultPage extends StatefulWidget {
   SearchResultPage(SearchResult searchResult) {
     _result = searchResult;
     _schoolsAIBT = searchResult.searchResults[GroupEnum.AIBT] ?? [];
+    _schoolsAIBT_I = searchResult.searchResults[GroupEnum.AIBT_I] ?? [];
     _schoolsREACH = searchResult.searchResults[GroupEnum.REACH] ?? [];
     _schoolsAVTA = searchResult.searchResults[GroupEnum.AVTA] ?? [];
     _schoolsNPA = searchResult.searchResults[GroupEnum.NPA] ?? [];
@@ -35,8 +37,12 @@ class SearchResultPage extends StatefulWidget {
     // same length.
     // But if the group is empty, then not adding place older school to it.
     int maxLength = max(_schoolsAIBT.length, max(_schoolsREACH.length, _schoolsAVTA.length));
+    maxLength = max(maxLength, max(_schoolsNPA.length, _schoolsAIBT_I.length));
     if (!_schoolsAIBT.isEmpty) {
       _schoolsAIBT.addAll(buildPlaceHolderSchools(maxLength - _schoolsAIBT.length));
+    }
+    if (!_schoolsAIBT_I.isEmpty) {
+      _schoolsAIBT_I.addAll(buildPlaceHolderSchools(maxLength - _schoolsAIBT_I.length));
     }
     if (!_schoolsREACH.isEmpty) {
       _schoolsREACH.addAll(buildPlaceHolderSchools(maxLength - _schoolsREACH.length));
@@ -50,7 +56,9 @@ class SearchResultPage extends StatefulWidget {
 
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
-    } else if (_schoolsREACH.isNotEmpty) {
+    } else if (_schoolsAIBT_I.isNotEmpty) {
+      _schoolsToDisplay = _schoolsAIBT_I;
+    }else if (_schoolsREACH.isNotEmpty) {
       _schoolsToDisplay = _schoolsREACH;
     } else if (_schoolsAVTA.isNotEmpty){
       _schoolsToDisplay = _schoolsAVTA;
@@ -126,6 +134,15 @@ class SearchResultView extends State<SearchResultPage> {
                           width: 100,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: Text(StringConstants.AIBT_I_GROUP_NAME,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
                             child: Text(StringConstants.REACH_GROUP_NAME,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
@@ -156,22 +173,27 @@ class SearchResultView extends State<SearchResultPage> {
                           if (index == 0) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                            _selections = [true, false, false, false];
+                            _selections = [true, false, false, false, false];
                             _schoolsToDisplay = _schoolsAIBT;
                           } else if (index == 1) {
                             NavigationPath.PATH.removeLast();
+                            NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+                            _selections = [false, true, false, false, false];
+                            _schoolsToDisplay = _schoolsAIBT_I;
+                          }else if (index == 2) {
+                            NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                            _selections = [false, true, false, false];
+                            _selections = [false, false, true, false, false];
                             _schoolsToDisplay = _schoolsREACH;
-                          } else if (index == 2) {
+                          } else if (index == 3) {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-                            _selections = [false, false, true, false];
+                            _selections = [false, false, false, true, false];
                             _schoolsToDisplay = _schoolsAVTA;
                           } else {
                             NavigationPath.PATH.removeLast();
                             NavigationPath.PATH.add(StringConstants.PATH_NPA);
-                            _selections = [false, false, false, true];
+                            _selections = [false, false, false, false, true];
                             _schoolsToDisplay = _schoolsNPA;
                           }
                         });
@@ -192,18 +214,21 @@ class SearchResultView extends State<SearchResultPage> {
     List<bool> _selections;
     if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false, false, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isNotEmpty) {
+      _selections = [true, false, false, false, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isNotEmpty) {
+      NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+      _selections = [false, true, false, false, false];
+    }else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsREACH.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
-      _selections = [false, true, false, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isNotEmpty) {
+      _selections = [false, false, true, false, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-      _selections = [false, false, true, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isEmpty && _schoolsNPA.isNotEmpty) {
+      _selections = [false, false, false, true, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsREACH.isEmpty && _schoolsAVTA.isEmpty && _schoolsNPA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_NPA);
-      _selections = [false, false, false, true];
+      _selections = [false, false, false, false, true];
     } else {
-      _selections = [true, false, false, false];
+      _selections = [true, false, false, false, false];
     }
     return _selections;
   }

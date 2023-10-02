@@ -269,12 +269,15 @@ class CourseSearchAutocomplete extends StatelessWidget {
 
   SearchResult _buildSearchResult(String query, List<Course> suggestions) {
     List<Course> aibtCourses = [];
+    List<Course> aibtICourses = [];
     List<Course> reachCourses = [];
     List<Course> avtaCourses = [];
     List<Course> npaCourses = [];
     for (Course course in suggestions) {
       if (course.group == GroupEnum.AIBT) {
         aibtCourses.add(course);
+      } else if (course.group == GroupEnum.AIBT_I) {
+        aibtICourses.add(course);
       } else if (course.group == GroupEnum.REACH) {
         reachCourses.add(course);
       } else if (course.group == GroupEnum.AVTA){
@@ -296,6 +299,19 @@ class CourseSearchAutocomplete extends StatelessWidget {
       }
     }
     m.entries.forEach((entry) => {aibtSchools.add(new School(entry.key, entry.value))});
+
+    List<School> aibtISchools = [];
+    m = new Map();
+    for (var i = 0; i < aibtICourses.length; i++) {
+      var course = aibtICourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) => {aibtISchools.add(new School(entry.key, entry.value))});
 
     List<School> reachSchools = [];
     m = new Map();
@@ -338,6 +354,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
 
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
+    searchResult.searchResults[GroupEnum.AIBT_I] = aibtISchools;
     searchResult.searchResults[GroupEnum.REACH] = reachSchools;
     searchResult.searchResults[GroupEnum.AVTA] = avtaSchools;
     searchResult.searchResults[GroupEnum.NPA] = npaSchools;
