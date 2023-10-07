@@ -141,21 +141,21 @@ class StringConstants {
 
   // Latest Videos URL
   static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
-  static const String AIBT_I_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
+  static const String AIBT_I_VIDEOS_URL = "https://aibti.edu.au/latest-videos/";
   static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
   static const String AVTA_VIDEOS_URL = "https://avta.edu.au/latest-videos/";
   static const String NPA_VIDEOS_URL = "https://npa.edu.au/latest-videos/";
 
   // Terms and Conditions URL
   static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
-  static const String AIBT_I_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
+  static const String AIBT_I_TERMS_URL = "https://aibti.edu.au/course-terms/";
   static const String REACH_TERMS_URL = "https://reachcollege.edu.au/course-terms/";
   static const String AVTA_TERMS_URL = "https://avta.edu.au/course-terms/";
   static const String NPA_TERMS_URL = "https://npa.edu.au/course-terms/";
 
   // Contact us URL
   static const String AIBT_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
-  static const String AIBT_I_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
+  static const String AIBT_I_CONTACT_URL = "https://aibti.edu.au/contact/";
   static const String REACH_CONTACT_URL = "https://reachcollege.edu.au/contact/";
   static const String AVTA_CONTACT_URL = "https://avta.edu.au/contact/";
   static const String NPA_CONTACT_URL = "https://npa.edu.au/contact/";
