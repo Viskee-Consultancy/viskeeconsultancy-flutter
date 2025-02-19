@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +12,6 @@ import 'package:viskeeconsultancy/values/StringConstants.dart';
 import '../models/GroupEnum.dart';
 
 class Utils {
-
   static getGroupLogoLandscape(String? groupName) {
     if (groupName == StringConstants.AIBT_GROUP_NAME) {
       return Image.asset("images/aibt_landscape.png");
@@ -24,10 +22,10 @@ class Utils {
     if (groupName == StringConstants.REACH_GROUP_NAME) {
       return Image.asset("images/reach_landscape.png");
     }
-    if (groupName == StringConstants.AVTA_GROUP_NAME){
+    if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return Image.asset("images/avta_landscape.png");
     }
-    if (groupName == StringConstants.NPA_GROUP_NAME){
+    if (groupName == StringConstants.NPA_GROUP_NAME) {
       return Image.asset("images/npa_landscape.png");
     }
     return Image.asset("images/aibt_landscape.png");
@@ -40,7 +38,7 @@ class Utils {
       return SvgPicture.asset("images/aibt.svg");
     } else if (groupName == StringConstants.REACH_GROUP_NAME) {
       return SvgPicture.asset("images/reach.svg");
-    } else if (groupName == StringConstants.AVTA_GROUP_NAME){
+    } else if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return SvgPicture.asset("images/avta.svg");
     } else {
       return SvgPicture.asset("images/npa.svg");
@@ -59,7 +57,7 @@ class Utils {
       case SchoolNameEnum.DIANA:
         return "COMMUNITY SERVICES";
       case SchoolNameEnum.EDISON:
-        return "TECH SCIENCES";
+        return "ENGINEERING TECHNOLOGY";
       case SchoolNameEnum.SHELDON:
         return "HOSPITALITY";
       case SchoolNameEnum.BUSINESS_AND_TECHNOLOGY_FACULTY:
@@ -73,7 +71,7 @@ class Utils {
       case SchoolNameEnum.HOSPITALITY_FACULTY:
         return "HOSPITALITY";
       case SchoolNameEnum.TECH_SCIENCES_FACULTY:
-        return "TECH SCIENCES";
+        return "ENGINEERING TECHNOLOGY";
       default:
     }
   }
