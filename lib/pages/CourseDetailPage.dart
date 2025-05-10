@@ -279,7 +279,7 @@ class CourseDetailPage extends StatelessWidget {
                 width: 300,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                      backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                     ),
                     child: Padding(
                         padding: EdgeInsets.all(5),
@@ -294,7 +294,7 @@ class CourseDetailPage extends StatelessWidget {
                 width: 300,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                      backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                     ),
                     child: Padding(
                         padding: EdgeInsets.all(5),
@@ -316,7 +316,7 @@ class CourseDetailPage extends StatelessWidget {
                 width: 300,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+                      backgroundColor: WidgetStateProperty.all<Color>(Colors.grey),
                     ),
                     child: Padding(
                         padding: EdgeInsets.all(5),

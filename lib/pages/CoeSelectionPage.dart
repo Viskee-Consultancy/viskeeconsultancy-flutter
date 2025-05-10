@@ -39,7 +39,7 @@ class CoeSelectionPage extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                            backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
@@ -62,7 +62,7 @@ class CoeSelectionPage extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                            backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),

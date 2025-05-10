@@ -103,11 +103,9 @@ class MainPage extends StatelessWidget {
                                         PageTransition(
                                             child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Utils.isRunningOnMobileBrowser()
-                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png"))
-                                      : SvgPicture.asset("images/aibt.svg"),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png")),
                                   style: OutlinedButton.styleFrom(
-                                    primary: Colors.grey,
+                                    // primary: Colors.grey,
                                     backgroundColor: Colors.white,
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.all(15),
@@ -126,11 +124,9 @@ class MainPage extends StatelessWidget {
                                         PageTransition(
                                             child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Utils.isRunningOnMobileBrowser()
-                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png"))
-                                      : SvgPicture.asset("images/reach.svg"),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
                                   style: OutlinedButton.styleFrom(
-                                    primary: Colors.grey,
+                                    // primary: Colors.grey,
                                     backgroundColor: Colors.white,
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.all(15),
@@ -153,11 +149,9 @@ class MainPage extends StatelessWidget {
                                         PageTransition(
                                             child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Utils.isRunningOnMobileBrowser()
-                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png"))
-                                      : SvgPicture.asset("images/avta.svg"),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
                                   style: OutlinedButton.styleFrom(
-                                    primary: Colors.grey,
+                                    // primary: Colors.grey,
                                     backgroundColor: Colors.white,
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.all(15),
@@ -176,11 +170,10 @@ class MainPage extends StatelessWidget {
                                         PageTransition(
                                             child: SchoolLogoPage(_npa), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Utils.isRunningOnMobileBrowser()
-                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png"))
-                                      : SvgPicture.asset("images/npa.svg"),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png")),
+
                                   style: OutlinedButton.styleFrom(
-                                    primary: Colors.grey,
+                                    // primary: Colors.grey,
                                     backgroundColor: Colors.white,
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.all(15),
@@ -199,11 +192,11 @@ class MainPage extends StatelessWidget {
                                         PageTransition(
                                             child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Utils.isRunningOnMobileBrowser()
-                                      ? Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png"))
-                                      : SvgPicture.asset("images/aibt.svg"),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
+
                                   style: OutlinedButton.styleFrom(
-                                    primary: Colors.grey,
+                                    // primary: Colors.grey,
                                     backgroundColor: Colors.white,
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.all(15),

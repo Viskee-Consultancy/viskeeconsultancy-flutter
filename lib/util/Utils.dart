@@ -53,7 +53,7 @@ class Utils {
       case SchoolNameEnum.BESPOKE:
         return "ENGLISH";
       case SchoolNameEnum.BRANSON:
-        return "BUSINESS AND TECHNOLOGY";
+        return "BUSINESS";
       case SchoolNameEnum.DIANA:
         return "COMMUNITY SERVICES";
       case SchoolNameEnum.EDISON:
@@ -61,7 +61,7 @@ class Utils {
       case SchoolNameEnum.SHELDON:
         return "HOSPITALITY";
       case SchoolNameEnum.BUSINESS_AND_TECHNOLOGY_FACULTY:
-        return "BUSINESS AND TECHNOLOGY";
+        return "BUSINESS";
       case SchoolNameEnum.EARLY_CHILDHOOD_FACULTY:
         return "COMMUNITY SERVICES";
       case SchoolNameEnum.ENGLISH_FACULTY:

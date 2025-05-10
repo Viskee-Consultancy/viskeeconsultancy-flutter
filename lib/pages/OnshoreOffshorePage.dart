@@ -14,7 +14,7 @@ class OnshoreOffshorePage extends StatelessWidget {
     return MaterialApp(
         title: StringConstants.APP_NAME,
         home: Scaffold(
-          extendBodyBehindAppBar: true,
+          // extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -51,7 +51,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                            backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),
@@ -71,7 +71,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+                            backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
                               padding: EdgeInsets.all(15),

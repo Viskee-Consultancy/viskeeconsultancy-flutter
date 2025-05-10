@@ -55,7 +55,7 @@ class SchoolLogoPage extends StatelessWidget {
                                   child: ElevatedButton(
                                       style: ButtonStyle(
                                         backgroundColor:
-                                        MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                                        WidgetStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
                                       ),
                                       child: Padding(
                                           padding: EdgeInsets.all(5),
@@ -79,7 +79,7 @@ class SchoolLogoPage extends StatelessWidget {
                                 child: ElevatedButton(
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
+                                          WidgetStateProperty.all<Color>(Utils.getGroupPrimaryColor(_group.name)),
                                     ),
                                     child: Padding(
                                         padding: EdgeInsets.all(5),
@@ -138,8 +138,8 @@ class SchoolGridView extends StatelessWidget {
         padding: EdgeInsets.all(15),
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Utils.getGroupSecondaryColor(_group.name)),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+              backgroundColor: WidgetStateProperty.all<Color>(Utils.getGroupSecondaryColor(_group.name)),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ))),
           onPressed: () {

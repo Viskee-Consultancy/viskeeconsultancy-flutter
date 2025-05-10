@@ -68,7 +68,7 @@ class BrochureGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(CustomColors.GOLD),
+        backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
       ),
       onPressed: () => Utils.openBrochure(_brochure.name!, _brochure.link!, context),
       child: Padding(
