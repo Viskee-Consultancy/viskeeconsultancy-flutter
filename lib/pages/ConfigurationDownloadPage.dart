@@ -225,6 +225,6 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
         m[departmentName]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {school.departments.add(new Department(entry.key, entry.value))});
+    m.entries.forEach((entry) {school.departments.add(new Department(entry.key, entry.value));});
   }
 }

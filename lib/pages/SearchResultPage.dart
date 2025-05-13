@@ -111,100 +111,116 @@ class SearchResultView extends State<SearchResultPage> {
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
               ),
               Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Align(
                     alignment: Alignment.center,
-                    child: ToggleButtons(
-                      borderColor: CustomColors.GOLD,
-                      borderRadius: const BorderRadius.all(const Radius.circular(8)),
-                      selectedColor: Colors.white,
-                      disabledColor: Colors.black,
-                      fillColor: CustomColors.GOLD,
-                      children: [
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                            child: Text(StringConstants.AIBT_GROUP_NAME,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                            child: Text(StringConstants.AIBT_I_GROUP_NAME,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                            child: Text(StringConstants.REACH_GROUP_NAME,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                            child: Text(StringConstants.AVTA_GROUP_NAME,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                            child: Text(StringConstants.NPA_GROUP_NAME,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                        )
-                      ],
-                      onPressed: (int index) {
-                        setState(() {
-                          scrollController.jumpTo(0);
-                          if (index == 0) {
-                            NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                            _selections = [true, false, false, false, false];
-                            _schoolsToDisplay = _schoolsAIBT;
-                          } else if (index == 1) {
-                            NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
-                            _selections = [false, true, false, false, false];
-                            _schoolsToDisplay = _schoolsAIBT_I;
-                          }else if (index == 2) {
-                            NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                            _selections = [false, false, true, false, false];
-                            _schoolsToDisplay = _schoolsREACH;
-                          } else if (index == 3) {
-                            NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-                            _selections = [false, false, false, true, false];
-                            _schoolsToDisplay = _schoolsAVTA;
-                          } else {
-                            NavigationPath.PATH.removeLast();
-                            NavigationPath.PATH.add(StringConstants.PATH_NPA);
-                            _selections = [false, false, false, false, true];
-                            _schoolsToDisplay = _schoolsNPA;
-                          }
-                        });
-                      },
-                      isSelected: _selections,
-                    ),
+                    child: Column(
+                        children: [ToggleButtons(
+                          borderColor: CustomColors.GOLD,
+                          borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                          selectedColor: Colors.white,
+                          disabledColor: Colors.black,
+                          fillColor: CustomColors.GOLD,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Text(StringConstants.AIBT_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Text(StringConstants.AIBT_I_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Text(StringConstants.REACH_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                            )
+                          ],
+                          onPressed: (int index) {
+                            setState(() {
+                              scrollController.jumpTo(0);
+                              _selections.fillRange(0, 5, false);
+                              _selections[index] = !_selections[index];
+                              NavigationPath.PATH.removeLast();
+                              if (index == 0) {
+                                NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+                                // _selections = [true, false, false, false, false];
+                                _schoolsToDisplay = _schoolsAIBT;
+                              } else if (index == 1) {
+                                NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+                                // _selections = [false, true, false, false, false];
+                                _schoolsToDisplay = _schoolsAIBT_I;
+                              }else if (index == 2) {
+                                NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                // _selections = [false, false, true, false, false];
+                                _schoolsToDisplay = _schoolsREACH;
+                              }
+                            });
+                          },
+                          isSelected: _selections.sublist(0, 3),
+                        ),ToggleButtons(
+                          borderColor: CustomColors.GOLD,
+                          borderRadius: const BorderRadius.all(const Radius.circular(8)),
+                          selectedColor: Colors.white,
+                          disabledColor: Colors.black,
+                          fillColor: CustomColors.GOLD,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Text(StringConstants.AVTA_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Text(StringConstants.NPA_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                            )
+                          ],
+                          onPressed: (int index) {
+                            setState(() {
+                              scrollController.jumpTo(0);
+                              NavigationPath.PATH.removeLast();
+                              _selections.fillRange(0, 5, false);
+                                _selections[index+3] = !_selections[index+3];
+                              if (index == 0) {
+                                NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                _schoolsToDisplay = _schoolsAVTA;
+                              } else if (index == 1) {
+                                NavigationPath.PATH.add(StringConstants.PATH_NPA);
+                                _schoolsToDisplay = _schoolsNPA;
+                              }
+                            });
+                          },
+                          isSelected: _selections.sublist(3),
+                        )]
+                    )
                   )),
               Expanded(
                   flex: 8,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: 20),
                     child: _buildResultDisplayColumn(),
                   ))
             ]))));

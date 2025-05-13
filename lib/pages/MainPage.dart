@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:viskeeconsultancy/models/Course.dart';
@@ -291,7 +290,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {aibtSchools.add(new School(entry.key, entry.value))});
+    m.entries.forEach((entry) {aibtSchools.add(new School(entry.key, entry.value));});
 
     List<School> aibtISchools = [];
     m = new Map();
@@ -304,7 +303,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {aibtISchools.add(new School(entry.key, entry.value))});
+    m.entries.forEach((entry) {aibtISchools.add(new School(entry.key, entry.value));});
 
     List<School> reachSchools = [];
     m = new Map();
@@ -317,7 +316,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {reachSchools.add(new School(entry.key, entry.value))});
+    m.entries.forEach((entry) {reachSchools.add(new School(entry.key, entry.value));});
 
     List<School> avtaSchools = [];
     m = new Map();
@@ -330,7 +329,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {avtaSchools.add(new School(entry.key, entry.value))});
+    m.entries.forEach((entry) {avtaSchools.add(new School(entry.key, entry.value));});
 
     List<School> npaSchools = [];
     m = new Map();
@@ -343,7 +342,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) => {npaSchools.add(new School(entry.key, entry.value))});
+    m.entries.forEach((entry) {npaSchools.add(new School(entry.key, entry.value));});
 
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;

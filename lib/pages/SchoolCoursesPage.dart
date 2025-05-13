@@ -5,7 +5,6 @@ import 'package:viskeeconsultancy/models/Course.dart';
 import 'package:viskeeconsultancy/models/Department.dart';
 import 'package:viskeeconsultancy/models/School.dart';
 import 'package:viskeeconsultancy/util/Utils.dart';
-import 'package:viskeeconsultancy/values/CustomColors.dart';
 import 'package:viskeeconsultancy/widgets/CommonWidgets.dart';
 
 import 'CourseDetailPage.dart';
