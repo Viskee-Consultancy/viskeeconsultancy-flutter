@@ -1,4 +1,4 @@
-package com.viskee.brochure
+package com.viskee.brochures
 
 import io.flutter.embedding.android.FlutterActivity
 
