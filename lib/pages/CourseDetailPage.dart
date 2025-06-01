@@ -282,7 +282,7 @@ class CourseDetailPage extends StatelessWidget {
                       backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                     ),
                     child: Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(2),
                         child: Text("CONTACT US",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
@@ -297,7 +297,7 @@ class CourseDetailPage extends StatelessWidget {
                       backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                     ),
                     child: Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(2),
                         child: Text("START A NEW SEARCH",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {
@@ -319,7 +319,7 @@ class CourseDetailPage extends StatelessWidget {
                       backgroundColor: WidgetStateProperty.all<Color>(Colors.grey),
                     ),
                     child: Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(2),
                         child: Text("TERMS AND CONDITIONS",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                     onPressed: () {

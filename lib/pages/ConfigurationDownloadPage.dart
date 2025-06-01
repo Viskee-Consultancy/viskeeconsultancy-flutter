@@ -199,8 +199,6 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       promotionCourses.forEach((element) {
         element.isOnPromotion = true;
       });
-      print(basicSchool.name);
-      print(basicSchool.courses);
       basicSchool.courses.addAll(promotionCourses);
     }
     basicSchool.courses.sort((o1, o2) => o1.name!.compareTo(o2.name!));

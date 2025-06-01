@@ -119,13 +119,13 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                            child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
+                                            child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
                                   style: OutlinedButton.styleFrom(
                                     // primary: Colors.grey,
                                     backgroundColor: Colors.white,
@@ -140,13 +140,13 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
+                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                            child: SchoolLogoPage(_brooklyn), type: PageTransitionType.rightToLeft));
+                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
                                   style: OutlinedButton.styleFrom(
                                     // primary: Colors.grey,
                                     backgroundColor: Colors.white,
@@ -165,13 +165,13 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                    NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
+                                            child: SchoolLogoPage(_brooklyn), type: PageTransitionType.rightToLeft));
                                   },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
                                   style: OutlinedButton.styleFrom(
                                     // primary: Colors.grey,
                                     backgroundColor: Colors.white,
@@ -208,14 +208,14 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
                                     Navigator.push(
                                         context,
                                         PageTransition(
-                                            child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
+                                            child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
                                   },
                                   child:
-                                      Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
+                                      Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
 
                                   style: OutlinedButton.styleFrom(
                                     // primary: Colors.grey,
