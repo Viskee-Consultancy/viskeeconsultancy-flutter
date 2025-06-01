@@ -15,4 +15,6 @@ class CustomColors {
   static const AVTA_SECONDARY_COLOR = Color(0xFF040404);
   static const NPA_PRIMARY_COLOR = Color(0xFFDC1921);
   static const NPA_SECONDARY_COLOR = Color(0xFF6D6E71);
+  static const BROOKLYN_PRIMARY_COLOR = Color(0xFFC4A147);
+  static const BROOKLYN_SECONDARY_COLOR = Color(0xFF162C53);
 }

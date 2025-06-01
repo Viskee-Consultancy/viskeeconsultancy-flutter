@@ -22,14 +22,16 @@ class MainPage extends StatelessWidget {
   late final Group _reach;
   late final Group _avta;
   late final Group _npa;
+  late final Group _brooklyn;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._aibt_i = aibtIGroup;
     this._reach = reachGroup;
     this._avta = avtaGroup;
     this._npa = npaGroup;
+    this._brooklyn = brooklynGroup;
     this._courses.addAll(totalCourses);
   }
 
@@ -124,6 +126,27 @@ class MainPage extends StatelessWidget {
                                             child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
                                   },
                                   child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
+                                  style: OutlinedButton.styleFrom(
+                                    // primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
+                                ),
+                              ),
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_brooklyn), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
                                   style: OutlinedButton.styleFrom(
                                     // primary: Colors.grey,
                                     backgroundColor: Colors.white,
@@ -265,6 +288,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     List<Course> reachCourses = [];
     List<Course> avtaCourses = [];
     List<Course> npaCourses = [];
+    List<Course> brooklynCourses = [];
     for (Course course in suggestions) {
       if (course.group == GroupEnum.AIBT) {
         aibtCourses.add(course);
@@ -274,8 +298,10 @@ class CourseSearchAutocomplete extends StatelessWidget {
         reachCourses.add(course);
       } else if (course.group == GroupEnum.AVTA){
         avtaCourses.add(course);
-      } else {
+      } else if (course.group == GroupEnum.NPA){
         npaCourses.add(course);
+      } else {
+        brooklynCourses.add(course);
       }
     }
 
@@ -344,12 +370,26 @@ class CourseSearchAutocomplete extends StatelessWidget {
     }
     m.entries.forEach((entry) {npaSchools.add(new School(entry.key, entry.value));});
 
+    List<School> brooklynSchools = [];
+    m = new Map();
+    for (var i = 0; i < brooklynCourses.length; i++) {
+      var course = brooklynCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) {brooklynSchools.add(new School(entry.key, entry.value));});
+
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
     searchResult.searchResults[GroupEnum.AIBT_I] = aibtISchools;
     searchResult.searchResults[GroupEnum.REACH] = reachSchools;
     searchResult.searchResults[GroupEnum.AVTA] = avtaSchools;
     searchResult.searchResults[GroupEnum.NPA] = npaSchools;
+    searchResult.searchResults[GroupEnum.BROOKLYN] = brooklynSchools;
     searchResult.searchText = query;
     return searchResult;
   }

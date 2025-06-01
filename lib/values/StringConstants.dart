@@ -7,6 +7,7 @@ class StringConstants {
   static const String REACH_GROUP_NAME = "REACH";
   static const String AVTA_GROUP_NAME = "AVTA";
   static const String NPA_GROUP_NAME = "NPA";
+  static const String BROOKLYN_GROUP_NAME = "BROOKLYN";
 
   // Navigation Path
   static const String PATH_AIBT = "AIBT";
@@ -14,6 +15,7 @@ class StringConstants {
   static const String PATH_REACH = "REACH";
   static const String PATH_AVTA = "AVTA";
   static const String PATH_NPA = "NPA";
+  static const String PATH_BROOKLYN = "BROOKLYN";
   static const String PATH_COE = "COE";
   static const String PATH_NON_COE = "NON-COE";
   static const String PATH_ONSHORE = "ONSHORE";
@@ -66,6 +68,15 @@ class StringConstants {
 
   static const List<String> NPA_SCHOOL_NAMES = [NPA_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME, NPA_EARLY_CHILDHOOD_SCHOOL_NAME, NPA_ENGLISH_SCHOOL_NAME, NPA_HOSPITALITY_SCHOOL_NAME, NPA_TECH_SCIENCES_SCHOOL_NAME];
 
+  // BROOKLYN School Name
+  static const String BROOKLYN_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME = "FACULTY OF BUSINESS AND TECHNOLOGY";
+  static const String BROOKLYN_COMMUNITY_SERVICES_SCHOOL_NAME = "FACULTY OF COMMUNITY SERVICES";
+  static const String BROOKLYN_ENGLISH_SCHOOL_NAME = "FACULTY OF ENGLISH";
+  static const String BROOKLYN_HOSPITALITY_SCHOOL_NAME = "FACULTY OF HOSPITALITY";
+  static const String BROOKLYN_TECH_SCIENCES_SCHOOL_NAME = "FACULTY OF TECH SCIENCES";
+
+  static const List<String> BROOKLYN_SCHOOL_NAMES = [BROOKLYN_BUSINESS_AND_TECHNOLOGY_SCHOOL_NAME, BROOKLYN_COMMUNITY_SERVICES_SCHOOL_NAME, BROOKLYN_ENGLISH_SCHOOL_NAME, BROOKLYN_HOSPITALITY_SCHOOL_NAME, BROOKLYN_TECH_SCIENCES_SCHOOL_NAME];
+
   // AIBT File Name
   static const String AIBT_ACE_FILE_NAME = "ACE_AVIATION_AEROSPACE_ACADEMY.json";
   static const String AIBT_BESPOKE_FILE_NAME = "BESPOKE_GRAMMAR_SCHOOL_OF_ENGLISH.json";
@@ -113,6 +124,15 @@ class StringConstants {
 
   static const List<String> NPA_FILE_NAMES = [NPA_BUSINESS_AND_TECHNOLOGY_FILE_NAME, NPA_EARLY_CHILDHOOD_FILE_NAME, NPA_ENGLISH_FILE_NAME, NPA_HOSPITALITY_FILE_NAME, NPA_TECH_SCIENCES_FILE_NAME];
 
+  // BROOKLYN File Name
+  static const String BROOKLYN_BUSINESS_AND_TECHNOLOGY_FILE_NAME = "FACULTY_OF_BUSINESS_AND_TECHNOLOGY.json";
+  static const String BROOKLYN_COMMUNITY_SERVICES_FILE_NAME = "FACULTY_OF_COMMUNITY_SERVICES.json";
+  static const String BROOKLYN_ENGLISH_FILE_NAME = "FACULTY_OF_ENGLISH.json";
+  static const String BROOKLYN_HOSPITALITY_FILE_NAME = "FACULTY_OF_HOSPITALITY.json";
+  static const String BROOKLYN_TECH_SCIENCES_FILE_NAME = "FACULTY_OF_TECH_SCIENCES.json";
+
+  static const List<String> BROOKLYN_FILE_NAMES = [BROOKLYN_BUSINESS_AND_TECHNOLOGY_FILE_NAME, BROOKLYN_COMMUNITY_SERVICES_FILE_NAME, BROOKLYN_ENGLISH_FILE_NAME, BROOKLYN_HOSPITALITY_FILE_NAME, BROOKLYN_TECH_SCIENCES_FILE_NAME];
+
   // Course Configuration BASE URL
   static const String COURSE_BASE_URL =
       "https://raw.githubusercontent.com/Viskee-Consultancy/Viskee-Consultancy-Configuration/master/courses/json/";
@@ -128,6 +148,7 @@ class StringConstants {
   static const String REACH_URL = "reach/";
   static const String AVTA_URL = "avta/";
   static const String NPA_URL = "npa/";
+  static const String BROOKLYN_URL = "brooklyn/";
   static const String PROMOTIONS_URL = "promotions/";
 
   // Brochure Configuration BASE URL
@@ -138,6 +159,7 @@ class StringConstants {
   static const String REACH_BROCHURE_FILE_NAME = "reach-brochures.json";
   static const String AVTA_BROCHURE_FILE_NAME = "avta-brochures.json";
   static const String NPA_BROCHURE_FILE_NAME = "npa-brochures.json";
+  static const String BROOKLYN_BROCHURE_FILE_NAME = "brooklyn-brochures.json";
 
   // Latest Videos URL
   static const String AIBT_VIDEOS_URL = "https://aibtglobal.edu.au/latest-videos/";
@@ -145,6 +167,7 @@ class StringConstants {
   static const String REACH_VIDEOS_URL = "https://reachcollege.edu.au/latest-videos/";
   static const String AVTA_VIDEOS_URL = "https://avta.edu.au/latest-videos/";
   static const String NPA_VIDEOS_URL = "https://npa.edu.au/latest-videos/";
+  static const String BROOKLYN_VIDEOS_URL = "https://brooklyn.edu.au/latest-videos/";
 
   // Terms and Conditions URL
   static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
@@ -152,6 +175,7 @@ class StringConstants {
   static const String REACH_TERMS_URL = "https://reachcollege.edu.au/course-terms/";
   static const String AVTA_TERMS_URL = "https://avta.edu.au/course-terms/";
   static const String NPA_TERMS_URL = "https://npa.edu.au/course-terms/";
+  static const String BROOKLYN_TERMS_URL = "https://brooklyn.edu.au/course-terms/";
 
   // Contact us URL
   static const String AIBT_CONTACT_URL = "https://aibtglobal.edu.au/contact/";
@@ -159,4 +183,5 @@ class StringConstants {
   static const String REACH_CONTACT_URL = "https://reachcollege.edu.au/contact/";
   static const String AVTA_CONTACT_URL = "https://avta.edu.au/contact/";
   static const String NPA_CONTACT_URL = "https://npa.edu.au/contact/";
+  static const String BROOKLYN_CONTACT_URL = "https://brooklyn.edu.au/contact/";
 }

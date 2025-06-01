@@ -28,6 +28,9 @@ class Utils {
     if (groupName == StringConstants.NPA_GROUP_NAME) {
       return Image.asset("images/npa_landscape.png");
     }
+    if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
+      return Image.asset("images/brooklyn.png");
+    }
     return Image.asset("images/aibt_landscape.png");
   }
 
@@ -40,6 +43,8 @@ class Utils {
       return SvgPicture.asset("images/reach.svg");
     } else if (groupName == StringConstants.AVTA_GROUP_NAME) {
       return SvgPicture.asset("images/avta.svg");
+    } else if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
+      return SvgPicture.asset("images/brooklyn.png");
     } else {
       return SvgPicture.asset("images/npa.svg");
     }
@@ -92,6 +97,9 @@ class Utils {
     if (groupName == StringConstants.NPA_GROUP_NAME) {
       return CustomColors.NPA_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
+      return CustomColors.BROOKLYN_PRIMARY_COLOR;
+    }
     return CustomColors.GOLD;
   }
 
@@ -110,6 +118,9 @@ class Utils {
     }
     if (groupName == StringConstants.NPA_GROUP_NAME) {
       return CustomColors.NPA_SECONDARY_COLOR;
+    }
+    if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
+      return CustomColors.BROOKLYN_SECONDARY_COLOR;
     }
     return CustomColors.GOLD_HINT;
   }
@@ -130,6 +141,9 @@ class Utils {
     if (groupName == StringConstants.NPA_GROUP_NAME) {
       return StringConstants.NPA_VIDEOS_URL;
     }
+    if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
+      return StringConstants.BROOKLYN_VIDEOS_URL;
+    }
     return StringConstants.AIBT_VIDEOS_URL;
   }
 
@@ -149,6 +163,9 @@ class Utils {
     if (groupName == GroupEnum.NPA) {
       return StringConstants.NPA_TERMS_URL;
     }
+    if (groupName == GroupEnum.BROOKLYN) {
+      return StringConstants.BROOKLYN_TERMS_URL;
+    }
     return StringConstants.AIBT_TERMS_URL;
   }
 
@@ -167,6 +184,9 @@ class Utils {
     }
     if (groupName == GroupEnum.NPA) {
       return StringConstants.NPA_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.BROOKLYN) {
+      return StringConstants.BROOKLYN_CONTACT_URL;
     }
     return StringConstants.AIBT_CONTACT_URL;
   }
@@ -216,6 +236,8 @@ class Utils {
   }
 
   static isPortrait(BuildContext context) {
-    return MediaQuery.of(context).orientation == Orientation.portrait;
+    return MediaQuery
+        .of(context)
+        .orientation == Orientation.portrait;
   }
 }
