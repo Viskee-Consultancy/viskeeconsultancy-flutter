@@ -143,7 +143,6 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
       for (int i = 0; i < schoolNames.length; i++) {
         School? school = await mergePromotionToBasic(responseList[i], promotionResponseList[i], schoolNames[i]);
         if (school != null && school.courses.isNotEmpty) {
-          print(school.name);
           schools.add(school);
         }
       }

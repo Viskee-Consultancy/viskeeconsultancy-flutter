@@ -29,7 +29,7 @@ class Utils {
       return Image.asset("images/npa_landscape.png");
     }
     if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
-      return Image.asset("images/brooklyn.png");
+      return Image.asset("images/brooklyn_landscape.jpg");
     }
     return Image.asset("images/aibt_landscape.png");
   }

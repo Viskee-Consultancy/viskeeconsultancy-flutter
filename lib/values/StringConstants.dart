@@ -170,7 +170,7 @@ class StringConstants {
   static const String BROOKLYN_VIDEOS_URL = "https://brooklyn.edu.au/latest-videos/";
 
   // Terms and Conditions URL
-  static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/courses/terms-for-courses/";
+  static const String AIBT_TERMS_URL = "https://aibtglobal.edu.au/about/course-terms/";
   static const String AIBT_I_TERMS_URL = "https://aibti.edu.au/course-terms/";
   static const String REACH_TERMS_URL = "https://reachcollege.edu.au/course-terms/";
   static const String AVTA_TERMS_URL = "https://avta.edu.au/course-terms/";
@@ -183,5 +183,5 @@ class StringConstants {
   static const String REACH_CONTACT_URL = "https://reachcollege.edu.au/contact/";
   static const String AVTA_CONTACT_URL = "https://avta.edu.au/contact/";
   static const String NPA_CONTACT_URL = "https://npa.edu.au/contact/";
-  static const String BROOKLYN_CONTACT_URL = "https://brooklyn.edu.au/contact/";
+  static const String BROOKLYN_CONTACT_URL = "https://brooklyn.edu.au/contact-us/";
 }
