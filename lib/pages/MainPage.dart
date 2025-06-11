@@ -95,7 +95,7 @@ class MainPage extends StatelessWidget {
                             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_AIBT);
@@ -116,7 +116,7 @@ class MainPage extends StatelessWidget {
                               ),
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
@@ -137,7 +137,7 @@ class MainPage extends StatelessWidget {
                               ),
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_AVTA);
@@ -162,7 +162,7 @@ class MainPage extends StatelessWidget {
                             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
@@ -183,7 +183,7 @@ class MainPage extends StatelessWidget {
                               ),
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_NPA);
@@ -205,7 +205,7 @@ class MainPage extends StatelessWidget {
                               ),
                               Expanded(flex: 1, child: Container(child: null)),
                               Container(
-                                constraints: BoxConstraints(minHeight: 50, maxHeight: 120, minWidth: 50, maxWidth: 120),
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
                                     NavigationPath.PATH.add(StringConstants.PATH_REACH);

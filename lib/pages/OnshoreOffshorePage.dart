@@ -54,7 +54,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                             backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(10),
                               child: Text(StringConstants.PATH_ONSHORE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {
@@ -74,7 +74,7 @@ class OnshoreOffshorePage extends StatelessWidget {
                             backgroundColor: WidgetStateProperty.all<Color>(CustomColors.GOLD),
                           ),
                           child: Padding(
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(10),
                               child: Text(StringConstants.PATH_OFFSHORE,
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20))),
                           onPressed: () {

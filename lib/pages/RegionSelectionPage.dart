@@ -23,15 +23,15 @@ class RegionSelectionPage extends StatelessWidget {
           body: Container(
               child: Column(children: [
             Expanded(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 5),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text("Please choose your country",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
-            )),
+                flex: 2,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(5, AppBar().preferredSize.height + 20, 5, 5),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Please choose your country",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: CustomColors.GOLD))),
+                )),
             ConstrainedBox(
                 constraints: BoxConstraints(minHeight: 60, maxHeight: 100),
                 child: Padding(
