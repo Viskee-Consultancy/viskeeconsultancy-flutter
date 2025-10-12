@@ -17,4 +17,6 @@ class CustomColors {
   static const NPA_SECONDARY_COLOR = Color(0xFF6D6E71);
   static const BROOKLYN_PRIMARY_COLOR = Color(0xFFC4A147);
   static const BROOKLYN_SECONDARY_COLOR = Color(0xFF162C53);
+  static const PIVOT_PRIMARY_COLOR = Color(0xFF550E3B);
+  static const PIVOT_SECONDARY_COLOR = Color(0xFF951E56);
 }

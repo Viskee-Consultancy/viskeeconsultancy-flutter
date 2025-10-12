@@ -23,15 +23,17 @@ class MainPage extends StatelessWidget {
   late final Group _avta;
   late final Group _npa;
   late final Group _brooklyn;
+  late final Group _pivot;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup, Group pivotGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._aibt_i = aibtIGroup;
     this._reach = reachGroup;
     this._avta = avtaGroup;
     this._npa = npaGroup;
     this._brooklyn = brooklynGroup;
+    this._pivot = pivotGroup;
     this._courses.addAll(totalCourses);
   }
 
@@ -226,6 +228,29 @@ class MainPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Expanded(flex: 1, child: Container(child: null)),
+                              Container(
+                                constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
+                                child: new OutlinedButton(
+                                  onPressed: () {
+                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            child: SchoolLogoPage(_pivot), type: PageTransitionType.rightToLeft));
+                                  },
+                                  child:
+                                  Padding(padding: EdgeInsets.all(10), child: Image.asset("images/pivot.png")),
+
+                                  style: OutlinedButton.styleFrom(
+                                    // primary: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                  ),
+                                ),
+                              ),
                               Expanded(flex: 1, child: Container(child: null))
                             ],)
                           ],)),
@@ -289,6 +314,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     List<Course> avtaCourses = [];
     List<Course> npaCourses = [];
     List<Course> brooklynCourses = [];
+    List<Course> pivotCourses = [];
     for (Course course in suggestions) {
       if (course.group == GroupEnum.AIBT) {
         aibtCourses.add(course);
@@ -300,8 +326,10 @@ class CourseSearchAutocomplete extends StatelessWidget {
         avtaCourses.add(course);
       } else if (course.group == GroupEnum.NPA){
         npaCourses.add(course);
-      } else {
+      } else if (course.group == GroupEnum.BROOKLYN) {
         brooklynCourses.add(course);
+      } else if (course.group == GroupEnum.PIVOT) {
+        pivotCourses.add(course);
       }
     }
 
@@ -383,6 +411,19 @@ class CourseSearchAutocomplete extends StatelessWidget {
     }
     m.entries.forEach((entry) {brooklynSchools.add(new School(entry.key, entry.value));});
 
+    List<School> pivotSchools = [];
+    m = new Map();
+    for (var i = 0; i < pivotCourses.length; i++) {
+      var course = pivotCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) {pivotSchools.add(new School(entry.key, entry.value));});
+
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
     searchResult.searchResults[GroupEnum.AIBT_I] = aibtISchools;
@@ -390,6 +431,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     searchResult.searchResults[GroupEnum.AVTA] = avtaSchools;
     searchResult.searchResults[GroupEnum.NPA] = npaSchools;
     searchResult.searchResults[GroupEnum.BROOKLYN] = brooklynSchools;
+    searchResult.searchResults[GroupEnum.PIVOT] = pivotSchools;
     searchResult.searchText = query;
     return searchResult;
   }

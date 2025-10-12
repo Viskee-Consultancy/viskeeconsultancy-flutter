@@ -22,6 +22,7 @@ List<School> _schoolsREACH = [];
 List<School> _schoolsAVTA = [];
 List<School> _schoolsNPA = [];
 List<School> _schoolsBROOKLYN = [];
+List<School> _schoolsPIVOT = [];
 
 class SearchResultPage extends StatefulWidget {
   late final SearchResult _result;
@@ -34,6 +35,7 @@ class SearchResultPage extends StatefulWidget {
     _schoolsAVTA = searchResult.searchResults[GroupEnum.AVTA] ?? [];
     _schoolsNPA = searchResult.searchResults[GroupEnum.NPA] ?? [];
     _schoolsBROOKLYN = searchResult.searchResults[GroupEnum.BROOKLYN] ?? [];
+    _schoolsPIVOT = searchResult.searchResults[GroupEnum.PIVOT] ?? [];
 
     // Avoid crash at the bottom of gridview, add placeholder schools to each groups in order to make them with the
     // same length.
@@ -41,6 +43,7 @@ class SearchResultPage extends StatefulWidget {
     int maxLength = max(_schoolsAIBT.length, max(_schoolsREACH.length, _schoolsAVTA.length));
     maxLength = max(maxLength, max(_schoolsNPA.length, _schoolsAIBT_I.length));
     maxLength = max(maxLength, _schoolsBROOKLYN.length);
+    maxLength = max(maxLength, _schoolsPIVOT.length);
     if (!_schoolsAIBT.isEmpty) {
       _schoolsAIBT.addAll(buildPlaceHolderSchools(maxLength - _schoolsAIBT.length));
     }
@@ -59,6 +62,9 @@ class SearchResultPage extends StatefulWidget {
     if (!_schoolsBROOKLYN.isEmpty) {
       _schoolsBROOKLYN.addAll(buildPlaceHolderSchools(maxLength - _schoolsBROOKLYN.length));
     }
+    if (!_schoolsPIVOT.isEmpty) {
+      _schoolsPIVOT.addAll(buildPlaceHolderSchools(maxLength - _schoolsPIVOT.length));
+    }
 
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
@@ -70,8 +76,10 @@ class SearchResultPage extends StatefulWidget {
       _schoolsToDisplay = _schoolsAVTA;
     } else if (_schoolsNPA.isNotEmpty){
       _schoolsToDisplay = _schoolsNPA;
-    } else {
+    } else if (_schoolsBROOKLYN.isNotEmpty){
       _schoolsToDisplay = _schoolsBROOKLYN;
+    } else {
+      _schoolsToDisplay = _schoolsPIVOT;
     }
   }
 
@@ -161,7 +169,7 @@ class SearchResultView extends State<SearchResultPage> {
                           onPressed: (int index) {
                             setState(() {
                               scrollController.jumpTo(0);
-                              _selections.fillRange(0, 6, false);
+                              _selections.fillRange(0, 7, false);
                               _selections[index] = !_selections[index];
                               NavigationPath.PATH.removeLast();
                               if (index == 0) {
@@ -210,13 +218,22 @@ class SearchResultView extends State<SearchResultPage> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                               ),
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                child: Text(StringConstants.PIVOT_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
                             )
                           ],
                           onPressed: (int index) {
                             setState(() {
                               scrollController.jumpTo(0);
                               NavigationPath.PATH.removeLast();
-                              _selections.fillRange(0, 6, false);
+                              _selections.fillRange(0, 7, false);
                                 _selections[index+3] = !_selections[index+3];
                               if (index == 0) {
                                 NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
@@ -227,6 +244,9 @@ class SearchResultView extends State<SearchResultPage> {
                               } else if (index == 2) {
                                 NavigationPath.PATH.add(StringConstants.PATH_REACH);
                                 _schoolsToDisplay = _schoolsREACH;
+                              } else if (index == 3) {
+                                NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
+                                _schoolsToDisplay = _schoolsPIVOT;
                               }
                             });
                           },
@@ -247,24 +267,26 @@ class SearchResultView extends State<SearchResultPage> {
     List<bool> _selections;
     if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false, false, false, false, false];
+      _selections = [true, false, false, false, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
-      _selections = [false, true, false, false, false, false];
-    }else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isNotEmpty) {
+      _selections = [false, true, false, false, false, false, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-      _selections = [false, false, true, false, false, false];
+      _selections = [false, false, true, false, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
-      _selections = [false, false, false, true, false, false];
+      _selections = [false, false, false, true, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_NPA);
-      _selections = [false, false, false, false, true, false];
+      _selections = [false, false, false, false, true, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isEmpty && _schoolsREACH.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
-      _selections = [false, false, false, false, false, true];
+      _selections = [false, false, false, false, false, true, false];
+    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isEmpty && _schoolsREACH.isEmpty && _schoolsPIVOT.isNotEmpty) {
+      _selections = [false, false, false, false, false, false, true];
     } else {
-      _selections = [true, false, false, false, false, false];
+      _selections = [true, false, false, false, false, false, false];
     }
     return _selections;
   }

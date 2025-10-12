@@ -31,6 +31,9 @@ class Utils {
     if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return Image.asset("images/brooklyn_landscape.jpg");
     }
+    if (groupName == StringConstants.PIVOT_GROUP_NAME) {
+      return Image.asset("images/pivot_landscape.png");
+    }
     return Image.asset("images/aibt_landscape.png");
   }
 
@@ -45,8 +48,10 @@ class Utils {
       return SvgPicture.asset("images/avta.svg");
     } else if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return SvgPicture.asset("images/brooklyn.png");
-    } else {
+    } else if (groupName == StringConstants.NPA_GROUP_NAME){
       return SvgPicture.asset("images/npa.svg");
+    } else {
+      return SvgPicture.asset("images/pivot.png");
     }
   }
 
@@ -100,6 +105,9 @@ class Utils {
     if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return CustomColors.BROOKLYN_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.PIVOT_GROUP_NAME) {
+      return CustomColors.PIVOT_PRIMARY_COLOR;
+    }
     return CustomColors.GOLD;
   }
 
@@ -121,6 +129,9 @@ class Utils {
     }
     if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return CustomColors.BROOKLYN_SECONDARY_COLOR;
+    }
+    if (groupName == StringConstants.PIVOT_GROUP_NAME) {
+      return CustomColors.PIVOT_SECONDARY_COLOR;
     }
     return CustomColors.GOLD_HINT;
   }
@@ -144,6 +155,9 @@ class Utils {
     if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return StringConstants.BROOKLYN_VIDEOS_URL;
     }
+    if (groupName == StringConstants.PIVOT_GROUP_NAME) {
+      return StringConstants.PIVOT_VIDEOS_URL;
+    }
     return StringConstants.AIBT_VIDEOS_URL;
   }
 
@@ -166,6 +180,9 @@ class Utils {
     if (groupName == GroupEnum.BROOKLYN) {
       return StringConstants.BROOKLYN_TERMS_URL;
     }
+    if (groupName == GroupEnum.PIVOT) {
+      return StringConstants.PIVOT_TERMS_URL;
+    }
     return StringConstants.AIBT_TERMS_URL;
   }
 
@@ -187,6 +204,9 @@ class Utils {
     }
     if (groupName == GroupEnum.BROOKLYN) {
       return StringConstants.BROOKLYN_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.PIVOT) {
+      return StringConstants.PIVOT_CONTACT_URL;
     }
     return StringConstants.AIBT_CONTACT_URL;
   }
