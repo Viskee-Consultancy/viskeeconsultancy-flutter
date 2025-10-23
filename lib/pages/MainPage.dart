@@ -233,7 +233,7 @@ class MainPage extends StatelessWidget {
                                 constraints: BoxConstraints(minHeight: 30, maxHeight: 100, minWidth: 30, maxWidth: 100),
                                 child: new OutlinedButton(
                                   onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                    NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
                                     Navigator.push(
                                         context,
                                         PageTransition(
