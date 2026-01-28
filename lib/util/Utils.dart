@@ -34,6 +34,9 @@ class Utils {
     if (groupName == StringConstants.PIVOT_GROUP_NAME) {
       return Image.asset("images/pivot_landscape.png");
     }
+    if (groupName == StringConstants.HJ_GROUP_NAME) {
+      return Image.asset("images/hj_landscape.png");
+    }
     return Image.asset("images/aibt_landscape.png");
   }
 
@@ -48,10 +51,12 @@ class Utils {
       return SvgPicture.asset("images/avta.svg");
     } else if (groupName == StringConstants.BROOKLYN_GROUP_NAME) {
       return SvgPicture.asset("images/brooklyn.png");
-    } else if (groupName == StringConstants.NPA_GROUP_NAME){
+    } else if (groupName == StringConstants.NPA_GROUP_NAME) {
       return SvgPicture.asset("images/npa.svg");
-    } else {
+    } else if (groupName == StringConstants.HJ_GROUP_NAME) {
       return SvgPicture.asset("images/pivot.png");
+    } else {
+      return SvgPicture.asset("images/hj.png");
     }
   }
 
@@ -82,6 +87,8 @@ class Utils {
         return "HOSPITALITY";
       case SchoolNameEnum.TECH_SCIENCES_FACULTY:
         return "ENGINEERING TECHNOLOGY";
+      case SchoolNameEnum.ENGINEERING_TECHNOLOGY:
+        return "ENGINEERING TECHNOLOGY";
       default:
     }
   }
@@ -108,6 +115,9 @@ class Utils {
     if (groupName == StringConstants.PIVOT_GROUP_NAME) {
       return CustomColors.PIVOT_PRIMARY_COLOR;
     }
+    if (groupName == StringConstants.HJ_GROUP_NAME) {
+      return CustomColors.HJ_PRIMARY_COLOR;
+    }
     return CustomColors.GOLD;
   }
 
@@ -132,6 +142,9 @@ class Utils {
     }
     if (groupName == StringConstants.PIVOT_GROUP_NAME) {
       return CustomColors.PIVOT_SECONDARY_COLOR;
+    }
+    if (groupName == StringConstants.HJ_GROUP_NAME) {
+      return CustomColors.HJ_SECONDARY_COLOR;
     }
     return CustomColors.GOLD_HINT;
   }
@@ -158,6 +171,9 @@ class Utils {
     if (groupName == StringConstants.PIVOT_GROUP_NAME) {
       return StringConstants.PIVOT_VIDEOS_URL;
     }
+    if (groupName == StringConstants.HJ_GROUP_NAME) {
+      return StringConstants.HJ_VIDEOS_URL;
+    }
     return StringConstants.AIBT_VIDEOS_URL;
   }
 
@@ -183,6 +199,9 @@ class Utils {
     if (groupName == GroupEnum.PIVOT) {
       return StringConstants.PIVOT_TERMS_URL;
     }
+    if (groupName == GroupEnum.HJ) {
+      return StringConstants.HJ_TERMS_URL;
+    }
     return StringConstants.AIBT_TERMS_URL;
   }
 
@@ -207,6 +226,9 @@ class Utils {
     }
     if (groupName == GroupEnum.PIVOT) {
       return StringConstants.PIVOT_CONTACT_URL;
+    }
+    if (groupName == GroupEnum.HJ) {
+      return StringConstants.HJ_CONTACT_URL;
     }
     return StringConstants.AIBT_CONTACT_URL;
   }
@@ -256,8 +278,6 @@ class Utils {
   }
 
   static isPortrait(BuildContext context) {
-    return MediaQuery
-        .of(context)
-        .orientation == Orientation.portrait;
+    return MediaQuery.of(context).orientation == Orientation.portrait;
   }
 }

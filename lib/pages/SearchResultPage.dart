@@ -23,6 +23,7 @@ List<School> _schoolsAVTA = [];
 List<School> _schoolsNPA = [];
 List<School> _schoolsBROOKLYN = [];
 List<School> _schoolsPIVOT = [];
+List<School> _schoolsHJ = [];
 
 class SearchResultPage extends StatefulWidget {
   late final SearchResult _result;
@@ -36,6 +37,7 @@ class SearchResultPage extends StatefulWidget {
     _schoolsNPA = searchResult.searchResults[GroupEnum.NPA] ?? [];
     _schoolsBROOKLYN = searchResult.searchResults[GroupEnum.BROOKLYN] ?? [];
     _schoolsPIVOT = searchResult.searchResults[GroupEnum.PIVOT] ?? [];
+    _schoolsHJ = searchResult.searchResults[GroupEnum.HJ] ?? [];
 
     // Avoid crash at the bottom of gridview, add placeholder schools to each groups in order to make them with the
     // same length.
@@ -65,21 +67,26 @@ class SearchResultPage extends StatefulWidget {
     if (!_schoolsPIVOT.isEmpty) {
       _schoolsPIVOT.addAll(buildPlaceHolderSchools(maxLength - _schoolsPIVOT.length));
     }
+    if (!_schoolsHJ.isEmpty) {
+      _schoolsHJ.addAll(buildPlaceHolderSchools(maxLength - _schoolsHJ.length));
+    }
 
     if (_schoolsAIBT.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT;
     } else if (_schoolsAIBT_I.isNotEmpty) {
       _schoolsToDisplay = _schoolsAIBT_I;
-    }else if (_schoolsREACH.isNotEmpty) {
+    } else if (_schoolsREACH.isNotEmpty) {
       _schoolsToDisplay = _schoolsREACH;
-    } else if (_schoolsAVTA.isNotEmpty){
+    } else if (_schoolsAVTA.isNotEmpty) {
       _schoolsToDisplay = _schoolsAVTA;
-    } else if (_schoolsNPA.isNotEmpty){
+    } else if (_schoolsNPA.isNotEmpty) {
       _schoolsToDisplay = _schoolsNPA;
-    } else if (_schoolsBROOKLYN.isNotEmpty){
+    } else if (_schoolsBROOKLYN.isNotEmpty) {
       _schoolsToDisplay = _schoolsBROOKLYN;
-    } else {
+    } else if (_schoolsPIVOT.isNotEmpty) {
       _schoolsToDisplay = _schoolsPIVOT;
+    } else {
+      _schoolsToDisplay = _schoolsHJ;
     }
   }
 
@@ -129,9 +136,9 @@ class SearchResultView extends State<SearchResultPage> {
               Expanded(
                   flex: 2,
                   child: Align(
-                    alignment: Alignment.center,
-                    child: Column(
-                        children: [ToggleButtons(
+                      alignment: Alignment.center,
+                      child: Column(children: [
+                        ToggleButtons(
                           borderColor: CustomColors.GOLD,
                           borderRadius: const BorderRadius.all(const Radius.circular(8)),
                           selectedColor: Colors.white,
@@ -139,30 +146,39 @@ class SearchResultView extends State<SearchResultPage> {
                           fillColor: CustomColors.GOLD,
                           children: [
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.AIBT_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             ),
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.AIBT_I_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             ),
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.AVTA_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                child: Text(StringConstants.BROOKLYN_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             )
                           ],
@@ -178,14 +194,18 @@ class SearchResultView extends State<SearchResultPage> {
                               } else if (index == 1) {
                                 NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
                                 _schoolsToDisplay = _schoolsAIBT_I;
-                              }else if (index == 2) {
+                              } else if (index == 2) {
                                 NavigationPath.PATH.add(StringConstants.PATH_AVTA);
                                 _schoolsToDisplay = _schoolsAVTA;
+                              } else if (index == 3) {
+                                NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
+                                _schoolsToDisplay = _schoolsBROOKLYN;
                               }
                             });
                           },
-                          isSelected: _selections.sublist(0, 3),
-                        ),ToggleButtons(
+                          isSelected: _selections.sublist(0, 4),
+                        ),
+                        ToggleButtons(
                           borderColor: CustomColors.GOLD,
                           borderRadius: const BorderRadius.all(const Radius.circular(8)),
                           selectedColor: Colors.white,
@@ -193,39 +213,39 @@ class SearchResultView extends State<SearchResultPage> {
                           fillColor: CustomColors.GOLD,
                           children: [
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                child: Text(StringConstants.BROOKLYN_GROUP_NAME,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 120,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.NPA_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             ),
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.REACH_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             ),
                             SizedBox(
-                              width: 120,
+                              width: 80,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 child: Text(StringConstants.PIVOT_GROUP_NAME,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                child: Text(StringConstants.HJ_GROUP_NAME,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                               ),
                             )
                           ],
@@ -233,31 +253,30 @@ class SearchResultView extends State<SearchResultPage> {
                             setState(() {
                               scrollController.jumpTo(0);
                               NavigationPath.PATH.removeLast();
-                              _selections.fillRange(0, 7, false);
-                                _selections[index+3] = !_selections[index+3];
+                              _selections.fillRange(0, 8, false);
+                              _selections[index + 4] = !_selections[index + 4];
                               if (index == 0) {
-                                NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
-                                _schoolsToDisplay = _schoolsBROOKLYN;
-                              } else if (index == 1) {
                                 NavigationPath.PATH.add(StringConstants.PATH_NPA);
                                 _schoolsToDisplay = _schoolsNPA;
-                              } else if (index == 2) {
+                              } else if (index == 1) {
                                 NavigationPath.PATH.add(StringConstants.PATH_REACH);
                                 _schoolsToDisplay = _schoolsREACH;
-                              } else if (index == 3) {
+                              } else if (index == 2) {
                                 NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
                                 _schoolsToDisplay = _schoolsPIVOT;
+                              } else if (index == 3) {
+                                NavigationPath.PATH.add(StringConstants.PATH_HJ);
+                                _schoolsToDisplay = _schoolsHJ;
                               }
                             });
                           },
-                          isSelected: _selections.sublist(3),
-                        )]
-                    )
-                  )),
+                          isSelected: _selections.sublist(4),
+                        )
+                      ]))),
               Expanded(
-                  flex: 8,
+                  flex: 11,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 10),
                     child: _buildResultDisplayColumn(),
                   ))
             ]))));
@@ -267,26 +286,50 @@ class SearchResultView extends State<SearchResultPage> {
     List<bool> _selections;
     if (!_schoolsAIBT.isEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-      _selections = [true, false, false, false, false, false, false];
+      _selections = [true, false, false, false, false, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
-      _selections = [false, true, false, false, false, false, false];
+      _selections = [false, true, false, false, false, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-      _selections = [false, false, true, false, false, false, false];
+      _selections = [false, false, true, false, false, false, false, false];
     } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
-      _selections = [false, false, false, true, false, false, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isNotEmpty) {
+      _selections = [false, false, false, true, false, false, false, false];
+    } else if (_schoolsAIBT.isEmpty &&
+        _schoolsAIBT_I.isEmpty &&
+        _schoolsAVTA.isEmpty &&
+        _schoolsBROOKLYN.isEmpty &&
+        _schoolsNPA.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_NPA);
-      _selections = [false, false, false, false, true, false, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isEmpty && _schoolsREACH.isNotEmpty) {
+      _selections = [false, false, false, false, true, false, false, false];
+    } else if (_schoolsAIBT.isEmpty &&
+        _schoolsAIBT_I.isEmpty &&
+        _schoolsAVTA.isEmpty &&
+        _schoolsBROOKLYN.isEmpty &&
+        _schoolsNPA.isEmpty &&
+        _schoolsREACH.isNotEmpty) {
       NavigationPath.PATH.add(StringConstants.PATH_REACH);
-      _selections = [false, false, false, false, false, true, false];
-    } else if (_schoolsAIBT.isEmpty && _schoolsAIBT_I.isEmpty && _schoolsAVTA.isEmpty && _schoolsBROOKLYN.isEmpty && _schoolsNPA.isEmpty && _schoolsREACH.isEmpty && _schoolsPIVOT.isNotEmpty) {
-      _selections = [false, false, false, false, false, false, true];
+      _selections = [false, false, false, false, false, true, false, false];
+    } else if (_schoolsAIBT.isEmpty &&
+        _schoolsAIBT_I.isEmpty &&
+        _schoolsAVTA.isEmpty &&
+        _schoolsBROOKLYN.isEmpty &&
+        _schoolsNPA.isEmpty &&
+        _schoolsREACH.isEmpty &&
+        _schoolsPIVOT.isNotEmpty) {
+      _selections = [false, false, false, false, false, false, true, false];
+    } else if (_schoolsAIBT.isEmpty &&
+        _schoolsAIBT_I.isEmpty &&
+        _schoolsAVTA.isEmpty &&
+        _schoolsBROOKLYN.isEmpty &&
+        _schoolsNPA.isEmpty &&
+        _schoolsREACH.isEmpty &&
+        _schoolsPIVOT.isEmpty &&
+        _schoolsHJ.isNotEmpty) {
+      _selections = [false, false, false, false, false, false, false, true];
     } else {
-      _selections = [true, false, false, false, false, false, false];
+      _selections = [true, false, false, false, false, false, false, false];
     }
     return _selections;
   }

@@ -1,1 +1,1 @@
-enum GroupEnum { AIBT, AIBT_I, REACH, AVTA, NPA, BROOKLYN, PIVOT }
+enum GroupEnum { AIBT, AIBT_I, REACH, AVTA, NPA, BROOKLYN, PIVOT, HJ }

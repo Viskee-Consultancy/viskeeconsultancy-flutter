@@ -24,9 +24,11 @@ class MainPage extends StatelessWidget {
   late final Group _npa;
   late final Group _brooklyn;
   late final Group _pivot;
+  late final Group _hj;
   late final List<Course> _courses = [];
 
-  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup, Group pivotGroup, List<Course> totalCourses) {
+  MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup,
+      Group pivotGroup, Group hjGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
     this._aibt_i = aibtIGroup;
     this._reach = reachGroup;
@@ -34,6 +36,7 @@ class MainPage extends StatelessWidget {
     this._npa = npaGroup;
     this._brooklyn = brooklynGroup;
     this._pivot = pivotGroup;
+    this._hj = hjGroup;
     this._courses.addAll(totalCourses);
   }
 
@@ -93,171 +96,199 @@ class MainPage extends StatelessWidget {
                       ),
                       Expanded(
                           flex: 5,
-                          child: Column(children: [
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png")),
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                          child: Column(
+                            children: [
+                              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_AIBT);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      // primary: Colors.grey,
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(15),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child:
+                                        Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      // primary: Colors.grey,
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(15),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_AVTA);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_AVTA);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      // primary: Colors.grey,
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(15),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
                                   ),
                                 ),
+                                Expanded(flex: 1, child: Container(child: null))
+                              ]),
+                              Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(flex: 1, child: Container(child: null)),
+                                  Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                    child: new OutlinedButton(
+                                      onPressed: () {
+                                        NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: SchoolLogoPage(_brooklyn),
+                                                type: PageTransitionType.rightToLeft));
+                                      },
+                                      child: Padding(
+                                          padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
+                                      style: OutlinedButton.styleFrom(
+                                        // primary: Colors.grey,
+                                        backgroundColor: Colors.white,
+                                        shape: CircleBorder(),
+                                        padding: EdgeInsets.all(15),
+                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(flex: 1, child: Container(child: null)),
+                                  Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                    child: new OutlinedButton(
+                                      onPressed: () {
+                                        NavigationPath.PATH.add(StringConstants.PATH_NPA);
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: SchoolLogoPage(_npa), type: PageTransitionType.rightToLeft));
+                                      },
+                                      child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png")),
+                                      style: OutlinedButton.styleFrom(
+                                        // primary: Colors.grey,
+                                        backgroundColor: Colors.white,
+                                        shape: CircleBorder(),
+                                        padding: EdgeInsets.all(15),
+                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(flex: 1, child: Container(child: null)),
+                                  Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                    child: new OutlinedButton(
+                                      onPressed: () {
+                                        NavigationPath.PATH.add(StringConstants.PATH_REACH);
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
+                                      },
+                                      child:
+                                          Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
+                                      style: OutlinedButton.styleFrom(
+                                        // primary: Colors.grey,
+                                        backgroundColor: Colors.white,
+                                        shape: CircleBorder(),
+                                        padding: EdgeInsets.all(15),
+                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(flex: 1, child: Container(child: null))
+                                ],
                               ),
-                              Expanded(flex: 1, child: Container(child: null))
-                            ]),
-                            Spacer(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_brooklyn), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                              Spacer(),
+                              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_pivot), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/pivot.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      // primary: Colors.grey,
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(15),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_NPA);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_npa), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png")),
-
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_HJ);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_hj), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/hj.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      // primary: Colors.grey,
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(15),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_REACH);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child:
-                                      Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
-
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                                  ),
-                                ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null))
-                            ],),
-                            Spacer(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                              Expanded(flex: 1, child: Container(child: null)),
-                              Container(
-                                constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                child: new OutlinedButton(
-                                  onPressed: () {
-                                    NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: SchoolLogoPage(_pivot), type: PageTransitionType.rightToLeft));
-                                  },
-                                  child:
-                                  Padding(padding: EdgeInsets.all(10), child: Image.asset("images/pivot.png")),
-
-                                  style: OutlinedButton.styleFrom(
-                                    // primary: Colors.grey,
-                                    backgroundColor: Colors.white,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                                  ),
-                                ),
-                              ),
-                              Expanded(flex: 1, child: Container(child: null))
-                            ])
-                          ],)),
+                                Expanded(flex: 1, child: Container(child: null))
+                              ])
+                            ],
+                          )),
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -319,6 +350,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     List<Course> npaCourses = [];
     List<Course> brooklynCourses = [];
     List<Course> pivotCourses = [];
+    List<Course> hjCourses = [];
     for (Course course in suggestions) {
       if (course.group == GroupEnum.AIBT) {
         aibtCourses.add(course);
@@ -326,14 +358,16 @@ class CourseSearchAutocomplete extends StatelessWidget {
         aibtICourses.add(course);
       } else if (course.group == GroupEnum.REACH) {
         reachCourses.add(course);
-      } else if (course.group == GroupEnum.AVTA){
+      } else if (course.group == GroupEnum.AVTA) {
         avtaCourses.add(course);
-      } else if (course.group == GroupEnum.NPA){
+      } else if (course.group == GroupEnum.NPA) {
         npaCourses.add(course);
       } else if (course.group == GroupEnum.BROOKLYN) {
         brooklynCourses.add(course);
       } else if (course.group == GroupEnum.PIVOT) {
         pivotCourses.add(course);
+      } else if (course.group == GroupEnum.HJ) {
+        hjCourses.add(course);
       }
     }
 
@@ -348,7 +382,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {aibtSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      aibtSchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> aibtISchools = [];
     m = new Map();
@@ -361,7 +397,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {aibtISchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      aibtISchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> reachSchools = [];
     m = new Map();
@@ -374,7 +412,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {reachSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      reachSchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> avtaSchools = [];
     m = new Map();
@@ -387,7 +427,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {avtaSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      avtaSchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> npaSchools = [];
     m = new Map();
@@ -400,7 +442,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {npaSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      npaSchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> brooklynSchools = [];
     m = new Map();
@@ -413,7 +457,9 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {brooklynSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      brooklynSchools.add(new School(entry.key, entry.value));
+    });
 
     List<School> pivotSchools = [];
     m = new Map();
@@ -426,7 +472,24 @@ class CourseSearchAutocomplete extends StatelessWidget {
         m[course.schoolName!]!.add(course);
       }
     }
-    m.entries.forEach((entry) {pivotSchools.add(new School(entry.key, entry.value));});
+    m.entries.forEach((entry) {
+      pivotSchools.add(new School(entry.key, entry.value));
+    });
+
+    List<School> hjSchools = [];
+    m = new Map();
+    for (var i = 0; i < hjCourses.length; i++) {
+      var course = hjCourses[i];
+      if (m[course.schoolName] == null) {
+        List<Course> courses = [course];
+        m[course.schoolName!] = courses;
+      } else {
+        m[course.schoolName!]!.add(course);
+      }
+    }
+    m.entries.forEach((entry) {
+      hjSchools.add(new School(entry.key, entry.value));
+    });
 
     SearchResult searchResult = new SearchResult();
     searchResult.searchResults[GroupEnum.AIBT] = aibtSchools;
@@ -436,6 +499,7 @@ class CourseSearchAutocomplete extends StatelessWidget {
     searchResult.searchResults[GroupEnum.NPA] = npaSchools;
     searchResult.searchResults[GroupEnum.BROOKLYN] = brooklynSchools;
     searchResult.searchResults[GroupEnum.PIVOT] = pivotSchools;
+    searchResult.searchResults[GroupEnum.HJ] = hjSchools;
     searchResult.searchText = query;
     return searchResult;
   }

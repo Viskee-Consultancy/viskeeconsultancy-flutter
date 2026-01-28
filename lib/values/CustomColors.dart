@@ -19,4 +19,6 @@ class CustomColors {
   static const BROOKLYN_SECONDARY_COLOR = Color(0xFF162C53);
   static const PIVOT_PRIMARY_COLOR = Color(0xFF550E3B);
   static const PIVOT_SECONDARY_COLOR = Color(0xFF951E56);
+  static const HJ_PRIMARY_COLOR = Color(0xFF0F487F);
+  static const HJ_SECONDARY_COLOR = Color(0xFFF7941D);
 }
