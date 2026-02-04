@@ -72,6 +72,7 @@ class ConfigurationDownloadAsync extends State<ConfigurationDownloadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
           child: Column(children: [
         Expanded(

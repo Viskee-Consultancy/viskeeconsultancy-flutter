@@ -27,6 +27,7 @@ class SchoolLogoPage extends StatelessWidget {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
               child: Column(

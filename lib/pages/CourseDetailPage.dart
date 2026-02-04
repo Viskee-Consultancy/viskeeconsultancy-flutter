@@ -25,6 +25,7 @@ class CourseDetailPage extends StatelessWidget {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, _isFromSearch ? true : false),
             body: Column(
               children: [

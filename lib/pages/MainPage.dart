@@ -80,6 +80,7 @@ class MainPage extends StatelessWidget {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Stack(
               children: [

@@ -27,6 +27,7 @@ class SchoolCoursesPage extends StatelessWidget {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
               child: new SchoolCoursesPageView(_school, _groupName),

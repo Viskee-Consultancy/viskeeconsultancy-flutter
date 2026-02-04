@@ -23,6 +23,7 @@ class BrochureDownloadPage extends StatelessWidget {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, false),
             body: Container(
                 child: Column(children: [

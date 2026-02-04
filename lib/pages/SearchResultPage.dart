@@ -122,6 +122,7 @@ class SearchResultView extends State<SearchResultPage> {
         },
         child: Scaffold(
             extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
             appBar: CommonWidgets.getAppBar(context, true),
             body: Container(
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
