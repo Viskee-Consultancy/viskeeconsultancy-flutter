@@ -27,6 +27,37 @@ class MainPage extends StatelessWidget {
   late final Group _hj;
   late final List<Course> _courses = [];
 
+  // Helper method for responsive button sizing
+  BoxConstraints getResponsiveButtonConstraints(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    if (screenWidth < 600) {
+      // Small screens (mobile)
+      return BoxConstraints(
+        minHeight: 70,
+        maxHeight: 95,
+        minWidth: 70,
+        maxWidth: 95,
+      );
+    } else if (screenWidth < 1200) {
+      // Medium screens (tablet)
+      return BoxConstraints(
+        minHeight: 85,
+        maxHeight: 120,
+        minWidth: 85,
+        maxWidth: 120,
+      );
+    } else {
+      // Large screens (desktop)
+      return BoxConstraints(
+        minHeight: 100,
+        maxHeight: 140,
+        minWidth: 100,
+        maxWidth: 140,
+      );
+    }
+  }
+
   MainPage(Group aibtGroup, Group aibtIGroup, Group reachGroup, Group avtaGroup, Group npaGroup, Group brooklynGroup,
       Group pivotGroup, Group hjGroup, List<Course> totalCourses) {
     this._aibt = aibtGroup;
@@ -101,7 +132,7 @@ class MainPage extends StatelessWidget {
                               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                                 Expanded(flex: 1, child: Container(child: null)),
                                 Container(
-                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  constraints: getResponsiveButtonConstraints(context),
                                   child: new OutlinedButton(
                                     onPressed: () {
                                       NavigationPath.PATH.add(StringConstants.PATH_AIBT);
@@ -110,19 +141,20 @@ class MainPage extends StatelessWidget {
                                           PageTransition(
                                               child: SchoolLogoPage(_aibt), type: PageTransitionType.rightToLeft));
                                     },
-                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt.png")),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                        child: Image.asset("images/aibt.png")),
                                     style: OutlinedButton.styleFrom(
-                                      // primary: Colors.grey,
                                       backgroundColor: Colors.white,
                                       shape: CircleBorder(),
-                                      padding: EdgeInsets.all(15),
+                                      padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
                                       side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                                     ),
                                   ),
                                 ),
                                 Expanded(flex: 1, child: Container(child: null)),
                                 Container(
-                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  constraints: getResponsiveButtonConstraints(context),
                                   child: new OutlinedButton(
                                     onPressed: () {
                                       NavigationPath.PATH.add(StringConstants.PATH_AIBT_I);
@@ -131,20 +163,20 @@ class MainPage extends StatelessWidget {
                                           PageTransition(
                                               child: SchoolLogoPage(_aibt_i), type: PageTransitionType.rightToLeft));
                                     },
-                                    child:
-                                        Padding(padding: EdgeInsets.all(10), child: Image.asset("images/aibt-i.png")),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                        child: Image.asset("images/aibt-i.png")),
                                     style: OutlinedButton.styleFrom(
-                                      // primary: Colors.grey,
                                       backgroundColor: Colors.white,
                                       shape: CircleBorder(),
-                                      padding: EdgeInsets.all(15),
+                                      padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
                                       side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                                     ),
                                   ),
                                 ),
                                 Expanded(flex: 1, child: Container(child: null)),
                                 Container(
-                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                  constraints: getResponsiveButtonConstraints(context),
                                   child: new OutlinedButton(
                                     onPressed: () {
                                       NavigationPath.PATH.add(StringConstants.PATH_AVTA);
@@ -153,12 +185,35 @@ class MainPage extends StatelessWidget {
                                           PageTransition(
                                               child: SchoolLogoPage(_avta), type: PageTransitionType.rightToLeft));
                                     },
-                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/avta.png")),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                        child: Image.asset("images/avta.png")),
                                     style: OutlinedButton.styleFrom(
-                                      // primary: Colors.grey,
                                       backgroundColor: Colors.white,
                                       shape: CircleBorder(),
-                                      padding: EdgeInsets.all(15),
+                                      padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
+                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(flex: 1, child: Container(child: null)),
+                                Container(
+                                  constraints: getResponsiveButtonConstraints(context),
+                                  child: new OutlinedButton(
+                                    onPressed: () {
+                                      NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              child: SchoolLogoPage(_brooklyn), type: PageTransitionType.rightToLeft));
+                                    },
+                                    child: Padding(
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                        child: Image.asset("images/brooklyn.png")),
+                                    style: OutlinedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
                                       side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                                     ),
                                   ),
@@ -171,32 +226,7 @@ class MainPage extends StatelessWidget {
                                 children: [
                                   Expanded(flex: 1, child: Container(child: null)),
                                   Container(
-                                    constraints:
-                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                    child: new OutlinedButton(
-                                      onPressed: () {
-                                        NavigationPath.PATH.add(StringConstants.PATH_BROOKLYN);
-                                        Navigator.push(
-                                            context,
-                                            PageTransition(
-                                                child: SchoolLogoPage(_brooklyn),
-                                                type: PageTransitionType.rightToLeft));
-                                      },
-                                      child: Padding(
-                                          padding: EdgeInsets.all(10), child: Image.asset("images/brooklyn.png")),
-                                      style: OutlinedButton.styleFrom(
-                                        // primary: Colors.grey,
-                                        backgroundColor: Colors.white,
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(15),
-                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(flex: 1, child: Container(child: null)),
-                                  Container(
-                                    constraints:
-                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                    constraints: getResponsiveButtonConstraints(context),
                                     child: new OutlinedButton(
                                       onPressed: () {
                                         NavigationPath.PATH.add(StringConstants.PATH_NPA);
@@ -205,20 +235,20 @@ class MainPage extends StatelessWidget {
                                             PageTransition(
                                                 child: SchoolLogoPage(_npa), type: PageTransitionType.rightToLeft));
                                       },
-                                      child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/npa.png")),
+                                      child: Padding(
+                                          padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                          child: Image.asset("images/npa.png")),
                                       style: OutlinedButton.styleFrom(
-                                        // primary: Colors.grey,
                                         backgroundColor: Colors.white,
                                         shape: CircleBorder(),
-                                        padding: EdgeInsets.all(15),
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
                                         side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                                       ),
                                     ),
                                   ),
                                   Expanded(flex: 1, child: Container(child: null)),
                                   Container(
-                                    constraints:
-                                        BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
+                                    constraints: getResponsiveButtonConstraints(context),
                                     child: new OutlinedButton(
                                       onPressed: () {
                                         NavigationPath.PATH.add(StringConstants.PATH_REACH);
@@ -227,66 +257,64 @@ class MainPage extends StatelessWidget {
                                             PageTransition(
                                                 child: SchoolLogoPage(_reach), type: PageTransitionType.rightToLeft));
                                       },
-                                      child:
-                                          Padding(padding: EdgeInsets.all(10), child: Image.asset("images/reach.png")),
+                                      child: Padding(
+                                          padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                          child: Image.asset("images/reach.png")),
                                       style: OutlinedButton.styleFrom(
-                                        // primary: Colors.grey,
                                         backgroundColor: Colors.white,
                                         shape: CircleBorder(),
-                                        padding: EdgeInsets.all(15),
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
+                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(flex: 1, child: Container(child: null)),
+                                  Container(
+                                    constraints: getResponsiveButtonConstraints(context),
+                                    child: new OutlinedButton(
+                                      onPressed: () {
+                                        NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: SchoolLogoPage(_pivot), type: PageTransitionType.rightToLeft));
+                                      },
+                                      child: Padding(
+                                          padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                          child: Image.asset("images/pivot.png")),
+                                      style: OutlinedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        shape: CircleBorder(),
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
+                                        side: BorderSide(width: 1.0, color: CustomColors.GOLD),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(flex: 1, child: Container(child: null)),
+                                  Container(
+                                    constraints: getResponsiveButtonConstraints(context),
+                                    child: new OutlinedButton(
+                                      onPressed: () {
+                                        NavigationPath.PATH.add(StringConstants.PATH_HJ);
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                child: SchoolLogoPage(_hj), type: PageTransitionType.rightToLeft));
+                                      },
+                                      child: Padding(
+                                          padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 10),
+                                          child: Image.asset("images/hj.png")),
+                                      style: OutlinedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        shape: CircleBorder(),
+                                        padding: EdgeInsets.all(MediaQuery.of(context).size.width < 600 ? 8 : 12),
                                         side: BorderSide(width: 1.0, color: CustomColors.GOLD),
                                       ),
                                     ),
                                   ),
                                   Expanded(flex: 1, child: Container(child: null))
                                 ],
-                              ),
-                              Spacer(),
-                              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                                Expanded(flex: 1, child: Container(child: null)),
-                                Container(
-                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                  child: new OutlinedButton(
-                                    onPressed: () {
-                                      NavigationPath.PATH.add(StringConstants.PATH_PIVOT);
-                                      Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              child: SchoolLogoPage(_pivot), type: PageTransitionType.rightToLeft));
-                                    },
-                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/pivot.png")),
-                                    style: OutlinedButton.styleFrom(
-                                      // primary: Colors.grey,
-                                      backgroundColor: Colors.white,
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(15),
-                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(flex: 1, child: Container(child: null)),
-                                Container(
-                                  constraints: BoxConstraints(minHeight: 20, maxHeight: 90, minWidth: 20, maxWidth: 90),
-                                  child: new OutlinedButton(
-                                    onPressed: () {
-                                      NavigationPath.PATH.add(StringConstants.PATH_HJ);
-                                      Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              child: SchoolLogoPage(_hj), type: PageTransitionType.rightToLeft));
-                                    },
-                                    child: Padding(padding: EdgeInsets.all(10), child: Image.asset("images/hj.png")),
-                                    style: OutlinedButton.styleFrom(
-                                      // primary: Colors.grey,
-                                      backgroundColor: Colors.white,
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(15),
-                                      side: BorderSide(width: 1.0, color: CustomColors.GOLD),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(flex: 1, child: Container(child: null))
-                              ])
+                              )
                             ],
                           )),
                       Expanded(
