@@ -587,9 +587,12 @@ class CourseSearchAutocomplete extends StatelessWidget {
           }
         },
       ),
-      itemBuilder: (context, suggestion) => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(suggestion!.name!),
+      itemBuilder: (context, suggestion) => Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(suggestion!.name!),
+        ),
       ),
       suggestionsCallback: (query) => _getCourseSuggestions(query, _courses, suggestions),
       onSuggestionSelected: (suggestion) => {_itemSelected(suggestion, suggestions, context)},
